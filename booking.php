@@ -30,24 +30,14 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 
 <body style="font-size: 18px;"><?php $query=mysqli_query($con,"select * from users");
 while($row=mysqli_fetch_array($query))
-{?><nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" style="color: turquoise">Silver Glen</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Book a Table</a></li>
-      <li><a href="#">See Booking History</a></li>
-      <li><a href="#">Help</a></li>
-    </ul>
-  </div>
-</nav>
+{?>
+<?php include("includes/nav-menu.php") ?>
 	<div id="booking" class="section">
 		<div class="section-center">
 			<div class="container">
 				<div class="row">
 					<div class="booking-form">
-						<form></br>
+						<form action="confirmation.php"></br></br></br></br></br></br></br></br>
 							<p style="font-size: x-large; text-align: center; color: #f14634">Hello, <?php echo $row['firstname']; ?> </p>
 							<p style="font-size:xx-large; text-align: center;">Book a Table</p></br>
 							<div class="row no-margin">
@@ -130,18 +120,10 @@ while($row=mysqli_fetch_array($query))
 								<input class="form-control" type="text" placeholder="example: food allergies, wheelchair assistance">
 							</div>
 							<div class="form-btn">
-								<button class="submit-btn">Confirm Reservation</button>
+								<button type="submit" class="submit-btn" >Confirm Reservation</button>
 							</div>
 						</form>
-						<script type="text/javascript">
-					window.findTotal = function() {
-						num1 = document.getElementById("total").value;
-						value = num1 / 2;{
-						document.getElementById("cgst").value = value;
-						document.getElementById("sgst").value = value;
-					}
-						}
-						    </script>
+						
 					</div>
 				</div>
 			</div>
