@@ -7,7 +7,7 @@ include('includes/config.php');
 if(isset($_POST['login']))
 {
    $unitno=$_POST['unitno'];
-   $password=md5($_POST['password']);
+   $password=$_POST['password'];
 $query=mysqli_query($con,"SELECT * FROM users WHERE unitno='$unitno' and password='$password'");
 $num=mysqli_fetch_array($query);
 if($num>0)
