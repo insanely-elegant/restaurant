@@ -37,90 +37,66 @@ while($row=mysqli_fetch_array($query))
 			<div class="container">
 				<div class="row">
 					<div class="booking-form">
-						<form action="confirmation.php"></br></br></br></br></br></br></br></br>
+						<form action="seat-selection.php">
 							<p style="font-size: x-large; text-align: center; color: #f14634">Hello, <?php echo $row['firstname']; ?> </p>
-							<p style="font-size:xx-large; text-align: center;">Book a Table</p></br>
+							<p style="font-size:xx-large; text-align: center;">Select a date</p></br>
 							<div class="row no-margin">
-								<div class="col-sm-6">
-									<div class="form-group">
-										<span class="form-label">Select a date</span>
-										<input type="date" class="form-control" id="date" required autocomplete="off">
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<span class="form-label">Select a time</span>
-										<select class="form-control" id="members">
-											<option class="form-control" value="06:30 PM">06:30 PM</option>
-											<option class="form-control" value="07:00 AM">07:00 AM</option>
-											<option class="form-control" value="07:30 PM">07:30 PM</option>
-											<option class="form-control" value="08:10 PM">08:10 PM</option>
-											<option class="form-control" value="08:40 PM">08:40 PM</option>
-											<option class="form-control" value="09:10 PM">09:10 PM</option>
-										</select>
-										
-									</div>
-								</div>
-
-							</div>
-							<div class="row no-margin">
-								<div class="col-sm-6">
-									<div class="form-group">
-										<span class="form-label">Silver Glen Members</span>
-										<select class="form-control" id="members">
-											<option value="1">1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-										</select>
-										<span class="select-arrow"></span>
-									</div>
-								</div>
 								
-								
-								<div class="col-sm-6">
 									<div class="form-group">
-										<span class="form-label">Guests ( Non-Members )</span>
-										<select class="form-control">
-											<option>0</option>
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-										</select>
-										<span class="select-arrow"></span>
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<span class="form-label">Select a Table</span>
-								<select class="form-control" required>
-									<option value="" selected hidden>Select table size</option>
-									<option value="1">Small Table (1 to 2 People)</option>
-									<option value="2">Medium Table (3 to 5 People)</option>
-									<option value="3">Large Table (5 to 8 People)</option>
-								</select>
-								<span class="select-arrow"></span>
-							</div>
-								<div class="form-group">
-								<span class="form-label">Choose a Preferred Meal</span>
-								<select class="form-control" required>
-									<option value="" selected hidden>Select one meal</option>
-									<option value="1">FILET MIGNON with salad( 8 oz )</option>
-									<option value="2">GRILLED SALMON with mashed potatoes( 8 oz )</option>
-								</select>
-								<span class="select-arrow"></span>
-							</div>
-							<div class="form-group">
+								<!-- <div class="form-group">
 								<span class="form-label">Unit Number</span>
 								
-								<input class="form-control" type="text" value="<?php echo $row['unitno']; ?>" disabled>
-								</div> 
-							<div class="form-group">
-								<span class="form-label">Any special request? (leave blank if none)</span>
-								<input class="form-control" type="text" placeholder="example: food allergies, wheelchair assistance">
+								<input class="form-control" type="text" value="<?php echo $row['unitno'];  ?>" disabled>
+								</div>  -->
+										<select class="form-control" id="options">
+											<option class="form-control" value="Option 0">Select a date</option>
+											<option class="form-control" value="Option 1">10/18/2019</option>
+											<option class="form-control" value="Option 2">10/19/2019</option>
+											<option class="form-control" value="Option 3">10/20/2019</option>
+											<option class="form-control" value="Option 4">10/21/2019</option>
+											<option class="form-control" value="Option 5">10/22/2019</option>
+											<option class="form-control" value="Option 6">10/23/2019</option>
+										</select>
+
+<select class="form-control" id="choices"><span class="form-label">Choose a Preferred Meal</span>
+  <option value="" disabled selected>Please select the date first</option>
+</select>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script>
+  // Map your choices to your option value
+var lookup = {
+   'Option 0': ['Please select a date'],
+   'Option 1': ['Apple Pie','Clam Chowder'],
+   'Option 2': ['The Hamburger','Apple Pie'],
+   'Option 3': ['Bagel and Lox', 'Deep-Dish Pizza'],
+   'Option 4': ['Drop Biscuits and Sausage Gravy', 'Texas Barbecue'],
+   'Option 5': ['Apple Pie', 'Apple Pie'],
+   'Option 6': ['Hominy Grits','Pancakes'],
+};
+
+// When an option is changed, search the above for matching choices
+$('#options').on('change', function() {
+   // Set selected option as variable
+   var selectValue = $(this).val();
+
+   // Empty the target field
+   $('#choices').empty();
+   
+   // For each chocie in the selected option
+   for (i = 0; i < lookup[selectValue].length; i++) {
+      // Output choice in the target field
+      $('#choices').append("<option value='" + lookup[selectValue][i] + "'>" + lookup[selectValue][i] + "</option>");
+   }
+});
+  </script>
+
 							</div>
+							
+							
+							
 							<div class="form-btn">
-								<button type="submit" class="submit-btn" >Confirm Reservation</button>
+								<button type="submit" class="submit-btn" >PICK YOUR TABLE NEXT</button>
 							</div>
 						</form>
 						

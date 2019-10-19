@@ -375,7 +375,7 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
                             <tr style="padding:0;vertical-align:top;text-align:left;">
                               <th class="small-12 large-12 columns first last" style="font-size:16px;padding:0;text-align:left;color:#0a0a0a;font-family:Helvetica, Arial, sans-serif;font-weight:normal;line-height:1.3;margin:0 auto;padding-bottom:16px;width:564px;padding-left:16px;padding-right:16px;">
                                 <p class="body body-lg body-link-rausch light" style="padding:0;margin:0;font-family:Helvetica, Helvetica, Arial, sans-serif;text-align:left;color:#000;line-height:1.4;font-size:16px;-webkit-hyphens:none;-ms-hyphens:none;margin-bottom:0px !important;">
-                                  Your reservation at Silver Glen, E302 has been reserved for Tuesday XX October   </p>
+                                  Your reservation at Silver Glen, E302 has been reserved for Sunday 20th October   </p>
                                 </th>
                               </tr>
                             </tbody>
@@ -438,12 +438,12 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
                                             <table style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%;">
                                               <tr style="padding:0;text-align:left;vertical-align:top;">
                                                 <th style="color:#6e6e6e;font-family:Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left;">
-                                                  <h3 style="color:#000;font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:700;letter-spacing:-.03px;line-height:1.3;margin:0;margin-bottom:12px;margin-top:4px;padding:0;text-align:left;word-wrap:normal;"> Table: <small style="color:#000;font-size:16px;font-weight:400;"> 7 </small>
+                                                  <h3 style="color:#000;font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:700;letter-spacing:-.03px;line-height:1.3;margin:0;margin-bottom:12px;margin-top:4px;padding:0;text-align:left;word-wrap:normal;"> Table: <small style="color:#000;font-size:16px;font-weight:400;"> 1 </small>
                                                   <a href="#" style="color:#68b243;font-family:Helvetica, Arial, sans-serif;font-weight:700;line-height:1.3;margin:0;padding:0;text-align:left;text-decoration:none;">
                                                 </a>
                                               </h3>
                                               
-                                              <h3 style="color:#000;font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:700;letter-spacing:-.03px;line-height:1.3;margin:0;margin-bottom:12px;margin-top:4px;padding:0;text-align:left;word-wrap:normal;">Reservation Time: <small style="color:#000;font-size:16px;font-weight:400;">5:30 PM</small>
+                                              <h3 style="color:#000;font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:700;letter-spacing:-.03px;line-height:1.3;margin:0;margin-bottom:12px;margin-top:4px;padding:0;text-align:left;word-wrap:normal;">Reservation Time: <small style="color:#000;font-size:16px;font-weight:400;">5:10 PM</small>
                                               <a href="#" style="color:#68b243;font-family:Helvetica, Arial, sans-serif;font-weight:700;line-height:1.3;margin:0;padding:0;text-align:left;text-decoration:none;"><strong style="font-size:14px;font-weight:400;">Change</strong>
                                             </a>
                                           </h3>

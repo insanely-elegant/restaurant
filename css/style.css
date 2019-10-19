@@ -3,7 +3,7 @@
 }
 .section {
 	position: relative;
-	height: 100vh;
+	height: 60vh;  /* earlier value = 100vh */
 }
 
 .section .section-center {

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<!-- <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" style="color: turquoise">Silver Glen</a>
@@ -8,4 +8,4 @@
       <li><a href="booking-history.php">See Past Bookings</a></li>
     </ul>
   </div>
-</nav>
+</nav> -->
