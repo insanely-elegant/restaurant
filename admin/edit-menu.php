@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+error_reporting(1);
 session_start();
 include('includes/config.php');
 if(strlen($_SESSION['alogin'])==0)
@@ -15,9 +15,10 @@ if(isset($_POST['submit']))
 {
 	$dishname=$_POST['dishname'];
 	$dishdescription=$_POST['dishdescription'];
-$sql=mysqli_query($con,"insert into dish(dishname,dishdescription) values('$dishname','$dishdescription')");
-$_SESSION['msg']="New Menu Item Created !!";
-
+	$id=intval($_GET['id']);
+$sql=mysqli_query($con,"update dish set dishname='$dishname',dishdescription='$dishdescription' where id='$id'");
+$_SESSION['msg']="Menu Item Updated !!";
+echo "<meta http-equiv='refresh' content='1;url=create-menu.php'/>";
 }
 
 if(isset($_GET['del']))
@@ -70,7 +71,7 @@ while($row=mysqli_fetch_array($query))
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Create, Edit & Manage Menu Items</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Update Menu</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -83,8 +84,8 @@ while($row=mysqli_fetch_array($query))
                     <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="section-block" id="basicform">
-                                    <h3 class="section-title">Create Menu</h3>
-                                    <p>You can create the menu here by dish name</p>
+                                    <h3 class="section-title">Update Menu</h3>
+                                    <p>You can update the menu item here by typing the Updated dish name</p>
                                 </div>
                                 <?php if(isset($_POST['submit']))
 {?>
@@ -105,49 +106,27 @@ while($row=mysqli_fetch_array($query))
                                 <div class="card">
                                     <div class="card-body">
                                         <form method="post" >
+                                            <?php
+$id=intval($_GET['id']);
+$query=mysqli_query($con,"select * from dish where id='$id'");
+while($row=mysqli_fetch_array($query))
+{
+?>									
                                             <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Dish Name</label>
-                                                <input id="inputText3" name="dishname" type="text" class="form-control">
+                                                <input id="inputText3" name="dishname" value="<?php echo  htmlentities($row['dishname']);?>" type="text" class="form-control">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Dish Description</label>
-                                                <textarea class="form-control" name="dishdescription" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                <textarea class="form-control" name="dishdescription" value="<?php echo  htmlentities($row['dishdescription']);?>" id="exampleFormControlTextarea1" rows="3"></textarea>
                                             </div>
-                                            <button type="submit" name="submit" class="btn btn-outline-dark">Insert into menu</a>
-                                        </form>
+                                            <button type="submit" name="submit" class="btn btn-outline-dark">Update menu</a>
+                                        </form>	<?php } ?>	
                                     </div>
                                 
                                 </div>
                                  <div class="module-body table">
-								<table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>Dish Name</th>
-											<th>Dish Description</th>
-											<th>Action</th>
-										</tr>
-									</thead>
-									<tbody>
-
-<?php $query=mysqli_query($con,"select * from dish");
-$cnt=1;
-while($row=mysqli_fetch_array($query))
-{
-?>									
-										<tr>
-											<td><?php echo htmlentities($cnt);?></td>
-											<td><?php echo htmlentities($row['dishname']);?></td>
-											<td><?php echo htmlentities($row['dishdescription']);?></td>
-											<td>
-                                                <a href="edit-menu.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button>
-                                            <a href="create-menu.php?id=<?php echo $row['id']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
-                                                <i class="far fa-trash-alt"></i>
-                                            </button>
-										</tr>
-										<?php $cnt=$cnt+1; } ?>
-										
-                                </table>
+								
                                 
 							</div>
                             </div>
@@ -161,15 +140,6 @@ while($row=mysqli_fetch_array($query))
             include('footer.php');
             
            ?>
-           <script>
-		$(document).ready(function() {
-			$('.datatable-1').dataTable();
-			$('.dataTables_paginate').addClass("btn-group datatable-pagination");
-			$('.dataTables_paginate > a').wrapInner('<span />');
-			$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
-			$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
-		} );
-	</script>
             <!-- ============================================================== -->
             <!-- end footer -->
             <!-- ============================================================== -->
