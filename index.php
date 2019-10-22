@@ -4,8 +4,8 @@ error_reporting(0);
 include('includes/config.php');
 
 // Code for User login
-if(isset($_POST['login']))
-{
+// if(isset($_POST['login']))
+// {
    $unitno=$_POST['unitno'];
    $password=$_POST['password'];
 $query=mysqli_query($con,"SELECT * FROM users WHERE unitno='$unitno' and password='$password'");
@@ -24,8 +24,8 @@ $uri=rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
 header("location:http://$host$uri/$extra");
 exit();
 }
-else
-{
+// else
+// {
 $extra="index.php";
 $unitno=$_POST['unitno'];
 $uip=$_SERVER['REMOTE_ADDR'];
@@ -35,9 +35,9 @@ $host  = $_SERVER['HTTP_HOST'];
 $uri  = rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
 header("location:http://$host$uri/$extra");
 $_SESSION['errmsg']="Invalid Unit no or Password";
-exit();
-}
-}
+// exit();
+// }
+// }
 
 
 ?>
