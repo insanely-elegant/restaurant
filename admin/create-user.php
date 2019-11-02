@@ -44,7 +44,7 @@ if(isset($_GET['del']))
 </head>
 
 <body>
-    <?php $query=mysqli_query($con,"select * from users");
+    <?php $query=mysqli_query($con,"select * from admins");
 while($row=mysqli_fetch_array($query))
 {?>
     <!-- ============================================================== -->
@@ -130,11 +130,11 @@ while($row=mysqli_fetch_array($query))
                                             </div>
                                             <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Contact Number *</label>
-                                                <input name="contactno" type="text" class="form-control">
+                                                <input name="contactno" type="number" class="form-control">
                                             </div>   
                                             <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Alternative Contact Number</label>
-                                                <input name="altcontactno" type="text" class="form-control">
+                                                <input name="altcontactno" type="number" class="form-control">
                                             </div>
                                             <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Email *</label>

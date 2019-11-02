@@ -176,11 +176,9 @@
                                 <div id="submenu-5" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/blank-page.html">Create New Chef Account</a>
+                                            <a class="nav-link" href="create-chef.php">Manage Chef Accounts</a>
                                         </li>
-                                       <li class="nav-item">
-                                            <a class="nav-link" href="pages/blank-page.html">Manage, Edit & Display Chefs</a>
-                                        </li>
+                                       
                                     </ul>
                                 </div>
                             </li>   
@@ -189,11 +187,9 @@
                                 <div id="submenu-6" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/blank-page.html">Create New Chef Account</a>
+                                            <a class="nav-link" href="craete-host.php">Manage Host Accounts</a>
                                         </li>
-                                       <li class="nav-item">
-                                            <a class="nav-link" href="pages/blank-page.html">Manage, Edit & Display Chefs</a>
-                                        </li>
+                                       
                                     </ul>
                                 </div>
                             </li>   

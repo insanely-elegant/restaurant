@@ -45,7 +45,7 @@ if(isset($_GET['del']))
 </head>
 
 <body>
-    <?php $query=mysqli_query($con,"select * from users");
+    <?php $query=mysqli_query($con,"select * from admins");
 while($row=mysqli_fetch_array($query))
 {?>
     <!-- ============================================================== -->
@@ -92,7 +92,7 @@ while($row=mysqli_fetch_array($query))
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="section-block" id="basicform">
                                     <h3 class="section-title">Update User Profile & Account</h3>
-                                     <p>You can create the user account here</p><p>* marked as important</p>
+                                     <p>You can edit the user account here</p><p>* marked as important</p>
                                 </div>
                                 <?php if(isset($_POST['submit']))
 {?>
