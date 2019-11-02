@@ -37,7 +37,7 @@ if(isset($_GET['del']))
 </head>
 
 <body>
-    <?php $query=mysqli_query($con,"select * from admin");
+    <?php $query=mysqli_query($con,"select * from admins");
 while($row=mysqli_fetch_array($query))
 {?>
     <!-- ============================================================== -->

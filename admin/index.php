@@ -7,8 +7,8 @@ include('includes/config.php');
 if(isset($_POST['login']))
 {
    $username=$_POST['username'];
-   $password=$_POST['passwords'];
-$query=mysqli_query($con,"SELECT * FROM admins WHERE username='$username' and passwords='$password'");
+   $password=$_POST['password'];
+$query=mysqli_query($con,"SELECT * FROM admins WHERE username='$username' and password='$password'");
 $num=mysqli_fetch_array($query);
 if($num>0)
 {
@@ -83,7 +83,7 @@ exit();
                         <input class="form-control form-control-lg" name="username" id="username" type="text" placeholder="Username" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" name="passwords" id="passwords" type="password" placeholder="Password">
+                        <input class="form-control form-control-lg" name="password" id="password" type="password" placeholder="Password">
                     </div>
                     <div class="form-group">
                         <label class="custom-control custom-checkbox">
