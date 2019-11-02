@@ -187,7 +187,7 @@
                                 <div id="submenu-6" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="craete-host.php">Manage Host Accounts</a>
+                                            <a class="nav-link" href="create-host.php">Manage Host Accounts</a>
                                         </li>
                                        
                                     </ul>
