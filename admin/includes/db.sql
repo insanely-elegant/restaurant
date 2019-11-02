@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2019 at 06:10 PM
+-- Generation Time: Nov 02, 2019 at 08:23 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `silverglen`
+-- Database: `u306375126_silverglen`
 --
 
 -- --------------------------------------------------------
@@ -50,6 +50,29 @@ INSERT INTO `admins` (`id`, `firstname`, `lastname`, `unitno`, `email`, `passwor
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `chef`
+--
+
+CREATE TABLE `chef` (
+  `id` int(11) NOT NULL,
+  `chefname` varchar(255) NOT NULL,
+  `contactno` varchar(255) NOT NULL,
+  `altcontactno` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chef`
+--
+
+INSERT INTO `chef` (`id`, `chefname`, `contactno`, `altcontactno`, `email`, `password`) VALUES
+(1, 'Test1', '423', '2345', 'asfd@asd.com', '123123123'),
+(3, 'Asd', '324', 'asd', 'asd@asdc.g', 'a');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `dish`
 --
 
@@ -65,7 +88,34 @@ CREATE TABLE `dish` (
 
 INSERT INTO `dish` (`id`, `dishname`, `dishdescription`) VALUES
 (34, 'Bread Basket', 'Varied collection of breads.Includes Baguettes,Brown,white,bread sticks'),
-(35, 'Apple Pie', 'Hello');
+(35, 'Apple Pie', 'World'),
+(36, 'asd', '67'),
+(37, 'asd', 'a');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `host`
+--
+
+CREATE TABLE `host` (
+  `id` int(11) NOT NULL,
+  `hostname` varchar(255) NOT NULL,
+  `contactno` varchar(255) NOT NULL,
+  `altcontactno` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `host`
+--
+
+INSERT INTO `host` (`id`, `hostname`, `contactno`, `altcontactno`, `email`, `password`) VALUES
+(1, 'Test2', '423', '2345', 'asfd@asd.com', '123123123'),
+(3, 'lalal', '324', '234234', 'asd@asdc.g', 'a'),
+(4, 'Test', '4444', '45345', '3sdf@asd.com', 'asdasdasd'),
+(5, 'asdasdasd', '23423423234234', '23423423423', '234234@asd.com', '234234234');
 
 -- --------------------------------------------------------
 
@@ -171,7 +221,15 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-10-21 23:00:55', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-10-21 23:08:24', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-10-22 16:22:21', NULL, 1),
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-10-23 15:57:23', NULL, 1);
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-10-23 15:57:23', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-02 17:33:52', NULL, 1),
+(0, '', NULL, 0x3a3a3100000000000000000000000000, '2019-11-02 17:33:59', NULL, 0),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-02 17:34:47', NULL, 1),
+(0, '', NULL, 0x3a3a3100000000000000000000000000, '2019-11-02 17:35:14', NULL, 0),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-02 17:35:28', NULL, 1),
+(0, '', NULL, 0x3a3a3100000000000000000000000000, '2019-11-02 17:35:34', NULL, 0),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-02 17:37:43', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-02 17:38:44', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -183,6 +241,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
+  `age` varchar(255) NOT NULL,
   `unitno` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -194,8 +253,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `unitno`, `email`, `password`, `contactno`, `altcontactno`) VALUES
-(1, 'Duane', 'DeSalvo', 'E302', 'duane.desalvo@gmail.com', 'typicalpassword', '306065801', '507064834');
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `age`, `unitno`, `email`, `password`, `contactno`, `altcontactno`) VALUES
+(1, 'Duane', 'DeSalvo', '55', 'E302', 'duane.desalvo@gmail.com', 'typicalpassword', '306065801', '507064834'),
+(3, 'Asd', 'test', '34', 'E302A', '234234@asd.com', 'asdasdasd', '234234234234', '234234234234234');
 
 --
 -- Indexes for dumped tables
@@ -208,9 +268,21 @@ ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `chef`
+--
+ALTER TABLE `chef`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `dish`
 --
 ALTER TABLE `dish`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `host`
+--
+ALTER TABLE `host`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -236,10 +308,22 @@ ALTER TABLE `admins`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `chef`
+--
+ALTER TABLE `chef`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `dish`
 --
 ALTER TABLE `dish`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT for table `host`
+--
+ALTER TABLE `host`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `menu`
@@ -251,7 +335,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
