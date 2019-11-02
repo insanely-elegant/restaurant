@@ -13,18 +13,25 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 
 if(isset($_POST['submit']))
 {
-	$dishname=$_POST['dishname'];
-	$dishdescription=$_POST['dishdescription'];
-	$id=intval($_GET['id']);
-$sql=mysqli_query($con,"update dish set dishname='$dishname',dishdescription='$dishdescription' where id='$id'");
-$_SESSION['msg']="Menu Item Updated !!";
-echo "<meta http-equiv='refresh' content='1;url=create-menu.php'/>";
+	$firstname=$_POST['firstname'];
+	$lastname=$_POST['lastname'];
+	$age=$_POST['age'];
+	$unitno=$_POST['unitno'];
+	$contactno=$_POST['contactno'];
+	$altcontactno=$_POST['altcontactno'];
+	$email=$_POST['email'];
+    $password=$_POST['password'];
+    $id=intval($_GET['id']);
+$sql=mysqli_query($con,"update users set firstname='$firstname',lastname='$lastname',age='$age',unitno='$unitno',contactno='$contactno'
+,altcontactno='$altcontactno',email='$email',password='$password' where id='$id'");
+$_SESSION['msg']="User Profile Updated !!";
+echo "<meta http-equiv='refresh' content='1;url=create-user.php'/>";
 }
 
 if(isset($_GET['del']))
 		  {
-		          mysqli_query($con,"delete from dish where id = '".$_GET['id']."'");
-                  $_SESSION['delmsg']="Menu Item deleted !!";
+		          mysqli_query($con,"delete from users where id = '".$_GET['id']."'");
+                  $_SESSION['delmsg']="User Account & User Profile deleted !!";
 		  }
 
 ?>
@@ -71,7 +78,7 @@ while($row=mysqli_fetch_array($query))
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Update Menu</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Update User Profile & Account</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -84,8 +91,8 @@ while($row=mysqli_fetch_array($query))
                     <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="section-block" id="basicform">
-                                    <h3 class="section-title">Update Menu</h3>
-                                    <p>You can update the menu item here by typing the Updated dish name</p>
+                                    <h3 class="section-title">Update User Profile & Account</h3>
+                                     <p>You can create the user account here</p><p>* marked as important</p>
                                 </div>
                                 <?php if(isset($_POST['submit']))
 {?>
@@ -108,19 +115,43 @@ while($row=mysqli_fetch_array($query))
                                         <form method="post" >
                                             <?php
 $id=intval($_GET['id']);
-$query=mysqli_query($con,"select * from dish where id='$id'");
+$query=mysqli_query($con,"select * from users where id='$id'");
 while($row=mysqli_fetch_array($query))
 {
 ?>									
                                             <div class="form-group">
-                                                <label for="inputText3" class="col-form-label">Dish Name</label>
-                                                <input id="inputText3" name="dishname" value="<?php echo  htmlentities($row['dishname']);?>" type="text" class="form-control">
+                                                <label for="inputText3" class="col-form-label">First Name</label>
+                                                <input name="firstname" value="<?php echo  htmlentities($row['firstname']);?>" type="text" class="form-control">
                                             </div>
                                             <div class="form-group">
-                                                 <label for="inputText3" class="col-form-label">Dish Description</label>
-                                                 <input id="inputText3" type="text" name="dishdescription" value="<?php echo  htmlentities($row['dishdescription']);?>" class="form-control">
+                                                <label for="inputText3" class="col-form-label">Last Name</label>
+                                                <input name="lastname" value="<?php echo  htmlentities($row['lastname']);?>" type="text" class="form-control">
                                             </div>
-                                            <button type="submit" name="submit" class="btn btn-outline-dark">Update menu</a>
+                                            <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Age</label>
+                                                <input name="age" value="<?php echo  htmlentities($row['age']);?>" type="number" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Unit Number *</label>
+                                                <input name="unitno" value="<?php echo  htmlentities($row['unitno']);?>" type="text" placeholder="E302A" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Contact Number *</label>
+                                                <input name="contactno" value="<?php echo  htmlentities($row['contactno']);?>" type="number" class="form-control">
+                                            </div>   
+                                            <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Alternative Contact Number</label>
+                                                <input name="altcontactno" value="<?php echo  htmlentities($row['altcontactno']);?>" type="number" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Email *</label>
+                                                <input name="email" value="<?php echo  htmlentities($row['email']);?>" type="email" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Password *</label>
+                                                <input name="password" value="<?php echo  htmlentities($row['password']);?>" type="text" class="form-control" required>
+                                            </div>
+                                            <button type="submit" name="submit" class="btn btn-outline-dark">Update User Profile</a>
                                         </form>	<?php } ?>	
                                     </div>
                                 
@@ -157,5 +188,5 @@ while($row=mysqli_fetch_array($query))
 <?php } ?>
 </html>
 <?php
-// x
+// }
 ?>

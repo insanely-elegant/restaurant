@@ -2,7 +2,7 @@
 error_reporting(0);
 session_start();
 include('includes/config.php');
-// if(strlen($_SESSION['alogin'])==0)
+if(strlen($_SESSION['alogin'])==0)
 // 	{	
 // header('location:index.php');
 // }
@@ -13,17 +13,24 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 
 if(isset($_POST['submit']))
 {
-	$dishname=$_POST['dishname'];
-	$dishdescription=$_POST['dishdescription'];
-$sql=mysqli_query($con,"insert into dish(dishname,dishdescription) values('$dishname','$dishdescription')");
-$_SESSION['msg']="New Menu Item Created !!";
+	$firstname=$_POST['firstname'];
+	$lastname=$_POST['lastname'];
+	$age=$_POST['age'];
+	$unitno=$_POST['unitno'];
+	$contactno=$_POST['contactno'];
+	$altcontactno=$_POST['altcontactno'];
+	$email=$_POST['email'];
+	$password=$_POST['password'];
+$sql=mysqli_query($con,"insert into users(firstname,lastname,age,unitno,contactno,altcontactno,email,password) values('$firstname','$lastname','$age',
+'$unitno','$contactno','$altcontactno','$email','$password')");
+$_SESSION['msg']="New User Profile & User Account Created !!";
 
 }
 
 if(isset($_GET['del']))
 		  {
-		          mysqli_query($con,"delete from dish where id = '".$_GET['id']."'");
-                  $_SESSION['delmsg']="Menu Item deleted !!";
+		          mysqli_query($con,"delete from users where id = '".$_GET['id']."'");
+                  $_SESSION['delmsg']="User Profile & Account deleted !!";
 		  }
 
 ?>
@@ -70,7 +77,7 @@ while($row=mysqli_fetch_array($query))
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Create, Edit & Manage Menu Items</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Create, Edit & Manage User Profiles & Accounts</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -83,8 +90,8 @@ while($row=mysqli_fetch_array($query))
                     <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="section-block" id="basicform">
-                                    <h3 class="section-title">Create Menu</h3>
-                                    <p>You can create the menu here by dish name</p>
+                                    <h3 class="section-title">Create User Accounts & User Profile </h3>
+                                    <p>You can create the user account here</p><p>* marked as important</p>
                                 </div>
                                 <?php if(isset($_POST['submit']))
 {?>
@@ -106,14 +113,40 @@ while($row=mysqli_fetch_array($query))
                                     <div class="card-body">
                                         <form method="post" >
                                             <div class="form-group">
-                                                <label for="inputText3" class="col-form-label">Dish Name</label>
-                                                <input id="inputText3" name="dishname" type="text" class="form-control">
+                                                <label for="inputText3" class="col-form-label">First Name *</label>
+                                                <input name="firstname" type="text" class="form-control" required>
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Last Name *</label>
+                                                <input name="lastname" type="text" class="form-control" required>
+                                            </div> 
+                                            <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Age</label>
+                                                <input name="age" type="number" class="form-control">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleFormControlTextarea1">Dish Description</label>
-                                                <textarea class="form-control" name="dishdescription" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                <label for="inputText3" class="col-form-label">Unit Number *</label>
+                                                <input name="unitno" type="text" placeholder="E302A" class="form-control" required>
                                             </div>
-                                            <button type="submit" name="submit" class="btn btn-outline-dark">Insert into menu</a>
+                                            <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Contact Number *</label>
+                                                <input name="contactno" type="text" class="form-control">
+                                            </div>   
+                                            <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Alternative Contact Number</label>
+                                                <input name="altcontactno" type="text" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Email *</label>
+                                                <input name="email" type="email" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Password *</label>
+                                                <input name="password" type="password" class="form-control" required>
+                                            </div>
+                                                                                   
+                                            
+                                            <button type="submit" name="submit" class="btn btn-outline-dark">Create User</a>
                                         </form>
                                     </div>
                                 
@@ -123,25 +156,37 @@ while($row=mysqli_fetch_array($query))
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>Dish Name</th>
-											<th>Dish Description</th>
+											<th>First Name</th>
+											<th>Last Name</th>
+											<th>Age</th>
+											<th>Unit Number</th>
+											<th>Contact Number</th>
+											<th>Alternative Contact Number</th>
+											<th>Email</th>
+											<th>Password</th>
 											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
 
-<?php $query=mysqli_query($con,"select * from dish");
+<?php $query=mysqli_query($con,"select * from users");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {
 ?>									
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
-											<td><?php echo htmlentities($row['dishname']);?></td>
-											<td><?php echo htmlentities($row['dishdescription']);?></td>
+											<td><?php echo htmlentities($row['firstname']);?></td>
+											<td><?php echo htmlentities($row['lastname']);?></td>
+											<td><?php echo htmlentities($row['age']);?></td>
+											<td><?php echo htmlentities($row['unitno']);?></td>
+											<td><?php echo htmlentities($row['contactno']);?></td>
+											<td><?php echo htmlentities($row['altcontactno']);?></td>
+											<td><?php echo htmlentities($row['email']);?></td>
+											<td><?php echo htmlentities($row['password']);?></td>
 											<td>
-                                                <a href="edit-menu.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button>
-                                            <a href="create-menu.php?id=<?php echo $row['id']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
+                                                <a href="edit-user.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button>
+                                            <a href="create-user.php?id=<?php echo $row['id']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
                                                 <i class="far fa-trash-alt"></i>
                                             </button>
 										</tr>
