@@ -152,7 +152,7 @@
                                 <div id="submenu-3" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/blank-page.html">Manage Dining Program</a>
+                                            <a class="nav-link" href="create-dining-program.php">Manage Dining Program</a>
                                         </li>
                                     </ul>
                                 </div>
