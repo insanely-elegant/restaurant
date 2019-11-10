@@ -13,17 +13,17 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 
 if(isset($_POST['submit']))
 {
+	$diningdatetime=$_POST['diningdatetime'];
 	$dishname=$_POST['dishname'];
-	$dishdescription=$_POST['dishdescription'];
-$sql=mysqli_query($con,"insert into dish(dishname,dishdescription) values('$dishname','$dishdescription')");
-$_SESSION['msg']="New Menu Item Created !!";
+$sql=mysqli_query($con,"insert into weeklymenu(diningdatetime,dishname) values('$diningdatetime','$dishname')");
+$_SESSION['msg']="New Dish Published To The Weekly Menu !!";
 
 }
 
 if(isset($_GET['del']))
 		  {
-		          mysqli_query($con,"delete from dish where id = '".$_GET['id']."'");
-                  $_SESSION['delmsg']="Menu Item deleted !!";
+		          mysqli_query($con,"delete from weeklymenu where id = '".$_GET['id']."'");
+                  $_SESSION['delmsg']="Weekly Menu Item deleted !!";
 		  }
 
 ?>
@@ -83,8 +83,8 @@ while($row=mysqli_fetch_array($query))
                     <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="section-block" id="basicform">
-                                    <h3 class="section-title">Create Menu</h3>
-                                    <p>You can create the menu here by dish name</p>
+                                    <h3 class="section-title">Create Dining Program</h3>
+                                    <p>You can create the menu for the week here</p>
                                 </div>
                                 <?php if(isset($_POST['submit']))
 {?>
@@ -106,56 +106,63 @@ while($row=mysqli_fetch_array($query))
                                     <div class="card-body">
                                         <form method="post" >
                                             <div class="form-group">
-                                            <label class="col-form-label" for="inputText3"> Create Dining Dates</label>
-                                            
-                                           <select class="form-control" id="input-select" required>
-                                            <option value="">Select Tax Group</option>
-                                            '; $query=mysqli_query($con,"select * from taxinfo");
-                                            while($row=mysqli_fetch_array($query))
-                                            {
-                                            $content.='<option value="'.$row['id'].'">'.$row['taxname'].'</option>';
-                                            }
-                                            $content.='
-                                            </select>
-                                            
+                                          
+                                            <div class="alert alert-info" role="alert">
+                                               Tip! : If you don't see a date time you added, please ensure you've enabled it <a href="create-dining-dates.php">here</a> !
                                             </div>
+                                       <label class="col-form-label" for="inputText3"> Select a Dining Date & Time</label>
+                                           <select name="diningdatetime" class="form-control" id="input-select" required>
+                                            <option value="">Select a Date and Time</option>
+                                            <?php
+                                             $query=mysqli_query($con,"select diningdate from diningdates where status = 'enabled'");
+                                            while($row=mysqli_fetch_array($query))
+                                           {?>
+                                          <option value="<?php echo $row['diningdate'];?>"><?php echo $row['diningdate'];?></option>
+                                      <?php } ?>
+                                            </select>
+                                            </div>
+                                            
                                             <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Dish Name</label>
-                                                <input id="inputText3" name="dishname" type="text" class="form-control">
+                                                 <select name="dishname" class="form-control" id="input-select" required>
+                                            <option value="">Select a Dish</option>
+                                            <?php
+                                             $query=mysqli_query($con,"select * from dish");
+                                            while($row=mysqli_fetch_array($query))
+                                           {?>
+                                          <option value="<?php echo $row['dishname'];?>"><?php echo $row['dishname'];?></option>
+                                      <?php } ?>
+                                            </select>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlTextarea1">Dish Description</label>
-                                                <textarea class="form-control" name="dishdescription" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                            </div>
-                                            <button type="submit" name="submit" class="btn btn-outline-dark">Insert into menu</a>
+                                            <button type="submit" name="submit" class="btn btn-outline-dark">Publish The Menu!</a>
                                         </form>
                                     </div>
                                 
                                 </div>
-                                 <div class="module-body table">
+                                 <div class="module-body table"> <h3 class="section-title">Weekly Menu</h3> <br>
 								<table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
 									<thead>
 										<tr>
 											<th>#</th>
+											<th>Dining Date & Time</th>
 											<th>Dish Name</th>
-											<th>Dish Description</th>
 											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
 
-<?php $query=mysqli_query($con,"select * from dish");
+<?php $query=mysqli_query($con,"select * from weeklymenu");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {
 ?>									
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
+											<td><?php echo htmlentities($row['diningdatetime']);?></td>
 											<td><?php echo htmlentities($row['dishname']);?></td>
-											<td><?php echo htmlentities($row['dishdescription']);?></td>
 											<td>
-                                                <a href="edit-menu.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button>
-                                            <a href="create-menu.php?id=<?php echo $row['id']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
+                                                <!-- <a href="edit-dining-program.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button> -->
+                                            <a href="create-dining-program.php?id=<?php echo $row['id']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
                                                 <i class="far fa-trash-alt"></i>
                                             </button>
 										</tr>

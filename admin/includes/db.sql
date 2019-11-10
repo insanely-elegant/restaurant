@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2019 at 08:23 PM
+-- Generation Time: Nov 07, 2019 at 01:49 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -73,6 +73,28 @@ INSERT INTO `chef` (`id`, `chefname`, `contactno`, `altcontactno`, `email`, `pas
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `diningdates`
+--
+
+CREATE TABLE `diningdates` (
+  `id` int(11) NOT NULL,
+  `diningdate` datetime NOT NULL,
+  `diningtime` time NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `diningdates`
+--
+
+INSERT INTO `diningdates` (`id`, `diningdate`, `diningtime`, `status`) VALUES
+(12, '2019-02-02 19:21:00', '00:00:00', 'enabled'),
+(13, '2019-02-01 14:55:00', '00:00:00', 'disabled'),
+(14, '2019-11-14 21:58:00', '00:00:00', 'enabled');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `dish`
 --
 
@@ -88,9 +110,7 @@ CREATE TABLE `dish` (
 
 INSERT INTO `dish` (`id`, `dishname`, `dishdescription`) VALUES
 (34, 'Bread Basket', 'Varied collection of breads.Includes Baguettes,Brown,white,bread sticks'),
-(35, 'Apple Pie', 'World'),
-(36, 'asd', '67'),
-(37, 'asd', 'a');
+(35, 'Apple Pie', 'Cheese Pie!');
 
 -- --------------------------------------------------------
 
@@ -114,8 +134,7 @@ CREATE TABLE `host` (
 INSERT INTO `host` (`id`, `hostname`, `contactno`, `altcontactno`, `email`, `password`) VALUES
 (1, 'Test2', '423', '2345', 'asfd@asd.com', '123123123'),
 (3, 'lalal', '324', '234234', 'asd@asdc.g', 'a'),
-(4, 'Test', '4444', '45345', '3sdf@asd.com', 'asdasdasd'),
-(5, 'asdasdasd', '23423423234234', '23423423423', '234234@asd.com', '234234234');
+(4, 'Test', '4444', '45345', '3sdf@asd.com', 'asdasdasd');
 
 -- --------------------------------------------------------
 
@@ -229,7 +248,13 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-02 17:35:28', NULL, 1),
 (0, '', NULL, 0x3a3a3100000000000000000000000000, '2019-11-02 17:35:34', NULL, 0),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-02 17:37:43', NULL, 1),
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-02 17:38:44', NULL, 1);
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-02 17:38:44', NULL, 1),
+(0, '', NULL, 0x3a3a3100000000000000000000000000, '2019-11-02 19:24:40', NULL, 0),
+(0, '', NULL, 0x3a3a3100000000000000000000000000, '2019-11-02 19:24:51', NULL, 0),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-02 19:26:55', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-04 18:17:50', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-06 20:03:39', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-07 00:43:44', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -257,6 +282,25 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `age`, `unitno`, `email`, `p
 (1, 'Duane', 'DeSalvo', '55', 'E302', 'duane.desalvo@gmail.com', 'typicalpassword', '306065801', '507064834'),
 (3, 'Asd', 'test', '34', 'E302A', '234234@asd.com', 'asdasdasd', '234234234234', '234234234234234');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `weeklymenu`
+--
+
+CREATE TABLE `weeklymenu` (
+  `id` int(11) NOT NULL,
+  `diningdatetime` datetime NOT NULL,
+  `dishname` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `weeklymenu`
+--
+
+INSERT INTO `weeklymenu` (`id`, `diningdatetime`, `dishname`) VALUES
+(8, '2019-11-07 18:30:00', 'Bread Basket');
+
 --
 -- Indexes for dumped tables
 --
@@ -271,6 +315,12 @@ ALTER TABLE `admins`
 -- Indexes for table `chef`
 --
 ALTER TABLE `chef`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `diningdates`
+--
+ALTER TABLE `diningdates`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -298,6 +348,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `weeklymenu`
+--
+ALTER TABLE `weeklymenu`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -312,6 +368,12 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `chef`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `diningdates`
+--
+ALTER TABLE `diningdates`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `dish`
@@ -335,7 +397,13 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `weeklymenu`
+--
+ALTER TABLE `weeklymenu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
