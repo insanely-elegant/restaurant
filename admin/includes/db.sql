@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2019 at 01:49 AM
+-- Generation Time: Nov 12, 2019 at 05:31 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -90,7 +90,8 @@ CREATE TABLE `diningdates` (
 INSERT INTO `diningdates` (`id`, `diningdate`, `diningtime`, `status`) VALUES
 (12, '2019-02-02 19:21:00', '00:00:00', 'enabled'),
 (13, '2019-02-01 14:55:00', '00:00:00', 'disabled'),
-(14, '2019-11-14 21:58:00', '00:00:00', 'enabled');
+(14, '2019-11-14 21:58:00', '00:00:00', 'enabled'),
+(15, '2019-11-13 17:08:00', '00:00:00', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -254,7 +255,9 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-02 19:26:55', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-04 18:17:50', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-06 20:03:39', NULL, 1),
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-07 00:43:44', NULL, 1);
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-07 00:43:44', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-10 18:09:09', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-12 04:23:40', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -299,7 +302,8 @@ CREATE TABLE `weeklymenu` (
 --
 
 INSERT INTO `weeklymenu` (`id`, `diningdatetime`, `dishname`) VALUES
-(8, '2019-11-07 18:30:00', 'Bread Basket');
+(8, '2019-11-07 18:30:00', 'Bread Basket'),
+(13, '2019-11-14 21:58:00', 'Apple Pie');
 
 --
 -- Indexes for dumped tables
@@ -373,19 +377,19 @@ ALTER TABLE `chef`
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `dish`
 --
 ALTER TABLE `dish`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `host`
 --
 ALTER TABLE `host`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `menu`
@@ -403,7 +407,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
