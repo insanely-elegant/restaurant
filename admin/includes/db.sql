@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2019 at 07:35 PM
+-- Generation Time: Nov 24, 2019 at 11:07 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -179,6 +179,29 @@ CREATE TABLE `room` (
 
 INSERT INTO `room` (`id`, `roomname`) VALUES
 (1, 'Dining Room');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tablelayout`
+--
+
+CREATE TABLE `tablelayout` (
+  `id` int(11) NOT NULL,
+  `roomid` int(50) NOT NULL,
+  `tablename` varchar(255) NOT NULL,
+  `totaltables` varchar(255) NOT NULL,
+  `tableavailability` varchar(255) NOT NULL,
+  `productimage1` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tablelayout`
+--
+
+INSERT INTO `tablelayout` (`id`, `roomid`, `tablename`, `totaltables`, `tableavailability`, `productimage1`) VALUES
+(1, 0, 'Test', '4', '1', ''),
+(2, 0, 'Test', '45', '1', '');
 
 -- --------------------------------------------------------
 
@@ -374,6 +397,12 @@ ALTER TABLE `room`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tablelayout`
+--
+ALTER TABLE `tablelayout`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -432,6 +461,12 @@ ALTER TABLE `room`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `tablelayout`
+--
+ALTER TABLE `tablelayout`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -441,7 +476,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
