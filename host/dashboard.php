@@ -21,7 +21,7 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 </head>
 
 <body>
-    <?php $query=mysqli_query($con,"select * from admins");
+    <?php $query=mysqli_query($con,"select * from host");
 while($row=mysqli_fetch_array($query))
 {?>
     <!-- ============================================================== -->
@@ -49,7 +49,7 @@ while($row=mysqli_fetch_array($query))
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h2 class="pageheader-title">Hello,  <?php echo $row['firstname']; ?>  </h2>
+                                <h2 class="pageheader-title">Hello,  <?php echo $row['hostname']; ?>  </h2>
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
