@@ -79,8 +79,11 @@
                                             <a class="nav-link" href="create-dining-dates.php">Manage Dining Dates / Calendar</a>
                                         </li> 
                                         <li class="nav-item">
+                                            <a class="nav-link" href="create-table-layout.php">Create & Manage Table Layout</a>
+                                        </li> 
+                                         <li class="nav-item">
                                             <a class="nav-link" href="create-room.php">Create Room</a>
-                                        </li>   
+                                        </li>    
                                     </ul>
                                 </div>
                                 </li>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2019 at 11:07 PM
+-- Generation Time: Nov 25, 2019 at 12:21 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -200,8 +200,7 @@ CREATE TABLE `tablelayout` (
 --
 
 INSERT INTO `tablelayout` (`id`, `roomid`, `tablename`, `totaltables`, `tableavailability`, `productimage1`) VALUES
-(1, 0, 'Test', '4', '1', ''),
-(2, 0, 'Test', '45', '1', '');
+(7, 1, 'Joomla', '49', '1', 'screenshot.jpg');
 
 -- --------------------------------------------------------
 
@@ -464,7 +463,7 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `tablelayout`
 --
 ALTER TABLE `tablelayout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
