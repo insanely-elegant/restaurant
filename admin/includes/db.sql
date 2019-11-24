@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2019 at 11:07 PM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Generation Time: Nov 25, 2019 at 12:24 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -133,9 +133,7 @@ CREATE TABLE `host` (
 --
 
 INSERT INTO `host` (`id`, `hostname`, `contactno`, `altcontactno`, `email`, `password`) VALUES
-(1, 'Test2', '423', '2345', 'asfd@asd.com', '123123123'),
-(3, 'lalal', '324', '234234', 'asd@asdc.g', 'a'),
-(4, 'Test', '4444', '45345', '3sdf@asd.com', 'asdasdasd');
+(4, 'host', '4444', '45345', '3sdf@asd.com', 'host');
 
 -- --------------------------------------------------------
 
@@ -161,6 +159,34 @@ INSERT INTO `menu` (`id`, `primarydishid`, `seconddishid`, `dishdate`) VALUES
 (4, 3, 6, '10/21/2019'),
 (5, 2, 1, '10/22/2019'),
 (6, 4, 6, '10/23/2019');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reservation`
+--
+
+CREATE TABLE `reservation` (
+  `id` int(11) NOT NULL,
+  `bookingid` varchar(255) NOT NULL,
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `room` varchar(255) NOT NULL,
+  `tablename` varchar(255) NOT NULL,
+  `seat` varchar(255) NOT NULL,
+  `timestamp` datetime(6) NOT NULL,
+  `guestno` varchar(255) NOT NULL,
+  `condono` varchar(255) NOT NULL,
+  `isConfirmed` varchar(255) NOT NULL,
+  `isCheckedin` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reservation`
+--
+
+INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `room`, `tablename`, `seat`, `timestamp`, `guestno`, `condono`, `isConfirmed`, `isCheckedin`) VALUES
+(1, '1234', 'Akash', 'Kumar', 'GameRoom', 'A2', '2', '2019-11-28 12:30:00.491000', '5', '605', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -194,14 +220,6 @@ CREATE TABLE `tablelayout` (
   `tableavailability` varchar(255) NOT NULL,
   `productimage1` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tablelayout`
---
-
-INSERT INTO `tablelayout` (`id`, `roomid`, `tablename`, `totaltables`, `tableavailability`, `productimage1`) VALUES
-(1, 0, 'Test', '4', '1', ''),
-(2, 0, 'Test', '45', '1', '');
 
 -- --------------------------------------------------------
 
@@ -302,7 +320,12 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-19 19:08:50', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-21 20:29:54', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-23 18:41:19', NULL, 1),
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 15:11:07', NULL, 1);
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 15:11:07', NULL, 1),
+(0, '', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:01:18', NULL, 0),
+(0, '', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:01:26', NULL, 0),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:02:26', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:08:36', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:18:56', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -391,6 +414,12 @@ ALTER TABLE `menu`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `reservation`
+--
+ALTER TABLE `reservation`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `room`
 --
 ALTER TABLE `room`
@@ -453,6 +482,12 @@ ALTER TABLE `host`
 --
 ALTER TABLE `menu`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `reservation`
+--
+ALTER TABLE `reservation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `room`

@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 session_start();
-include('../admin/includes/config.php');
+include('includes/config.php');
 if(strlen($_SESSION['alogin'])==0)
 // 	{	
 // header('location:index.php');
@@ -23,10 +23,16 @@ $_SESSION['msg']="New Chef Profile & Account Created !!";
 
 }
 
-if(isset($_GET['del']))
+if(isset($_GET['nos']))
 		  {
-		          mysqli_query($con,"delete from chef where id = '".$_GET['id']."'");
-                  $_SESSION['delmsg']="Chef Profile & Account deleted !!";
+		          mysqli_query($con,"insert into reservation(isCheckedin) values(0) where id = '".$_GET['id']."'");
+                  $_SESSION['delmsg']="Marked as No Show!";
+		  }
+
+if(isset($_GET['chk']))
+		  {
+		          mysqli_query($con,"insert into reservation(isCheckedin) values(1) where id = '".$_GET['id']."'");
+                  $_SESSION['delmsg']="Marked as No Show!";
 		  }
 
 ?>
@@ -35,7 +41,7 @@ if(isset($_GET['del']))
  
 <head>
    <?php
-    include('../host/header.php');
+    include('header.php');
        ?>
 </head>
 
@@ -51,7 +57,7 @@ while($row=mysqli_fetch_array($query))
         <!-- navbar -->
         <!-- ============================================================== -->
         <?php
-        include('../host/navbar.php');
+        include('navbar.php');
         ?>
         <!-- ============================================================== -->
         <!-- end left sidebar -->
@@ -73,7 +79,7 @@ while($row=mysqli_fetch_array($query))
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Create, Edit & Manage Chef Profiles & Accounts</li>
+                                            <li class="breadcrumb-item active" aria-current="page">View Guest Lists</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -86,11 +92,9 @@ while($row=mysqli_fetch_array($query))
                     <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="section-block" id="basicform">
-                                    <h3 class="section-title">Create Chef Accounts & Chef Profiles </h3>
-                                    <p>You can create accounts for chefs here</p><p>* marked as important</p>
+                                    <h3 class="section-title">View Guest Lists </h3>
+                                    <p>You can view the list of guests here</p>
                                 </div>
-                                <?php if(isset($_POST['submit']))
-{?>
 									 <div class="alert alert-success" role="alert">
 										<button type="button" class="close" data-dismiss="alert">×</button>
 									<strong>Well done!</strong>	<?php echo htmlentities($_SESSION['msg']);?><?php echo htmlentities($_SESSION['msg']="");?>
@@ -98,75 +102,51 @@ while($row=mysqli_fetch_array($query))
 <?php } ?>
 
 
-									<?php if(isset($_GET['del']))
+									<?php if(isset($_GET['nos']))
 {?>
 									 <div class="alert alert-danger" role="alert">
 										<button type="button" class="close" data-dismiss="alert">×</button>
 									<strong>Oh snap!</strong> 	<?php echo htmlentities($_SESSION['delmsg']);?><?php echo htmlentities($_SESSION['delmsg']="");?>
 									</div>
 <?php } ?>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <form method="post" >
-                                            <div class="form-group">
-                                                <label for="inputText3" class="col-form-label">Chef Full Name *</label>
-                                                <input name="chefname" type="text" class="form-control" required>
-                                            </div>
-                                           
-                                            <div class="form-group">
-                                                <label for="inputText3" class="col-form-label">Contact Number *</label>
-                                                <input name="contactno" type="number" class="form-control">
-                                            </div>   
-                                            <div class="form-group">
-                                                <label for="inputText3" class="col-form-label">Alternative Contact Number</label>
-                                                <input name="altcontactno" type="number" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="inputText3" class="col-form-label">Email *</label>
-                                                <input name="email" type="email" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="inputText3" class="col-form-label">Password *</label>
-                                                <input name="password" type="password" class="form-control" required>
-                                            </div>
-                                                                                   
-                                            
-                                            <button type="submit" name="submit" class="btn btn-outline-dark">Create Chef Account</a>
-                                        </form>
-                                    </div>
-                                
-                                </div>
+
                                  <div class="module-body table">
 								<table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>Chef's Full Name</th>
-											<th>Contact Number</th>
-											<th>Alternative Contact Number</th>
-											<th>Email</th>
-											<th>Password</th>
-											<th>Action</th>
+											<th>First Name</th>
+											<th>Last Name</th>
+											<th>Room Name</th>
+											<th>Table Name</th>
+											<th>Seat</th>
+                                            <th>Date</th>
+                                            <th>Guest No</th>
+                                            <th>Condo No</th>
+                                            <th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
 
-<?php $query=mysqli_query($con,"select * from chef");
+<?php $query=mysqli_query($con,"select * from reservation");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {
 ?>									
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
-											<td><?php echo htmlentities($row['chefname']);?></td>
-											<td><?php echo htmlentities($row['contactno']);?></td>
-											<td><?php echo htmlentities($row['altcontactno']);?></td>
-											<td><?php echo htmlentities($row['email']);?></td>
-											<td><?php echo htmlentities($row['password']);?></td>
+											<td><?php echo htmlentities($row['firstname']);?></td>
+											<td><?php echo htmlentities($row['lastname']);?></td>
+											<td><?php echo htmlentities($row['room']);?></td>
+											<td><?php echo htmlentities($row['tablename']);?></td>
+                                            <td><?php echo htmlentities($row['seat']);?></td>
+                                            <td><?php echo htmlentities($row['timestamp']);?></td>
+                                            <td><?php echo htmlentities($row['guestno']);?></td>
+                                            <td><?php echo htmlentities($row['condono']);?></td>
 											<td>
-                                                <a href="edit-chef.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button>
-                                            <a href="create-chef.php?id=<?php echo $row['id']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
-                                                <i class="far fa-trash-alt"></i>
+                                                <a href="guestlist.php?id=<?php echo $row['id']?>&chk=checkin" class="btn btn-sm btn-outline-light">Checkin</button>
+                                            <a href="guestlist.php?id=<?php echo $row['id']?>&nos=noshow" onClick="return confirm('Are you sure you want to mark no show?')" class="btn btn-sm btn-outline-light">
+                                                NoShow
                                             </button>
 										</tr>
 										<?php $cnt=$cnt+1; } ?>
@@ -208,7 +188,7 @@ while($row=mysqli_fetch_array($query))
 
 </body>
 
-<?php } ?>
+<?php  ?>
 </html>
 <?php
 // }
