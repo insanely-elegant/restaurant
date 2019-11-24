@@ -63,7 +63,7 @@
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
                                             <a class="nav-link" href="create-menu.php">Manage, Edit & Display Menu</a>
-                                        </li>                                
+                                        </li>                              
                                     </ul>
                                 </div>
                             </li>
@@ -77,7 +77,10 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="create-dining-dates.php">Manage Dining Dates / Calendar</a>
-                                        </li>
+                                        </li> 
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="create-room.php">Create Room</a>
+                                        </li>   
                                     </ul>
                                 </div>
                                 </li>

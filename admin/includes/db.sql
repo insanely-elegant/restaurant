@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2019 at 05:31 AM
+-- Generation Time: Nov 24, 2019 at 07:35 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -165,6 +165,24 @@ INSERT INTO `menu` (`id`, `primarydishid`, `seconddishid`, `dishdate`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `room`
+--
+
+CREATE TABLE `room` (
+  `id` int(11) NOT NULL,
+  `roomname` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`id`, `roomname`) VALUES
+(1, 'Dining Room');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `userlog`
 --
 
@@ -257,7 +275,11 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-06 20:03:39', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-07 00:43:44', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-10 18:09:09', NULL, 1),
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-12 04:23:40', NULL, 1);
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-12 04:23:40', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-19 19:08:50', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-21 20:29:54', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-23 18:41:19', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 15:11:07', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -346,6 +368,12 @@ ALTER TABLE `menu`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `room`
+--
+ALTER TABLE `room`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -396,6 +424,12 @@ ALTER TABLE `host`
 --
 ALTER TABLE `menu`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `room`
+--
+ALTER TABLE `room`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
