@@ -8,7 +8,7 @@ if(isset($_POST['login']))
 {
    $username=$_POST['username'];
    $password=$_POST['password'];
-$query=mysqli_query($con,"SELECT * FROM admins WHERE username='$username' and password='$password'");
+$query=mysqli_query($con,"SELECT * FROM host WHERE hostname='$username' and password='$password'");
 $num=mysqli_fetch_array($query);
 if($num>0)
 {
@@ -97,7 +97,7 @@ exit();
                 <div class="card-footer-item card-footer-item-bordered">
                     <a href="chef-login.php" class="footer-link">Chef Login</a></div>
                 <div class="card-footer-item card-footer-item-bordered">
-                    <a href="../host/index.php" class="footer-link">Host Login</a>
+                    <a href="../admin/index.php" class="footer-link">Admin Login</a>
                 </div>
             </div>
         </div>
@@ -107,8 +107,8 @@ exit();
     <!-- end login page  -->
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
-    <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
 </body>
 
 </html>
