@@ -3,9 +3,15 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: Nov 25, 2019 at 12:24 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
+=======
+-- Generation Time: Nov 25, 2019 at 12:21 AM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
+>>>>>>> 9d3a3ccae253c349417ba970f0254827eaf3e6fa
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -221,6 +227,16 @@ CREATE TABLE `tablelayout` (
   `productimage1` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD
+=======
+--
+-- Dumping data for table `tablelayout`
+--
+
+INSERT INTO `tablelayout` (`id`, `roomid`, `tablename`, `totaltables`, `tableavailability`, `productimage1`) VALUES
+(7, 1, 'Joomla', '49', '1', 'screenshot.jpg');
+
+>>>>>>> 9d3a3ccae253c349417ba970f0254827eaf3e6fa
 -- --------------------------------------------------------
 
 --
@@ -499,7 +515,7 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `tablelayout`
 --
 ALTER TABLE `tablelayout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
