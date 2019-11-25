@@ -10,30 +10,17 @@ if(strlen($_SESSION['alogin'])==0)
 date_default_timezone_set('Asia/Kolkata');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
 
-
-if(isset($_POST['submit']))
-{
-	$chefname=$_POST['chefname'];
-	$contactno=$_POST['contactno'];
-	$altcontactno=$_POST['altcontactno'];
-	$email=$_POST['email'];
-	$password=$_POST['password'];
-$sql=mysqli_query($con,"insert into chef(chefname,contactno,altcontactno,email,password) values('$chefname','$contactno','$altcontactno','$email','$password')");
-$_SESSION['msg']="New Chef Profile & Account Created !!";
-
-}
-
-if(isset($_GET['nos']))
+if(isset($_GET['noshow']))
 		  {
-		          mysqli_query($con,"insert into reservation(isCheckedin) values(0) where id = '".$_GET['id']."'");
-                  $_SESSION['delmsg']="Marked as No Show!";
-		  }
+		          mysqli_query($con,"update reservation set isCheckedin= 0 where id = '".$_GET['id']."'");
+                  $_SESSION['delmsg']="User marked No Show !!";
+          }
 
-if(isset($_GET['chk']))
+if(isset($_GET['checkin']))
 		  {
-		          mysqli_query($con,"insert into reservation(isCheckedin) values(1) where id = '".$_GET['id']."'");
-                  $_SESSION['delmsg']="Marked as No Show!";
-		  }
+		          mysqli_query($con,"update reservation set isCheckedin= 1 where id = '".$_GET['id']."'");
+                  $_SESSION['msg']="User sucessfully checkin !!";
+          }
 
 ?>
 <!doctype html>
@@ -41,7 +28,7 @@ if(isset($_GET['chk']))
  
 <head>
    <?php
-    include('header.php');
+    include('../admin/header.php');
        ?>
 </head>
 
@@ -95,14 +82,16 @@ while($row=mysqli_fetch_array($query))
                                     <h3 class="section-title">View Guest Lists </h3>
                                     <p>You can view the list of guests here</p>
                                 </div>
+                                <?php if(isset($_GET['checkin']))
+{?>
 									 <div class="alert alert-success" role="alert">
 										<button type="button" class="close" data-dismiss="alert">×</button>
 									<strong>Well done!</strong>	<?php echo htmlentities($_SESSION['msg']);?><?php echo htmlentities($_SESSION['msg']="");?>
 									</div>
+
 <?php } ?>
 
-
-									<?php if(isset($_GET['nos']))
+									<?php if(isset($_GET['noshow']))
 {?>
 									 <div class="alert alert-danger" role="alert">
 										<button type="button" class="close" data-dismiss="alert">×</button>
@@ -115,15 +104,15 @@ while($row=mysqli_fetch_array($query))
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>First Name</th>
-											<th>Last Name</th>
+                                            <th>Last Name</th>
+                                            <th>Action</th>
 											<th>Room Name</th>
 											<th>Table Name</th>
 											<th>Seat</th>
                                             <th>Date</th>
                                             <th>Guest No</th>
                                             <th>Condo No</th>
-                                            <th>Action</th>
+                                            
 										</tr>
 									</thead>
 									<tbody>
@@ -135,19 +124,19 @@ while($row=mysqli_fetch_array($query))
 ?>									
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
-											<td><?php echo htmlentities($row['firstname']);?></td>
-											<td><?php echo htmlentities($row['lastname']);?></td>
+                                            <td><?php echo htmlentities($row['lastname']);?></td>
+                                            <td>
+                                                <a href="guestlist.php?id=<?php echo $row['id']?>&checkin=checkin" class="btn btn-sm btn-success">Checkin</a>
+                                            <br><br>
+                                                <a href="guestlist.php?id=<?php echo $row['id']?>&noshow=noshow" onClick="return confirm('Are you sure you want to mark no show?')" class="btn btn-sm btn-danger">
+                                                No Show
+                                            </a></td>
 											<td><?php echo htmlentities($row['room']);?></td>
 											<td><?php echo htmlentities($row['tablename']);?></td>
                                             <td><?php echo htmlentities($row['seat']);?></td>
                                             <td><?php echo htmlentities($row['timestamp']);?></td>
                                             <td><?php echo htmlentities($row['guestno']);?></td>
                                             <td><?php echo htmlentities($row['condono']);?></td>
-											<td>
-                                                <a href="guestlist.php?id=<?php echo $row['id']?>&chk=checkin" class="btn btn-sm btn-outline-light">Checkin</button>
-                                            <a href="guestlist.php?id=<?php echo $row['id']?>&nos=noshow" onClick="return confirm('Are you sure you want to mark no show?')" class="btn btn-sm btn-outline-light">
-                                                NoShow
-                                            </button>
 										</tr>
 										<?php $cnt=$cnt+1; } ?>
 										
@@ -188,7 +177,7 @@ while($row=mysqli_fetch_array($query))
 
 </body>
 
-<?php  ?>
+    <?php } ?>
 </html>
 <?php
 // }
