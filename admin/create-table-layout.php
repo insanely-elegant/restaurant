@@ -157,7 +157,7 @@ while($row=mysqli_fetch_array($query))
                                         </div>
 
 <div class="control-group">
-<label class="control-label" for="basicinput">Product Image1</label>
+<label class="control-label" for="basicinput">Table Image</label>
 <div class="controls">
 <input type="file" name="productimage1" id="productimage1" value="" class="span8 tip" required>
 </div>
@@ -176,6 +176,7 @@ while($row=mysqli_fetch_array($query))
 											<th>Room ID</th>
 											<th>Table Name</th>
 											<th>Total Tables</th>
+											<th>Table Image</th>
 											<th>Visibility to users</th>
 											<th>Action</th>
 										</tr>
@@ -192,6 +193,7 @@ while($row=mysqli_fetch_array($query))
 											<td><?php echo htmlentities($row['roomid']);?></td>
 											<td><?php echo htmlentities($row['tablename']);?></td>
 											<td><?php echo htmlentities($row['totaltables']);?></td>
+											<td><img src="productimages/<?php echo htmlentities($pid);?>/<?php echo htmlentities($row['productimage1']);?>" width="200" height="100"> </td>
 											<td><?php echo htmlentities($row['tableavailability']);?></td>
 											<td>
                                                 <!-- <a href="edit-dining-program.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button> -->
