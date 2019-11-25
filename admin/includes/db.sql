@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2019 at 12:24 AM
+-- Generation Time: Nov 25, 2019 at 01:40 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -186,7 +186,7 @@ CREATE TABLE `reservation` (
 --
 
 INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `room`, `tablename`, `seat`, `timestamp`, `guestno`, `condono`, `isConfirmed`, `isCheckedin`) VALUES
-(1, '1234', 'Akash', 'Kumar', 'GameRoom', 'A2', '2', '2019-11-28 12:30:00.491000', '5', '605', '', NULL);
+(1, '1234', 'Akash', 'Kumar', 'GameRoom', 'A2', '2', '2019-11-28 12:30:00.491000', '5', '605', '', '0');
 
 -- --------------------------------------------------------
 
@@ -204,7 +204,8 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`id`, `roomname`) VALUES
-(1, 'Dining Room');
+(1, 'Dining Room'),
+(4, 'Orgy Room');
 
 -- --------------------------------------------------------
 
@@ -325,7 +326,15 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, '', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:01:26', NULL, 0),
 (0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:02:26', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:08:36', NULL, 1),
-(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:18:56', NULL, 1);
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:18:56', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:33:17', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:36:20', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:37:10', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:39:28', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:50:08', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:50:34', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:55:39', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2019-11-25 00:23:14', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -493,13 +502,13 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tablelayout`
 --
 ALTER TABLE `tablelayout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
