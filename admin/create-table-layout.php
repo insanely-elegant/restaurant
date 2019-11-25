@@ -13,8 +13,27 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 if(isset($_POST['submit']))
 {
 	$roomid=$_POST['roomid'];
-	$tablename=$_POST['tablename'];
 	$totaltables=$_POST['totaltables'];
+	$tablename1=$_POST['tablename1'];
+	$tablename2=$_POST['tablename2'];
+	$tablename3=$_POST['tablename3'];
+	$tablename4=$_POST['tablename4'];
+	$tablename5=$_POST['tablename5'];
+	$tablename6=$_POST['tablename6'];
+	$tablename7=$_POST['tablename7'];
+	$tablename8=$_POST['tablename8'];
+	$tablename9=$_POST['tablename9'];
+	$tablename10=$_POST['tablename10'];
+	$tablename11=$_POST['tablename11'];
+	$tablename12=$_POST['tablename12'];
+	$tablename13=$_POST['tablename13'];
+	$tablename14=$_POST['tablename14'];
+	$tablename15=$_POST['tablename15'];
+	$tablename16=$_POST['tablename16'];
+	$tablename17=$_POST['tablename17'];
+	$tablename18=$_POST['tablename18'];
+	$tablename19=$_POST['tablename19'];
+	$tablename20=$_POST['tablename20'];
 	$tableavailability=$_POST['tableavailability'];
 	$productimage1=$_FILES["productimage1"]["name"];
 //for getting product id
@@ -27,7 +46,12 @@ if(!is_dir($dir)){
 	}
 
 	move_uploaded_file($_FILES["productimage1"]["tmp_name"],"productimages/$productid/".$_FILES["productimage1"]["name"]);
-$sql=mysqli_query($con,"insert into tablelayout(roomid,tablename,totaltables,tableavailability,productimage1) values('$roomid','$tablename','$totaltables','$tableavailability','$productimage1')");
+$sql=mysqli_query($con,"insert into tablelayout(roomid,totaltables,
+tablename1,tablename2,tablename3,
+tablename4,tablename5,tablename6,tablename7,
+tablename8,tablename9,tablename10,tablename11,tablename12,tablename13,tablename14,tablename15,tablename16,
+tablename17,tablename18,tablename19,tablename20,
+tableavailability,productimage1) values('$roomid','$totaltables','$tablename1','$tablename2','$tablename3','$tablename4','$tablename5','$tablename6','$tablename7','$tablename8','$tablename9','$tablename10','$tablename11','$tablename12','$tablename13','$tablename14','$tablename15','$tablename16','$tablename17','$tablename18','$tablename19','$tablename20','$tableavailability','$productimage1')");
 $_SESSION['msg']="Table Layout Created Successfully !!";
 
 }
@@ -134,15 +158,94 @@ while($row=mysqli_fetch_array($query))
                                       <?php } ?>
                                             </select>
                                            
-                                         <label class="col-form-label" for="inputText3">Table Name</label>
-                                           <input name="tablename" type="text" class="form-control">
-                                            </select>
-                                            </div>
+                                         
 
                                             
-                                             <div class="form-group">
+                                            <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Number of Tables</label>
-                                                 <input name="totaltables" type="number" class="form-control">
+                                                 <input name="totaltables" type="number" min="1" max="20" class="form-control">
+                                            </div>
+                                           
+                                            <div>
+                                            <label class="col-form-label" for="inputText3">Table Name/Number</label>
+                                           <input name="tablename1" type="text" class="form-control">
+                                            </select>
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename2" type="text" class="form-control">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename3" type="text" class="form-control">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename4" type="text" class="form-control">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename5" type="text" class="form-control">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename6" type="text" class="form-control">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename7" type="text" class="form-control">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename8" type="text" class="form-control">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename9" type="text" class="form-control">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename10" type="text" class="form-control">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename11" type="text" class="form-control">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename12" type="text" class="form-control">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename13" type="text" class="form-control">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename14" type="text" class="form-control">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename15" type="text" class="form-control">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename16" type="text" class="form-control">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename17" type="text" class="form-control">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename18" type="text" class="form-control">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename19" type="text" class="form-control">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
+                                                 <input name="tablename20" type="text" class="form-control">
                                             </div>
                         
                                         <div class="form-group">
@@ -167,14 +270,13 @@ while($row=mysqli_fetch_array($query))
                                         </form>
                                     </div>
                                 
-                                </div>
+                                </div></div>
                                  <div class="module-body table"> <h3 class="section-title">Tables</h3> <br>
 								<table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>Room ID</th>
-											<th>Table Name</th>
+											<th>Room Name</th>
 											<th>Total Tables</th>
 											<th>Visibility to users</th>
 											<th>Action</th>
@@ -182,18 +284,16 @@ while($row=mysqli_fetch_array($query))
 									</thead>
 									<tbody>
 
-<?php $query=mysqli_query($con,"select * from tablelayout");
+<?php $query=mysqli_query($con,"select roomname as rname from room join tablelayout on room.id = tablelayout.roomid;");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {
 ?>									
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
-											<td><?php echo htmlentities($row['roomid']);?></td>
-											<td><?php echo htmlentities($row['tablename']);?></td>
-											<td><?php echo htmlentities($row['totaltables']);?></td>
-											
-											<td><?php echo htmlentities($row['tableavailability']);?></td>
+											<td><?php echo htmlentities($row['rname']);?></td>
+											<td><?php echo htmlentities($row['totaltables']);?></td>									
+											<td><?php echo htmlentities($row['tableavailability'] ? 'yes' : 'no');?></td>
 											<td>
                                                 <!-- <a href="edit-dining-program.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button> -->
                                             <a href="create-table-layout.php?id=<?php echo $row['id']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">

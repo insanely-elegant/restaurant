@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2019 at 01:40 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Generation Time: Nov 25, 2019 at 10:15 PM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -216,11 +216,37 @@ INSERT INTO `room` (`id`, `roomname`) VALUES
 CREATE TABLE `tablelayout` (
   `id` int(11) NOT NULL,
   `roomid` int(50) NOT NULL,
-  `tablename` varchar(255) NOT NULL,
   `totaltables` varchar(255) NOT NULL,
-  `tableavailability` varchar(255) NOT NULL,
+  `tablename1` varchar(255) NOT NULL,
+  `tablename2` varchar(255) DEFAULT NULL,
+  `tablename3` varchar(255) DEFAULT NULL,
+  `tablename4` varchar(255) DEFAULT NULL,
+  `tablename5` varchar(25) DEFAULT NULL,
+  `tablename6` varchar(255) DEFAULT NULL,
+  `tablename7` varchar(255) DEFAULT NULL,
+  `tablename8` varchar(255) DEFAULT NULL,
+  `tablename9` varchar(255) DEFAULT NULL,
+  `tablename10` varchar(255) DEFAULT NULL,
+  `tablename11` varchar(255) DEFAULT NULL,
+  `tablename12` varchar(255) DEFAULT NULL,
+  `tablename13` varchar(255) DEFAULT NULL,
+  `tablename14` varchar(255) DEFAULT NULL,
+  `tablename15` varchar(255) DEFAULT NULL,
+  `tablename16` varchar(255) DEFAULT NULL,
+  `tablename17` varchar(255) DEFAULT NULL,
+  `tablename18` varchar(255) DEFAULT NULL,
+  `tablename19` varchar(255) DEFAULT NULL,
+  `tablename20` varchar(255) DEFAULT NULL,
+  `tableavailability` varchar(255) DEFAULT NULL,
   `productimage1` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tablelayout`
+--
+
+INSERT INTO `tablelayout` (`id`, `roomid`, `totaltables`, `tablename1`, `tablename2`, `tablename3`, `tablename4`, `tablename5`, `tablename6`, `tablename7`, `tablename8`, `tablename9`, `tablename10`, `tablename11`, `tablename12`, `tablename13`, `tablename14`, `tablename15`, `tablename16`, `tablename17`, `tablename18`, `tablename19`, `tablename20`, `tableavailability`, `productimage1`) VALUES
+(5, 1, '4', 'A1', 'A2', 'A3', 'A4', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '1', 'screenshot.jpg');
 
 -- --------------------------------------------------------
 
@@ -334,7 +360,10 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:50:08', NULL, 1),
 (0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:50:34', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-24 23:55:39', NULL, 1),
-(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2019-11-25 00:23:14', NULL, 1);
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2019-11-25 00:23:14', NULL, 1),
+(0, '', NULL, 0x3a3a3100000000000000000000000000, '2019-11-25 00:43:25', NULL, 0),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-11-25 00:43:29', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2019-11-25 00:43:52', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -508,7 +537,7 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `tablelayout`
 --
 ALTER TABLE `tablelayout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
