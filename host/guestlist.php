@@ -112,6 +112,7 @@ while($row=mysqli_fetch_array($query))
                                             <th>Date</th>
                                             <th>Guest No</th>
                                             <th>Condo No</th>
+                                            <th>Order Details</th>
                                             
 										</tr>
 									</thead>
@@ -137,6 +138,7 @@ while($row=mysqli_fetch_array($query))
                                             <td><?php echo htmlentities($row['timestamp']);?></td>
                                             <td><?php echo htmlentities($row['guestno']);?></td>
                                             <td><?php echo htmlentities($row['condono']);?></td>
+                                            <td> <a href="order-details.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button></td>
 										</tr>
 										<?php $cnt=$cnt+1; } ?>
 										

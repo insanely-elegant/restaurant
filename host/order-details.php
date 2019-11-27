@@ -3,25 +3,14 @@ error_reporting(0);
 session_start();
 include('includes/config.php');
 if(strlen($_SESSION['alogin'])==0)
+
+
 // 	{	
 // header('location:index.php');
 // }
 // else{
 date_default_timezone_set('Asia/Kolkata');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
-
-if(isset($_GET['noshow']))
-		  {
-		          mysqli_query($con,"update reservation set isCheckedin= 0 where id = '".$_GET['id']."'");
-                  $_SESSION['delmsg']="User marked No Show !!";
-          }
-
-if(isset($_GET['checkin']))
-		  {
-		          mysqli_query($con,"update reservation set isCheckedin= 1 where id = '".$_GET['id']."'");
-                  $_SESSION['msg']="User sucessfully checkin !!";
-          }
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -66,7 +55,7 @@ while($row=mysqli_fetch_array($query))
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">View Free Diners Lists</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Order Details</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -79,8 +68,8 @@ while($row=mysqli_fetch_array($query))
                     <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="section-block" id="basicform">
-                                    <h3 class="section-title">View Free Diners Lists </h3>
-                                    <p>You can view the list of guests here</p>
+                                    <h3 class="section-title">Order Details</h3>
+                                    <p>View Order Details of guest here!</p>
                                 </div>
                                 <?php if(isset($_GET['checkin']))
 {?>
@@ -105,19 +94,15 @@ while($row=mysqli_fetch_array($query))
 										<tr>
 											<th>#</th>
                                             <th>Last Name</th>
-                                            <th>Action</th>
-											<th>Room Name</th>
-											<th>Table Name</th>
-											<th>Seat</th>
-                                            <th>Date</th>
-                                            <th>Guest No</th>
-                                            <th>Condo No</th>
+                                            <th>Dish Dishname</th>
                                             
 										</tr>
 									</thead>
 									<tbody>
 
-<?php $query=mysqli_query($con,"select * from reservation");
+<?php 
+$id=intval($_GET['id']);
+$query=mysqli_query($con,"select * from reservation WHERE id='$id'");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {
@@ -125,17 +110,6 @@ while($row=mysqli_fetch_array($query))
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
                                             <td><?php echo htmlentities($row['lastname']);?></td>
-                                            <td>
-                                                <a href="guestlist.php?id=<?php echo $row['id']?>&checkin=checkin" class="btn btn-sm btn-success">Checkin</a>
-                                            <br><br>
-                                                <a href="guestlist.php?id=<?php echo $row['id']?>&noshow=noshow" onClick="return confirm('Are you sure you want to mark no show?')" class="btn btn-sm btn-danger">
-                                                No Show
-                                            </a></td>
-											<td><?php echo htmlentities($row['room']);?></td>
-											<td><?php echo htmlentities($row['tablename']);?></td>
-                                            <td><?php echo htmlentities($row['seat']);?></td>
-                                            <td><?php echo htmlentities($row['timestamp']);?></td>
-                                            <td><?php echo htmlentities($row['guestno']);?></td>
                                             <td><?php echo htmlentities($row['condono']);?></td>
 										</tr>
 										<?php $cnt=$cnt+1; } ?>
