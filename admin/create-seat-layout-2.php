@@ -12,11 +12,6 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 $tid=intval($_GET['tid']);
 if(isset($_POST['submit']))
 {
-	$tablename17=$_POST['tablename17'];
-	$tablename18=$_POST['tablename18'];
-	$tablename19=$_POST['tablename19'];
-	$tablename20=$_POST['tablename20'];
-	$tableavailability=$_POST['tableavailability'];
 
 	$s1=$_POST['s1'];
 	$s2=$_POST['s2'];
