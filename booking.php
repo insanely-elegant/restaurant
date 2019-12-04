@@ -48,15 +48,18 @@ while($row=mysqli_fetch_array($query))
 
 								<input class="form-control" type="text" value="<?php echo $row['unitno'];  ?>" disabled>
 								</div>
+								
 										<select class="form-control" id="options">
-											<option class="form-control" value="Option 0">Select a date</option>
-											<option class="form-control" value="Option 1">10/18/2019</option>
-											<option class="form-control" value="Option 2">10/19/2019</option>
-											<option class="form-control" value="Option 3">10/20/2019</option>
-											<option class="form-control" value="Option 4">10/21/2019</option>
-											<option class="form-control" value="Option 5">10/22/2019</option>
-											<option class="form-control" value="Option 6">10/23/2019</option>
+										<option class="form-control" value="Option 0">Select a date</option>
+										<?php $query2=mysqli_query($con,"select * from diningdates");
+										while($row2=mysqli_fetch_array($query2))
+										{
+										echo'<option class="form-control" value="Option '.$row2['id'].'">'.$row2['diningdate'].'</option>';
+										}
+										?>
 										</select>
+										
+										
 
 <select class="form-control" id="choices"><span class="form-label">Choose a Preferred Meal</span>
   <option value="" disabled selected>Please select the date first</option>
@@ -67,8 +70,8 @@ while($row=mysqli_fetch_array($query))
   // Map your choices to your option value
 var lookup = {
    'Option 0': ['Please select a date'],
-   'Option 1': ['Apple Pie','Clam Chowder'],
-   'Option 2': ['The Hamburger','Apple Pie'],
+   'Option 12': ['Apple Pie','Clam Chowder'],
+   'Option 13': ['The Hamburger','Apple Pie'],
    'Option 3': ['Bagel and Lox', 'Deep-Dish Pizza'],
    'Option 4': ['Drop Biscuits and Sausage Gravy', 'Texas Barbecue'],
    'Option 5': ['Apple Pie', 'Apple Pie'],
@@ -106,8 +109,6 @@ $('#options').on('change', function() {
 		</div>
 	</div>
 </body>
-<?php } ?>
+<?php }}  ?>
 </html>
-<?php
-}
-?>
+
