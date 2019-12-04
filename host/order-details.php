@@ -2,13 +2,13 @@
 error_reporting(0);
 session_start();
 include('includes/config.php');
-if(strlen($_SESSION['alogin'])==0)
+if(strlen($_SESSION['login'])==0)
 
 
-// 	{	
-// header('location:index.php');
-// }
-// else{
+	{	
+header('location:index.php');
+}
+else{
 date_default_timezone_set('Asia/Kolkata');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
 ?>
@@ -22,7 +22,7 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 </head>
 
 <body>
-    <?php $query=mysqli_query($con,"select * from host");
+    <?php $query=mysqli_query($con,"select * from host where hostname='".$_SESSION['login']."'");
 while($row=mysqli_fetch_array($query))
 {?>
     <!-- ============================================================== -->
@@ -151,8 +151,5 @@ while($row=mysqli_fetch_array($query))
 
 </body>
 
-    <?php } ?>
+    <?php }} ?>
 </html>
-<?php
-// }
-?>

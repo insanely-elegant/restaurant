@@ -12,7 +12,7 @@ $query=mysqli_query($con,"SELECT * FROM host WHERE hostname='$username' and pass
 $num=mysqli_fetch_array($query);
 if($num>0)
 {
-$extra="dashboard.php";
+$extra="guestlist.php";
 $_SESSION['login']=$_POST['username'];
 $_SESSION['id']=$num['id'];
 $_SESSION['username']=$num['username'];

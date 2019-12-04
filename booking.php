@@ -28,7 +28,7 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 
 </head>
 
-<body style="font-size: 18px;"><?php $query=mysqli_query($con,"select * from users");
+<body style="font-size: 18px;"><?php $query=mysqli_query($con,"select * from users where unitno='".$_SESSION['login']."'");
 while($row=mysqli_fetch_array($query))
 {?>
 <?php include("includes/nav-menu.php") ?>

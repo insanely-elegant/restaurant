@@ -21,7 +21,7 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 </head>
 
 <body>
-    <?php $query=mysqli_query($con,"select * from host");
+    <?php $query=mysqli_query($con,"select * from host where hostname='".$_SESSION['login']."'");
 while($row=mysqli_fetch_array($query))
 {?>
     <!-- ============================================================== -->

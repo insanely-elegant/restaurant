@@ -15,7 +15,7 @@ if(isset($_POST['login']))
  $extra="booking.php";
  $_SESSION['login']=$_POST['unitno'];
 $_SESSION['id']=$num['id'];
- $_SESSION['unitno']=$num['unitno'];
+ $_SESSION['name']=$num['name'];
 $uip=$_SERVER['REMOTE_ADDR'];
 $status=1;
  $log=mysqli_query($con,"insert into userlog(unitno,userip,status) values('".$_SESSION['login']."','$uip','$status')");
