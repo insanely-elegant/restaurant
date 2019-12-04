@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2019 at 03:38 PM
+-- Generation Time: Dec 04, 2019 at 11:07 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -210,6 +210,45 @@ INSERT INTO `room` (`id`, `roomname`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `seatlayout`
+--
+
+CREATE TABLE `seatlayout` (
+  `id` int(11) NOT NULL,
+  `tableid` int(50) NOT NULL,
+  `s1` varchar(255) NOT NULL,
+  `s2` varchar(255) DEFAULT NULL,
+  `s3` varchar(255) DEFAULT NULL,
+  `s4` varchar(255) DEFAULT NULL,
+  `s5` varchar(25) DEFAULT NULL,
+  `s6` varchar(255) DEFAULT NULL,
+  `s7` varchar(255) DEFAULT NULL,
+  `s8` varchar(255) DEFAULT NULL,
+  `s9` varchar(255) DEFAULT NULL,
+  `s10` varchar(255) DEFAULT NULL,
+  `s11` varchar(255) DEFAULT NULL,
+  `s12` varchar(255) DEFAULT NULL,
+  `s13` varchar(255) DEFAULT NULL,
+  `s14` varchar(255) DEFAULT NULL,
+  `s15` varchar(255) DEFAULT NULL,
+  `s16` varchar(255) DEFAULT NULL,
+  `s17` varchar(255) DEFAULT NULL,
+  `s18` varchar(255) DEFAULT NULL,
+  `s19` varchar(255) DEFAULT NULL,
+  `s20` varchar(255) DEFAULT NULL,
+  `tableavailability` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `seatlayout`
+--
+
+INSERT INTO `seatlayout` (`id`, `tableid`, `s1`, `s2`, `s3`, `s4`, `s5`, `s6`, `s7`, `s8`, `s9`, `s10`, `s11`, `s12`, `s13`, `s14`, `s15`, `s16`, `s17`, `s18`, `s19`, `s20`, `tableavailability`) VALUES
+(13, 7, '5', '3', '1', '5', '6', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '1');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tablelayout`
 --
 
@@ -246,7 +285,7 @@ CREATE TABLE `tablelayout` (
 --
 
 INSERT INTO `tablelayout` (`id`, `roomid`, `totaltables`, `tablename1`, `tablename2`, `tablename3`, `tablename4`, `tablename5`, `tablename6`, `tablename7`, `tablename8`, `tablename9`, `tablename10`, `tablename11`, `tablename12`, `tablename13`, `tablename14`, `tablename15`, `tablename16`, `tablename17`, `tablename18`, `tablename19`, `tablename20`, `tableavailability`, `productimage1`) VALUES
-(7, 1, '5', 'C1', 'C2', 'C3', 'C4', 'C5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'table.jpg'),
+(7, 1, '5', 'C1', 'C2', 'C3', 'C4', 'C5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 'table.jpg'),
 (8, 4, '2', 'D1', 'D2', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0', 'dsBuffer.bmp.png');
 
 -- --------------------------------------------------------
@@ -707,7 +746,8 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, '', NULL, 0x3a3a3100000000000000000000000000, '2019-12-04 12:32:01', NULL, 0),
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-04 12:33:22', NULL, 1),
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-04 12:33:47', NULL, 1),
-(0, 'sudo', NULL, 0x3a3a3100000000000000000000000000, '2019-12-04 13:02:15', NULL, 1);
+(0, 'sudo', NULL, 0x3a3a3100000000000000000000000000, '2019-12-04 13:02:15', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-04 15:35:52', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -808,6 +848,12 @@ ALTER TABLE `room`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `seatlayout`
+--
+ALTER TABLE `seatlayout`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tablelayout`
 --
 ALTER TABLE `tablelayout`
@@ -878,10 +924,16 @@ ALTER TABLE `room`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `seatlayout`
+--
+ALTER TABLE `seatlayout`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `tablelayout`
 --
 ALTER TABLE `tablelayout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`

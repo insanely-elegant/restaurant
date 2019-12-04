@@ -12,48 +12,54 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 $tid=intval($_GET['tid']);
 if(isset($_POST['submit']))
 {
+	$roomid=$_POST['roomid'];
+	$totaltables=$_POST['totaltables'];
+	$tablename1=$_POST['tablename1'];
+	$tablename2=$_POST['tablename2'];
+	$tablename3=$_POST['tablename3'];
+	$tablename4=$_POST['tablename4'];
+	$tablename5=$_POST['tablename5'];
+	$tablename6=$_POST['tablename6'];
+	$tablename7=$_POST['tablename7'];
+	$tablename8=$_POST['tablename8'];
+	$tablename9=$_POST['tablename9'];
+	$tablename10=$_POST['tablename10'];
+	$tablename11=$_POST['tablename11'];
+	$tablename12=$_POST['tablename12'];
+	$tablename13=$_POST['tablename13'];
+	$tablename14=$_POST['tablename14'];
+	$tablename15=$_POST['tablename15'];
+	$tablename16=$_POST['tablename16'];
 	$tablename17=$_POST['tablename17'];
 	$tablename18=$_POST['tablename18'];
 	$tablename19=$_POST['tablename19'];
 	$tablename20=$_POST['tablename20'];
 	$tableavailability=$_POST['tableavailability'];
+	$productimage1=$_FILES["productimage1"]["name"];
+//for getting product id
+$query=mysqli_query($con,"select max(id) as pid from tablelayout");
+	$result=mysqli_fetch_array($query);
+	 $productid=$result['pid']+1;
+	$dir="productimages/$productid";
+if(!is_dir($dir)){
+		mkdir("productimages/".$productid);
+	}
 
-	$s1=$_POST['s1'];
-	$s2=$_POST['s2'];
-	$s3=$_POST['s3'];
-	$s4=$_POST['s4'];
-	$s5=$_POST['s5'];
-	$s6=$_POST['s6'];
-	$s7=$_POST['s7'];
-	$s8=$_POST['s8'];
-	$s9=$_POST['s9'];
-	$s10=$_POST['s10'];
-	$s11=$_POST['s11'];
-	$s12=$_POST['s12'];
-	$s13=$_POST['s13'];
-	$s14=$_POST['s14'];
-	$s15=$_POST['s15'];
-	$s16=$_POST['s16'];
-	$s17=$_POST['s17'];
-	$s18=$_POST['s18'];
-	$s19=$_POST['s19'];
-	$s20=$_POST['s20'];
-	$tavail=$_POST['tavail'];
-
-$sql=mysqli_query($con,"insert into seatlayout(tableid,s1,s2,s3,
-s4,s5,s6,s7,
-s8,s9,s10,s11,s12,s13,s14,s15,s16,
-s17,s18,s19,s20,
-tableavailability) values('$tid','$s1','$s2','$s3','$s4','$s5','$s6','$s7','$s8','$s9','$s10',
-'$s11','$s12','$s13','$s14','$s15','$s16','$s17','$s18','$s19','$s20','$tavail')");
-$_SESSION['msg']="Seat Layout Created Successfully !!";
+	move_uploaded_file($_FILES["productimage1"]["tmp_name"],"productimages/$productid/".$_FILES["productimage1"]["name"]);
+$sql=mysqli_query($con,"insert into tablelayout(roomid,totaltables,
+tablename1,tablename2,tablename3,
+tablename4,tablename5,tablename6,tablename7,
+tablename8,tablename9,tablename10,tablename11,tablename12,tablename13,tablename14,tablename15,tablename16,
+tablename17,tablename18,tablename19,tablename20,
+tableavailability,productimage1) values('$roomid','$totaltables','$tablename1','$tablename2','$tablename3','$tablename4','$tablename5','$tablename6','$tablename7','$tablename8','$tablename9','$tablename10','$tablename11','$tablename12','$tablename13','$tablename14','$tablename15','$tablename16','$tablename17','$tablename18','$tablename19','$tablename20','$tableavailability','$productimage1')");
+$_SESSION['msg']="Table Layout Created Successfully !!";
 
 }
 
 
 if(isset($_GET['del']))
 		  {
-		          mysqli_query($con,"delete from seatlayout where id = '".$_GET['tid']."'");
+		          mysqli_query($con,"delete from tablelayout where id = '".$_GET['id']."'");
                   $_SESSION['delmsg']="Table Layout deleted !!";
 		  }
 
@@ -150,7 +156,7 @@ tablelayout.tablename11 as t11,tablelayout.tablename12 as t12,
 tablelayout.tablename13 as t13,tablelayout.tablename14 as t14,
 tablelayout.tablename15 as t15,tablelayout.tablename16 as t16,
 tablelayout.tablename17 as t17,tablelayout.tablename18 as t18,
-tablelayout.tablename19 as t19,tablelayout.tablename20 as t20,tablelayout.productimage1 as pimage,tablelayout.tableavailability as tavail,
+tablelayout.tablename19 as t19,tablelayout.tablename20 as t20,tablelayout.productimage1 as pimage,
 room.id as rid, room.roomname as rname from tablelayout join room on tablelayout.roomid=room.id where tablelayout.id='$tid'");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
@@ -160,17 +166,9 @@ while($row=mysqli_fetch_array($query))
 
 ?>
 
-<div class="alert alert-warning" role="alert">
-                                              Warning! : Only Enter Total Seats to the Table Names that are present. Leave blank for everything else.
-                                            </div>
 
 
-<div class="form-group">
-<label for="inputText3" class="col-form-label">Selected Room:</label>
-<div class="controls">
-<input type="text"    name="totals"  placeholder="Room Name" value="<?php echo htmlentities($row['rname']);?>" class="form-control" disabled style="font-size: 20px;">
-</div>
-</div>
+
 
 
 
@@ -184,290 +182,279 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 1 Name</label>
 <div class="controls">
-<input type="text"    name="t1"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t1']);?>" class="form-control" disabled>
+<input type="text"    name="t1"  placeholder="Enter Table 1 Name from Table Management" value="<?php echo htmlentities($row['t1']);?>" class="form-control" disabled>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 1</label>
 <div class="controls">
-<input type="text"    name="s1"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s1']);?>"  class="form-control" >
+<input type="text"    name="s1"  placeholder="Enter Total" value="<?php echo htmlentities($row['s1']);?>"  class="form-control" required>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 2 Name</label>
 <div class="controls">
-<input type="text"    name="t2"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t2']);?>" class="form-control" disabled>
+<input type="text"    name="t2"  placeholder="Enter Table 2 Name from Table Management" value="<?php echo htmlentities($row['t2']);?>" class="form-control" disabled>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 1</label>
 <div class="controls">
-<input type="text"    name="s2"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s2']);?>"  class="form-control" >
+<input type="text"    name="s2"  placeholder="Enter Total" value="<?php echo htmlentities($row['s2']);?>"  class="form-control" required>
 </div>
 </div>
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 3 Name</label>
 <div class="controls">
-<input type="text"    name="t3"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t3']);?>" class="form-control" disabled>
+<input type="text"    name="t3"  placeholder="Enter Table 3 Name from Table Management" value="<?php echo htmlentities($row['t3']);?>" class="form-control" disabled>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 3</label>
 <div class="controls">
-<input type="text"    name="s3"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s3']);?>"  class="form-control" >
+<input type="text"    name="s3"  placeholder="Enter Total" value="<?php echo htmlentities($row['s3']);?>"  class="form-control" required>
 </div>
 </div>
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 4 Name</label>
 <div class="controls">
-<input type="text"    name="t4"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t4']);?>" class="form-control" disabled>
+<input type="text"    name="t4"  placeholder="Enter Table 4 Name from Table Management" value="<?php echo htmlentities($row['t4']);?>" class="form-control" disabled>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 4</label>
 <div class="controls">
-<input type="text"    name="s4"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s4']);?>"  class="form-control" >
+<input type="text"    name="s4"  placeholder="Enter Total" value="<?php echo htmlentities($row['s4']);?>"  class="form-control" required>
 </div>
 </div>
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 5 Name</label>
 <div class="controls">
-<input type="text"    name="t5"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t5']);?>" class="form-control" disabled>
+<input type="text"    name="t5"  placeholder="Enter Table 5 Name from Table Management" value="<?php echo htmlentities($row['t5']);?>" class="form-control" disabled>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 5</label>
 <div class="controls">
-<input type="text"    name="s5"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s5']);?>"  class="form-control" >
+<input type="text"    name="s5"  placeholder="Enter Total" value="<?php echo htmlentities($row['s5']);?>"  class="form-control" required>
 </div>
 </div>
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 6 Name</label>
 <div class="controls">
-<input type="text"    name="t6"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t6']);?>" class="form-control" disabled>
+<input type="text"    name="t6"  placeholder="Enter Table 6 Name from Table Management" value="<?php echo htmlentities($row['t6']);?>" class="form-control" disabled>
 </div>
 </div>
 
-<div class="form-group">
-<label for="inputText3" class="col-form-label">Total Seats in Table 6</label>
-<div class="controls">
-<input type="text"    name="s6"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s6']);?>"  class="form-control" >
-</div>
-</div>
-
-<div class="form-group">
-<label for="inputText3" class="col-form-label">Table 7 Name</label>
-<div class="controls">
-<input type="text"    name="t7"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t7']);?>" class="form-control" disabled>
-</div>
-</div>
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 7</label>
 <div class="controls">
-<input type="text"    name="s7"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s7']);?>"  class="form-control" >
+<input type="text"    name="s7"  placeholder="Enter Total" value="<?php echo htmlentities($row['s7']);?>"  class="form-control" required>
 </div>
 </div>
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 8 Name</label>
 <div class="controls">
-<input type="text"    name="t8"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t8']);?>" class="form-control" disabled>
+<input type="text"    name="t8"  placeholder="Enter Table 8 Name from Table Management" value="<?php echo htmlentities($row['t8']);?>" class="form-control" disabled>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 8</label>
 <div class="controls">
-<input type="text"    name="s8"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s8']);?>"  class="form-control" >
+<input type="text"    name="s8"  placeholder="Enter Total" value="<?php echo htmlentities($row['s8']);?>"  class="form-control" required>
 </div>
 </div>
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 9 Name</label>
 <div class="controls">
-<input type="text"    name="t9"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t9']);?>" class="form-control" disabled>
+<input type="text"    name="t9"  placeholder="Enter Table 9 Name from Table Management" value="<?php echo htmlentities($row['t9']);?>" class="form-control" disabled>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 9</label>
 <div class="controls">
-<input type="text"    name="s9"  placeholder="Enter  Seats" value="<?php echo htmlentities($row['s9']);?>"  class="form-control" >
+<input type="text"    name="s9"  placeholder="Enter Table 9 Name from Table Management" value="<?php echo htmlentities($row['s9']);?>"  class="form-control" required>
 </div>
 </div>
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 10 Name</label>
 <div class="controls">
-<input type="text"    name="t10"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t10']);?>" class="form-control" disabled>
+<input type="text"    name="t10"  placeholder="Enter Table 9 Name from Table Management" value="<?php echo htmlentities($row['t10']);?>" class="form-control" disabled>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 10</label>
 <div class="controls">
-<input type="text"    name="s10"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s10']);?>"  class="form-control" >
+<input type="text"    name="s10"  placeholder="Enter Table 10 Name from Table Management" value="<?php echo htmlentities($row['s10']);?>"  class="form-control" required>
 </div>
 </div>
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 11 Name</label>
 <div class="controls">
-<input type="text"    name="t11"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t11']);?>" class="form-control" disabled>
+<input type="text"    name="t11"  placeholder="Enter Table 11 Name from Table Management" value="<?php echo htmlentities($row['t11']);?>" class="form-control" disabled>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 11</label>
 <div class="controls">
-<input type="text"    name="s11"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s11']);?>"  class="form-control" >
+<input type="text"    name="s11"  placeholder="Enter Table 11 Name from Table Management" value="<?php echo htmlentities($row['s11']);?>"  class="form-control" required>
 </div>
 </div>
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 12 Name</label>
 <div class="controls">
-<input type="text"    name="t12"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t12']);?>" class="form-control" disabled>
+<input type="text"    name="t12"  placeholder="Enter Table 12 Name from Table Management" value="<?php echo htmlentities($row['t12']);?>" class="form-control" disabled>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 12</label>
 <div class="controls">
-<input type="text"    name="s12"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s12']);?>"  class="form-control" >
+<input type="text"    name="s12"  placeholder="Enter Table 12 Name from Table Management" value="<?php echo htmlentities($row['s12']);?>"  class="form-control" required>
 </div>
 </div>
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 13 Name</label>
 <div class="controls">
-<input type="text"    name="t13"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t13']);?>" class="form-control" disabled>
+<input type="text"    name="t13"  placeholder="Enter Table 13 Name from Table Management" value="<?php echo htmlentities($row['t13']);?>" class="form-control" disabled>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 13</label>
 <div class="controls">
-<input type="text"    name="s13"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s13']);?>"  class="form-control" >
+<input type="text"    name="s13"  placeholder="Enter Table 13 Name from Table Management" value="<?php echo htmlentities($row['s13']);?>"  class="form-control" required>
 </div>
 </div>
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 14 Name</label>
 <div class="controls">
-<input type="text"    name="t14"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t14']);?>" class="form-control" disabled>
+<input type="text"    name="t14"  placeholder="Enter Table 14 Name from Table Management" value="<?php echo htmlentities($row['t14']);?>" class="form-control" disabled>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 14</label>
 <div class="controls">
-<input type="text"    name="s14"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s14']);?>"  class="form-control" >
+<input type="text"    name="s14"  placeholder="Enter Table 14 Name from Table Management" value="<?php echo htmlentities($row['s14']);?>"  class="form-control" required>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 15 Name</label>
 <div class="controls">
-<input type="text"    name="t15"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t15']);?>" class="form-control" disabled>
+<input type="text"    name="t15"  placeholder="Enter Table 15 Name from Table Management" value="<?php echo htmlentities($row['t15']);?>" class="form-control" disabled>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 15</label>
 <div class="controls">
-<input type="text"    name="s15"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s15']);?>"  class="form-control" >
+<input type="text"    name="s15"  placeholder="Enter Table 15 Name from Table Management" value="<?php echo htmlentities($row['s15']);?>"  class="form-control" required>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 16 Name</label>
 <div class="controls">
-<input type="text"    name="t16"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t16']);?>" class="form-control" disabled>
+<input type="text"    name="t16"  placeholder="Enter Table 16 Name from Table Management" value="<?php echo htmlentities($row['t16']);?>" class="form-control" disabled>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 16</label>
 <div class="controls">
-<input type="text"    name="s16"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s16']);?>"  class="form-control" >
+<input type="text"    name="s16"  placeholder="Enter Table 16 Name from Table Management" value="<?php echo htmlentities($row['s16']);?>"  class="form-control" required>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 17 Name</label>
 <div class="controls">
-<input type="text"    name="t17"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t17']);?>" class="form-control" disabled>
+<input type="text"    name="t17"  placeholder="Enter Table 17 Name from Table Management" value="<?php echo htmlentities($row['t17']);?>" class="form-control" disabled>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 17</label>
 <div class="controls">
-<input type="text"    name="s17"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s17']);?>"  class="form-control" >
+<input type="text"    name="s17"  placeholder="Enter Table 17 Name from Table Management" value="<?php echo htmlentities($row['s17']);?>"  class="form-control" required>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 18 Name</label>
 <div class="controls">
-<input type="text"    name="t18"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t18']);?>" class="form-control" disabled>
+<input type="text"    name="t18"  placeholder="Enter Table 18 Name from Table Management" value="<?php echo htmlentities($row['t18']);?>" class="form-control" disabled>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 18</label>
 <div class="controls">
-<input type="text"    name="s18"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s18']);?>"  class="form-control" >
+<input type="text"    name="s18"  placeholder="Enter Table 18 Name from Table Management" value="<?php echo htmlentities($row['s18']);?>"  class="form-control" required>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 19 Name</label>
 <div class="controls">
-<input type="text"    name="t19"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t19']);?>" class="form-control" disabled>
+<input type="text"    name="t19"  placeholder="Enter Table 19 Name from Table Management" value="<?php echo htmlentities($row['t19']);?>" class="form-control" disabled>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 19</label>
 <div class="controls">
-<input type="text"    name="s19"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s19']);?>"  class="form-control" >
+<input type="text"    name="s19"  placeholder="Enter Table 19 Name from Table Management" value="<?php echo htmlentities($row['s19']);?>"  class="form-control" required>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Table 20 Name</label>
 <div class="controls">
-<input type="text"    name="t20"  placeholder="-NOT-APPLICABLE-" value="<?php echo htmlentities($row['t20']);?>" class="form-control" disabled>
+<input type="text"    name="t20"  placeholder="Enter Table 20 Name from Table Management" value="<?php echo htmlentities($row['t20']);?>" class="form-control" disabled>
 </div>
 </div>
 
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 20</label>
 <div class="controls">
-<input type="text"    name="s20"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s20']);?>"  class="form-control" >
+<input type="text"    name="s20"  placeholder="Enter Table 20 Name from Table Management" value="<?php echo htmlentities($row['s20']);?>"  class="form-control" required>
 </div>
 </div>
 
 
 
 <div class="form-group">
-<label for="inputText3" class="col-form-label">Table Availability / Visibility</label>
+<label for="inputText3" class="col-form-label">Product Availability</label>
 <div class="controls">
-<select   name="tavail"  id="tavail" class="form-control" required>
-<option value="<?php echo htmlentities($row['tavail']);?>"><?php echo htmlentities($row['tavail'] ? 'Currently Showing as: Available' : 'Currently Showing as: Unavailable');?></option>
-<option value="1">Available</option>
-<option value="0">Unavailable</option>
+<select   name="productAvailability"  id="productAvailability" class="form-control" required>
+<option value="<?php echo htmlentities($row['productAvailability']);?>"><?php echo htmlentities($row['productAvailability']);?></option>
+<option value="In Stock">In Stock</option>
+<option value="Out of Stock">Out of Stock</option>
 </select>
 </div>
 </div>
 
-<!-- <div class="form-group">
-<label for="inputText3" class="col-form-label">Table Layout Image</label>
+
+
+<div class="form-group">
+<label for="inputText3" class="col-form-label">Product Image1</label>
 <div class="controls">
-<img src="productimages/<?php echo $row['tid'];?>/<?php echo htmlentities($row['pimage']);?>" width="400" height="300"> <a href="update-image.php?tid=<?php echo $row['tid'];?>">Change Image</a>
+<img src="productimages/<?php echo $row['tid'];?>/<?php echo htmlentities($row['pimage']);?>" width="400" height="300"> <a href="update-image1.php?id=<?php echo $row['id'];?>">Change Image</a>
 </div>
-</div> -->
+</div>
 
 <?php } ?>
 	<div class="form-group">
@@ -492,19 +479,7 @@ while($row=mysqli_fetch_array($query))
 									</thead>
 									<tbody>
 
-<?php $query=mysqli_query($con,"select tablelayout.id as tid,tablelayout.roomid as trid,
-tablelayout.totaltables as totals,
-tablelayout.tablename1 as t1,tablelayout.tablename2 as t2,
-tablelayout.tablename3 as t3,tablelayout.tablename4 as t4,
-tablelayout.tablename5 as t5,tablelayout.tablename6 as t6,
-tablelayout.tablename7 as t7,tablelayout.tablename8 as t8,
-tablelayout.tablename9 as t9,tablelayout.tablename10 as t10,
-tablelayout.tablename11 as t11,tablelayout.tablename12 as t12,
-tablelayout.tablename13 as t13,tablelayout.tablename14 as t14,
-tablelayout.tablename15 as t15,tablelayout.tablename16 as t16,
-tablelayout.tablename17 as t17,tablelayout.tablename18 as t18,
-tablelayout.tablename19 as t19,tablelayout.tablename20 as t20,tablelayout.productimage1 as pimage,tablelayout.tableavailability as tavail,
-room.id as rid, room.roomname as rname from tablelayout join room on tablelayout.roomid=room.id");
+<?php $query=mysqli_query($con,"select roomname as rname from room join tablelayout on room.id = tablelayout.roomid;");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {
@@ -512,11 +487,11 @@ while($row=mysqli_fetch_array($query))
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
 											<td><?php echo htmlentities($row['rname']);?></td>
-											<td><?php echo htmlentities($row['totals']);?></td>									
-											<td><?php echo htmlentities($row['tavail'] ? 'yes' : 'no');?></td>
+											<td><?php echo htmlentities($row['totaltables']);?></td>									
+											<td><?php echo htmlentities($row['tableavailability'] ? 'yes' : 'no');?></td>
 											<td>
                                                 <!-- <a href="edit-dining-program.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button> -->
-                                            <a href="create-table-layout.php?tid=<?php echo $row['tid']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
+                                            <a href="create-table-layout.php?id=<?php echo $row['id']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
                                                 <i class="far fa-trash-alt"></i>
                                             </button>
 										</tr>
