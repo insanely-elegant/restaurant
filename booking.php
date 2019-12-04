@@ -4,7 +4,7 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['login'])==0)
-	{	
+	{
 header('location:index.php');
 }
 else{
@@ -22,7 +22,7 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 
 	<title>Silver Glen - Book a Table</title>
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700" rel="stylesheet">
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />	
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
 
 
@@ -41,13 +41,13 @@ while($row=mysqli_fetch_array($query))
 							<p style="font-size: x-large; text-align: center; color: #f14634">Hello, <?php echo $row['firstname']; ?> </p>
 							<p style="font-size:xx-large; text-align: center;">Select a date</p></br>
 							<div class="row no-margin">
-								
+
 									<div class="form-group">
-								<!-- <div class="form-group">
-								<span class="form-label">Unit Number</span>
-								
+								<div class="form-group">
+								<span class="form-label">Your Unit Number</span>
+
 								<input class="form-control" type="text" value="<?php echo $row['unitno'];  ?>" disabled>
-								</div>  -->
+								</div>
 										<select class="form-control" id="options">
 											<option class="form-control" value="Option 0">Select a date</option>
 											<option class="form-control" value="Option 1">10/18/2019</option>
@@ -82,7 +82,7 @@ $('#options').on('change', function() {
 
    // Empty the target field
    $('#choices').empty();
-   
+
    // For each chocie in the selected option
    for (i = 0; i < lookup[selectValue].length; i++) {
       // Output choice in the target field
@@ -92,14 +92,14 @@ $('#options').on('change', function() {
   </script>
 
 							</div>
-							
-							
-							
+
+
+
 							<div class="form-btn">
 								<button type="submit" class="submit-btn" >PICK YOUR TABLE NEXT</button>
 							</div>
 						</form>
-						
+
 					</div>
 				</div>
 			</div>

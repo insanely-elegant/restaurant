@@ -4,7 +4,7 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['login'])==0)
-	{	
+	{
 header('location:index.php');
 }
 else{
@@ -13,10 +13,10 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
   <head>
- 
+
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width">
-    
+
   <style type="text/css">
 	@media only screen{
 		html{
@@ -326,7 +326,7 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 
 }</style></head>
   <body style="-moz-box-sizing:border-box;-ms-text-size-adjust:100%;-webkit-box-sizing:border-box;-webkit-text-size-adjust:100%;box-sizing:border-box;color:#4d4d4d;font-family:Helvetica,Arial,sans-serif;font-size:14px;font-weight:400;line-height:1.3;margin:0;Margin:0;min-width:100%;padding:0;text-align:left;width:100%!important">
-    
+
     <table class="body" style="background:#fff;border-collapse:collapse;border-spacing:0;color:#4d4d4d;font-family:Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;height:100%;line-height:1.3;margin:0;padding:0;text-align:left;vertical-align:top;width:100%;">
       <tr style="padding:0;text-align:left;vertical-align:top;">
         <td class="center" align="center" valign="top" style="-webkit-hyphens:none;border-collapse:collapse !important;color:#4d4d4d;font-family:Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:normal;">
@@ -335,7 +335,7 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
               <tbody>
                 <tr style="padding:0;text-align:left;vertical-align:top;">
                   <td style="-webkit-hyphens:none;border-collapse:collapse !important;color:#4d4d4d;font-family:Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:normal;">
-                    
+
                     <table class="spacer float-center" style="border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:100%;">
                       <tbody>
                         <tr style="padding:0;text-align:left;vertical-align:top;">
@@ -348,7 +348,7 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
                         <tbody>
                           <tr style="padding:0;vertical-align:top;text-align:left;">
                             <th class="small-12 large-12 columns first last" style="font-size:16px;padding:0;text-align:left;color:#0a0a0a;font-family:Helvetica, Arial, sans-serif;font-weight:normal;line-height:1.3;margin:0 auto;padding-bottom:16px;width:564px;padding-left:16px;padding-right:16px;">
-							  
+
 							<a href="booking.php" style="font-family:Helvetica, Arial, sans-serif;font-weight:normal;padding:0;margin:0;text-align:left;line-height:1.3;color:#2199e8;text-decoration:none;" target="_blank">
                                 <img alt="" class="standard-header center" height="40"  style="display:block;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;width:auto;max-width:100%;clear:both;border:none;padding-top:48px;padding-bottom:16px;max-height:40px"></a>
                               </th>
@@ -381,18 +381,18 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
                             </tbody>
                           </table>
                         </div>
-                        
-                        
-                        
+
+
+
                         <div style="padding-bottom:8px;">
                           <table class="row" style="border-spacing:0;border-collapse:collapse;text-align:left;vertical-align:top;padding:0;width:100%;position:relative;display:table;">
                             <tbody>
                               <tr style="padding:0;vertical-align:top;text-align:left;">
                                 <th class="col-pad-left-2 col-pad-right-2" style="color:#0a0a0a;font-family:Helvetica, Arial, sans-serif;font-weight:normal;padding:0;margin:0;text-align:left;font-size:16px;line-height:1.3;padding-left:16px;padding-right:16px;">
                                   <a href="booking-history.php" class="btn-primary btn-md btn-rausch" style="font-weight:normal;margin:0;text-align:left;line-height:1.3;color:#fff;text-decoration:none;font-family:Helvetica, Arial, sans-serif;background-color:#68b243;-webkit-border-radius:5px;border-radius:5px;display:inline-block;padding:12px 24px 12px 24px;">
-                                    
+
                                     <strong>My reservations</strong>
-                                    
+
                                   </a>
                                 </th>
                               </tr>
@@ -405,8 +405,8 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
                             <hr class="standard-footer-hr" style="clear:both;max-width:580px;border-right:0;border-bottom:1px solid #cacaca;border-left:0;border-top:0;background-color:#dbdbdb;height:2px;width:100%;border:none;margin:auto;">
                             <div class="row-pad-bot-4" style="padding-bottom:25px;">
                             </div>
-                            
-                            
+
+
                             <table class="spacer" style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;">
                               <tbody>
                                 <tr style="padding:0;text-align:left;vertical-align:top;">
@@ -422,11 +422,11 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
                                       <tbody>
                                         <tr style="padding:0;text-align:left;vertical-align:top;">
                                           <td class="booking-confirmation-corner" style="-webkit-hyphens:none;border-collapse:collapse !important;color:#4d4d4d;font-family:Helvetica, Arial, sans-serif;font-size:8px;font-weight:400;height:8px;line-height:8px;margin:0;padding:0;padding-bottom:0;position:relative;text-align:left;vertical-align:top;width:8px;word-wrap:normal;">
-                                            
+
                                           </td>
                                           <td style="-webkit-hyphens:none;border-collapse:collapse !important;color:#4d4d4d;font-family:Helvetica, Arial, sans-serif;font-size:8px;font-weight:400;line-height:8px;margin:0;padding:0;padding-bottom:0;position:relative;text-align:left;vertical-align:top;word-wrap:normal;"> </td>
                                           <td class="booking-confirmation-corner" style="-webkit-hyphens:none;border-collapse:collapse !important;color:#4d4d4d;font-family:Helvetica, Arial, sans-serif;font-size:8px;font-weight:400;height:8px;line-height:8px;margin:0;padding:0;padding-bottom:0;position:relative;text-align:left;vertical-align:top;width:8px;word-wrap:normal;">
-                                            
+
                                           </td>
                                         </tr>
                                       </tbody>
@@ -442,13 +442,13 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
                                                   <a href="#" style="color:#68b243;font-family:Helvetica, Arial, sans-serif;font-weight:700;line-height:1.3;margin:0;padding:0;text-align:left;text-decoration:none;">
                                                 </a>
                                               </h3>
-                                              
+
                                               <h3 style="color:#000;font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:700;letter-spacing:-.03px;line-height:1.3;margin:0;margin-bottom:12px;margin-top:4px;padding:0;text-align:left;word-wrap:normal;">Reservation Time: <small style="color:#000;font-size:16px;font-weight:400;">5:10 PM</small>
                                               <a href="#" style="color:#68b243;font-family:Helvetica, Arial, sans-serif;font-weight:700;line-height:1.3;margin:0;padding:0;text-align:left;text-decoration:none;"><strong style="font-size:14px;font-weight:400;">Change</strong>
                                             </a>
                                           </h3>
-                                          
-                                          
+
+
                                         </th>
                                         <th class="expander" style="color:#6e6e6e;font-family:Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:1.3;margin:0;padding:0 !important;text-align:left;visibility:hidden;width:0;"></th>
                                       </tr>
@@ -463,7 +463,7 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
                                   <th class="small-12 large-12 columns first last" style="color:#6e6e6e;font-family:Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:50px;padding-right:50px;text-align:left;width:564px;">
                                     <table style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%;">
                                       <tr style="padding:0;text-align:left;vertical-align:top;">
-                                       
+
                                         <th class="expander" style="color:#6e6e6e;font-family:Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:1.3;margin:0;padding:0 !important;text-align:left;visibility:hidden;width:0;"></th>
                                       </tr>
                                     </table>
@@ -471,7 +471,7 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
                                 </tr>
                               </tbody>
                             </table>
-                            
+
                             <table class="spacer" style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;">
                               <tbody>
                                 <tr style="padding:0;text-align:left;vertical-align:top;">
@@ -526,9 +526,9 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
                                       <th style="color:#6e6e6e;font-family:Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left;">
                                         <div class="hr" style="background:#dbdbdb;border-radius:6px;font-size:6px;line-height:6px;margin:20px auto;"> </div>
                                         <p class="text-center" style="color:#6e6e6e;font-family:Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:1.3;margin:0;margin-bottom:8px;padding:0;text-align:center;">Your host: Richard Stallman </p>
-                                        
+
                                     </th>
-                                    
+
                                   </tr>
                                 </table>
                               </th>
@@ -539,11 +539,11 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
                           <tbody>
                             <tr style="padding:0;text-align:left;vertical-align:top;">
                               <td class="booking-confirmation-corner" style="-webkit-hyphens:none;border-collapse:collapse !important;color:#4d4d4d;font-family:Helvetica, Arial, sans-serif;font-size:8px;font-weight:400;height:8px;line-height:8px;margin:0;padding:0;padding-bottom:0;position:relative;text-align:left;vertical-align:top;width:8px;word-wrap:normal;">
-                                
+
                               </td>
                               <td style="-webkit-hyphens:none;border-collapse:collapse !important;color:#4d4d4d;font-family:Helvetica, Arial, sans-serif;font-size:8px;font-weight:400;line-height:8px;margin:0;padding:0;padding-bottom:0;position:relative;text-align:left;vertical-align:top;word-wrap:normal;"> </td>
                               <td class="booking-confirmation-corner" style="-webkit-hyphens:none;border-collapse:collapse !important;color:#4d4d4d;font-family:Helvetica, Arial, sans-serif;font-size:8px;font-weight:400;height:8px;line-height:8px;margin:0;padding:0;padding-bottom:0;position:relative;text-align:left;vertical-align:top;width:8px;word-wrap:normal;">
-                                
+
                               </td>
                             </tr>
                           </tbody>
@@ -560,9 +560,9 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
                   </tbody>
                 </table>
                 <div class="hr" style="background:#dbdbdb;border-radius:6px;font-size:6px;line-height:6px;margin:20px auto;"> </div>
-                
-                
-                
+
+
+
                 <table align="center" class="container booking-confirmation-payment" style="background:#fff;border-collapse:collapse;border-spacing:0;margin:0 auto;padding:0;text-align:inherit;vertical-align:top;width:580px;">
                   <tbody>
                     <tr style="padding:0;text-align:left;vertical-align:top;">
@@ -631,8 +631,8 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
                             </tr>
                           </tbody>
                         </table>
-                 
-                        
+
+
                         <table class="row" style="border-collapse:collapse;border-spacing:0;display:table;padding:0;position:relative;text-align:left;vertical-align:top;width:100%;">
                           <tbody>
                             <tr style="padding:0;text-align:left;vertical-align:top;">
@@ -653,7 +653,7 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
                           <tbody>
                             <tr style="padding:0;text-align:left;vertical-align:top;">
                               <th class="small-12 large-12 columns first last" style="color:#4d4d4d;font-family:Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:0;padding-left:50px;padding-right:50px;text-align:left;width:564px;">
-                                
+
                               </th>
                             </tr>
                           </tbody>
@@ -696,8 +696,8 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
                             </tr>
                           </tbody>
                         </table>
-                        
-                      
+
+
                         <table class="row" style="border-collapse:collapse;border-spacing:0;display:table;padding:0;position:relative;text-align:left;vertical-align:top;width:100%;">
                           <tbody>
                             <tr style="padding:0;text-align:left;vertical-align:top;">
@@ -854,9 +854,9 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
                       </tr>
                     </tbody>
                   </table>
-              
-                  
-                  
+
+
+
                 </td>
                 <th class="expander" style="color:#4d4d4d;font-family:Helvetica, Arial, sans-serif;font-size:10px;font-weight:400;line-height:1.3;margin:0;padding:0 !important;text-align:left;visibility:hidden;width:0;"></th>
               </tr>

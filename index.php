@@ -1,47 +1,47 @@
 <?php
-session_start();
-error_reporting(0);
+ session_start();
+// error_reporting(0);
 include('includes/config.php');
 
 // Code for User login
-// if(isset($_POST['login']))
-// {
-   $unitno=$_POST['unitno'];
-   $password=$_POST['password'];
-$query=mysqli_query($con,"SELECT * FROM users WHERE unitno='$unitno' and password='$password'");
-$num=mysqli_fetch_array($query);
-if($num>0)
+if(isset($_POST['login']))
 {
-$extra="booking.php";
-$_SESSION['login']=$_POST['unitno'];
+   $unitno=$_POST['unitno'];
+  $password=$_POST['password'];
+ $query=mysqli_query($con,"SELECT * FROM users WHERE unitno='$unitno' and password='$password'");
+ $num=mysqli_fetch_array($query);
+ if($num>0)
+ {
+ $extra="booking.php";
+ $_SESSION['login']=$_POST['unitno'];
 $_SESSION['id']=$num['id'];
-$_SESSION['unitno']=$num['unitno'];
+ $_SESSION['unitno']=$num['unitno'];
 $uip=$_SERVER['REMOTE_ADDR'];
 $status=1;
-$log=mysqli_query($con,"insert into userlog(unitno,userip,status) values('".$_SESSION['login']."','$uip','$status')");
-$host=$_SERVER['HTTP_HOST'];
+ $log=mysqli_query($con,"insert into userlog(unitno,userip,status) values('".$_SESSION['login']."','$uip','$status')");
+ $host=$_SERVER['HTTP_HOST'];
 $uri=rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
 header("location:http://$host$uri/$extra");
-exit();
-}
+ exit();
+ }
 // else
 // {
-$extra="index.php";
-$unitno=$_POST['unitno'];
-$uip=$_SERVER['REMOTE_ADDR'];
-$status=0;
-$log=mysqli_query($con,"insert into userlog(unitno,userip,status) values('$unitno','$uip','$status')");
-$host  = $_SERVER['HTTP_HOST'];
-$uri  = rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
-header("location:http://$host$uri/$extra");
-$_SESSION['errmsg']="Invalid Unit no or Password";
+// $extra="index.php";
+// $unitno=$_POST['unitno'];
+// $uip=$_SERVER['REMOTE_ADDR'];
+// $status=0;
+// $log=mysqli_query($con,"insert into userlog(unitno,userip,status) values('$unitno','$uip','$status')");
+// $host  = $_SERVER['HTTP_HOST'];
+// $uri  = rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
+// header("location:http://$host$uri/$extra");
+// $_SESSION['errmsg']="Invalid Unit no or Password";
 // exit();
 // }
-// }
+}
 
 
 ?>
-	
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -95,4 +95,3 @@ $_SESSION['errmsg']="Invalid Unit no or Password";
 </body>
 
 </html>
-
