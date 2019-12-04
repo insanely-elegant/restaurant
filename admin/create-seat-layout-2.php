@@ -9,7 +9,7 @@ include('includes/config.php');
 // else{
 date_default_timezone_set('Asia/Kolkata');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
-	
+	$rid=intval($_GET['id']);
 if(isset($_POST['submit']))
 {
 	$roomid=$_POST['roomid'];
@@ -59,7 +59,7 @@ $_SESSION['msg']="Table Layout Created Successfully !!";
 
 if(isset($_GET['del']))
 		  {
-		          mysqli_query($con,"delete from tablelayout where id = '".$_GET['tid']."'");
+		          mysqli_query($con,"delete from tablelayout where id = '".$_GET['id']."'");
                   $_SESSION['delmsg']="Table Layout deleted !!";
 		  }
 
@@ -147,20 +147,22 @@ while($row=mysqli_fetch_array($query))
                                             <div class="alert alert-info" role="alert">
                                                Tip! : Please Ensure you upload a clear image. Members will be seeing the image you upload here.
                                             </div>
-                                            <label class="col-form-label" for="inputText3"> Select the Room</label>
-                                           <select name="roomid" class="form-control" id="input-select" required>
-                                            <option value="">Select the Room</option>
-                                            <?php
-                                             $query=mysqli_query($con,"select * from room");
-                                            while($row=mysqli_fetch_array($query))
-                                           {?>
-                                          <option value="<?php echo $row['id'];?>"><?php echo $row['roomname'];?></option>
-                                      <?php } ?>
-                                            </select>
-                                           
-                                         
+<?php 
 
-                                            
+$query=mysqli_query($con,"select * from room where id='$rid'");
+$cnt=1;
+while($row=mysqli_fetch_array($query))
+{
+  
+
+
+?>
+
+                                            <label class="col-form-label" > Selected Table is : <?php echo htmlentities($row['roomname']);?>.</label> <a href="create-seat-layout.php" style="color: red;"> Modify?</a> 
+                                           
+<?php
+}
+?>
                                             <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Number of Tables</label>
                                                  <input name="totaltables" type="number" min="1" max="20" class="form-control">
@@ -284,7 +286,7 @@ while($row=mysqli_fetch_array($query))
 									</thead>
 									<tbody>
 
-<?php $query=mysqli_query($con,"select tablelayout.id as tid,tablelayout.tableavailability as available, tablelayout.roomid as trid,tablelayout.productimage1 as tableimage,tablelayout.totaltables as totals,room.id as rid, room.roomname as rname from tablelayout join room on room.id=tablelayout.roomid;");
+<?php $query=mysqli_query($con,"select roomname as rname from room join tablelayout on room.id = tablelayout.roomid;");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {
@@ -292,11 +294,11 @@ while($row=mysqli_fetch_array($query))
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
 											<td><?php echo htmlentities($row['rname']);?></td>
-											<td><?php echo htmlentities($row['totals']);?></td>									
-											<td><?php echo htmlentities($row['availabile'] ? 'yes' : 'no');?></td>
+											<td><?php echo htmlentities($row['totaltables']);?></td>									
+											<td><?php echo htmlentities($row['tableavailability'] ? 'yes' : 'no');?></td>
 											<td>
-                                                <!-- <a href="edit-dining-program.php?id=<?php echo $row['tid']?>" class="btn btn-sm btn-outline-light">Edit</button> -->
-                                            <a href="create-table-layout.php?tid=<?php echo $row['tid']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
+                                                <!-- <a href="edit-dining-program.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button> -->
+                                            <a href="create-table-layout.php?id=<?php echo $row['id']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
                                                 <i class="far fa-trash-alt"></i>
                                             </button>
 										</tr>
