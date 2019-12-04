@@ -14,7 +14,7 @@ if(isset($_POST['submit']))
 {
 	$roomid=$_POST['roomid'];
 	$totaltables=$_POST['totaltables'];
-	$tablename1=$_POST['tablename1'];
+    $tablename1=$_POST['tablename1'];
 	$tablename2=$_POST['tablename2'];
 	$tablename3=$_POST['tablename3'];
 	$tablename4=$_POST['tablename4'];
@@ -173,79 +173,79 @@ while($row=mysqli_fetch_array($query))
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename2" type="text" class="form-control">
+                                                 <input name="tablename2" type="text" class="form-control" value="">
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename3" type="text" class="form-control">
+                                                 <input name="tablename3" type="text" class="form-control" value="">
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename4" type="text" class="form-control">
+                                                 <input name="tablename4" type="text" class="form-control" value="">
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename5" type="text" class="form-control">
+                                                 <input name="tablename5" type="text" class="form-control" value="">
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename6" type="text" class="form-control">
+                                                 <input name="tablename6" type="text" class="form-control" value="">
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename7" type="text" class="form-control">
+                                                 <input name="tablename7" type="text" class="form-control" value="">
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename8" type="text" class="form-control">
+                                                 <input name="tablename8" type="text" class="form-control" value="">
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename9" type="text" class="form-control">
+                                                 <input name="tablename9" type="text" class="form-control" value="">
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename10" type="text" class="form-control">
+                                                 <input name="tablename10" type="text" class="form-control" value="">
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename11" type="text" class="form-control">
+                                                 <input name="tablename11" type="text" class="form-control" value="">
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename12" type="text" class="form-control">
+                                                 <input name="tablename12" type="text" class="form-control" value="">
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename13" type="text" class="form-control">
+                                                 <input name="tablename13" type="text" class="form-control" value="">
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename14" type="text" class="form-control">
+                                                 <input name="tablename14" type="text" class="form-control" value="">
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename15" type="text" class="form-control">
+                                                 <input name="tablename15" type="text" class="form-control" value="">
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename16" type="text" class="form-control">
+                                                 <input name="tablename16" type="text" class="form-control" value="">
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename17" type="text" class="form-control">
+                                                 <input name="tablename17" type="text" class="form-control" value="">
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename18" type="text" class="form-control">
+                                                 <input name="tablename18" type="text" class="form-control" value="">
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename19" type="text" class="form-control">
+                                                 <input name="tablename19" type="text" class="form-control" value="">
                                             </div>
                                              <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename20" type="text" class="form-control">
+                                                 <input name="tablename20" type="text" class="form-control" value="">
                                             </div>
                         
                                         <div class="form-group">
