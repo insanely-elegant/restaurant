@@ -167,7 +167,7 @@ while($row=mysqli_fetch_array($query))
 
 <div class="alert alert-warning" role="alert">
                                               Warning! : Only Enter Total Seats to the Table Names that are present. Leave blank for everything else.
-                                              </br>  If you see just an update button, that means you haven't defined or created any total seats created seats, please go back or click  <a href="create-seat-layout-2.php?tid=<?php echo $row['tid']?>" class="btn btn-sm btn-outline-light">here </a> to create total seats.
+                                              </br>  If you see just an update button, that means you haven't defined or created any total seats. To create seats, please go back or click  <a href="create-seat-layout-2.php?tid=<?php echo $row['tid']?>" class="btn btn-sm btn-outline-light">here </a> to create total seats.
                                             </div>
 
 
