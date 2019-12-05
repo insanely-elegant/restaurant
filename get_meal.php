@@ -1,5 +1,5 @@
 <?php
-include('include/config.php');
+include('includes/config.php');
 if(!empty($_POST["aid"])) 
 {
 $id=intval($_POST["aid"]);

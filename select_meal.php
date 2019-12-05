@@ -45,9 +45,7 @@ while($row=mysqli_fetch_array($query))
 
 									<div class="form-group">
 								<div class="form-group">
-								<span class="form-label">Your Unit Number</span>
-
-								<input class="form-control" type="text" value="<?php echo $row['unitno'];  ?>" disabled>
+								<span class="form-label">Your \?>" disabled>
 								</div>
                                 <?php 
                                 

@@ -95,7 +95,7 @@ exit();
             </div>
             <div class="card-footer bg-white p-0  ">
                 <div class="card-footer-item card-footer-item-bordered">
-                    <a href="chef-login.php" class="footer-link">Chef Login</a></div>
+                    <a href="../chef/index.php" class="footer-link">Chef Login</a></div>
                 <div class="card-footer-item card-footer-item-bordered">
                     <a href="../admin/index.php" class="footer-link">Admin Login</a>
                 </div>
