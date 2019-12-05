@@ -26,13 +26,13 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />	
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
 
-<?php $query=mysqli_query($con,"select * from users");
+<?php $query=mysqli_query($con,"select * from users where unitno='".$_SESSION['login']."'");
 while($row=mysqli_fetch_array($query))
 {?>
 <?php include("includes/nav-menu.php") ?>
 </head>
 
-<body style="font-size: 18px;"> </br></br>
+<body style="font-size: 18px;"> <br><br>
 <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
         
 <p style="font-size: x-large; text-align: center; color: #f14634">Hello, <?php echo $row['firstname']; ?> </p>  </br></br>
@@ -51,45 +51,21 @@ while($row=mysqli_fetch_array($query))
     </tr>
   </thead>
   <tbody>
+  <?php $query=mysqli_query($con,"select * from reservation");
+$cnt=1;
+while($row=mysqli_fetch_array($query))
+{
+?>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>E302A</td>
-      <td>1</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>E303B</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>E305A</td>
-      <td>3</td>
-      <td>1</td>
+	<td><?php echo htmlentities($cnt);?></td>
+	<td><?php echo htmlentities($row['room']);?></td>
+	<td><?php echo htmlentities($row['tablename']);?></td>
+    <td><?php echo htmlentities($row['seat']);?></td>
     </tr>
   </tbody>
 </table>
 </div>
-<div class="w3-container">
-  <h2>Table Layout</h2>
-  <p>Click on the image for full screen:</p>
-
-  <img src="table.jpg" style="width:100%;cursor:zoom-in"
-  onclick="document.getElementById('modal01').style.display='block'">
-
-  <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
-    <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-    <div class="w3-modal-content w3-animate-zoom">
-      <img src="table.jpg" style="width:100%">
-    </div>
-  </div>
-</div>
-	<div id="booking" class="section">
+<div id="booking" class="section">
 		<div class="section-center">
 			<div class="container">
 				<div class="row">
@@ -164,16 +140,12 @@ while($row=mysqli_fetch_array($query))
 						
 					</div>
 				</div>
-			</div><span class="form-label" style="text-align:center;">Confirmation in the next page</span>
+			
 		</div>
 	</div>
 	  
 
-
         </main>
 </body>
-<?php } ?>
+<?php }}} ?>
 </html>
-<?php
-}
-?>
