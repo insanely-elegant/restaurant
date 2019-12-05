@@ -56,16 +56,17 @@ while($row=mysqli_fetch_array($query))
 										
 										<option class="form-control" value="">Select a date</option>
 										<?php $query=mysqli_query($con,"select * from weeklymenu");
-										$cnt=2;
 										while($row=mysqli_fetch_array($query))
 										{
 										?>
 										<option class="form-control" value="<?php echo $row['id'];?>"><?php echo $row['diningdatetime'];?></option>
+										
+
 										</select>
 							</div>
 							<div class="form-btn">
 								<a href="select_meal.php?id=<?php echo $row['id'];?>" type="submit" class="submit-btn" >PICK YOUR FOOD NEXT</button>
-								<?php $cnt=$cnt+1; }  ?>
+								<?php  } ?>
 							</div>
 						</form>
 

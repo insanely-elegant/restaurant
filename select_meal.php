@@ -10,6 +10,7 @@ header('location:index.php');
 else{
 date_default_timezone_set('Asia/Kolkata');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
+$dd=intval($_GET['id']);
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +50,7 @@ while($row=mysqli_fetch_array($query))
 								<input class="form-control" type="text" value="<?php echo $row['unitno'];  ?>" disabled>
 								</div>
                                 <?php 
-                                $dd=intval($_GET['id']);
+                                
                                 $query=mysqli_query($con,"select * from weeklymenu where id='$dd'");
                                 $cnt=1;
                                 while($row=mysqli_fetch_array($query))

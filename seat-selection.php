@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 error_reporting(0);
@@ -25,11 +24,26 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />	
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <?php $query=mysqli_query($con,"select * from users where unitno='".$_SESSION['login']."'");
 while($row=mysqli_fetch_array($query))
 {?>
 <?php include("includes/nav-menu.php") ?>
+
+<script>
+function getTable(val) {
+	$.ajax({
+	type: "POST",
+	url: "get_table.php",
+	data:'room_id='+val,
+	success: function(data){
+		$("#tablename").html(data);
+	}
+	});
+}
+</script>
+
 </head>
 
 <body style="font-size: 18px;"> <br><br>
@@ -51,7 +65,7 @@ while($row=mysqli_fetch_array($query))
     </tr>
   </thead>
   <tbody>
-  <?php $query=mysqli_query($con,"select * from reservation");
+ <?php $query=mysqli_query($con,"select * from reservation");	
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {
@@ -63,6 +77,7 @@ while($row=mysqli_fetch_array($query))
     <td><?php echo htmlentities($row['seat']);?></td>
     </tr>
   </tbody>
+<?php } ?>
 </table>
 </div>
 <div id="booking" class="section">
@@ -70,17 +85,17 @@ while($row=mysqli_fetch_array($query))
 			<div class="container">
 				<div class="row">
 					<div class="booking-form">
-						<form action="confirmation.php">
+						<form action="" name="seatselection" method="post" enctype="multipart/form-data">
 							<div class="row no-margin">
 							<p style="text-align: center;">Fill in the details to confirm your reservation</p>
-									<div class="form-group">
-										<span class="form-label">Guests ( Non-Members )</span>
-										<select class="form-control">
-											<option>0</option>
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
+							<div class="form-group">
+										<span class="form-label">Select the Room</span>
+										<select class="form-control" name="roomname" onChange="getTable(this.value);"  >
+										<?php $query=mysqli_query($con,"select * from room");
+										while($row=mysqli_fetch_array($query))
+										{?>
+											<option value="<?php echo $row['id'];?>"><?php echo $row['roomname'];?></option>
+										<?php } ?>
 										</select>
 										<span class="select-arrow"></span>
 									</div>
@@ -89,41 +104,16 @@ while($row=mysqli_fetch_array($query))
 								<div class="col-sm-6">
 									<div class="form-group">
 										<span class="form-label">Select table number</span>
-										<select class="form-control" id="tableno">
-											<option class="form-control" value="Table 1">Table 1</option>
-											<option class="form-control" value="Table 2">Table 2</option>
-											<option class="form-control" value="Table 3">Table 3</option>
-											<option class="form-control" value="Table 4">Table 4</option>
-											<option class="form-control" value="Table 5">Table 5</option>
-											<option class="form-control" value="Table 6">Table 6</option>
-											<option class="form-control" value="Table 3">Table 7</option>
-											<option class="form-control" value="Table 4">Table 8</option>
+										<select class="form-control" id="tablename">
 										</select>
 									</div>
 								</div>
 										<div class="col-sm-6">
 									<div class="form-group">
 										<span class="form-label">Select seat number</span>
-										<select class="form-control" id="tableno">
+										<select class="form-control" id="seatname">
 											<option class="form-control" value="Table 1"> 1</option>
-											<option class="form-control" value="Table 2"> 2</option>
-											<option class="form-control" value="Table 3"> 3</option>
 										</select>
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<span class="form-label">Select seat number</span>
-										<select class="form-control" id="seatno">
-											<option class="form-control" value="05:10 PM">05:10 PM</option>
-											<option class="form-control" value="05:15 PM">05:15 PM</option>
-											<option class="form-control" value="05:20 PM">05:20 PM</option>
-											<option class="form-control" value="05:25 PM">05:25 PM</option>
-											<option class="form-control" value="05:30 PM">05:30 PM</option>
-											<option class="form-control" value="05:35 PM">05:35 PM</option>
-											<option class="form-control" value="05:40 PM">05:40 PM</option>
-										</select>
-										
 									</div>
 								</div>
 
@@ -135,7 +125,7 @@ while($row=mysqli_fetch_array($query))
 						
 							<div class="form-btn">
 								<button type="submit" class="submit-btn" >View Reservation Summary</button>
-							</div></br>
+							</div><br>
 						</form>
 						
 					</div>
@@ -147,5 +137,5 @@ while($row=mysqli_fetch_array($query))
 
         </main>
 </body>
-<?php }}} ?>
+<?php }} ?>
 </html>
