@@ -115,8 +115,8 @@ while($row=mysqli_fetch_array($query))
 											<td><?php echo htmlentities($row['rname']);?></td>
 											<td><?php echo htmlentities($row['totals']);?></td>
 											<td><a href="productimages/<?php echo $row['tid'];?>/<?php echo htmlentities($row['tableimage']);?> ">View Image</a></td>
-											
-										    <td><a href="create-seat-layout-2.php?tid=<?php echo $row['tid']?>" class="btn btn-sm btn-outline-light">Modify</button>
+											<td><a href="create-seat-layout-2.php?tid=<?php echo $row['tid']?>" class="btn btn-sm btn-outline-light">Create New Seats</button>
+										    <a href="modify-seat-layout.php?tid=<?php echo $row['tid']?>" class="btn btn-sm btn-outline-light">Modify Seats</button>
                                             <a href="create-seat-layout.php?tid=<?php echo $row['tid']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
                                             <i class="far fa-trash-alt"></i></td>
                                             </button>
