@@ -145,8 +145,18 @@ tablelayout.tablename11 as t11,tablelayout.tablename12 as t12,
 tablelayout.tablename13 as t13,tablelayout.tablename14 as t14,
 tablelayout.tablename15 as t15,tablelayout.tablename16 as t16,
 tablelayout.tablename17 as t17,tablelayout.tablename18 as t18,
-tablelayout.tablename19 as t19,tablelayout.tablename20 as t20,tablelayout.productimage1 as pimage,tablelayout.tableavailability as tavail,
-room.id as rid, room.roomname as rname from tablelayout join room on tablelayout.roomid=room.id where tablelayout.id='$tid'");
+tablelayout.tablename19 as t19,tablelayout.tablename20 as t20,
+seatlayout.s1 as s1,seatlayout.s2 as s2,
+seatlayout.s3 as s3,seatlayout.s4 as s4,
+seatlayout.s5 as s5,seatlayout.s6 as s6,
+seatlayout.s7 as s7,seatlayout.s8 as s8,
+seatlayout.s9 as s9,seatlayout.s10 as s10,
+seatlayout.s11 as s11,seatlayout.s12 as s12,
+seatlayout.s13 as s13,seatlayout.s14 as s14,
+seatlayout.s15 as s15,seatlayout.s16 as s16,
+seatlayout.s17 as s17,seatlayout.s18 as s18,
+seatlayout.s19 as s19,seatlayout.s20 as s20,tablelayout.productimage1 as pimage,tablelayout.tableavailability as tavail,
+room.id as rid, room.roomname as rname from tablelayout join room on tablelayout.roomid=room.id join seatlayout on tablelayout.id=seatlayout.tableid where tablelayout.id='$tid'");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {
