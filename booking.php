@@ -40,7 +40,7 @@ function selectCountry(val) {
 $("#search-box").val(val);
 $("#suggesstion-box").hide();
 }
-</script>	
+</script>
 
 </head>
 
@@ -58,19 +58,19 @@ while($row=mysqli_fetch_array($query))
 							<p style="font-size: x-large; text-align: center; color: #f14634">Hello, <?php echo $row['firstname']; ?> </p>
 							<p style="font-size:xx-large; text-align: center;">Select a date</p><br>
 							<div class="row no-margin">
-							
+
 
 									<div class="form-group">
 								<div class="form-group">
 								<span class="form-label">Your Unit Number</span>
-								
+
 								<input class="form-control" type="text" value="<?php echo $row['unitno'];?>" disabled>
 
 <div class="form-group">
 <label class="form-label" for="basicinput">Dining Date & Time</label>
 <div class="controls">
 <select name="diningdatetime" class="form-control" onChange="getSubcat(this.value);"  required>
-<option value="">Select Dining Date & Time</option> 
+<option value="">Select Dining Date & Time</option>
 <?php $query=mysqli_query($con,"select * from weeklymenu");
 while($row=mysqli_fetch_array($query))
 {?>
@@ -81,7 +81,7 @@ while($row=mysqli_fetch_array($query))
 </div>
 </div>
 
-									
+
 <div class="form-group">
 <label class="form-label" for="basicinput">Dish Name</label>
 <div class="controls">
@@ -90,9 +90,9 @@ while($row=mysqli_fetch_array($query))
 </div>
 </div>  <div class="form-btn">
                 <button href="select_meal.php?id=<?php echo $row['id'];?>" type="submit" class="submit-btn" >PICK YOUR FOOD NEXT</button>
-                
+
               </div>
-						
+
 						</form>
 
 					</div>
@@ -103,4 +103,3 @@ while($row=mysqli_fetch_array($query))
 </body>
 		<?php }} ?>
 </html>
-

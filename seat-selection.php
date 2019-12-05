@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(0);
+error_reporting(1);
 include('includes/config.php');
 if(strlen($_SESSION['login'])==0)
 	{	
@@ -118,11 +118,6 @@ while($row=mysqli_fetch_array($query))
 								</div>
 
 							</div>
-							
-						
-								
-						
-						
 							<div class="form-btn">
 								<button type="submit" class="submit-btn" >View Reservation Summary</button>
 							</div><br>
