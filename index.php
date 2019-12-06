@@ -1,6 +1,6 @@
 <?php
  session_start();
-// error_reporting(0);
+ error_reporting(0);
 include('includes/config.php');
 
 // Code for User login
@@ -15,7 +15,7 @@ if(isset($_POST['login']))
  $extra="booking.php";
  $_SESSION['login']=$_POST['unitno'];
 $_SESSION['id']=$num['id'];
- $_SESSION['name']=$num['name'];
+ $_SESSION['fname']=$num['firstname'];
 $uip=$_SERVER['REMOTE_ADDR'];
 $status=1;
  $log=mysqli_query($con,"insert into userlog(unitno,userip,status) values('".$_SESSION['login']."','$uip','$status')");

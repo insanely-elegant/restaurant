@@ -9,6 +9,9 @@ header('location:index.php');
 else{
 date_default_timezone_set('Asia/Kolkata');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +45,17 @@ function getTable(val) {
 	}
 	});
 }
+function getSeat(val) {
+	$.ajax({
+	type: "POST",
+	url: "get_seat.php",
+	data:'table_id='+val,
+	success: function(data){
+		$("#seatname").html(data);
+	}
+	});
+}
+
 </script>
 
 </head>
@@ -51,7 +65,7 @@ function getTable(val) {
         
 <p style="font-size: x-large; text-align: center; color: #f14634">Hello, <?php echo $row['firstname']; ?> </p>  </br></br>
 
-<p style="text-align: center;">Here's the guest list for: <b>October 20th</b></p> </br>
+<p style="text-align: center;">Here's the guest list for: <b><?php echo htmlentities($dining_date);?></b></p> </br>
 <div class="table-responsive">
   <table class="table">
 <table class="table">
@@ -104,7 +118,7 @@ while($row=mysqli_fetch_array($query))
 								<div class="col-sm-6">
 									<div class="form-group">
 										<span class="form-label">Select table number</span>
-										<select class="form-control" id="tablename">
+										<select class="form-control" id="tablename" onChange="getSeat(this.value);">
 										</select>
 									</div>
 								</div>
@@ -112,7 +126,6 @@ while($row=mysqli_fetch_array($query))
 									<div class="form-group">
 										<span class="form-label">Select seat number</span>
 										<select class="form-control" id="seatname">
-											<option class="form-control" value="Table 1"> 1</option>
 										</select>
 									</div>
 								</div>

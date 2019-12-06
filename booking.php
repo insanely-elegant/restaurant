@@ -9,8 +9,8 @@ header('location:index.php');
 else{
 date_default_timezone_set('Asia/Kolkata');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,10 +36,27 @@ function getSubcat(val) {
 	}
 	});
 }
-function selectCountry(val) {
-$("#search-box").val(val);
-$("#suggesstion-box").hide();
+function getTable(val) {
+	$.ajax({
+	type: "POST",
+	url: "get_table.php",
+	data:'room_id='+val,
+	success: function(data){
+		$("#tablename").html(data);
+	}
+	});
 }
+function getSeat(val) {
+	$.ajax({
+	type: "POST",
+	url: "get_seat.php",
+	data:'table_id='+val,
+	success: function(data){
+		$("#seatname").html(data);
+	}
+	});
+}
+
 </script>
 
 </head>
@@ -54,8 +71,8 @@ while($row=mysqli_fetch_array($query))
 			<div class="container">
 				<div class="row">
 					<div class="booking-form">
-						<form method="post" name="insertproduct" enctype="multipart/form-data">
-							<p style="font-size: x-large; text-align: center; color: #f14634">Hello, <?php echo $row['firstname']; ?> </p>
+						<form method="post" action="seat-selection.php" name="insertproduct" enctype="multipart/form-data">
+							<p style="font-size: x-large; text-align: center; color: #f14634">Hello, <?php echo $_SESSION['fname'];?></p>
 							<p style="font-size:xx-large; text-align: center;">Select a date</p><br>
 							<div class="row no-margin">
 
@@ -75,7 +92,7 @@ while($row=mysqli_fetch_array($query))
 while($row=mysqli_fetch_array($query))
 {?>
 
-<option value="<?php echo $row['id'];?>"><?php echo $row['diningdatetime'];?></option>
+<option id="usrdate" name="ddt" value="<?php echo $row['id'];?>"><?php echo $row['diningdatetime'];?></option>
 <?php } ?>
 </select>
 </div>
@@ -87,9 +104,40 @@ while($row=mysqli_fetch_array($query))
 <div class="controls">
 <select name="dishname"  id="dishname" class="form-control" required>
 </select>
-</div>
-</div>  <div class="form-btn">
-                <button href="select_meal.php?id=<?php echo $row['id'];?>" type="submit" class="submit-btn" >PICK YOUR FOOD NEXT</button>
+</div>  
+<div class="row no-margin">
+							<div class="form-group">
+										<span class="form-label">Select the Room</span>
+										<select class="form-control" name="roomname" onChange="getTable(this.value);"  >
+										<option value="">Select Dining Room</option>
+										<?php $query=mysqli_query($con,"select * from room");
+										while($row=mysqli_fetch_array($query))
+										{?>
+											<option value="<?php echo $row['id'];?>"><?php echo $row['roomname'];?></option>
+										<?php } ?>
+										</select>
+										<span class="select-arrow"></span>
+									</div>
+							</div>
+							<div class="row no-margin">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<span class="form-label">Select table number</span>
+										<select class="form-control" id="tablename" onChange="getSeat(this.value);">
+										</select>
+									</div>
+								</div>
+										<div class="col-sm-6">
+									<div class="form-group">
+										<span class="form-label">Select seat number</span>
+										<select class="form-control" id="seatname">
+										</select>
+									</div>
+								</div>
+
+							</div>
+<div class="form-btn">
+                <button id="submit" type="submit" class="submit-btn" >CONFIRM RESERVATION</button>
 
               </div>
 
