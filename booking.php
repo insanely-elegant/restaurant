@@ -10,6 +10,20 @@ else{
 date_default_timezone_set('Asia/Kolkata');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
 
+if(isset($_POST['submit']))
+{
+	
+	$ddate=$_POST['diningdatetime'];
+	$foodname=$_POST['dishname'];
+	$roomname=$_POST['roomname'];
+	$firstname= $_SESSION['fname'];
+	$tablename=$_POST['tablename'];
+	$seatname=$_POST['seatname'];
+	$condono=$_SESSION['login'];
+$sql=mysqli_query($con,"insert into reservation(firstname,dishname,room,tablename,seat,timestamp,condono) values('$firstname','$foodname','$roomname','$tablename','$seatname', '$ddate', '$condono'");
+$_SESSION['msg']="Reservation added !!";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,7 +117,7 @@ $(document).ready(function() {
 <br><br><br><br><br><br><br> 	
 
 
-						<form method="post" action="seat-selection.php" name="insertproduct" enctype="multipart/form-data">
+<form method="post" name="insertproduct" enctype="multipart/form-data">
 							<p style="font-size: x-large; text-align: center; color: #f14634">Hello, <?php echo $_SESSION['fname'];?></p>
 							<p style="font-size:xx-large; text-align: center;">Select a date</p><br>
 							<div class="row no-margin">
@@ -113,7 +127,7 @@ $(document).ready(function() {
 								<div class="form-group">
 								<span class="form-label">Your Unit Number</span>
 
-								<input class="form-control" type="text" value="<?php echo $row['unitno'];?>" disabled>
+								<input class="form-control" name="condono" type="text" value="<?php echo $row['unitno'];?>" disabled>
 
 <div class="form-group">
 <label class="form-label" for="basicinput">Dining Date & Time</label>
@@ -129,6 +143,7 @@ while($row=mysqli_fetch_array($query))
 </select>
 </div>
 </div>
+
 
 <div class="form-group">
 <label class="form-label" for="basicinput">Dish Name</label>
@@ -154,18 +169,17 @@ while($row=mysqli_fetch_array($query))
 								<div class="col-sm-6">
 									<div class="form-group">
 										<span class="form-label">Select table number</span>
-										<select class="form-control" id="tablename" onChange="getSeat(this.value);">
+										<select class="form-control" name="tablename" id="tablename" onChange="getSeat(this.value);">
 										</select>
 									</div>
 								</div>
 										<div class="col-sm-6">
 									<div class="form-group">
 										<span class="form-label">Select seat number</span>
-										<select class="form-control" id="seatname">
+										<select class="form-control" name="seatname" id="seatname">
 										</select>
 									</div>
 								</div>
-
 							</div>
 <div class="form-btn">
                 <button id="submit" type="submit" class="submit-btn" >CONFIRM RESERVATION</button>
