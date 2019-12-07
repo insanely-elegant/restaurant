@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2019 at 11:07 PM
+-- Generation Time: Dec 07, 2019 at 02:04 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -88,10 +88,11 @@ CREATE TABLE `diningdates` (
 --
 
 INSERT INTO `diningdates` (`id`, `diningdate`, `diningtime`, `status`) VALUES
-(12, '2019-02-02 19:21:00', '00:00:00', 'enabled'),
+(12, '2019-02-02 19:21:00', '00:00:00', 'disabled'),
 (13, '2019-02-01 14:55:00', '00:00:00', 'disabled'),
-(14, '2019-11-14 21:58:00', '00:00:00', 'enabled'),
-(15, '2019-11-13 17:08:00', '00:00:00', 'enabled');
+(14, '2019-11-14 21:58:00', '00:00:00', 'disabled'),
+(15, '2019-11-13 17:08:00', '00:00:00', 'disabled'),
+(16, '2019-12-12 17:55:00', '00:00:00', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -186,7 +187,8 @@ CREATE TABLE `reservation` (
 --
 
 INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `room`, `tablename`, `seat`, `timestamp`, `guestno`, `condono`, `isConfirmed`, `isCheckedin`) VALUES
-(1, '1234', 'Akash', 'Kumar', 'GameRoom', 'A2', '2', '2019-11-28 12:30:00.491000', '5', '605', '', '1');
+(1, '1234', 'Akash', 'Kumar', 'GameRoom', 'A2', '2', '2019-11-28 12:30:00.491000', '5', '605', '', '1'),
+(2, '4353', 'Joomba', 'Kaook', 'Dining', 'A3', '4', '2019-11-29 15:30:00.491000', '3', '404', '', '0');
 
 -- --------------------------------------------------------
 
@@ -747,7 +749,17 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-04 12:33:22', NULL, 1),
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-04 12:33:47', NULL, 1),
 (0, 'sudo', NULL, 0x3a3a3100000000000000000000000000, '2019-12-04 13:02:15', NULL, 1),
-(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-04 15:35:52', NULL, 1);
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-04 15:35:52', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-05 12:44:52', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-12-05 21:27:27', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-05 21:33:09', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-05 22:28:19', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-05 22:54:28', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-06 22:42:20', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-06 23:34:49', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-06 23:36:22', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-07 00:14:32', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-07 01:03:37', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -772,7 +784,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `age`, `unitno`, `email`, `password`, `contactno`, `altcontactno`) VALUES
-(1, 'Duane', 'DeSalvo', '55', 'E302', 'duane.desalvo@gmail.com', 'typicalpassword', '306065801', '507064834'),
+(1, 'Duane', 'DeSalvo', '55', 'E302', 'duane.desalvo@gmail.com', 'asd', '306065801', '507064834'),
 (3, 'Asd', 'test', '34', 'E302A', '234234@asd.com', 'asdasdasd', '234234234234', '234234234234234');
 
 -- --------------------------------------------------------
@@ -793,7 +805,8 @@ CREATE TABLE `weeklymenu` (
 
 INSERT INTO `weeklymenu` (`id`, `diningdatetime`, `dishname`) VALUES
 (8, '2019-11-07 18:30:00', 'Bread Basket'),
-(13, '2019-11-14 21:58:00', 'Apple Pie');
+(13, '2019-11-14 21:58:00', 'Apple Pie'),
+(15, '2019-12-12 17:55:00', 'Bread Basket');
 
 --
 -- Indexes for dumped tables
@@ -891,7 +904,7 @@ ALTER TABLE `chef`
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `dish`
@@ -915,7 +928,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `room`
@@ -945,7 +958,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

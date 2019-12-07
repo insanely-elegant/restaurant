@@ -71,6 +71,38 @@ while($row=mysqli_fetch_array($query))
 			<div class="container">
 				<div class="row">
 					<div class="booking-form">
+
+<script src='https://code.jquery.com/jquery-3.3.1.js'></script>
+<script src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js'></script>
+
+  <link rel='stylesheet' href='https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css'>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+<style>
+.exportExcel{
+  padding: 5px;
+  border: 1px solid grey;
+  margin: 5px;
+  cursor: pointer;
+}
+</style>
+
+</br></br></br></br>
+
+
+</br></br></br></br>
+
+</br></br></br></br>
+
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br> 	
+
+
 						<form method="post" action="seat-selection.php" name="insertproduct" enctype="multipart/form-data">
 							<p style="font-size: x-large; text-align: center; color: #f14634">Hello, <?php echo $_SESSION['fname'];?></p>
 							<p style="font-size:xx-large; text-align: center;">Select a date</p><br>
@@ -97,7 +129,6 @@ while($row=mysqli_fetch_array($query))
 </select>
 </div>
 </div>
-
 
 <div class="form-group">
 <label class="form-label" for="basicinput">Dish Name</label>
@@ -138,6 +169,47 @@ while($row=mysqli_fetch_array($query))
 							</div>
 <div class="form-btn">
                 <button id="submit" type="submit" class="submit-btn" >CONFIRM RESERVATION</button>
+</br></br>
+<table id="example"  cellpadding="0" cellspacing="0" border="0" class="display datatable-1 table table-bordered table-striped" style="width:100%">
+    <thead>
+      <tr>
+	 	<th>ID</th>
+	 	<th>First Name</th>
+        <th>Last Name</th>
+        <th>Unit No</th>
+        <th>Room</th>
+        <th>Booking ID</th>
+        <th>Table Name</th>
+        <th>Seat</th>
+        <th>Total Guests</th>
+        <th>Date & Time</th>
+		
+      </tr>
+    </thead>
+   <tbody>
+
+<?php $query=mysqli_query($con,"select * from reservation");
+$cnt=1;
+while($row=mysqli_fetch_array($query))
+{
+?>									
+										<tr>
+											<td><?php echo htmlentities($cnt);?></td>
+											<td><?php echo htmlentities($row['firstname']);?></td>
+											<td><?php echo htmlentities($row['lastname']);?></td>
+											<td><?php echo htmlentities($row['condono']);?></td>
+											<td><?php echo htmlentities($row['room']);?></td>
+											<td><?php echo htmlentities($row['bookingid']);?></td>
+											<td><?php echo htmlentities($row['tablename']);?></td>
+											<td><?php echo htmlentities($row['seat']);?></td>
+											<td><?php echo htmlentities($row['guestno']);?></td>
+											<td><?php echo htmlentities($row['timestamp']);?></td>
+											
+                                               
+										</tr>
+										<?php $cnt=$cnt+1; } ?>
+										
+                                </table>
 
               </div>
 
