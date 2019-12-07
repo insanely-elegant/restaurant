@@ -13,17 +13,15 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 if(isset($_POST['submit']))
 {
 	
-	$ddate=$_POST['diningdatetime'];
-	$foodname=$_POST['dishname'];
-	$roomname=$_POST['roomname'];
-	$firstname= $_SESSION['fname'];
+	$timestamp=$_POST['timestamp'];
+	$room=$_POST['room'];
+	$firstname= $_SESSION['firstname'];
 	$tablename=$_POST['tablename'];
-	$seatname=$_POST['seatname'];
-	$condono=$_SESSION['login'];
-$sql=mysqli_query($con,"insert into reservation(firstname,dishname,room,tablename,seat,timestamp,condono) values('$firstname','$foodname','$roomname','$tablename','$seatname', '$ddate', '$condono'");
-$_SESSION['msg']="Reservation added !!";
-}
-
+	$seat=$_POST['seat'];
+	$condono=$_POST['condono'];
+$sql=mysqli_query($con,	"insert into reservation(firstname,room,tablename,seat,timestamp,condono) values('$firstname','$room','$tablename','$seat', '$timestamp', '$condono'");
+$_SESSION['msg']="Reservation Confirmed !!";
+}	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +64,7 @@ function getSeat(val) {
 	url: "get_seat.php",
 	data:'table_id='+val,
 	success: function(data){
-		$("#seatname").html(data);
+		$("#seat").html(data);
 	}
 	});
 }
@@ -117,8 +115,8 @@ $(document).ready(function() {
 <br><br><br><br><br><br><br> 	
 
 
-<form method="post" name="insertproduct" enctype="multipart/form-data">
-							<p style="font-size: x-large; text-align: center; color: #f14634">Hello, <?php echo $_SESSION['fname'];?></p>
+<form method="post">
+							<p style="font-size: x-large; text-align: center; color: #f14634">Hello, <?php echo $_SESSION['firstname'];?></p>
 							<p style="font-size:xx-large; text-align: center;">Select a date</p><br>
 							<div class="row no-margin">
 
@@ -132,13 +130,13 @@ $(document).ready(function() {
 <div class="form-group">
 <label class="form-label" for="basicinput">Dining Date & Time</label>
 <div class="controls">
-<select name="diningdatetime" class="form-control" onChange="getSubcat(this.value);"  required>
+<select name="timestamp" class="form-control" onChange="getSubcat(this.value);"  required>
 <option value="">Select Dining Date & Time</option>
 <?php $query=mysqli_query($con,"select * from weeklymenu");
 while($row=mysqli_fetch_array($query))
 {?>
 
-<option id="usrdate" name="ddt" value="<?php echo $row['id'];?>"><?php echo $row['diningdatetime'];?></option>
+<option id="usrdate" value="<?php echo $row['id'];?>"><?php echo $row['diningdatetime'];?></option>
 <?php } ?>
 </select>
 </div>
@@ -154,7 +152,7 @@ while($row=mysqli_fetch_array($query))
 <div class="row no-margin">
 							<div class="form-group">
 										<span class="form-label">Select the Room</span>
-										<select class="form-control" name="roomname" onChange="getTable(this.value);"  >
+										<select class="form-control" name="room" onChange="getTable(this.value);"  >
 										<option value="">Select Dining Room</option>
 										<?php $query=mysqli_query($con,"select * from room");
 										while($row=mysqli_fetch_array($query))
@@ -176,13 +174,13 @@ while($row=mysqli_fetch_array($query))
 										<div class="col-sm-6">
 									<div class="form-group">
 										<span class="form-label">Select seat number</span>
-										<select class="form-control" name="seatname" id="seatname">
+										<select class="form-control" name="seat" id="seat">
 										</select>
 									</div>
 								</div>
 							</div>
 <div class="form-btn">
-                <button id="submit" type="submit" class="submit-btn" >CONFIRM RESERVATION</button>
+                <button id="submit" type="submit" name="submit" class="submit-btn" >CONFIRM RESERVATION</button>
 </br></br>
 <table id="example"  cellpadding="0" cellspacing="0" border="0" class="display datatable-1 table table-bordered table-striped" style="width:100%">
     <thead>
