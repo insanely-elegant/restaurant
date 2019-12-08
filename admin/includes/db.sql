@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2019 at 02:04 AM
+-- Generation Time: Dec 08, 2019 at 02:10 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -67,8 +67,8 @@ CREATE TABLE `chef` (
 --
 
 INSERT INTO `chef` (`id`, `chefname`, `contactno`, `altcontactno`, `email`, `password`) VALUES
-(1, 'Test1', '423', '2345', 'asfd@asd.com', '123123123'),
-(3, 'Asd', '324', 'asd', 'asd@asdc.g', 'a');
+(1, 'chef2', '423', '2345', 'another@chef.com', 'chef2'),
+(3, 'chef', '324', 'asd', 'test@chef.com', 'chef');
 
 -- --------------------------------------------------------
 
@@ -88,7 +88,7 @@ CREATE TABLE `diningdates` (
 --
 
 INSERT INTO `diningdates` (`id`, `diningdate`, `diningtime`, `status`) VALUES
-(12, '2019-02-02 19:21:00', '00:00:00', 'disabled'),
+(12, '2019-02-02 19:21:00', '00:00:00', 'enabled'),
 (13, '2019-02-01 14:55:00', '00:00:00', 'disabled'),
 (14, '2019-11-14 21:58:00', '00:00:00', 'disabled'),
 (15, '2019-11-13 17:08:00', '00:00:00', 'disabled'),
@@ -134,7 +134,7 @@ CREATE TABLE `host` (
 --
 
 INSERT INTO `host` (`id`, `hostname`, `contactno`, `altcontactno`, `email`, `password`) VALUES
-(4, 'host', '4444', '45345', '3sdf@asd.com', 'host');
+(4, 'host', '4444', '45345', 'mariott@host.com', 'host');
 
 -- --------------------------------------------------------
 
@@ -172,6 +172,7 @@ CREATE TABLE `reservation` (
   `bookingid` varchar(255) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
+  `dishname` varchar(255) NOT NULL,
   `room` varchar(255) NOT NULL,
   `tablename` varchar(255) NOT NULL,
   `seat` varchar(255) NOT NULL,
@@ -186,9 +187,14 @@ CREATE TABLE `reservation` (
 -- Dumping data for table `reservation`
 --
 
-INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `room`, `tablename`, `seat`, `timestamp`, `guestno`, `condono`, `isConfirmed`, `isCheckedin`) VALUES
-(1, '1234', 'Akash', 'Kumar', 'GameRoom', 'A2', '2', '2019-11-28 12:30:00.491000', '5', '605', '', '1'),
-(2, '4353', 'Joomba', 'Kaook', 'Dining', 'A3', '4', '2019-11-29 15:30:00.491000', '3', '404', '', '0');
+INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `room`, `tablename`, `seat`, `timestamp`, `guestno`, `condono`, `isConfirmed`, `isCheckedin`) VALUES
+(1, '1234', 'David', 'K', '', 'Game Room', 'A2', '2', '2019-11-28 12:30:00.491000', '5', '605', '', '1'),
+(2, '4353', 'Bill', 'DN', '', 'Dining', 'A3', '4', '2019-11-29 15:30:00.491000', '3', '404', '', '0'),
+(3, '', 'Duane', '', '', '1', '7', '', '0000-00-00 00:00:00.000000', '', '', '', NULL),
+(4, '', 'Duane', '', '', '4', '8', '', '0000-00-00 00:00:00.000000', '', '', '', NULL),
+(5, '', 'Duane', '', '', '1', '7', '', '0000-00-00 00:00:00.000000', '', '', '', NULL),
+(6, '', 'Duane', '', '', '1', '7', '', '0000-00-00 00:00:00.000000', '', '', '', NULL),
+(7, '', 'Duane', '', '', '1', '7', '', '0000-00-00 00:00:00.000000', '', '', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -759,7 +765,12 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-06 23:34:49', NULL, 1),
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-06 23:36:22', NULL, 1),
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-07 00:14:32', NULL, 1),
-(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-07 01:03:37', NULL, 1);
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-07 01:03:37', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-07 14:03:06', NULL, 1),
+(0, '', NULL, 0x3a3a3100000000000000000000000000, '2019-12-07 22:08:54', NULL, 0),
+(0, 'Test1', NULL, 0x3a3a3100000000000000000000000000, '2019-12-07 22:09:04', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2019-12-07 22:10:31', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-08 00:40:49', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -785,7 +796,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `age`, `unitno`, `email`, `password`, `contactno`, `altcontactno`) VALUES
 (1, 'Duane', 'DeSalvo', '55', 'E302', 'duane.desalvo@gmail.com', 'asd', '306065801', '507064834'),
-(3, 'Asd', 'test', '34', 'E302A', '234234@asd.com', 'asdasdasd', '234234234234', '234234234234234');
+(3, 'Rah', 'Vul', '34', 'E302A', 'test@test.com', 'asdasdasd', '234234234234', '234234234234234');
 
 -- --------------------------------------------------------
 
@@ -928,7 +939,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `room`

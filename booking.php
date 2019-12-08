@@ -16,10 +16,10 @@ if(isset($_POST['submit']))
 	$timestamp=$_POST['timestamp'];
 	$room=$_POST['room'];
 	$firstname= $_SESSION['firstname'];
+	$lastname= $_SESSION['lastname'];
 	$tablename=$_POST['tablename'];
-	$seat=$_POST['seat'];
-	$condono=$_POST['condono'];
-$sql=mysqli_query($con,	"insert into reservation(firstname,room,tablename,seat,timestamp,condono) values('$firstname','$room','$tablename','$seat', '$timestamp', '$condono'");
+	$condono=$_SESSION['condono'];
+$sql=mysqli_query($con,	"insert into reservation(firstname,lastnameroom,tablename,timestamp,condono) values('$firstname','$lastname','$room','$tablename', '$timestamp', '$condono')");
 $_SESSION['msg']="Reservation Confirmed !!";
 }	
 ?>
@@ -164,25 +164,25 @@ while($row=mysqli_fetch_array($query))
 									</div>
 							</div>
 							<div class="row no-margin">
-								<div class="col-sm-6">
+								
 									<div class="form-group">
 										<span class="form-label">Select table number</span>
 										<select class="form-control" name="tablename" id="tablename" onChange="getSeat(this.value);">
 										</select>
 									</div>
-								</div>
-										<div class="col-sm-6">
+								
+										<!-- <div class="col-sm-6">
 									<div class="form-group">
 										<span class="form-label">Select seat number</span>
 										<select class="form-control" name="seat" id="seat">
 										</select>
 									</div>
-								</div>
+								</div> -->
 							</div>
 <div class="form-btn">
                 <button id="submit" type="submit" name="submit" class="submit-btn" >CONFIRM RESERVATION</button>
-</br></br>
-<table id="example"  cellpadding="0" cellspacing="0" border="0" class="display datatable-1 table table-bordered table-striped" style="width:100%">
+</br></br><p style="font-size:xx-large; text-align: center;">Guest List for the week</p><br>
+<table id="example"  cellpadding="0" cellspacing="0" border="0" class="display datatable-1 table table-bordered table-striped" style="width:100%;">
     <thead>
       <tr>
 	 	<th>ID</th>
@@ -190,9 +190,8 @@ while($row=mysqli_fetch_array($query))
         <th>Last Name</th>
         <th>Unit No</th>
         <th>Room</th>
-        <th>Booking ID</th>
         <th>Table Name</th>
-        <th>Seat</th>
+        <th>Total Seats</th>
         <th>Total Guests</th>
         <th>Date & Time</th>
 		
@@ -211,7 +210,6 @@ while($row=mysqli_fetch_array($query))
 											<td><?php echo htmlentities($row['lastname']);?></td>
 											<td><?php echo htmlentities($row['condono']);?></td>
 											<td><?php echo htmlentities($row['room']);?></td>
-											<td><?php echo htmlentities($row['bookingid']);?></td>
 											<td><?php echo htmlentities($row['tablename']);?></td>
 											<td><?php echo htmlentities($row['seat']);?></td>
 											<td><?php echo htmlentities($row['guestno']);?></td>
