@@ -110,7 +110,7 @@ while($row=mysqli_fetch_array($query))
                                             <div class="form-group">
                                           
                                             <div class="alert alert-info" role="alert">
-                                               Tip! : You can select the date and time that was entered <a href="create-dining-program.php">here</a> and attach
+                                               Tip! : You can select the date and time that was entered <a href="create-dining-dates.php">here</a> and attach
                                                2 dishes to that period.
                                             </div>
                                        <label class="col-form-label" for="inputText3"> Select a Dining Date</label>
