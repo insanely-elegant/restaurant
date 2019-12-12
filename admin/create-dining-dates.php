@@ -147,7 +147,7 @@ while($row=mysqli_fetch_array($query))
                                                  <input name="diningtime" type="time" class="form-control">
                                             </div>
                                              
-                                            <button type="submit" name="submit" class="btn btn-outline-dark">Insert into calendar</a>
+                                            <button type="submit" name="submit" class="btn btn-outline-dark">Add into calendar</a>
                                         </form>
                                     </div>
                                 
