@@ -14,9 +14,9 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 if(isset($_POST['submit']))
 {
 	$diningdate=$_POST['diningdate'];
-	// $diningtime=$_POST['diningtime'];
+	$diningtime=$_POST['diningtime'];
 	$status="enabled";
-$sql=mysqli_query($con,"insert into diningdates(diningdate,status) values('$diningdate','$status')");
+$sql=mysqli_query($con,"insert into diningdates(diningdate,diningtime,status) values('$diningdate','$diningtime','$status')");
 $_SESSION['msg']="New Dining Date & Time Enabled !!";
 
 }
@@ -139,13 +139,13 @@ while($row=mysqli_fetch_array($query))
                                     <div class="card-body">
                                         <form method="post" >
                                             <div class="form-group">
-                                                <label for="inputText3" class="col-form-label">Date & Time</label>
-                                                <input name="diningdate" type="datetime-local" class="form-control">
+                                                <label for="inputText3" class="col-form-label">Date</label>
+                                                <input name="diningdate" type="date" class="form-control">
                                             </div>
-                                            <!-- <div class="form-group">
+                                            <div class="form-group">
                                                 <label for="inputText3">Time</label>
                                                  <input name="diningtime" type="time" class="form-control">
-                                            </div> -->
+                                            </div>
                                              
                                             <button type="submit" name="submit" class="btn btn-outline-dark">Insert into calendar</a>
                                         </form>
@@ -158,8 +158,8 @@ while($row=mysqli_fetch_array($query))
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>Dining Date and Time</th>
-											<!-- <th>Dining Time</th> -->
+											<th>Dining Date</th>
+											<th>Dining Time</th>
                                             <th>Date Status</th>
 											<th>Action</th>
 										</tr>
@@ -174,7 +174,7 @@ while($row=mysqli_fetch_array($query))
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
 											<td><?php echo htmlentities($row['diningdate']);?></td>
-											<!-- <td><?php echo htmlentities($row['diningtime']);?></td> -->
+											<td><?php echo htmlentities($row['diningtime']);?></td>
 											<td><?php echo htmlentities($row['status']);?></td>
 											<td>
                                                 <!-- <a href="edit-dining-dates.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button> -->

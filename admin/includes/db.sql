@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2019 at 02:10 AM
+-- Generation Time: Dec 12, 2019 at 02:52 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -78,7 +78,7 @@ INSERT INTO `chef` (`id`, `chefname`, `contactno`, `altcontactno`, `email`, `pas
 
 CREATE TABLE `diningdates` (
   `id` int(11) NOT NULL,
-  `diningdate` datetime NOT NULL,
+  `diningdate` date NOT NULL,
   `diningtime` time NOT NULL,
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -88,11 +88,7 @@ CREATE TABLE `diningdates` (
 --
 
 INSERT INTO `diningdates` (`id`, `diningdate`, `diningtime`, `status`) VALUES
-(12, '2019-02-02 19:21:00', '00:00:00', 'enabled'),
-(13, '2019-02-01 14:55:00', '00:00:00', 'disabled'),
-(14, '2019-11-14 21:58:00', '00:00:00', 'disabled'),
-(15, '2019-11-13 17:08:00', '00:00:00', 'disabled'),
-(16, '2019-12-12 17:55:00', '00:00:00', 'enabled');
+(18, '2019-12-12', '13:05:00', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -112,7 +108,8 @@ CREATE TABLE `dish` (
 
 INSERT INTO `dish` (`id`, `dishname`, `dishdescription`) VALUES
 (34, 'Bread Basket', 'Varied collection of breads.Includes Baguettes,Brown,white,bread sticks'),
-(35, 'Apple Pie', 'Cheese Pie!');
+(35, 'Apple Pie', 'Cheese Pie!'),
+(36, 'Pasta Bolognese', 'Sauce reduced in scruptious italian pasta with ground beef and basil');
 
 -- --------------------------------------------------------
 
@@ -190,9 +187,9 @@ CREATE TABLE `reservation` (
 INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `room`, `tablename`, `seat`, `timestamp`, `guestno`, `condono`, `isConfirmed`, `isCheckedin`) VALUES
 (1, '1234', 'David', 'K', '', 'Game Room', 'A2', '2', '2019-11-28 12:30:00.491000', '5', '605', '', '1'),
 (2, '4353', 'Bill', 'DN', '', 'Dining', 'A3', '4', '2019-11-29 15:30:00.491000', '3', '404', '', '0'),
-(3, '', 'Duane', '', '', '1', '7', '', '0000-00-00 00:00:00.000000', '', '', '', NULL),
-(4, '', 'Duane', '', '', '4', '8', '', '0000-00-00 00:00:00.000000', '', '', '', NULL),
-(5, '', 'Duane', '', '', '1', '7', '', '0000-00-00 00:00:00.000000', '', '', '', NULL),
+(3, '6546', 'Duane', '', '', '1', '7', '', '0000-00-00 00:00:00.000000', '', '', '', NULL),
+(4, '63454', 'Duane', '', '', '4', '8', '', '0000-00-00 00:00:00.000000', '', '', '', NULL),
+(5, '3456', 'Duane', '', '', '1', '7', '', '0000-00-00 00:00:00.000000', '', '', '', NULL),
 (6, '', 'Duane', '', '', '1', '7', '', '0000-00-00 00:00:00.000000', '', '', '', NULL),
 (7, '', 'Duane', '', '', '1', '7', '', '0000-00-00 00:00:00.000000', '', '', '', NULL);
 
@@ -213,7 +210,8 @@ CREATE TABLE `room` (
 
 INSERT INTO `room` (`id`, `roomname`) VALUES
 (1, 'Dining Room'),
-(4, 'Game Room');
+(4, 'Game Room'),
+(5, 'Test');
 
 -- --------------------------------------------------------
 
@@ -294,7 +292,8 @@ CREATE TABLE `tablelayout` (
 
 INSERT INTO `tablelayout` (`id`, `roomid`, `totaltables`, `tablename1`, `tablename2`, `tablename3`, `tablename4`, `tablename5`, `tablename6`, `tablename7`, `tablename8`, `tablename9`, `tablename10`, `tablename11`, `tablename12`, `tablename13`, `tablename14`, `tablename15`, `tablename16`, `tablename17`, `tablename18`, `tablename19`, `tablename20`, `tableavailability`, `productimage1`) VALUES
 (7, 1, '5', 'C1', 'C2', 'C3', 'C4', 'C5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 'table.jpg'),
-(8, 4, '2', 'D1', 'D2', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0', 'dsBuffer.bmp.png');
+(8, 4, '2', 'D1', 'D2', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0', 'dsBuffer.bmp.png'),
+(10, 5, '2', 'u', 'u1', 'u2', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '1', 'closeup photography of woman smiling.jpg');
 
 -- --------------------------------------------------------
 
@@ -770,7 +769,8 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, '', NULL, 0x3a3a3100000000000000000000000000, '2019-12-07 22:08:54', NULL, 0),
 (0, 'Test1', NULL, 0x3a3a3100000000000000000000000000, '2019-12-07 22:09:04', NULL, 1),
 (0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2019-12-07 22:10:31', NULL, 1),
-(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-08 00:40:49', NULL, 1);
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-08 00:40:49', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-12-09 13:05:56', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -806,18 +806,18 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `age`, `unitno`, `email`, `p
 
 CREATE TABLE `weeklymenu` (
   `id` int(11) NOT NULL,
-  `diningdatetime` datetime NOT NULL,
-  `dishname` varchar(255) NOT NULL
+  `diningdate` date NOT NULL,
+  `diningtime` time NOT NULL,
+  `dishname1` varchar(255) NOT NULL,
+  `dishname2` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `weeklymenu`
 --
 
-INSERT INTO `weeklymenu` (`id`, `diningdatetime`, `dishname`) VALUES
-(8, '2019-11-07 18:30:00', 'Bread Basket'),
-(13, '2019-11-14 21:58:00', 'Apple Pie'),
-(15, '2019-12-12 17:55:00', 'Bread Basket');
+INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `dishname1`, `dishname2`) VALUES
+(17, '2019-12-12', '13:05:00', 'Bread Basket', 'Apple Pie');
 
 --
 -- Indexes for dumped tables
@@ -903,7 +903,7 @@ ALTER TABLE `weeklymenu`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `chef`
@@ -915,13 +915,13 @@ ALTER TABLE `chef`
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `dish`
 --
 ALTER TABLE `dish`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `host`
@@ -945,7 +945,7 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `seatlayout`
@@ -957,7 +957,7 @@ ALTER TABLE `seatlayout`
 -- AUTO_INCREMENT for table `tablelayout`
 --
 ALTER TABLE `tablelayout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -969,7 +969,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
