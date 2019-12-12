@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2019 at 02:52 PM
+-- Generation Time: Dec 12, 2019 at 03:55 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -172,8 +172,10 @@ CREATE TABLE `reservation` (
   `dishname` varchar(255) NOT NULL,
   `room` varchar(255) NOT NULL,
   `tablename` varchar(255) NOT NULL,
+  `seatid` int(50) NOT NULL,
   `seat` varchar(255) NOT NULL,
-  `timestamp` datetime(6) NOT NULL,
+  `diningdate` date NOT NULL,
+  `diningtime` time NOT NULL,
   `guestno` varchar(255) NOT NULL,
   `condono` varchar(255) NOT NULL,
   `isConfirmed` varchar(255) NOT NULL,
@@ -184,14 +186,14 @@ CREATE TABLE `reservation` (
 -- Dumping data for table `reservation`
 --
 
-INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `room`, `tablename`, `seat`, `timestamp`, `guestno`, `condono`, `isConfirmed`, `isCheckedin`) VALUES
-(1, '1234', 'David', 'K', '', 'Game Room', 'A2', '2', '2019-11-28 12:30:00.491000', '5', '605', '', '1'),
-(2, '4353', 'Bill', 'DN', '', 'Dining', 'A3', '4', '2019-11-29 15:30:00.491000', '3', '404', '', '0'),
-(3, '6546', 'Duane', '', '', '1', '7', '', '0000-00-00 00:00:00.000000', '', '', '', NULL),
-(4, '63454', 'Duane', '', '', '4', '8', '', '0000-00-00 00:00:00.000000', '', '', '', NULL),
-(5, '3456', 'Duane', '', '', '1', '7', '', '0000-00-00 00:00:00.000000', '', '', '', NULL),
-(6, '', 'Duane', '', '', '1', '7', '', '0000-00-00 00:00:00.000000', '', '', '', NULL),
-(7, '', 'Duane', '', '', '1', '7', '', '0000-00-00 00:00:00.000000', '', '', '', NULL);
+INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `isConfirmed`, `isCheckedin`) VALUES
+(1, '1234', 'David', 'K', '', 'Game Room', 'A2', 0, '2', '2019-11-28', '00:00:00', '5', '605', '', '1'),
+(2, '4353', 'Bill', 'DN', '', 'Dining', 'A3', 0, '4', '2019-11-29', '00:00:00', '3', '404', '', '0'),
+(3, '6546', 'Duane', '', '', '1', '7', 0, '', '0000-00-00', '00:00:00', '', '', '', NULL),
+(4, '63454', 'Duane', '', '', '4', '8', 0, '', '0000-00-00', '00:00:00', '', '', '', NULL),
+(5, '3456', 'Duane', '', '', '1', '7', 0, '', '0000-00-00', '00:00:00', '', '', '', NULL),
+(6, '', 'Duane', '', '', '1', '7', 0, '', '0000-00-00', '00:00:00', '', '', '', NULL),
+(7, '', 'Duane', '', '', '1', '7', 0, '', '0000-00-00', '00:00:00', '', '', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -222,26 +224,7 @@ INSERT INTO `room` (`id`, `roomname`) VALUES
 CREATE TABLE `seatlayout` (
   `id` int(11) NOT NULL,
   `tableid` int(50) NOT NULL,
-  `s1` varchar(255) NOT NULL,
-  `s2` varchar(255) DEFAULT NULL,
-  `s3` varchar(255) DEFAULT NULL,
-  `s4` varchar(255) DEFAULT NULL,
-  `s5` varchar(25) DEFAULT NULL,
-  `s6` varchar(255) DEFAULT NULL,
-  `s7` varchar(255) DEFAULT NULL,
-  `s8` varchar(255) DEFAULT NULL,
-  `s9` varchar(255) DEFAULT NULL,
-  `s10` varchar(255) DEFAULT NULL,
-  `s11` varchar(255) DEFAULT NULL,
-  `s12` varchar(255) DEFAULT NULL,
-  `s13` varchar(255) DEFAULT NULL,
-  `s14` varchar(255) DEFAULT NULL,
-  `s15` varchar(255) DEFAULT NULL,
-  `s16` varchar(255) DEFAULT NULL,
-  `s17` varchar(255) DEFAULT NULL,
-  `s18` varchar(255) DEFAULT NULL,
-  `s19` varchar(255) DEFAULT NULL,
-  `s20` varchar(255) DEFAULT NULL,
+  `totalseats` varchar(255) NOT NULL,
   `tableavailability` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -249,8 +232,8 @@ CREATE TABLE `seatlayout` (
 -- Dumping data for table `seatlayout`
 --
 
-INSERT INTO `seatlayout` (`id`, `tableid`, `s1`, `s2`, `s3`, `s4`, `s5`, `s6`, `s7`, `s8`, `s9`, `s10`, `s11`, `s12`, `s13`, `s14`, `s15`, `s16`, `s17`, `s18`, `s19`, `s20`, `tableavailability`) VALUES
-(13, 7, '5', '3', '1', '5', '6', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '1');
+INSERT INTO `seatlayout` (`id`, `tableid`, `totalseats`, `tableavailability`) VALUES
+(13, 7, '', '1');
 
 -- --------------------------------------------------------
 
