@@ -190,84 +190,84 @@ while($row=mysqli_fetch_array($query))
                                             </select>
                                             </div>
                                            
-                                            <div class="form-group" id="div1" style="visibility:hidden;">
+                                            <div class="form-group" id="div1">
                                             <label class="col-form-label" for="inputText3">Table Name/Number</label>
                                            <input name="tablename1" type="text" class="form-control">
                                             </select>
                                             </div>
-                                             <div class="form-group" id="div2" style="visibility:hidden;">
+                                             <div class="form-group" id="div2">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename2" type="text" class="form-control" value="">
                                             </div>
-                                             <div class="form-group" id="div3" style="visibility:hidden;">
+                                             <div class="form-group" id="div3">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename3" type="text" class="form-control" value="">
                                             </div>
-                                             <div class="form-group" id="div4" style="visibility:hidden;">
+                                             <div class="form-group" id="div4">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename4" type="text" class="form-control" value="">
                                             </div>
-                                             <div class="form-group" id="div5" style="visibility:hidden;">
+                                             <div class="form-group" id="div5">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename5" type="text" class="form-control" value="">
                                             </div>
-                                             <div class="form-group" id="div6" style="visibility:hidden;">
+                                             <div class="form-group" id="div6">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename6" type="text" class="form-control" value="">
                                             </div>
-                                             <div class="form-group" id="div7" style="visibility:hidden;">
+                                             <div class="form-group" id="div7">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename7" type="text" class="form-control" value="">
                                             </div>
-                                             <div class="form-group" id="div8" style="visibility:hidden;">
+                                             <div class="form-group" id="div8">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename8" type="text" class="form-control" value="">
                                             </div>
-                                             <div class="form-group" id="div9" style="visibility:hidden;">
+                                             <div class="form-group" id="div9">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename9" type="text" class="form-control" value="">
                                             </div>
-                                             <div class="form-group" id="div10" style="visibility:hidden;">
+                                             <div class="form-group" id="div10">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename10" type="text" class="form-control" value="">
                                             </div>
-                                             <div class="form-group" id="div11" style="visibility:hidden;">
+                                             <div class="form-group" id="div11">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename11" type="text" class="form-control" value="">
                                             </div>
-                                             <div class="form-group" id="div12" style="visibility:hidden;">
+                                             <div class="form-group" id="div12">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename12" type="text" class="form-control" value="">
                                             </div>
-                                             <div class="form-group" id="div13" style="visibility:hidden;">
+                                             <div class="form-group" id="div13">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename13" type="text" class="form-control" value="">
                                             </div>
-                                             <div class="form-group" id="div14" style="visibility:hidden;">
+                                             <div class="form-group" id="div14">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename14" type="text" class="form-control" value="">
                                             </div>
-                                             <div class="form-group" id="div15" style="visibility:hidden;">
+                                             <div class="form-group" id="div15">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename15" type="text" class="form-control" value="">
                                             </div>
-                                             <div class="form-group" id="div16" style="visibility:hidden;">
+                                             <div class="form-group" id="div16">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename16" type="text" class="form-control" value="">
                                             </div>
-                                             <div class="form-group" id="div17" style="visibility:hidden;">
+                                             <div class="form-group" id="div17">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename17" type="text" class="form-control" value="">
                                             </div>
-                                             <div class="form-group" id="div18" style="visibility:hidden;">
+                                             <div class="form-group" id="div18">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename18" type="text" class="form-control" value="">
                                             </div>
-                                             <div class="form-group" id="div19" style="visibility:hidden;">
+                                             <div class="form-group" id="div19">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename19" type="text" class="form-control" value="">
                                             </div>
-                                             <div class="form-group" id="div20" style="visibility:hidden;">
+                                             <div class="form-group" id="div20">
                                                 <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
                                                  <input name="tablename20" type="text" class="form-control" value="">
                                             </div>
@@ -317,7 +317,7 @@ while($row=mysqli_fetch_array($query))
 											<td><?php echo htmlentities($cnt);?></td>
 											<td><?php echo htmlentities($row['rname']);?></td>
 											<td><?php echo htmlentities($row['totals']);?></td>									
-											<td><?php echo htmlentities($row['availabile'] ? 'yes' : 'no');?></td>
+											<td><?php echo htmlentities($row['available'] ? 'yes' : 'no');?></td>
 											<td>
                                                 <!-- <a href="edit-dining-program.php?id=<?php echo $row['tid']?>" class="btn btn-sm btn-outline-light">Edit</button> -->
                                             <a href="create-table-layout.php?tid=<?php echo $row['tid']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
