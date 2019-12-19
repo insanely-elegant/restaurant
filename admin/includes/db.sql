@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2019 at 03:55 PM
+-- Generation Time: Dec 19, 2019 at 10:54 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -88,7 +88,10 @@ CREATE TABLE `diningdates` (
 --
 
 INSERT INTO `diningdates` (`id`, `diningdate`, `diningtime`, `status`) VALUES
-(18, '2019-12-12', '13:05:00', 'enabled');
+(19, '2019-12-19', '00:00:00', 'enabled'),
+(20, '2019-12-27', '12:59:00', 'enabled'),
+(21, '2019-12-28', '01:59:00', 'enabled'),
+(22, '2019-12-27', '12:05:00', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -161,6 +164,22 @@ INSERT INTO `menu` (`id`, `primarydishid`, `seconddishid`, `dishdate`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pricingmodels`
+--
+
+CREATE TABLE `pricingmodels` (
+  `id` int(11) NOT NULL,
+  `dinerid` varchar(255) NOT NULL,
+  `dinername` varchar(255) DEFAULT NULL,
+  `mealprice` varchar(255) NOT NULL,
+  `mealtaxpercent` varchar(255) NOT NULL,
+  `mealtaxvalue` varchar(255) NOT NULL,
+  `datemodified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reservation`
 --
 
@@ -203,17 +222,18 @@ INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname
 
 CREATE TABLE `room` (
   `id` int(11) NOT NULL,
-  `roomname` varchar(255) NOT NULL
+  `roomname` varchar(255) NOT NULL,
+  `roomavailability` varchar(255) DEFAULT NULL,
+  `productimage1` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `room`
 --
 
-INSERT INTO `room` (`id`, `roomname`) VALUES
-(1, 'Dining Room'),
-(4, 'Game Room'),
-(5, 'Test');
+INSERT INTO `room` (`id`, `roomname`, `roomavailability`, `productimage1`) VALUES
+(1, 'Dining Room', '1', 'atom.png'),
+(2, 'Game Room', '0', 'logo.png');
 
 -- --------------------------------------------------------
 
@@ -228,13 +248,6 @@ CREATE TABLE `seatlayout` (
   `tableavailability` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `seatlayout`
---
-
-INSERT INTO `seatlayout` (`id`, `tableid`, `totalseats`, `tableavailability`) VALUES
-(13, 7, '', '1');
-
 -- --------------------------------------------------------
 
 --
@@ -245,38 +258,9 @@ CREATE TABLE `tablelayout` (
   `id` int(11) NOT NULL,
   `roomid` int(50) NOT NULL,
   `totaltables` varchar(255) NOT NULL,
-  `tablename1` varchar(255) NOT NULL,
-  `tablename2` varchar(255) DEFAULT NULL,
-  `tablename3` varchar(255) DEFAULT NULL,
-  `tablename4` varchar(255) DEFAULT NULL,
-  `tablename5` varchar(25) DEFAULT NULL,
-  `tablename6` varchar(255) DEFAULT NULL,
-  `tablename7` varchar(255) DEFAULT NULL,
-  `tablename8` varchar(255) DEFAULT NULL,
-  `tablename9` varchar(255) DEFAULT NULL,
-  `tablename10` varchar(255) DEFAULT NULL,
-  `tablename11` varchar(255) DEFAULT NULL,
-  `tablename12` varchar(255) DEFAULT NULL,
-  `tablename13` varchar(255) DEFAULT NULL,
-  `tablename14` varchar(255) DEFAULT NULL,
-  `tablename15` varchar(255) DEFAULT NULL,
-  `tablename16` varchar(255) DEFAULT NULL,
-  `tablename17` varchar(255) DEFAULT NULL,
-  `tablename18` varchar(255) DEFAULT NULL,
-  `tablename19` varchar(255) DEFAULT NULL,
-  `tablename20` varchar(255) DEFAULT NULL,
-  `tableavailability` varchar(255) DEFAULT NULL,
-  `productimage1` varchar(255) DEFAULT NULL
+  `tablename` varchar(255) NOT NULL,
+  `tableavailability` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tablelayout`
---
-
-INSERT INTO `tablelayout` (`id`, `roomid`, `totaltables`, `tablename1`, `tablename2`, `tablename3`, `tablename4`, `tablename5`, `tablename6`, `tablename7`, `tablename8`, `tablename9`, `tablename10`, `tablename11`, `tablename12`, `tablename13`, `tablename14`, `tablename15`, `tablename16`, `tablename17`, `tablename18`, `tablename19`, `tablename20`, `tableavailability`, `productimage1`) VALUES
-(7, 1, '5', 'C1', 'C2', 'C3', 'C4', 'C5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 'table.jpg'),
-(8, 4, '2', 'D1', 'D2', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0', 'dsBuffer.bmp.png'),
-(10, 5, '2', 'u', 'u1', 'u2', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '1', 'closeup photography of woman smiling.jpg');
 
 -- --------------------------------------------------------
 
@@ -753,7 +737,9 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'Test1', NULL, 0x3a3a3100000000000000000000000000, '2019-12-07 22:09:04', NULL, 1),
 (0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2019-12-07 22:10:31', NULL, 1),
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-08 00:40:49', NULL, 1),
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-12-09 13:05:56', NULL, 1);
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-12-09 13:05:56', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-12-16 00:58:30', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-12-18 05:12:54', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -843,6 +829,12 @@ ALTER TABLE `menu`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `pricingmodels`
+--
+ALTER TABLE `pricingmodels`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `reservation`
 --
 ALTER TABLE `reservation`
@@ -898,7 +890,7 @@ ALTER TABLE `chef`
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `dish`
@@ -928,19 +920,19 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `seatlayout`
 --
 ALTER TABLE `seatlayout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `tablelayout`
 --
 ALTER TABLE `tablelayout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`
