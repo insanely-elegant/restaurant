@@ -1,5 +1,7 @@
 <?php
-error_reporting(0);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 include('includes/config.php');
 // if(strlen($_SESSION['alogin'])==0)
@@ -13,9 +15,20 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 
 if(isset($_POST['submit']))
 {
-	
-	$roomname=$_POST['roomname'];
-$sql=mysqli_query($con,"insert into room(roomname) values('$roomname')");
+    $roomname=$_POST['roomname'];
+	$roomavailability=$_POST['roomavailability'];
+	$productimage1=$_FILES["productimage1"]["name"];
+//for getting product id
+$query=mysqli_query($con,"select max(id) as pid from room");
+	$result=mysqli_fetch_array($query);
+	 $productid=$result['pid']+1;
+	$dir="productimages/$productid";
+if(!is_dir($dir)){
+		mkdir("productimages/".$productid);
+	}
+
+move_uploaded_file($_FILES["productimage1"]["tmp_name"],"productimages/$productid/".$_FILES["productimage1"]["name"]);
+$sql=mysqli_query($con,"insert into room(roomname,roomavailability,productimage1) values('$roomname','$roomavailability','$productimage1')");
 $_SESSION['msg']="New Room Added!!";
 
 }
@@ -104,7 +117,7 @@ while($row=mysqli_fetch_array($query))
 <?php } ?>
                                 <div class="card">
                                     <div class="card-body">
-                                        <form method="post" >
+                                        <form class="form-horizontal row-fluid" name="insertproduct" method="post" enctype="multipart/form-data" >
                                             <div class="form-group">
                                           
                                             <div class="alert alert-info" role="alert">
@@ -116,7 +129,23 @@ while($row=mysqli_fetch_array($query))
                                             <label class="col-form-label" for="inputText3">Create New Room Name</label>
                                             <input id="inputText3" name="roomname" type="text" class="form-control">
                                             </div>
-                                           
+                                           <div class="control-group">
+<label class="control-label" for="basicinput">Room / Table Image</label>
+<div class="controls">
+<input type="file" name="productimage1" id="productimage1" value="" class="span8 tip" required>
+</div>
+</div> 
+ <div class="form-group">
+                                        <label class="col-form-label" for="inputText3">Room Availability / Visibility</label>
+                                        <div class="controls">
+                                        <select  name="roomavailability"  id="roomavailability" class="form-control" required>
+                                        <option value="">Select</option>
+                                        <option value="1">Enable</option>
+                                        <option value="0">Disable</option>
+                                        </select>
+                                        </div>
+                                        </div>
+</br>
                                             <button type="submit" name="submit" class="btn btn-outline-dark">Submit</a>
                                         </form>
                                     </div>
@@ -128,6 +157,8 @@ while($row=mysqli_fetch_array($query))
 										<tr>
 											<th>#</th>
 											<th>Room Name</th>
+                                            <th>Table Image</th>
+											<th>Visibility to users</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -141,6 +172,8 @@ while($row=mysqli_fetch_array($query))
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
 											<td><?php echo htmlentities($row['roomname']);?></td>
+                                            <td><a href="productimages/<?php echo $row['id'];?>/<?php echo htmlentities($row['productimage1']);?> ">View Image</a></td>
+                                            <td><?php echo htmlentities($row['roomavailability'] ? 'yes' : 'no');?></td>
 											<td>
                                                 <!-- <a href="edit-dining-program.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button> -->
                                             <a href="create-room.php?id=<?php echo $row['id']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
