@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2019 at 10:54 AM
+-- Generation Time: Dec 20, 2019 at 06:18 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -223,6 +223,7 @@ INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname
 CREATE TABLE `room` (
   `id` int(11) NOT NULL,
   `roomname` varchar(255) NOT NULL,
+  `totaltables` varchar(255) NOT NULL,
   `roomavailability` varchar(255) DEFAULT NULL,
   `productimage1` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -231,9 +232,10 @@ CREATE TABLE `room` (
 -- Dumping data for table `room`
 --
 
-INSERT INTO `room` (`id`, `roomname`, `roomavailability`, `productimage1`) VALUES
-(1, 'Dining Room', '1', 'atom.png'),
-(2, 'Game Room', '0', 'logo.png');
+INSERT INTO `room` (`id`, `roomname`, `totaltables`, `roomavailability`, `productimage1`) VALUES
+(1, 'Dining Room', '7', '1', 'atom.png'),
+(2, 'Game Room', '3', '0', 'logo.png'),
+(3, 'Test Room', '5', '1', 'favicon.png');
 
 -- --------------------------------------------------------
 
@@ -257,9 +259,8 @@ CREATE TABLE `seatlayout` (
 CREATE TABLE `tablelayout` (
   `id` int(11) NOT NULL,
   `roomid` int(50) NOT NULL,
-  `totaltables` varchar(255) NOT NULL,
   `tablename` varchar(255) NOT NULL,
-  `tableavailability` varchar(255) DEFAULT NULL
+  `totalseats` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -920,19 +921,19 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `seatlayout`
 --
 ALTER TABLE `seatlayout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tablelayout`
 --
 ALTER TABLE `tablelayout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`

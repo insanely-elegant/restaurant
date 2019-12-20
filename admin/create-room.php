@@ -1,7 +1,5 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 session_start();
 include('includes/config.php');
 // if(strlen($_SESSION['alogin'])==0)
@@ -16,6 +14,7 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 if(isset($_POST['submit']))
 {
     $roomname=$_POST['roomname'];
+	$totaltables=$_POST['totaltables'];
 	$roomavailability=$_POST['roomavailability'];
 	$productimage1=$_FILES["productimage1"]["name"];
 //for getting product id
@@ -28,7 +27,7 @@ if(!is_dir($dir)){
 	}
 
 move_uploaded_file($_FILES["productimage1"]["tmp_name"],"productimages/$productid/".$_FILES["productimage1"]["name"]);
-$sql=mysqli_query($con,"insert into room(roomname,roomavailability,productimage1) values('$roomname','$roomavailability','$productimage1')");
+$sql=mysqli_query($con,"insert into room(roomname,totaltables,roomavailability,productimage1) values('$roomname','$totaltables','$roomavailability','$productimage1')");
 $_SESSION['msg']="New Room Added!!";
 
 }
@@ -129,13 +128,19 @@ while($row=mysqli_fetch_array($query))
                                             <label class="col-form-label" for="inputText3">Create New Room Name</label>
                                             <input id="inputText3" name="roomname" type="text" class="form-control">
                                             </div>
-                                           <div class="control-group">
-<label class="control-label" for="basicinput">Room / Table Image</label>
-<div class="controls">
-<input type="file" name="productimage1" id="productimage1" value="" class="span8 tip" required>
-</div>
-</div> 
- <div class="form-group">
+                        <div class="form-group"> 
+                            <label class="col-form-label" for="inputText3">Total Tables in this Room</label>
+                            <input id="inputText3" name="totaltables" type="text" class="form-control">
+                            </div>
+                                                                    <div class="form-group">
+                            <div class="control-group">
+                            <label class="control-label" for="basicinput">Room / Table Image</label>
+                            <div class="controls">
+                            <input type="file" name="productimage1" id="productimage1" value="" class="span8 tip" required>
+                            </div>
+                            </div> </div>
+
+                                        <div class="form-group">
                                         <label class="col-form-label" for="inputText3">Room Availability / Visibility</label>
                                         <div class="controls">
                                         <select  name="roomavailability"  id="roomavailability" class="form-control" required>
@@ -157,6 +162,7 @@ while($row=mysqli_fetch_array($query))
 										<tr>
 											<th>#</th>
 											<th>Room Name</th>
+											<th>Total Tables</th>
                                             <th>Table Image</th>
 											<th>Visibility to users</th>
 											<th>Action</th>
@@ -172,6 +178,7 @@ while($row=mysqli_fetch_array($query))
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
 											<td><?php echo htmlentities($row['roomname']);?></td>
+											<td><?php echo htmlentities($row['totaltables']);?></td>
                                             <td><a href="productimages/<?php echo $row['id'];?>/<?php echo htmlentities($row['productimage1']);?> ">View Image</a></td>
                                             <td><?php echo htmlentities($row['roomavailability'] ? 'yes' : 'no');?></td>
 											<td>
