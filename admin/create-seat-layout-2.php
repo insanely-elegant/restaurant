@@ -13,39 +13,44 @@ $tid=intval($_GET['tid']);
 if(isset($_POST['submit']))
 {
 
-	$s1=$_POST['s1'];
-	$s2=$_POST['s2'];
-	$s3=$_POST['s3'];
-	$s4=$_POST['s4'];
-	$s5=$_POST['s5'];
-	$s6=$_POST['s6'];
-	$s7=$_POST['s7'];
-	$s8=$_POST['s8'];
-	$s9=$_POST['s9'];
-	$s10=$_POST['s10'];
-	$s11=$_POST['s11'];
-	$s12=$_POST['s12'];
-	$s13=$_POST['s13'];
-	$s14=$_POST['s14'];
-	$s15=$_POST['s15'];
-	$s16=$_POST['s16'];
-	$s17=$_POST['s17'];
-	$s18=$_POST['s18'];
-	$s19=$_POST['s19'];
-	$s20=$_POST['s20'];
-	$tavail=$_POST['tavail'];
 
-$sql=mysqli_query($con,"insert into seatlayout(tableid,s1,s2,s3,
-s4,s5,s6,s7,
-s8,s9,s10,s11,s12,s13,s14,s15,s16,
-s17,s18,s19,s20,
-tableavailability) values('$tid','$s1','$s2','$s3','$s4','$s5','$s6','$s7','$s8','$s9','$s10',
-'$s11','$s12','$s13','$s14','$s15','$s16','$s17','$s18','$s19','$s20','$tavail')");
+
+    
+    $totalseats=$_POST['totalseats'];
+    if (empty($totalseats)) {
+    $error = NULL;
+}
+	// $totalseats1=$_POST['totalseats1'];
+	// $totalseats2=$_POST['totalseats2'];
+	// $totalseats3=$_POST['totalseats3'];
+	// $totalseats4=$_POST['totalseats4'];
+	// $totalseats5=$_POST['totalseats5'];
+	// $totalseats6=$_POST['totalseats6'];
+	// $totalseats7=$_POST['totalseats7'];
+	// $totalseats8=$_POST['totalseats8'];
+	// $totalseats9=$_POST['totalseats9'];
+	// $totalseats10=$_POST['totalseats10'];
+	// $totalseats11=$_POST['totalseats11'];
+	// $totalseats12=$_POST['totalseats12'];
+	// $totalseats13=$_POST['totalseats13'];
+	// $totalseats14=$_POST['totalseats14'];
+	// $totalseats15=$_POST['totalseats15'];
+	// $totalseats16=$_POST['totalseats16'];
+	// $totalseats17=$_POST['totalseats17'];
+	// $totalseats18=$_POST['totalseats18'];
+	// $totalseats19=$_POST['totalseats19'];
+	// $totalseats20=$_POST['totalseats20'];
+    $tavail=$_POST['tavail'];
+
+if (!$error) {
+for ($i = 0; $i < count($_POST['totalseats']); $i++) {
+    $totalseats = $_POST['totalseats'][$i];    
+$sql=mysqli_query($con,"insert into seatlayout(tableid,totalseats,tableavailability) values('$tid','$totalseats','$tavail')");
 $_SESSION['msg']="Seat Layout Created Successfully !!";
 
 }
-
-
+}
+}
 if(isset($_GET['del']))
 		  {
 		          mysqli_query($con,"delete from seatlayout where id = '".$_GET['tid']."'");
@@ -188,7 +193,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 1</label>
 <div class="controls">
-<input type="text"    name="s1"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s1']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 
@@ -202,7 +207,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 1</label>
 <div class="controls">
-<input type="text"    name="s2"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s2']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 <div class="form-group">
@@ -215,7 +220,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 3</label>
 <div class="controls">
-<input type="text"    name="s3"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s3']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 <div class="form-group">
@@ -228,7 +233,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 4</label>
 <div class="controls">
-<input type="text"    name="s4"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s4']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 <div class="form-group">
@@ -241,7 +246,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 5</label>
 <div class="controls">
-<input type="text"    name="s5"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s5']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 <div class="form-group">
@@ -254,7 +259,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 6</label>
 <div class="controls">
-<input type="text"    name="s6"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s6']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 
@@ -267,7 +272,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 7</label>
 <div class="controls">
-<input type="text"    name="s7"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s7']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 <div class="form-group">
@@ -280,7 +285,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 8</label>
 <div class="controls">
-<input type="text"    name="s8"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s8']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 <div class="form-group">
@@ -293,7 +298,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 9</label>
 <div class="controls">
-<input type="text"    name="s9"  placeholder="Enter  Seats" value="<?php echo htmlentities($row['s9']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter  Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 <div class="form-group">
@@ -306,7 +311,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 10</label>
 <div class="controls">
-<input type="text"    name="s10"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s10']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 <div class="form-group">
@@ -319,7 +324,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 11</label>
 <div class="controls">
-<input type="text"    name="s11"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s11']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 <div class="form-group">
@@ -332,7 +337,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 12</label>
 <div class="controls">
-<input type="text"    name="s12"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s12']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 <div class="form-group">
@@ -345,7 +350,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 13</label>
 <div class="controls">
-<input type="text"    name="s13"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s13']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 <div class="form-group">
@@ -358,7 +363,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 14</label>
 <div class="controls">
-<input type="text"    name="s14"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s14']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 
@@ -372,7 +377,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 15</label>
 <div class="controls">
-<input type="text"    name="s15"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s15']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 
@@ -386,7 +391,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 16</label>
 <div class="controls">
-<input type="text"    name="s16"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s16']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 
@@ -400,7 +405,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 17</label>
 <div class="controls">
-<input type="text"    name="s17"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s17']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 
@@ -414,7 +419,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 18</label>
 <div class="controls">
-<input type="text"    name="s18"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s18']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 
@@ -428,7 +433,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 19</label>
 <div class="controls">
-<input type="text"    name="s19"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s19']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 
@@ -442,7 +447,7 @@ while($row=mysqli_fetch_array($query))
 <div class="form-group">
 <label for="inputText3" class="col-form-label">Total Seats in Table 20</label>
 <div class="controls">
-<input type="text"    name="s20"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['s20']);?>"  class="form-control" >
+<input type="text"    name="totalseats[]"  placeholder="Enter Total Seats" value="<?php echo htmlentities($row['totalseats']);?>"  class="form-control" >
 </div>
 </div>
 
