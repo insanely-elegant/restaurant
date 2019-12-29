@@ -42,7 +42,7 @@ function getDiningtime(val) {
 	$.ajax({
 	type: "POST",
 	url: "get_diningtime.php",
-	data:'diningdate='+val,
+	data:'diningid='+val,
 	success: function(data){
 		$("#diningtime").html(data);
 	}
@@ -130,10 +130,11 @@ while($row=mysqli_fetch_array($query))
                                            <select name="diningdate" class="form-control" id="input-select" onChange="getDiningtime(this.value);" required>
                                             <option value="">Select a Date</option>
                                             <?php
-                                             $query=mysqli_query($con,"select * from diningdates where status = 'enabled'");
+                                             $query=mysqli_query($con,"select DISTINCT diningdate  from diningdates where status = 'enabled'");
                                             while($row=mysqli_fetch_array($query))
-                                           {?>
-                                          <option value="<?php echo $row['id'];?>"><?php echo $row['diningdate'];?></option>
+                                           {
+                                            ?>
+                                          <option value="<?php echo $row['diningdate'];?>"><?php echo $row['diningdate'];?></option>
                                       <?php } ?>
                                             </select>
                                             

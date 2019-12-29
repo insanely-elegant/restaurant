@@ -17,6 +17,8 @@ if(isset($_POST['submit']))
 	$diningtime=$_POST['diningtime'];
 	$status="enabled";
 $sql=mysqli_query($con,"insert into diningdates(diningdate,diningtime,status) values('$diningdate','$diningtime','$status')");
+$last_inserted_sqlid = mysqli_insert_id($con);
+$sql2=mysqli_query($con,"insert into diningtimes(did, diningtime, status) values('$last_inserted_sqlid','$diningtime','$status')");
 $_SESSION['msg']="New Dining Date & Time Enabled !!";
 
 }
