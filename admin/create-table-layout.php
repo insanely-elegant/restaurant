@@ -172,88 +172,246 @@ while($row=mysqli_fetch_array($query))
                                             </select>
                                             </div>
                                            
-                                            <div class="form-group" id="div1">
-                                               <label for="inputText3" class="col-form-label">Table Name/Number</label>
-                                           <input name="tablename[]" type="text" class="form-control">
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
-                                             <div class="form-group" id="div2">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                             
+
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                                             <div class="form-group" id="div3">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                            </br>
+                                             
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                                             <div class="form-group" id="div4">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                            </br>
+                                             
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                                             <div class="form-group" id="div5">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                            </br>
+                                             
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                                             <div class="form-group" id="div6">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                            </br>
+                                             
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                                             <div class="form-group" id="div7">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                            </br>
+                                             
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                                             <div class="form-group" id="div8">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                            </br>
+                                             
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                                             <div class="form-group" id="div9">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                            </br>
+                                             
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                                             <div class="form-group" id="div10">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                            </br>
+                                             
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                                             <div class="form-group" id="div11">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                            </br>
+                                             
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                                             <div class="form-group" id="div12">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                            </br>
+                                             
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                                             <div class="form-group" id="div13">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                            </br>
+                                             
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                                             <div class="form-group" id="div14">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                            </br>
+                                             
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                                             <div class="form-group" id="div15">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                            </br>
+                                             
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                                             <div class="form-group" id="div16">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                            </br>
+                                             
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                                             <div class="form-group" id="div17">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                            </br>
+                                             
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                                             <div class="form-group" id="div18">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                            </br>
+                                             
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                                             <div class="form-group" id="div19">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                            </br>
+                                             
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                                             <div class="form-group" id="div20">
-                                                <label for="inputText3" class="col-form-label">Table Name/Number {leave blank if not applicable}</label>
-                                                 <input name="tablename[]" type="text" class="form-control" >
+                                            </br>
+                                            </br>
+                                             
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
                                             </div>
-                        
+                                            </br>
+                                            </br>
+                                            
                                         
  </br>
 
