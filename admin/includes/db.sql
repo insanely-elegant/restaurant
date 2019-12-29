@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2019 at 10:17 AM
+-- Generation Time: Dec 29, 2019 at 03:28 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -240,19 +240,6 @@ INSERT INTO `room` (`id`, `roomname`, `totaltables`, `roomavailability`, `produc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `seatlayout`
---
-
-CREATE TABLE `seatlayout` (
-  `id` int(11) NOT NULL,
-  `tableid` int(50) NOT NULL,
-  `totalseats` varchar(255) NOT NULL,
-  `tableavailability` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tablelayout`
 --
 
@@ -262,6 +249,52 @@ CREATE TABLE `tablelayout` (
   `tablename` varchar(255) NOT NULL,
   `totalseats` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tablelayout`
+--
+
+INSERT INTO `tablelayout` (`id`, `roomid`, `tablename`, `totalseats`) VALUES
+(1, 2, 'A1', '10'),
+(2, 2, 'A2', '13'),
+(3, 2, 'A4', '15'),
+(4, 2, '', '0'),
+(5, 2, '', '0'),
+(6, 2, '', '0'),
+(7, 2, '', '0'),
+(8, 2, '', '0'),
+(9, 2, '', '0'),
+(10, 2, '', '0'),
+(11, 2, '', '0'),
+(12, 2, '', '0'),
+(13, 2, '', '0'),
+(14, 2, '', '0'),
+(15, 2, '', '0'),
+(16, 2, '', '0'),
+(17, 2, '', '0'),
+(18, 2, '', '0'),
+(19, 2, '', '0'),
+(20, 2, '', '0'),
+(21, 1, 'A1', '4'),
+(22, 1, 'A3', '5'),
+(23, 1, '', '0'),
+(24, 1, '', '0'),
+(25, 1, '', '0'),
+(26, 1, '', '0'),
+(27, 1, '', '0'),
+(28, 1, '', '0'),
+(29, 1, '', '0'),
+(30, 1, '', '0'),
+(31, 1, '', '0'),
+(32, 1, '', '0'),
+(33, 1, '', '0'),
+(34, 1, '', '0'),
+(35, 1, '', '0'),
+(36, 1, '', '0'),
+(37, 1, '', '0'),
+(38, 1, '', '0'),
+(39, 1, '', '0'),
+(40, 1, '', '0');
 
 -- --------------------------------------------------------
 
@@ -852,12 +885,6 @@ ALTER TABLE `room`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `seatlayout`
---
-ALTER TABLE `seatlayout`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `tablelayout`
 --
 ALTER TABLE `tablelayout`
@@ -928,16 +955,10 @@ ALTER TABLE `room`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `seatlayout`
---
-ALTER TABLE `seatlayout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `tablelayout`
 --
 ALTER TABLE `tablelayout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `users`
