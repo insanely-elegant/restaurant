@@ -92,11 +92,6 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="create-table-layout.php">Create & Manage Table Layout</a>
                                         </li> 
-                                         <li class="nav-item">
-                                            <a class="nav-link" href="create-seat-layout.php">Create & Manage Seat Layouts</a>
-                                        </li>    
-                                       
-                                       
                                     </ul>
                                 </div>
                                 </li>
