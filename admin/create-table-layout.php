@@ -1,36 +1,29 @@
 <?php
-error_reporting(0);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 include('includes/config.php');
 // if(strlen($_SESSION['alogin'])==0)
-// 	{	
+// 	{
 // header('location:index.php');
 // }
 // else{
 date_default_timezone_set('Asia/Kolkata');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
-	
+
 if(isset($_POST['submit']))
 {
-	$roomid=$_POST['roomid'];
-    $totaltables=$_POST['totaltables'];
-
-
+    $roomid=$_POST['roomid'];
+    $tablename=$_POST['tablename'];
 
 for ($i = 0; $i < count($_POST['tablename']); $i++) {
-    
-    if (empty($_POST['tablename'])) {
-        $tablename = null;
-    } else { 
         $tablename = $_POST['tablename'][$i];
-        // $title = $_POST['title'][$i];
-        //etc
-    }
-    
-    
+				$totalseats = intval($_POST['totalseats'][$i]);
+				echo $_POST['totalseats'][$i];
+				$sql=mysqli_query($con,"insert into tablelayout(roomid,tablename,totalseats) values('$roomid','$tablename','$totalseats')");
+				$_SESSION['msg']="Table Layout Created Successfully !!";
 }
-$sql=mysqli_query($con,"insert into tablelayout(roomid,totaltables,tablename) values('$roomid','$totaltables','$tablename')");
-$_SESSION['msg']="Table Layout Created Successfully !!";
 
 }
 
@@ -40,15 +33,15 @@ if(isset($_GET['del']))
 		          mysqli_query($con,"delete from tablelayout where id = '".$_GET['tid']."'");
                   $_SESSION['delmsg']="Table Layout deleted !!";
           }
-          
 
 
-$rows = empty($_POST['rows']) ? 0 : (int)$_POST['rows'] ;          
+
+$rows = empty($_POST['rows']) ? 0 : (int)$_POST['rows'] ;
 
 ?>
 <!doctype html>
 <html lang="en">
- 
+
 <head>
    <?php
     include('header.php');
@@ -125,9 +118,9 @@ while($row=mysqli_fetch_array($query))
                                     <div class="card-body">
 
 
-                                      <form class="form-horizontal row-fluid" name="insertproduct" method="post">
+                                      <form class="form-horizontal row-fluid" method="post">
                                             <div class="form-group">
-                                          
+
                                             <div class="alert alert-info" role="alert">
                                                Tip! : Please Ensure you upload a clear image. Members will be seeing the image you upload here.
                                             </div>
@@ -141,11 +134,11 @@ while($row=mysqli_fetch_array($query))
                                           <option value="<?php echo $row['id'];?>"><?php echo $row['roomname'];?></option>
                                       <?php } ?>
                                             </select>
-                                           
-                                         
 
-                                            
-                                            <div class="form-group">
+
+
+
+                                            <!-- <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Number of Tables</label>
                                                 <select name="totaltables" class="form-control" id="input-select" required>
                                             <option value="">Select the Total Tables</option>
@@ -170,19 +163,7 @@ while($row=mysqli_fetch_array($query))
                                           <option value="19">19</option>
                                           <option value="20">20</option>
                                             </select>
-                                            </div>
-                                           
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                             
+                                            </div> -->
 
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
@@ -190,235 +171,247 @@ while($row=mysqli_fetch_array($query))
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
-                                            </br>
-                                             
+
+
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
                                             </br>
-                                             
+
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
                                             </br>
-                                             
+
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
                                             </br>
-                                             
+
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
                                             </br>
-                                             
+
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
                                             </br>
-                                             
+
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
                                             </br>
-                                             
+
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
                                             </br>
-                                             
+
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
                                             </br>
-                                             
+
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
                                             </br>
-                                             
+
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
                                             </br>
-                                             
+
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
                                             </br>
-                                             
+
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
                                             </br>
-                                             
+
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
                                             </br>
-                                             
+
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
                                             </br>
-                                             
+
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
                                             </br>
-                                             
+
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
                                             </br>
-                                             
+
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
                                             </br>
-                                             
+
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             </div>
                                             </br>
                                             </br>
-                                            
-                                        
+
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            <span class="input-group-addon">-</span>&nbsp;
+                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
+                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
+                                            </select>
+                                            </div>
+                                            </br>
+                                            </br>
+
+
  </br>
 
                                             <button type="submit" name="submit" class="btn btn-outline-dark">Create Table Layout</a>
                                         </form>
                                     </div>
-                                
+
                                 </div></div>
                                  <div class="module-body table"> <h3 class="section-title">Tables</h3> <br>
 								<table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
@@ -433,15 +426,15 @@ while($row=mysqli_fetch_array($query))
 									</thead>
 									<tbody>
 
-<?php $query=mysqli_query($con,"select tablelayout.id as tid,room.roomavailability as available, tablelayout.roomid as trid,tablelayout.totaltables as totals,room.id as rid, room.roomname as rname from tablelayout join room on room.id=tablelayout.roomid;");
+<?php $query=mysqli_query($con,"select tablelayout.id as tid,room.roomname as rname, tablelayout.roomid as trid,tablelayout.totaltables as totals,room.id as rid, room.roomname as rname from tablelayout join room on room.id=tablelayout.roomid;");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {
-?>									
+?>
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
 											<td><?php echo htmlentities($row['rname']);?></td>
-											<td><?php echo htmlentities($row['totals']);?></td>	
+											<td><?php echo htmlentities($row['totals']);?></td>
                                             <td><?php echo htmlentities($row['available'] ? 'yes' : 'no' );?></td>
 											<td>
                                                 <!-- <a href="edit-dining-program.php?id=<?php echo $row['tid']?>" class="btn btn-sm btn-outline-light">Edit</button> -->
@@ -450,9 +443,9 @@ while($row=mysqli_fetch_array($query))
                                             </button>
 										</tr>
 										<?php $cnt=$cnt+1; } ?>
-										
+
                                 </table>
-                                
+
 							</div>
                             </div>
                         </div>
@@ -463,7 +456,7 @@ while($row=mysqli_fetch_array($query))
             <!-- ============================================================== -->
            <?php
             include('footer.php');
-            
+
            ?>
            <script>
 		$(document).ready(function() {
