@@ -13,8 +13,8 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 
 if(isset($_POST['submit']))
 {
-	$dishname=$_POST['dishname'];
-	$dishdescription=$_POST['dishdescription'];
+    $dishname=mysqli_real_escape_string($con,$_POST['dishname']);
+	$dishdescription=mysqli_real_escape_string($con,$_POST['dishdescription']);
 $sql=mysqli_query($con,"insert into dish(dishname,dishdescription) values('$dishname','$dishdescription')");
 $_SESSION['msg']="New Menu Item Created !!";
 

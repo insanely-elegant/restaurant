@@ -155,7 +155,7 @@ $(document).ready(function() {
 <div class="controls">
 <select name="timestamp" class="form-control" onChange="getDiningtime(this.value);"  required>
 <option value="">Select Dining Date</option>
-<?php $query=mysqli_query($con,"select DISTINCT id, diningdate from weeklymenu");
+<?php $query=mysqli_query($con,"select DISTINCT diningdate from weeklymenu");
 while($row=mysqli_fetch_array($query))
 {?>
 

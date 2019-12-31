@@ -175,7 +175,7 @@ while($row=mysqli_fetch_array($query))
                                             </select>
                                             </div> -->
                                             <div class="input-group" id="div1">&nbsp;
-                                            <label class="col-form-label" for="inputText3">Total No. of tables - </label><br>
+                                            <label class="col-form-label" for="inputText3">Total No. of tables :- </label><br>
                                             <select name="totaltable" id="totaltable" class="form-control" id="input-select" required>
                                             </select>
                                             </div>

@@ -10,7 +10,7 @@ $query=mysqli_query($con,"select * from room where id='$id'");
  while($row=mysqli_fetch_array($query))
  {
   ?>
-  <option disable value="<?php echo htmlentities($row['id']); ?>"><?php echo htmlentities($row['totaltables']); ?></option>
+  <option selected="true" disabled="disabled" value="<?php echo htmlentities($row['id']); ?>"><?php echo htmlentities($row['totaltables']); ?></option>
   <?php
 
 }
