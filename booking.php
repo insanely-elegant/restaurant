@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(0);
+error_reporting(1);
 include('includes/config.php');
 if(strlen($_SESSION['login'])==0)
 	{
@@ -38,16 +38,28 @@ $_SESSION['msg']="Reservation Confirmed !!";
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
    <script>
-function getSubcat(val) {
+function getFood(val) {
 	$.ajax({
 	type: "POST",
 	url: "get_food.php",
-	data:'id='+val,
+	data:'diningtime='+val,
 	success: function(data){
-		$("#dishname").html(data);
+		$("#dishname1").html(data);
 	}
 	});
 }
+
+function getFood2(val) {
+	$.ajax({
+	type: "POST",
+	url: "get_food2.php",
+	data:'diningid='+val,
+	success: function(data){
+		$("#dishname2").html(data);
+	}
+	});
+}
+
 function getTable(val) {
 	$.ajax({
 	type: "POST",
@@ -65,6 +77,17 @@ function getSeat(val) {
 	data:'table_id='+val,
 	success: function(data){
 		$("#seat").html(data);
+	}
+	});
+}
+
+function getDiningtime(val) {
+	$.ajax({
+	type: "POST",
+	url: "get_diningtime.php",
+	data:'diningdate='+val,
+	success: function(data){
+		$("#diningtime").html(data);
 	}
 	});
 }
@@ -128,15 +151,15 @@ $(document).ready(function() {
 								<input class="form-control" name="condono" type="text" value="<?php echo $row['unitno'];?>" disabled>
 
 <div class="form-group">
-<label class="form-label" for="basicinput">Dining Date & Time</label>
+<label class="form-label" for="basicinput">Dining Date</label>
 <div class="controls">
-<select name="timestamp" class="form-control" onChange="getSubcat(this.value);"  required>
-<option value="">Select Dining Date & Time</option>
-<?php $query=mysqli_query($con,"select * from weeklymenu");
+<select name="timestamp" class="form-control" onChange="getDiningtime(this.value);"  required>
+<option value="">Select Dining Date</option>
+<?php $query=mysqli_query($con,"select DISTINCT id, diningdate from weeklymenu");
 while($row=mysqli_fetch_array($query))
 {?>
 
-<option id="usrdate" value="<?php echo $row['id'];?>"><?php echo $row['diningdatetime'];?></option>
+<option id="usrdate" value="<?php echo $row['diningdate'];?>"><?php echo $row['diningdate'];?></option>
 <?php } ?>
 </select>
 </div>
@@ -144,11 +167,27 @@ while($row=mysqli_fetch_array($query))
 
 
 <div class="form-group">
-<label class="form-label" for="basicinput">Dish Name</label>
+<label class="form-label" for="basicinput">Dining Time</label>
 <div class="controls">
-<select name="dishname"  id="dishname" class="form-control" required>
+<select name="diningtime" id="diningtime" class="form-control" onChange="getFood(this.value);"  required>
+</select>
+</div>
+</div>
+
+<div class="form-group">
+<label class="form-label" for="basicinput">Dish Name 1</label>
+<div class="controls">
+<select name="dishname"  id="dishname1" class="form-control" onChange="getFood2(this.value);" required>
 </select>
 </div>  
+
+<!-- <div class="form-group">
+<label class="form-label" for="basicinput">Dish Name 1</label>
+<div class="controls">
+<select name="dishname2"  id="dishname2" class="form-control" required>
+</select>
+</div>  -->
+
 <div class="row no-margin">
 							<div class="form-group">
 										<span class="form-label">Select the Room</span>

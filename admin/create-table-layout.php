@@ -44,6 +44,18 @@ $rows = empty($_POST['rows']) ? 0 : (int)$_POST['rows'] ;
    <?php
     include('header.php');
        ?>
+<script>
+function getTotaltable(val) {
+	$.ajax({
+	type: "POST",
+	url: "get_totaltable.php",
+	data:'roomid='+val,
+	success: function(data){
+		$("#totaltable").html(data);
+	}
+	});
+}
+</script>
 </head>
 
 <body>
@@ -123,7 +135,7 @@ while($row=mysqli_fetch_array($query))
                                                Tip! : Please Ensure you upload a clear image. Members will be seeing the image you upload here.
                                             </div>
                                             <label class="col-form-label" for="inputText3"> Select the Room</label>
-                                           <select name="roomid" class="form-control" id="input-select" required>
+                                           <select name="roomid" class="form-control" id="input-select" required onChange="getTotaltable(this.value);" >
                                             <option value="">Select the Room</option>
                                             <?php
                                              $query=mysqli_query($con,"select * from room");
@@ -132,7 +144,7 @@ while($row=mysqli_fetch_array($query))
                                           <option value="<?php echo $row['id'];?>"><?php echo $row['roomname'];?></option>
                                       <?php } ?>
                                             </select>
-
+                                            <br>
 
 
 
@@ -162,9 +174,14 @@ while($row=mysqli_fetch_array($query))
                                           <option value="20">20</option>
                                             </select>
                                             </div> -->
-
                                             <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
+                                            <label class="col-form-label" for="inputText3">Total No. of tables - </label><br>
+                                            <select name="totaltable" id="totaltable" class="form-control" id="input-select" required>
+                                            </select>
+                                            </div>
+                                            </br>
+                                            <div class="input-group" id="div1">&nbsp;
+                                               <label for="inputText3" class="col-form-label">Table Name</label>
                                            <input name="tablename[]" type="text" class="form-control">&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
