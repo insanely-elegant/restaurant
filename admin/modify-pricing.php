@@ -3,7 +3,7 @@ error_reporting(0);
 session_start();
 include('includes/config.php');
 // if(strlen($_SESSION['alogin'])==0)
-// 	{	
+// 	{
 // header('location:index.php');
 // }
 // else{
@@ -20,7 +20,7 @@ if(isset($_POST['submit']))
 $sql=mysqli_query($con,"update pricingmodels set mealprice='$mprice',mealtaxpercent='$mpercent',mealtaxvalue='$mvalue',mealtotalprice='$mtotals' where dinerid='$id'");
 $_SESSION['msg']="Meal Prices modified !!";
 
-    
+
 }
 
 
@@ -33,7 +33,7 @@ if(isset($_GET['del']))
 ?>
 <!doctype html>
 <html lang="en">
- 
+
 <head>
    <?php
     include('header.php');
@@ -108,9 +108,9 @@ while($row=mysqli_fetch_array($query))
 <?php } ?>
                                 <div class="card">
                                     <div class="card-body">
-                                        
+
                                             <div class="alert alert-info" role="alert">
-                                               Tip! : You can add pricing structure and tax models for 3 types of users: Diners, Guests and Free Diners. 
+                                               Tip! : You can add pricing structure and tax models for 3 types of users: Diners, Guests and Free Diners.
                                                </br>Note: If you change the pricing here, it'll reflect from new bookings onwards only. </br>This doesn't affect the pricing that was created earlier and charged for. </br> This will only affect the data from here onwards.
                                             </div>
                                  <form method="post">
@@ -122,21 +122,21 @@ pricingmodels.mealtaxvalue as mvalue,pricingmodels.mealtotalprice as mtotals, pr
  from pricingmodels join dinertype on pricingmodels.dinerid = dinertype.dinerid where id='$id'");
 while($row=mysqli_fetch_array($query))
 {
-?>								
- 
+?>
+
 
 <div class="module-body table"> <h3 class="section-title">Diner Pricing Model</h3> <br>
-<div class="form-group"> 
+<div class="form-group">
 <div class="card">
 <div class="card-body"><h4><?php echo  htmlentities($row['dinename']);?> Pricing</h4>
 <label class="col-form-label" for="inputText3">Meal Price for <?php echo  htmlentities($row['dinename']);?> </label>
 <div class="input-group mb-3">
 <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-<input id="mprice" name="mprice" type="text" class="form-control" value="<?php echo  htmlentities($row['mprice']);?>" min="0" >                                             
+<input onkeyup="calculate_tax()" id="mprice" name="mprice" type="text" class="form-control" value="<?php echo  htmlentities($row['mprice']);?>" min="0" >
 </div>
 <label class="col-form-label" for="inputText3">Meal Tax Percent</label>
 <div class="input-group mb-3">
-<input  id="mpercent" name="mpercent" type="text" class="form-control" value="<?php echo  htmlentities($row['mpercent']);?>" min="0">
+<input onkeyup="calculate_tax()"  id="mpercent" name="mpercent" type="text" class="form-control" value="<?php echo  htmlentities($row['mpercent']);?>" min="0">
 <div class="input-group-append"><span class="input-group-text">%</span></div>
 </div>
 <label class="col-form-label" for="inputText3">Meal Tax Value</label>
@@ -149,12 +149,23 @@ while($row=mysqli_fetch_array($query))
 <input id="mtotals" name="mtotals" type="text" class="form-control" value="<?php echo  htmlentities($row['mtotals']);?>" readonly>
 <div class="input-group-append"><span class="input-group-text">%</span></div>
 </div>
+<script type="text/javascript">
+  //To dynamically change the tax as input is entered
+  function calculate_tax() {
+    mealprice= document.getElementById('mprice').value;
+    mealtaxpercent = document.getElementById('mpercent').value;
+    mealtaxvalue = mealprice*(mealtaxpercent/100);
+    mealtotalprice = parseFloat(mealprice )+ parseFloat(mealtaxpercent);
+    document.getElementById('mvalue').value = parseFloat(mealtaxvalue).toFixed(2);
+    document.getElementById('mtotals').value = parseFloat(mealtotalprice).toFixed(2);
+  }
+</script>
 </div>
 </div>
 </div>
 <button type="submit" name="submit" class="btn btn-outline-dark">Submit</a>
-</form>	<?php } ?>	
-</div>          
+</form>	<?php } ?>
+</div>
 </div>
 </div>
 </div>
@@ -166,7 +177,7 @@ while($row=mysqli_fetch_array($query))
             <!-- ============================================================== -->
            <?php
             include('footer.php');
-            
+
            ?>
            <script>
 		$(document).ready(function() {
@@ -185,7 +196,7 @@ while($row=mysqli_fetch_array($query))
         <!-- end wrapper  -->
         <!-- ============================================================== -->
     </div>
-    
+
     <!-- ============================================================== -->
     <!-- end main wrapper  -->
     <!-- ============================================================== -->
