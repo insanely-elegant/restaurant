@@ -11,22 +11,10 @@ date_default_timezone_set('Asia/Kolkata');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
 
 
-if(isset($_POST['submit']))
-{
-	
-    $diners=$_POST['diners'];
-    $guests=$_POST['guests'];
-    $freediners=$_POST['freediners'];
-    
-$sql=mysqli_query($con,"insert into pricingmodels(diners,guests,freediners) values('$diners','$guests','$freediners')");
-$_SESSION['msg']="Pricing Updated!!";
-
-}
-
 if(isset($_GET['del']))
 		  {
-		          mysqli_query($con,"delete from room where id = '".$_GET['id']."'");
-                  $_SESSION['delmsg']="Room Permanently Deleted!!";
+		          mysqli_query($con,"delete from pricingmodels where id = '".$_GET['id']."'");
+                  $_SESSION['delmsg']="Price Info Deleted!!";
 		  }
 
 ?>
@@ -108,12 +96,53 @@ while($row=mysqli_fetch_array($query))
                                 <div class="card">
                                     <div class="card-body">
                                         
-                                             <div class="alert alert-info" role="alert">
+                                            <div class="alert alert-info" role="alert">
                                                Tip! : You can add pricing structure and tax models for 3 types of users: Diners, Guests and Free Diners. 
                                                </br>Note: If you change the pricing here, it'll reflect from new bookings onwards only. </br>This doesn't affect the pricing that was created earlier and charged for. </br> This will only affect the data from here onwards.
                                             </div>
+                                 <form method="post">
+                                            <?php
+$id=intval($_GET['id']);
+$query=mysqli_query($con,"select dinertype.dinerid as dineid, upper(dinertype.dinername) as dinename,pricingmodels.id as did,
+pricingmodels.dinerid as dinersid,pricingmodels.mealprice as mprice, pricingmodels.mealtaxpercent as mpercent,
+pricingmodels.mealtaxvalue as mvalue,pricingmodels.mealtotalprice as mtotals, pricingmodels.datemodified as date
+ from pricingmodels join dinertype on pricingmodels.dinerid = dinertype.dinerid where id='$id'");
+while($row=mysqli_fetch_array($query))
+{
+?>									           
+                                 <div class="module-body table"> <h3 class="section-title">Diner Pricing Model</h3> <br>
+                            <div class="form-group"> 
+                            <div class="card">
+                            <div class="card-body"><h4><?php echo  htmlentities($row['dinename']);?> Pricing</h4>
+                            <label class="col-form-label" for="inputText3">Meal Price for <?php echo  htmlentities($row['dinename']);?> </label>
+                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                                <input type="number" class="form-control" value="<?php echo  htmlentities($row['mprice']);?>" min="0" >                                             
+                                            </div>
+                                            <label class="col-form-label" for="inputText3">Meal Tax Percent</label>
+                                            <div class="input-group mb-3">
+                                            <input name="freedinerprice" type="number" class="form-control" value="<?php echo  htmlentities($row['mpercent']);?>" min="0">
+                                            <div class="input-group-append"><span class="input-group-text">%</span></div>
+                                            </div>
+                                             <label class="col-form-label" for="inputText3">Total Meal Price(incl. Tax)</label>
+                                            <div class="input-group mb-3">
+                                            <input name="freedinerprice" type="number" class="form-control" value="<?php echo  htmlentities($row['mpercent']);?>" min="0" disabled>
+                                            <div class="input-group-append"><span class="input-group-text">%</span></div>
+                                            </div>
+                            </div>
+                            </div>
+                            </div>
+
+                            
+                                            <button type="submit" name="submit" class="btn btn-outline-dark">Submit</a>
+                                          </form>	<?php } ?>	
+                                       
+  </div>
                                 
+                                </div>
+								
                                 
+							</div>
                             </div>
                         </div>
                 </div>

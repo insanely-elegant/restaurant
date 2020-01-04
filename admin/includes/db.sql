@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2019 at 03:28 PM
+-- Generation Time: Jan 04, 2020 at 11:49 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -69,6 +69,26 @@ CREATE TABLE `chef` (
 INSERT INTO `chef` (`id`, `chefname`, `contactno`, `altcontactno`, `email`, `password`) VALUES
 (1, 'chef2', '423', '2345', 'another@chef.com', 'chef2'),
 (3, 'chef', '324', 'asd', 'test@chef.com', 'chef');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dinertype`
+--
+
+CREATE TABLE `dinertype` (
+  `dinerid` int(11) NOT NULL,
+  `dinername` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `dinertype`
+--
+
+INSERT INTO `dinertype` (`dinerid`, `dinername`) VALUES
+(1, 'member'),
+(2, 'guest'),
+(3, 'freediner');
 
 -- --------------------------------------------------------
 
@@ -170,12 +190,21 @@ INSERT INTO `menu` (`id`, `primarydishid`, `seconddishid`, `dishdate`) VALUES
 CREATE TABLE `pricingmodels` (
   `id` int(11) NOT NULL,
   `dinerid` varchar(255) NOT NULL,
-  `dinername` varchar(255) DEFAULT NULL,
-  `mealprice` varchar(255) NOT NULL,
-  `mealtaxpercent` varchar(255) NOT NULL,
-  `mealtaxvalue` varchar(255) NOT NULL,
+  `mealprice` decimal(5,2) NOT NULL,
+  `mealtaxpercent` decimal(5,2) NOT NULL,
+  `mealtaxvalue` decimal(5,2) NOT NULL,
+  `mealtotalprice` decimal(5,2) NOT NULL,
   `datemodified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pricingmodels`
+--
+
+INSERT INTO `pricingmodels` (`id`, `dinerid`, `mealprice`, `mealtaxpercent`, `mealtaxvalue`, `mealtotalprice`, `datemodified`) VALUES
+(1, '1', '14.99', '0.00', '0.00', '14.99', '2020-01-04 07:29:58'),
+(2, '2', '16.99', '18.00', '3.05', '20.04', '2020-01-04 07:29:58'),
+(3, '3', '0.00', '0.00', '0.00', '0.00', '2020-01-04 07:30:12');
 
 -- --------------------------------------------------------
 
@@ -777,7 +806,14 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-12-22 10:58:49', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-12-22 11:28:10', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-12-24 18:11:46', NULL, 1),
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-12-29 08:30:45', NULL, 1);
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-12-29 08:30:45', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-29 15:41:52', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-29 15:48:23', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2019-12-29 16:22:19', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-12-30 07:33:00', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-04 06:27:18', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-04 06:28:43', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-04 06:28:51', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -824,7 +860,8 @@ CREATE TABLE `weeklymenu` (
 --
 
 INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `dishname1`, `dishname2`) VALUES
-(17, '2019-12-12', '13:05:00', 'Bread Basket', 'Apple Pie');
+(17, '2019-12-12', '13:05:00', 'Bread Basket', 'Apple Pie'),
+(19, '2019-12-27', '12:05:00', 'Pasta Bolognese', 'Bread Basket');
 
 --
 -- Indexes for dumped tables
@@ -841,6 +878,12 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `chef`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dinertype`
+--
+ALTER TABLE `dinertype`
+  ADD PRIMARY KEY (`dinerid`);
 
 --
 -- Indexes for table `diningdates`
@@ -970,7 +1013,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
