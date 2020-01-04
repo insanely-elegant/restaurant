@@ -128,7 +128,7 @@ $(document).ready(function() {
 <br><br><br><br><br><br><br> 	
 
 
-<form method="post">
+<form method="post" enctype=plain/text>
 							<p style="font-size: x-large; text-align: center; color: #f14634">Hello, <?php echo $_SESSION['firstname'];?></p>
 							<p style="font-size:xx-large; text-align: center;">Select a date</p><br>
 							<div class="row no-margin">
@@ -195,21 +195,21 @@ while($row=mysqli_fetch_array($query))
 							<div class="row no-margin">
 								
 									<div class="form-group">
-										<span class="form-label">Select table number</span>
+										<span class="form-label">Select table name</span>
 										<select class="form-control" name="tablename" id="tablename" >
 										</select>
 									</div>
 								
-										<!-- <div class="col-sm-6">
+									<div class="row no-margin">	
 									<div class="form-group">
-										<span class="form-label">Select seat number</span>
+										<span class="form-label">Select number of seats</span>
 										<select class="form-control" name="seat" id="seat">
 										</select>
 									</div>
-								</div> -->
+								</div>
 							</div>
 <div class="form-btn">
-                <button id="submit" type="submit" name="submit" class="submit-btn" >CONFIRM RESERVATION</button>
+                <button id="submit" type="submit" name="submit" class="submit-btn" >REVIEW BOOKING</button>
 </br></br><p style="font-size:xx-large; text-align: center;">Guest List for the week</p><br>
 <table id="example"  cellpadding="0" cellspacing="0" border="0" class="display datatable-1 table table-bordered table-striped" style="width:100%;">
     <thead>

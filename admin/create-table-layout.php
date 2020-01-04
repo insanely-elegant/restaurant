@@ -278,7 +278,7 @@ while($row=mysqli_fetch_array($query))
 
                                             <div class="input-group" id="div1">&nbsp;
                                                <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
+                                            >&nbsp;
                                             </select>
                                             <span class="input-group-addon">-</span>&nbsp;
                                                <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
