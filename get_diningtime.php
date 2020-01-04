@@ -11,7 +11,7 @@ $query=mysqli_query($con,"select * from weeklymenu where diningdate='$id'");
  while($row=mysqli_fetch_array($query))
  {
   ?>
-  <option value="<?php echo htmlentities($row['diningtime']); ?>"><?php echo htmlentities($row['diningtime']); ?></option>
+  <option value="<?php echo htmlentities($row['id']); ?>"><?php echo htmlentities($row['diningtime']); ?></option>
   <?php
 
 }

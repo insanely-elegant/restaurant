@@ -3,7 +3,7 @@ include('includes/config.php');
 if(!empty($_POST["diningtime"])) 
 {
  $id=$_POST['diningtime'];
-$query=mysqli_query($con,"select * from weeklymenu where diningtime='$id'");
+$query=mysqli_query($con,"select * from weeklymenu where id='$id'");
 ?>
 <option value="">Select Dishname</option>
 <?php
