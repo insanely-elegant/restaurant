@@ -9,7 +9,19 @@ include('includes/config.php');
 // else{
 date_default_timezone_set('Asia/Kolkata');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
+$id=intval($_GET['id']);
 
+if(isset($_POST['submit']))
+{
+    $mprice=$_POST['mprice'];
+    $mpercent=$_POST['mpercent'];
+    $mvalue=$_POST['mvalue'];
+    $mtotals=$_POST['mtotals'];
+$sql=mysqli_query($con,"update pricingmodels set mealprice='$mprice',mealtaxpercent='$mpercent',mealtaxvalue='$mvalue',mealtotalprice='$mtotals' where dinerid='$id'");
+$_SESSION['msg']="Meal Prices modified !!";
+
+    
+}
 
 
 if(isset($_GET['del']))
@@ -120,16 +132,21 @@ while($row=mysqli_fetch_array($query))
 <label class="col-form-label" for="inputText3">Meal Price for <?php echo  htmlentities($row['dinename']);?> </label>
 <div class="input-group mb-3">
 <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-<input onblur="findTotal()" id="mprice" name="mprice" type="number" class="form-control" value="<?php echo  htmlentities($row['mprice']);?>" min="0" >                                             
+<input id="mprice" name="mprice" type="text" class="form-control" value="<?php echo  htmlentities($row['mprice']);?>" min="0" >                                             
 </div>
 <label class="col-form-label" for="inputText3">Meal Tax Percent</label>
 <div class="input-group mb-3">
-<input  onblur="findTotal()" id="mpercent" name="mpercent" type="number" class="form-control" value="<?php echo  htmlentities($row['mpercent']);?>" min="0">
+<input  id="mpercent" name="mpercent" type="text" class="form-control" value="<?php echo  htmlentities($row['mpercent']);?>" min="0">
 <div class="input-group-append"><span class="input-group-text">%</span></div>
+</div>
+<label class="col-form-label" for="inputText3">Meal Tax Value</label>
+<div class="input-group mb-3">
+<input  id="mvalue" name="mvalue" type="text" class="form-control" value="<?php echo  htmlentities($row['mvalue']);?>" readonly>
+<div class="input-group-append"><span class="input-group-text"></span></div>
 </div>
 <label class="col-form-label" for="inputText3">Total Meal Price(incl. Tax)</label>
 <div class="input-group mb-3">
-<input id="mtotals" name="mtotals" type="number" class="form-control" value="<?php echo  htmlentities($row['mtotals']);?>" min="0" readonly>
+<input id="mtotals" name="mtotals" type="text" class="form-control" value="<?php echo  htmlentities($row['mtotals']);?>" readonly>
 <div class="input-group-append"><span class="input-group-text">%</span></div>
 </div>
 </div>
