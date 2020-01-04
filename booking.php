@@ -49,16 +49,6 @@ function getFood(val) {
 	});
 }
 
-function getFood2(val) {
-	$.ajax({
-	type: "POST",
-	url: "get_food2.php",
-	data:'diningid='+val,
-	success: function(data){
-		$("#dishname2").html(data);
-	}
-	});
-}
 
 function getTable(val) {
 	$.ajax({
@@ -206,7 +196,7 @@ while($row=mysqli_fetch_array($query))
 								
 									<div class="form-group">
 										<span class="form-label">Select table number</span>
-										<select class="form-control" name="tablename" id="tablename" onChange="getSeat(this.value);">
+										<select class="form-control" name="tablename" id="tablename" >
 										</select>
 									</div>
 								
