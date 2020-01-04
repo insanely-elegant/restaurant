@@ -102,6 +102,7 @@ while($row=mysqli_fetch_array($query))
                                                
                                 </div>
                                  <div class="module-body table"> <h3 class="section-title">Diner Pricing Model</h3> <br>
+                            
 								<table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
 									<thead>
 										<tr>
@@ -110,26 +111,31 @@ while($row=mysqli_fetch_array($query))
 											<th>Diner Meal Price</th>
 											<th>Diner Tax Percent</th>
 											<th>Diner Tax Value</th>
+											<th>Diner Total Price</th>
 											<th>Date Last Modified</th>
 											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
 
-<?php $query=mysqli_query($con,"select * from pricingmodels");
+<?php $query=mysqli_query($con,"select dinertype.dinerid as dineid, upper(dinertype.dinername) as dinename,pricingmodels.id as did,
+pricingmodels.dinerid as dinersid,pricingmodels.mealprice as mprice, pricingmodels.mealtaxpercent as mpercent,
+pricingmodels.mealtaxvalue as mvalue,pricingmodels.mealtotalprice as mtotals, pricingmodels.datemodified as date
+ from pricingmodels join dinertype on pricingmodels.dinerid = dinertype.dinerid and dinertype.dinername!='freediner'");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {
 ?>									
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
-											<td><?php echo htmlentities($row['dinername']);?></td>
-											<td><?php echo htmlentities($row['mealprice']);?></td>
-											<td><?php echo htmlentities($row['mealtaxpercent']);?></td>
-											<td><?php echo htmlentities($row['mealtaxvalue']);?></td>
-											<td><?php echo htmlentities($row['datemodified']);?></td>
+											<td><?php echo htmlentities($row['dinename']);?></td>
+											<td><?php echo htmlentities($row['mprice']);?></td>
+											<td><?php echo htmlentities($row['mpercent']);?></td>
+											<td><?php echo htmlentities($row['mvalue']);?></td>
+											<td><?php echo htmlentities($row['mtotals']);?></td>
+											<td><?php echo htmlentities($row['date']);?></td>
 											<td>
-                                           <a href="edit-pricing.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">MODIFY PRICING</button> 
+                                           <a href="modify-pricing.php?id=<?php echo $row['dineid']?>" class="btn btn-sm btn-outline-light">MODIFY PRICING</button> 
                                             </button>
 										</tr>
 										<?php $cnt=$cnt+1; } ?>

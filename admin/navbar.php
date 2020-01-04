@@ -78,7 +78,9 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="create-dining-dates.php">Manage Dining Dates / Calendar</a>
                                         </li> 
-                                       
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="create-pricing.php">Manage Pricing Models</a>
+                                        </li> 
                                     </ul>
                                 </div>
                                 </li> 
