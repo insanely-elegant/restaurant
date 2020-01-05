@@ -35,7 +35,7 @@ $_SESSION['msg']="Reservation Confirmed !!";
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="js/jquery.min.js"></script>
 
    <script>
 function getFood(val) {
@@ -97,10 +97,10 @@ while($row=mysqli_fetch_array($query))
 				<div class="row">
 					<div class="booking-form">
 
-<script src='https://code.jquery.com/jquery-3.3.1.js'></script>
-<script src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js'></script>
+<script src='js/jquery-3.3.1.js'></script>
+<script src='js/jquery.dataTables.min.js'></script>
 
-  <link rel='stylesheet' href='https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css'>
+  <link rel='stylesheet' href='css/jquery.dataTables.min.css'>
 
 <script type="text/javascript">
 $(document).ready(function() {
