@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2020 at 02:33 PM
+-- Generation Time: Jan 05, 2020 at 05:48 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -860,23 +860,21 @@ CREATE TABLE `weeklymenu` (
   `diningtime` time NOT NULL,
   `dishname1` varchar(255) NOT NULL,
   `dishname2` varchar(255) NOT NULL,
-  `roomid` int(50) NOT NULL,
-  `tablename` varchar(255) NOT NULL,
-  `totalseats` varchar(255) NOT NULL
+  `roomid` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `weeklymenu`
 --
 
-INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `dishname1`, `dishname2`, `roomid`, `tablename`, `totalseats`) VALUES
-(17, '2019-12-12', '13:05:00', 'Bread Basket', 'Apple Pie', 1, '', ''),
-(19, '2019-12-27', '12:05:00', 'Pasta Bolognese', 'Bread Basket', 2, '', ''),
-(20, '2019-01-06', '10:10:00', 'Bread Basket', 'Pasta Bolognese', 1, '', ''),
-(22, '2020-01-17', '14:09:00', 'Pasta Bolognese', 'Pasta Bolognese', 1, '', ''),
-(23, '2020-01-01', '01:01:00', 'Bread Basket', 'Apple Pie', 1, '', ''),
-(24, '2020-01-09', '13:01:00', 'Bread Basket', 'Apple Pie', 2, '', ''),
-(25, '2020-01-05', '21:01:00', 'Apple Pie', 'Bread Basket', 2, '', '');
+INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `dishname1`, `dishname2`, `roomid`) VALUES
+(17, '2019-12-12', '13:05:00', 'Bread Basket', 'Apple Pie', 1),
+(19, '2019-12-27', '12:05:00', 'Pasta Bolognese', 'Bread Basket', 2),
+(20, '2019-01-06', '10:10:00', 'Bread Basket', 'Pasta Bolognese', 1),
+(22, '2020-01-17', '14:09:00', 'Pasta Bolognese', 'Pasta Bolognese', 1),
+(23, '2020-01-01', '01:01:00', 'Bread Basket', 'Apple Pie', 1),
+(24, '2020-01-09', '13:01:00', 'Bread Basket', 'Apple Pie', 2),
+(25, '2020-01-05', '21:01:00', 'Apple Pie', 'Bread Basket', 2);
 
 --
 -- Indexes for dumped tables
