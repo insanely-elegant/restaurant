@@ -74,7 +74,7 @@ while($row=mysqli_fetch_array($query))
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Create Room</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Manage Pricing</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -87,8 +87,8 @@ while($row=mysqli_fetch_array($query))
                     <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="section-block" id="basicform">
-                                    <h3 class="section-title">Create Pricing Models</h3>
-                                    <p>You can create pricing models here.</p>
+                                    <h3 class="section-title">Modify Pricing Models</h3>
+                                    <p>You can modify pricing models here.</p>
                                 </div>
                                 <?php if(isset($_POST['submit']))
 {?>
@@ -109,10 +109,10 @@ while($row=mysqli_fetch_array($query))
                                 <div class="card">
                                     <div class="card-body">
 
-                                            <div class="alert alert-info" role="alert">
-                                               Tip! : You can add pricing structure and tax models for 3 types of users: Diners, Guests and Free Diners.
-                                               </br>Note: If you change the pricing here, it'll reflect from new bookings onwards only. </br>This doesn't affect the pricing that was created earlier and charged for. </br> This will only affect the data from here onwards.
-                                            </div>
+                                              <div class="alert alert-info" role="alert">
+                                               Note: If you change the pricing here, it'll reflect from new reservations only. This doesn't affect the pricing that was created earlier and charged for.
+                                                </br> This will only affect the data from here onwards.                                               
+                                             </div>
                                  <form method="post">
                                             <?php
 $id=intval($_GET['id']);

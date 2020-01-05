@@ -61,7 +61,7 @@ while($row=mysqli_fetch_array($query))
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Create Room</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Manage Pricing</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -74,8 +74,8 @@ while($row=mysqli_fetch_array($query))
                     <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="section-block" id="basicform">
-                                    <h3 class="section-title">Create Pricing Models</h3>
-                                    <p>You can create pricing models here.</p>
+                                    <h3 class="section-title">Manage Pricing Models</h3>
+                                    <p>You can manage pricing models here.</p>
                                 </div>
                                 <?php if(isset($_POST['submit']))
 {?>
@@ -94,13 +94,13 @@ while($row=mysqli_fetch_array($query))
 									</div>
 <?php } ?>
                                 <div class="card">
-                                    <div class="card-body">
-                                        
+                                    <div class="card-body">                                        
                                             <div class="alert alert-info" role="alert">
-                                               Tip! : You can add pricing structure and tax models for 3 types of users: Diners, Guests and Free Diners. 
-                                               </br>Note: If you change the pricing here, it'll reflect from new bookings onwards only. </br>This doesn't affect the pricing that was created earlier and charged for. </br> This will only affect the data from here onwards.
-                                               
-                                </div>
+                                               Tip! : You can manage pricing structure and tax models for 3 types of users: Diners, Guests and Free Diners. </br>
+                                               Free Diners is set to default price of $0 and total tax charged as $0, so its not visible here.
+                                               </br>Note: If you change the pricing here, it'll reflect from new reservations only. </br>This doesn't affect the pricing that was created earlier and charged for.
+                                                </br> This will only affect the data from here onwards.                                               
+                                             </div>
                                  <div class="module-body table"> <h3 class="section-title">Diner Pricing Model</h3> <br>
                             
 								<table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
