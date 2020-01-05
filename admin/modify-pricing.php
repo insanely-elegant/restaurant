@@ -7,8 +7,8 @@ include('includes/config.php');
 // header('location:index.php');
 // }
 // else{
-date_default_timezone_set('Asia/Kolkata');// change according timezone
-$currentTime = date( 'd-m-Y h:i:s A', time () );
+date_default_timezone_set('America/Los_Angeles');// change according timezone
+$currentTime = date( 'm-d-Y h:i:s A', time () );
 $id=intval($_GET['id']);
 
 if(isset($_POST['submit']))
@@ -17,7 +17,7 @@ if(isset($_POST['submit']))
     $mpercent=$_POST['mpercent'];
     $mvalue=$_POST['mvalue'];
     $mtotals=$_POST['mtotals'];
-$sql=mysqli_query($con,"update pricingmodels set mealprice='$mprice',mealtaxpercent='$mpercent',mealtaxvalue='$mvalue',mealtotalprice='$mtotals' where dinerid='$id'");
+$sql=mysqli_query($con,"update pricingmodels set mealprice='$mprice',mealtaxpercent='$mpercent',mealtaxvalue='$mvalue',mealtotalprice='$mtotals', datemodified='$currentTime' where dinerid='$id'");
 $_SESSION['msg']="Meal Prices modified !!";
 
 
