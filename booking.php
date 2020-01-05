@@ -7,8 +7,8 @@ if(strlen($_SESSION['login'])==0)
 header('location:index.php');
 }
 else{
-date_default_timezone_set('Asia/Kolkata');// change according timezone
-$currentTime = date( 'd-m-Y h:i:s A', time () );
+date_default_timezone_set('America/Los_Angeles');
+$currentTime = date( 'm-d-Y h:i:s A', time () );
 
 if(isset($_POST['submit']))
 {
@@ -145,7 +145,7 @@ $(document).ready(function() {
 <div class="controls">
 <select name="timestamp" class="form-control" onChange="getDiningtime(this.value);"  required>
 <option value="">Select Dining Date</option>
-<?php $query=mysqli_query($con,"select DISTINCT diningdate from weeklymenu");
+<?php $query=mysqli_query($con,"SELECT DISTINCT diningdate FROM weeklymenu WHERE diningdate >= CURDATE() + INTERVAL 1 DAY");
 while($row=mysqli_fetch_array($query))
 {?>
 
@@ -199,7 +199,6 @@ while($row=mysqli_fetch_array($query))
 										<select class="form-control" name="tablename" id="tablename" >
 										</select>
 									</div>
-								
 									<div class="row no-margin">	
 									<div class="form-group">
 										<span class="form-label">Select number of seats</span>
