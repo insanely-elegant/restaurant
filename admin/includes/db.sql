@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2020 at 11:49 AM
+-- Generation Time: Jan 05, 2020 at 02:33 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -111,7 +111,12 @@ INSERT INTO `diningdates` (`id`, `diningdate`, `diningtime`, `status`) VALUES
 (19, '2019-12-19', '00:00:00', 'enabled'),
 (20, '2019-12-27', '12:59:00', 'enabled'),
 (21, '2019-12-28', '01:59:00', 'enabled'),
-(22, '2019-12-27', '12:05:00', 'enabled');
+(22, '2019-12-27', '12:05:00', 'enabled'),
+(23, '2019-01-06', '10:10:00', 'enabled'),
+(24, '2020-01-09', '13:01:00', 'enabled'),
+(25, '2020-01-17', '14:09:00', 'enabled'),
+(26, '2020-01-01', '01:01:00', 'enabled'),
+(27, '2020-01-05', '21:01:00', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -194,7 +199,7 @@ CREATE TABLE `pricingmodels` (
   `mealtaxpercent` decimal(5,2) NOT NULL,
   `mealtaxvalue` decimal(5,2) NOT NULL,
   `mealtotalprice` decimal(5,2) NOT NULL,
-  `datemodified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `datemodified` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -202,9 +207,9 @@ CREATE TABLE `pricingmodels` (
 --
 
 INSERT INTO `pricingmodels` (`id`, `dinerid`, `mealprice`, `mealtaxpercent`, `mealtaxvalue`, `mealtotalprice`, `datemodified`) VALUES
-(1, '1', '14.99', '0.00', '0.00', '14.99', '2020-01-04 07:29:58'),
-(2, '2', '16.99', '18.00', '3.05', '20.04', '2020-01-04 07:29:58'),
-(3, '3', '0.00', '0.00', '0.00', '0.00', '2020-01-04 07:30:12');
+(1, '1', '14.94', '0.00', '0.00', '14.94', '01-05-2020 01:38:57 AM'),
+(2, '2', '16.95', '5.00', '0.85', '21.95', '01-05-2020 01:39:05 AM'),
+(3, '3', '0.00', '0.00', '0.00', '0.00', '2020-01-04 13:00:12');
 
 -- --------------------------------------------------------
 
@@ -813,7 +818,9 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2019-12-30 07:33:00', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-04 06:27:18', NULL, 1),
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-04 06:28:43', NULL, 1),
-(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-04 06:28:51', NULL, 1);
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-04 06:28:51', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-05 09:18:16', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-05 10:07:51', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -852,16 +859,24 @@ CREATE TABLE `weeklymenu` (
   `diningdate` date NOT NULL,
   `diningtime` time NOT NULL,
   `dishname1` varchar(255) NOT NULL,
-  `dishname2` varchar(255) NOT NULL
+  `dishname2` varchar(255) NOT NULL,
+  `roomid` int(50) NOT NULL,
+  `tablename` varchar(255) NOT NULL,
+  `totalseats` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `weeklymenu`
 --
 
-INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `dishname1`, `dishname2`) VALUES
-(17, '2019-12-12', '13:05:00', 'Bread Basket', 'Apple Pie'),
-(19, '2019-12-27', '12:05:00', 'Pasta Bolognese', 'Bread Basket');
+INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `dishname1`, `dishname2`, `roomid`, `tablename`, `totalseats`) VALUES
+(17, '2019-12-12', '13:05:00', 'Bread Basket', 'Apple Pie', 1, '', ''),
+(19, '2019-12-27', '12:05:00', 'Pasta Bolognese', 'Bread Basket', 2, '', ''),
+(20, '2019-01-06', '10:10:00', 'Bread Basket', 'Pasta Bolognese', 1, '', ''),
+(22, '2020-01-17', '14:09:00', 'Pasta Bolognese', 'Pasta Bolognese', 1, '', ''),
+(23, '2020-01-01', '01:01:00', 'Bread Basket', 'Apple Pie', 1, '', ''),
+(24, '2020-01-09', '13:01:00', 'Bread Basket', 'Apple Pie', 2, '', ''),
+(25, '2020-01-05', '21:01:00', 'Apple Pie', 'Bread Basket', 2, '', '');
 
 --
 -- Indexes for dumped tables
@@ -965,7 +980,7 @@ ALTER TABLE `chef`
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `dish`
@@ -1013,7 +1028,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
