@@ -62,15 +62,13 @@ function getTable() {
 	}
 	});
 }
-function getSeat(val) {
-	$.ajax({
-	type: "POST",
-	url: "get_seat.php",
-	data:'table_id='+val,
-	success: function(data){
-		$("#seat").html(data);
+function getSeat(x) {
+	seat = document.getElementById('seat');
+	options ='';
+	for (var i = x; i > 0; i--) {
+		options +='<option>'+ i +'</option>'
 	}
-	});
+	seat.innerHTML = options;
 }
 
 function getDiningtime(val) {

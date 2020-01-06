@@ -22,16 +22,14 @@ if(!empty($_GET["room_id"]))
       $output[1][$counter[1]++]=$row;
     }
     foreach ($output[1] as $key => $value) {
-      $r=False;
+      $totalseat=$value['totalseats'];
       foreach ($output[0] as $k => $v) {
         if($value['tablename']==$v['tablename']){
-          if($value['totalseats']==$v['seat']){
-            $r=True;
-          }
+          $totalseat-=$v['seat'];
         }
       }
-      if($r===False){
-        echo "<option>".$value['tablename']."</option>";
+      if($totalseat!=0){
+        echo "<option onclick='getSeat(".$totalseat.")'>".$value['tablename']."</option>";
       }
     }
 }

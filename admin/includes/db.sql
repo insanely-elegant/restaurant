@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 05, 2020 at 05:48 PM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Host: localhost
+-- Generation Time: Jan 06, 2020 at 04:56 PM
+-- Server version: 10.3.16-MariaDB
+-- PHP Version: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `u306375126_silverglen`
+-- Database: `silverglen`
 --
 
 -- --------------------------------------------------------
@@ -241,11 +241,11 @@ CREATE TABLE `reservation` (
 
 INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `isConfirmed`, `isCheckedin`) VALUES
 (1, '1234', 'David', 'K', '', 'Game Room', 'A2', 0, '2', '2019-11-28', '00:00:00', '5', '605', '', '1'),
-(2, '4353', 'Bill', 'DN', '', 'Dining', 'A3', 0, '4', '2019-11-29', '00:00:00', '3', '404', '', '0'),
+(2, '4353', 'Bill', 'DN', '', '1', 'A3', 0, '4', '2019-11-29', '00:00:00', '3', '404', '', '0'),
 (3, '6546', 'Duane', '', '', '1', '7', 0, '', '0000-00-00', '00:00:00', '', '', '', NULL),
 (4, '63454', 'Duane', '', '', '4', '8', 0, '', '0000-00-00', '00:00:00', '', '', '', NULL),
 (5, '3456', 'Duane', '', '', '1', '7', 0, '', '0000-00-00', '00:00:00', '', '', '', NULL),
-(6, '', 'Duane', '', '', '1', '7', 0, '', '0000-00-00', '00:00:00', '', '', '', NULL),
+(6, '', 'Duane', '', '', '1', 'A1', 0, '4', '0000-00-00', '00:00:00', '', '', '', NULL),
 (7, '', 'Duane', '', '', '1', '7', 0, '', '0000-00-00', '00:00:00', '', '', '', NULL);
 
 -- --------------------------------------------------------
@@ -289,46 +289,9 @@ CREATE TABLE `tablelayout` (
 --
 
 INSERT INTO `tablelayout` (`id`, `roomid`, `tablename`, `totalseats`) VALUES
-(1, 2, 'A1', '10'),
-(2, 2, 'A2', '13'),
-(3, 2, 'A4', '15'),
-(4, 2, '', '0'),
-(5, 2, '', '0'),
-(6, 2, '', '0'),
-(7, 2, '', '0'),
-(8, 2, '', '0'),
-(9, 2, '', '0'),
-(10, 2, '', '0'),
-(11, 2, '', '0'),
-(12, 2, '', '0'),
-(13, 2, '', '0'),
-(14, 2, '', '0'),
-(15, 2, '', '0'),
-(16, 2, '', '0'),
-(17, 2, '', '0'),
-(18, 2, '', '0'),
-(19, 2, '', '0'),
-(20, 2, '', '0'),
-(21, 1, 'A1', '4'),
-(22, 1, 'A3', '5'),
-(23, 1, '', '0'),
-(24, 1, '', '0'),
-(25, 1, '', '0'),
-(26, 1, '', '0'),
-(27, 1, '', '0'),
-(28, 1, '', '0'),
-(29, 1, '', '0'),
-(30, 1, '', '0'),
-(31, 1, '', '0'),
-(32, 1, '', '0'),
-(33, 1, '', '0'),
-(34, 1, '', '0'),
-(35, 1, '', '0'),
-(36, 1, '', '0'),
-(37, 1, '', '0'),
-(38, 1, '', '0'),
-(39, 1, '', '0'),
-(40, 1, '', '0');
+(41, 2, 'A1', '5'),
+(42, 2, 'A2', '5'),
+(43, 2, 'A3', '6');
 
 -- --------------------------------------------------------
 
@@ -341,7 +304,7 @@ CREATE TABLE `userlog` (
   `unitno` varchar(255) NOT NULL,
   `userEmail` varchar(255) DEFAULT NULL,
   `userip` binary(16) DEFAULT NULL,
-  `loginTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `loginTime` timestamp NULL DEFAULT current_timestamp(),
   `logout` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1014,7 +977,7 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `tablelayout`
 --
 ALTER TABLE `tablelayout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `users`
