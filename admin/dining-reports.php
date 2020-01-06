@@ -17,6 +17,7 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 <html lang="en">
  
 <head>
+   
    <?php
     include('header.php');
        ?>
