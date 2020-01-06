@@ -10,8 +10,8 @@ $query=mysqli_query($con,"select * from weeklymenu where id='$id'");
  while($row=mysqli_fetch_array($query))
  {
 ?>
-  <option value="<?php echo htmlentities($row['id']); ?>"><?php echo htmlentities($row['dishname1']); ?></option>
-  <option value="<?php echo htmlentities($row['id']); ?>"><?php echo htmlentities($row['dishname2']); ?></option>
+  <option value="<?php echo htmlentities($row['dishname1']); ?>"><?php echo htmlentities($row['dishname1']); ?></option>
+  <option value="<?php echo htmlentities($row['dishname2']); ?>"><?php echo htmlentities($row['dishname2']); ?></option>
   <?php
  }
 }
