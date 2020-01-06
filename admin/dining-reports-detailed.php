@@ -91,6 +91,8 @@ while($row=mysqli_fetch_array($query))
                                         <div class="panel-body">
 <div class="row">
 <div class="col-md-12">
+    
+<input type="button" onclick="tableToExcel('sample-table-1', 'W3C Example Table')" value="Export to Excel">
 <?php
 $fdate=$_POST['fromdate'];
 $tdate=$_POST['todate'];
@@ -128,9 +130,6 @@ while($row=mysqli_fetch_array($sql))
 </td>
 <td>
 
-<a href="view-reservation.php?viewid=<?php echo $row['ID'];?>"><i class="fa fa-eye"></i></a>
-<!-- <a href="view-reservation.php?viewid=<?php echo $row['ID'];?>"><i class="fa fa-file-excel"></i></a> -->
-<input type="button" onclick="tableToExcel('testTable', 'W3C Example Table')" value="Export to Excel">
 
 
 </td>
