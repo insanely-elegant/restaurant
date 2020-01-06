@@ -29,7 +29,7 @@ if(!empty($_GET["room_id"]))
         }
       }
       if($totalseat!=0){
-        echo "<option onclick='getSeat(".$totalseat.")'>".$value['tablename']."</option>";
+        echo "<option value='".$totalseat."'>".$value['tablename']."</option>";
       }
     }
 }

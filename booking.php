@@ -197,7 +197,7 @@ while($row=mysqli_fetch_array($query))
 
 									<div class="form-group">
 										<span class="form-label">Select table name</span>
-										<select class="form-control" name="tablename" id="tablename" >
+										<select onchange="getSeat(this.value)" class="form-control" name="tablename" id="tablename" >
 										</select>
 									</div>
 									<div class="row no-margin">
