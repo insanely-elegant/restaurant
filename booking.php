@@ -12,7 +12,7 @@ $currentTime = date( 'm-d-Y h:i:s A', time () );
 
 if(isset($_POST['submit']))
 {
-	
+
 	$timestamp=$_POST['timestamp'];
 	$room=$_POST['room'];
 	$firstname= $_SESSION['firstname'];
@@ -21,7 +21,7 @@ if(isset($_POST['submit']))
 	$condono=$_SESSION['condono'];
 $sql=mysqli_query($con,	"insert into reservation(firstname,lastnameroom,tablename,timestamp,condono) values('$firstname','$lastname','$room','$tablename', '$timestamp', '$condono')");
 $_SESSION['msg']="Reservation Confirmed !!";
-}	
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,11 +50,13 @@ function getFood(val) {
 }
 
 
-function getTable(val) {
+function getTable() {
+	diningdate = document.getElementById('diningdate').value;
+	roomid = document.getElementById('roomid').value;
 	$.ajax({
-	type: "POST",
+	type: "GET",
 	url: "get_table.php",
-	data:'room_id='+val,
+	data:'room_id='+roomid+'&diningdate='+diningdate,
 	success: function(data){
 		$("#tablename").html(data);
 	}
@@ -80,6 +82,7 @@ function getDiningtime(val) {
 		$("#diningtime").html(data);
 	}
 	});
+	getTable();
 }
 
 </script>
@@ -125,7 +128,7 @@ $(document).ready(function() {
 
 <br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br> 	
+<br><br><br><br><br><br><br>
 
 
 <form method="post" enctype=plain/text>
@@ -143,7 +146,7 @@ $(document).ready(function() {
 <div class="form-group">
 <label class="form-label" for="basicinput">Dining Date</label>
 <div class="controls">
-<select name="timestamp" class="form-control" onChange="getDiningtime(this.value);"  required>
+<select id="diningdate" name="timestamp" class="form-control" onChange="getDiningtime(this.value);"  required>
 <option value="">Select Dining Date</option>
 <?php $query=mysqli_query($con,"SELECT DISTINCT diningdate FROM weeklymenu WHERE diningdate >= CURDATE() + INTERVAL 1 DAY");
 while($row=mysqli_fetch_array($query))
@@ -169,7 +172,7 @@ while($row=mysqli_fetch_array($query))
 <div class="controls">
 <select name="dishname"  id="dishname1" class="form-control" onChange="getFood2(this.value);" required>
 </select>
-</div>  
+</div>
 
 <!-- <div class="form-group">
 <label class="form-label" for="basicinput">Dish Name 1</label>
@@ -181,7 +184,7 @@ while($row=mysqli_fetch_array($query))
 <div class="row no-margin">
 							<div class="form-group">
 										<span class="form-label">Select the Room</span>
-										<select class="form-control" name="room" onChange="getTable(this.value);"  >
+										<select id="roomid" class="form-control" name="room" onChange="getTable();"  >
 										<option value="">Select Dining Room</option>
 										<?php $query=mysqli_query($con,"select * from room");
 										while($row=mysqli_fetch_array($query))
@@ -193,13 +196,13 @@ while($row=mysqli_fetch_array($query))
 									</div>
 							</div>
 							<div class="row no-margin">
-								
+
 									<div class="form-group">
 										<span class="form-label">Select table name</span>
 										<select class="form-control" name="tablename" id="tablename" >
 										</select>
 									</div>
-									<div class="row no-margin">	
+									<div class="row no-margin">
 									<div class="form-group">
 										<span class="form-label">Select number of seats</span>
 										<select class="form-control" name="seat" id="seat">
@@ -222,7 +225,7 @@ while($row=mysqli_fetch_array($query))
         <th>Total Seats</th>
         <th>Total Guests</th>
         <th>Date & Time</th>
-		
+
       </tr>
     </thead>
    <tbody>
@@ -231,7 +234,7 @@ while($row=mysqli_fetch_array($query))
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {
-?>									
+?>
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
 											<td><?php echo htmlentities($row['firstname']);?></td>
@@ -242,11 +245,11 @@ while($row=mysqli_fetch_array($query))
 											<td><?php echo htmlentities($row['seat']);?></td>
 											<td><?php echo htmlentities($row['guestno']);?></td>
 											<td><?php echo htmlentities($row['timestamp']);?></td>
-											
-                                               
+
+
 										</tr>
 										<?php $cnt=$cnt+1; } ?>
-										
+
                                 </table>
 
               </div>

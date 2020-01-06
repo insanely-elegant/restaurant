@@ -18,9 +18,10 @@ if(isset($_POST['submit']))
 for ($i = 0; $i < count($_POST['tablename']); $i++) {
         $tablename = $_POST['tablename'][$i];
 				$totalseats = intval($_POST['totalseats'][$i]);
-				echo $_POST['totalseats'][$i];
-				$sql=mysqli_query($con,"insert into tablelayout(roomid,tablename,totalseats) values('$roomid','$tablename','$totalseats')");
-				$_SESSION['msg']="Table Layout Created Successfully !!";
+        if($totalseats!=0){
+          $sql=mysqli_query($con,"insert into tablelayout(roomid,tablename,totalseats) values('$roomid','$tablename','$totalseats')");
+          $_SESSION['msg']="Table Layout Created Successfully !!";
+        }
 }
 
 }
@@ -52,6 +53,17 @@ function getTotaltable(val) {
 	data:'roomid='+val,
 	success: function(data){
 		$("#totaltable").html(data);
+    input = '<div class="input-group" id="div1">&nbsp;\
+      <label for="inputText3" class="col-form-label">Table Name : </label>\
+      <input name="tablename[]" type="text" class="form-control">\
+      <label for="inputText3" class="col-form-label">&nbsp;  Total Seats : </label>&nbsp;\
+      <input name="totalseats[]" type="text" class="form-control">\
+    </div><br>';
+    xinput='';
+    for (var i = 0; i < document.getElementById('totaltable').value; i++) {
+      xinput += input;
+    }
+    document.getElementById('layoutcontainer').innerHTML= xinput;
 	}
 	});
 }
@@ -176,252 +188,15 @@ while($row=mysqli_fetch_array($query))
                                             </div> -->
                                             <div class="input-group" id="div1">&nbsp;
                                             <label class="col-form-label" for="inputText3">Total No. of tables :- </label><br>
-                                            <select name="totaltable" id="totaltable" class="form-control" id="input-select" required>
+                                            <select name="totaltable" id="totaltable" class="form-control" id="input-select">
                                             </select>
                                             </div>
                                             </br>
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
+                                            <div id="layoutcontainer">
+                                            </br>
+
                                             </div>
                                             </br>
-
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                            >&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-                                            <div class="input-group" id="div1">&nbsp;
-                                               <label for="inputText3" class="col-form-label">Table Name</label>&nbsp;
-                                           <input name="tablename[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            <span class="input-group-addon">-</span>&nbsp;
-                                               <label for="inputText3" class="col-form-label">Total Seats</label>&nbsp;
-                                           <input name="totalseats[]" type="text" class="form-control">&nbsp;
-                                            </select>
-                                            </div>
-                                            </br>
-                                            </br>
-
-
- </br>
 
                                             <button type="submit" name="submit" class="btn btn-outline-dark">Create Table Layout</a>
                                         </form>
