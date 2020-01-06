@@ -165,7 +165,7 @@
                             </li>   
                                                 
                             <li class="nav-divider">
-                                Reports {coming soon}
+                                Reports
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-11" aria-controls="submenu-11"><i class="fas fa-fw fa-file"></i> User Reports </a>
@@ -183,7 +183,7 @@
                                 <div id="submenu-12" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="dashboard.php">View Dining Reports</a>
+                                            <a class="nav-link" href="dining-reports.php">View Dining Reports</a>
                                         </li>
                                     </ul>
                                 </div>
