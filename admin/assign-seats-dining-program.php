@@ -23,7 +23,7 @@ $_SESSION['msg']="Room Assigned To The Dining Date !!";
 if(isset($_GET['del']))
 		  {
 		          mysqli_query($con,"delete from weeklymenu where id = '".$_GET['id']."'");
-                  $_SESSION['delmsg']="Weekly Menu Item deleted !!";
+                  $_SESSION['delmsg']="Deleted Weekly Menu Item !!";
 		  }
 
 ?>
@@ -125,19 +125,21 @@ while($row=mysqli_fetch_array($query))
                                             
                                             
                                             <label class="col-form-label" for="inputText3"> Select a Room for this date <a href="#" data-toggle="tooltip" title="Automatically imports all the tables and associated seats to this date"> [ ? ]</a></label>
-                                          <select name="roomname" class="form-control" id="input-select" required>
-                                            <option value="">Select Room</option>
+                                        <select name="roomid" class="form-control" id="input-select" required>
+                                            <option value="">Select a Room</option>
                                             <?php
-                                             $query=mysqli_query($con,"select * from room where roomavailability != 0"); 
+                                             $query=mysqli_query($con,"select * from room");
                                             while($row=mysqli_fetch_array($query))
-                                           {?>
+                                           {
+                                            ?>
                                           <option value="<?php echo $row['id'];?>"><?php echo $row['roomname'];?></option>
                                       <?php } ?>
                                             </select>
+                                            
                                             </div>
                                             
                                            
-                                            <button type="submit" name="submit" class="btn btn-outline-dark">Publish The Menu!</a>
+                                            <button type="submit" name="submit" class="btn btn-outline-dark">Assign Room!</a>
                                         </form>
                                     </div>
                                 
