@@ -108,7 +108,7 @@
                                             <a class="nav-link" href="create-room.php">Manage Reservations</a>
                                         </li>  
                                         <li class="nav-item">
-                                            <a class="nav-link" href="create-table-layout.php">See Today's Guest List</a>
+                                            <a class="nav-link" href="guestlist.php">See Today's Guest List</a>
                                         </li> 
                                           
                                                                    
@@ -168,11 +168,11 @@
                                 Reports
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-11" aria-controls="submenu-11"><i class="fas fa-fw fa-file"></i> User Reports </a>
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-11" aria-controls="submenu-11"><i class="fas fa-fw fa-file"></i> User Information </a>
                                 <div id="submenu-11" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="dashboard.php">View User Reports</a>
+                                            <a class="nav-link" href="dashboard.php">View User Table</a>
                                         </li>
                                         
                                     </ul>
@@ -188,16 +188,7 @@
                                     </ul>
                                 </div>
                             </li>  
-                         <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-13" aria-controls="submenu-13"><i class="fas fa-fw fa-file"></i> Expense Reports </a>
-                                <div id="submenu-13" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="dashboard.php">View Expense Reports</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>  
+                         
                         </ul>
                     </div>
                 </nav>
