@@ -19,7 +19,7 @@ $currentTime = date( 'm-d-Y h:i:s A', time () );
     $condono=$_SESSION['login'];
     $name=$_SESSION['firstname'];
 
-    
+
     $member = 1;
     $guestno = $seats - $member;
 
@@ -39,17 +39,6 @@ $currentTime = date( 'm-d-Y h:i:s A', time () );
  $guestprice = $mealprice2 * $guestno;
  $totalpri = $mealprice + $guestprice;
 
-
-// if(isset($_POST['submit']))
-// {  
-//     $sql=mysqli_query($con,	"insert into reservation(firstname,dishname,room,tablename,seat,diningdate,diningtime,guestno,condono) values('$name','$dishname','$room','$tablename', '$seats', '$diningdate', '$diningtime','$guestno','$condono')");
-//     $_SESSION['msg']="Reservation Confirmed !!";
-//     header('Location: confirmation.php');
-//     exit;
-
-
-
-
 ?>
 <?php
 
@@ -66,7 +55,7 @@ $lname=$_SESSION['lastname'];
 
 
 if(isset($_POST['submit']))
-{  
+{
     $sql=mysqli_query($con,	"insert into reservation(firstname,lastname,dishname,room,tablename,seat,diningdate,diningtime,guestno,condono) values('$name','$lname','$dn','$r','$tn', '$s', '$dd', '$dt','$gn','$condono')");
     $_SESSION['msg']="Reservation Confirmed !!";
     header('Location: confirmation.php');
@@ -91,24 +80,53 @@ if(isset($_POST['submit']))
 
 /* CLIENT-SPECIFIC STYLES */
 #outlook a{padding:0;} /* Force Outlook to provide a "view in browser" message */
-.ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail to display emails at full width */
-.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;} /* Force Hotmail to display normal line spacing */
-body, table, td, a{-webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;} /* Prevent WebKit and Windows mobile changing default text sizes */
-table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;} /* Remove spacing between tables in Outlook 2007 and up */
-img{-ms-interpolation-mode:bicubic;} /* Allow smoother rendering of resized image in Internet Explorer */
+.ReadMsgBody{width:100%;}
+.ExternalClass{width:100%;} /* Force Hotmail to display emails at full width */
+.ExternalClass,
+.ExternalClass p,
+.ExternalClass span,
+.ExternalClass font,
+.ExternalClass td,
+.ExternalClass div {line-height: 100%;} /* Force Hotmail to display normal line spacing */
+body, table, td, a
+{
+	-webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;
+} /* Prevent WebKit and Windows mobile changing default text sizes */
+table, td {
+	mso-table-lspace:0pt;
+	mso-table-rspace:0pt;
+} /* Remove spacing between tables in Outlook 2007 and up */
+img {
+	-ms-interpolation-mode:bicubic;
+	} /* Allow smoother rendering of resized image in Internet Explorer */
 
 /* RESET STYLES */
 body{margin:0; padding:0;}
-img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
-table{border-collapse:collapse !important;}
-body{height:100% !important; margin:0; padding:0; width:100% !important;}
+img
+{
+	 border:0;
+	 height:auto;
+	 line-height:100%;
+	 outline:none;
+	 text-decoration:none;
+ }
+table
+{
+	border-collapse:collapse !important;
+}
+body
+{
+	height:100% !important;
+	margin:0; padding:0;
+	width:100% !important;
+}
 
 /* iOS BLUE LINKS */
 .appleBody a {color:#999999; text-decoration: none;}
 .appleFooter a {color:#999999; text-decoration: none;}
 
 /* MOBILE STYLES */
-@media screen { 
+@media screen {
     @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
     }
 
@@ -206,24 +224,24 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
     }
 
     td[class="flex-p"]{
-        font-size: 14px !important; 
+        font-size: 14px !important;
         line-height: 24px !important;
         font-weight: 300 !important;
     }
 
     td[class="flex-p-bold"]{
-        font-size: 14px !important; 
+        font-size: 14px !important;
         line-height: 24px !important;
     }
 
     td[class="flex-room-charge"]{
-        font-size: 14px !important; 
+        font-size: 14px !important;
         line-height: 24px !important;
         font-weight: 600 !important;
     }
 
     td[class="flex-p-desc_charges"]{
-        font-size: 14px !important; 
+        font-size: 14px !important;
         line-height: 24px !important;
         font-weight: 300 !important;
     }
@@ -262,7 +280,7 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
             <div align="center" style="padding: 0px 15px 0px 15px;">
                 <table border="0" cellpadding="0" cellspacing="0" width="580" class="responsive-table">
                     <!-- LOGO/PREHEADER TEXT -->
-                  
+
                     <tr>
                         <td>
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -284,7 +302,7 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
                                             <tr>
                                                 <td align="center" style="font-size: 38px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #EBEBEB; font-weight: 300;" class="pad-header-copy">
                                                     <?php echo htmlentities($diningdate); ?>
-                                                    
+
                                                 </td>
                                             </tr>
                                         </table>
@@ -417,7 +435,7 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
                                                                 <tr>
                                                                     <td align="center" style="padding: 0 0 0 0; font-family: Arial, sans-serif; color: #333333; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #999999; font-weight: 400; font-size: 12px; line-height: 22px; text-align: left;" bgcolor="#ffffff" class="flex-p">
                                                                     <?php echo htmlentities($diningtime); ?>
-                                                                    <input type="hidden" name="dt", value="<?php echo htmlentities($diningtime); ?>">                                                                
+                                                                    <input type="hidden" name="dt", value="<?php echo htmlentities($diningtime); ?>">
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -525,10 +543,10 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
                                     </table>
                                 </td>
                             </tr>
-                           
+
                             <!-- DASHED LINE -->
-                            
-                            
+
+
                             <!-- ROOM CHARGES -->
                             <tr>
                                 <td style="padding: 0 30px 0 30px;">
@@ -548,7 +566,7 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
                                                             <table cellpadding="0" cellspacing="0" border="0" width="26%" align="left" class="responsive-table">
                                                                 <tr>
                                                                     <td align="center" style="padding: 0 0 0 0; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #999999; font-weight: 600; font-size: 12px; line-height: 22px; text-align: left;" bgcolor="#ffffff" class="flex-room-charge">
-                                                                       
+
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -556,7 +574,7 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
                                                             <table cellpadding="0" cellspacing="0" border="0" width="70%" align="right" class="responsive-table">
                                                                 <tr>
                                                                     <td align="center" style="padding: 0 0 0 0; font-family: Arial, sans-serif; color: #333333; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #999999; font-weight: 600; font-size: 12px; line-height: 22px; text-align: left;" bgcolor="#ffffff" class="flex-room-charge">
-                                                                        
+
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -573,7 +591,7 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
                                                                         <table cellpadding="0" cellspacing="0" border="0" width="47%" align="left" class="responsive-table">
                                                                             <tr>
                                                                                 <td align="center" style="padding: 0 0 0 10px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #999999; font-weight: 600; font-size: 12px; line-height: 22px; text-align: left;" bgcolor="#ffffff" class="flex-room-charge">
-                                                                                    
+
                                                                                 </td>
                                                                             </tr>
                                                                         </table>
@@ -581,7 +599,7 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
                                                                         <table cellpadding="0" cellspacing="0" border="0" width="47%" align="right" class="responsive-table">
                                                                             <tr>
                                                                                 <td align="center" style="padding: 0 0 0 10px; font-family: Arial, sans-serif; color: #333333; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #999999; font-weight: 400; font-size: 12px; line-height: 22px; text-align: left;" bgcolor="#ffffff" class="flex-p">
-                                                                                    
+
                                                                                 </td>
                                                                             </tr>
                                                                         </table>
@@ -623,7 +641,7 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
                                                                         <table cellpadding="0" cellspacing="0" border="0" width="30%" align="right" class="responsive-table">
                                                                             <tr>
                                                                                 <td align="center" style="padding: 0 0 0 0; font-family: Arial, sans-serif; color: #333333; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #999999; font-weight: 600; font-size: 12px; line-height: 22px; text-align: right;" bgcolor="#ffffff" class="flex-p-charges">
-                                                                                <?php echo htmlentities($guestno); ?> x  $ <?php echo htmlentities($mealprice2); ?>  
+                                                                                <?php echo htmlentities($guestno); ?> x  $ <?php echo htmlentities($mealprice2); ?>
                                                                                 </td>
                                                                             </tr>
                                                                         </table>
@@ -647,7 +665,7 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
                                     </table>
                                 </td>
                             </tr>
-                                        
+
                                         <!-- TOTAL -->
                                         <tr>
                                             <td align="right" style="padding: 0 0 0 0; font-size: 36px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #00b1b1; font-weight: 100;" class="align-total-charge">
@@ -675,8 +693,8 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
                                     </table>
                                 </td>
                             </tr>
-                           
-                                       
+
+
 </table>
 
 
@@ -689,7 +707,7 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
                 <tr>
                     <td style="padding: 20px 0px 20px 0px;">
                         <!-- UNSUBSCRIBE COPY -->
-                
+
                     </td>
                 </tr>
             </table>

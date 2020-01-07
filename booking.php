@@ -9,38 +9,6 @@ header('location:index.php');
 else{
 date_default_timezone_set('America/Los_Angeles');
 $currentTime = date( 'm-d-Y h:i:s A', time () );
-
-// if(isset($_POST['submit']))
-// {
-
-// // // 	$timestamp=$_POST['timestamp'];
-// // // 	$room=$_POST['room'];
-// // // 	$firstname= $_SESSION['firstname'];
-// // // 	$lastname= $_SESSION['lastname'];
-// // // 	$tablename=$_POST['tablename'];
-// // // 	$dishname=$_POST['dishname'];
-// // // 	$condono=$_SESSION['condono'];
-
-// // // 	$_SESSION['room']=$room;
-// // // 	$_SESSION['dishname']=$dishname;
-// // // $sql=mysqli_query($con,	"insert into reservation(firstname,lastnameroom,tablename,timestamp,condono) values('$firstname','$lastname','$room','$tablename', '$timestamp', '$condono')");
-// // // $_SESSION['msg']="Reservation Confirmed !!";
-
-// 	$diningdate=$_POST['diningdate'];
-// 	$diningtime=$_POST['diningtime'];
-// 	$dishname=$_POST['dishname'];
-// 	$room=$_POST['room'];
-// 	$tablename=$_POST['tablename'];
-// 	$seats=$_POST['seats'];
-
-// 	$_SESSION['diningdate']=$_POST['diningdate'];
-// 	$_SESSION['diningtime']=$_POST['diningtime'];
-// 	$_SESSION['dishname']=$_POST['dishname'];
-// 	$_SESSION['room']=$_POST['room'];
-// 	$_SESSION['tablename']=$_POST['tablename'];
-// 	$_SESSION['seats']=$_POST['seats'];
-// }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -105,8 +73,6 @@ function getDiningtime(val) {
 
 $(document).ready(function(){
     $('#tablename').on('change',function(){
-        //var optionValue = $(this).val();
-        //var optionText = $('#dropdownList option[value="'+optionValue+'"]').text();
         var tableName = $("#tablename option:selected").text();
         document.getElementById('tablename_h').value = tableName;
     });
@@ -114,8 +80,6 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $('#diningtime').on('change',function(){
-        //var optionValue = $(this).val();
-        //var optionText = $('#dropdownList option[value="'+optionValue+'"]').text();
         var diningTime = $("#diningtime option:selected").text();
         document.getElementById('diningtime_h').value = diningTime;
     });
@@ -123,8 +87,6 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $('#roomid').on('change',function(){
-        //var optionValue = $(this).val();
-        //var optionText = $('#dropdownList option[value="'+optionValue+'"]').text();
         var roomName = $("#roomid option:selected").text();
         document.getElementById('roomname_h').value = roomName;
     });
@@ -218,14 +180,6 @@ while($row=mysqli_fetch_array($query))
 <select name="dishname"  id="dishname1" class="form-control" onChange="getFood2(this.value);" required>
 </select>
 </div>
-
-<!-- <div class="form-group">
-<label class="form-label" for="basicinput">Dish Name 1</label>
-<div class="controls">
-<select name="dishname2"  id="dishname2" class="form-control" required>
-</select>
-</div>  -->
-
 <div class="row no-margin">
 							<div class="form-group">
 										<span class="form-label">Select the Room</span>
