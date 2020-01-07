@@ -99,6 +99,9 @@ while($row=mysqli_fetch_array($query))
 									</div>
 <?php } ?>
 
+
+
+
                                  <div class="module-body table">
 								<table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
 									<thead>
@@ -111,7 +114,8 @@ while($row=mysqli_fetch_array($query))
 											<th>Seat</th>
                                             <th>Date</th>
                                             <th>Guest No</th>
-                                            <th>Condo No</th>
+                                            <th>Condo No</th>                                            
+                                            <th>CheckedIn Status</th>
                                             <th>Order Details</th>
                                             
 										</tr>
@@ -137,7 +141,8 @@ while($row=mysqli_fetch_array($query))
                                             <td><?php echo htmlentities($row['seat']);?></td>
                                             <td><?php echo htmlentities($row['timestamp']);?></td>
                                             <td><?php echo htmlentities($row['guestno']);?></td>
-                                            <td><?php echo htmlentities($row['condono']);?></td>
+                                            <td><?php echo htmlentities($row['condono']);?></td>                                            
+                                            <td><?php echo htmlentities($row['isCheckedin'] ? 'yes' : 'no' );?></td>
                                             <td> <a href="order-details.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button></td>
 										</tr>
 										<?php $cnt=$cnt+1; } ?>

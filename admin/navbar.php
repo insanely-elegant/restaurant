@@ -104,9 +104,7 @@
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-ticket-alt"></i>Manage Reservations</a>
                                 <div id="submenu-5" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="create-room.php">Manage Reservations</a>
-                                        </li>  
+                                        
                                         <li class="nav-item">
                                             <a class="nav-link" href="guestlist.php">See Today's Guest List</a>
                                         </li> 
