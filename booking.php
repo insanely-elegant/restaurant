@@ -10,18 +10,37 @@ else{
 date_default_timezone_set('America/Los_Angeles');
 $currentTime = date( 'm-d-Y h:i:s A', time () );
 
-if(isset($_POST['submit']))
-{
+// if(isset($_POST['submit']))
+// {
 
-	$timestamp=$_POST['timestamp'];
-	$room=$_POST['room'];
-	$firstname= $_SESSION['firstname'];
-	$lastname= $_SESSION['lastname'];
-	$tablename=$_POST['tablename'];
-	$condono=$_SESSION['condono'];
-$sql=mysqli_query($con,	"insert into reservation(firstname,lastnameroom,tablename,timestamp,condono) values('$firstname','$lastname','$room','$tablename', '$timestamp', '$condono')");
-$_SESSION['msg']="Reservation Confirmed !!";
-}
+// // // 	$timestamp=$_POST['timestamp'];
+// // // 	$room=$_POST['room'];
+// // // 	$firstname= $_SESSION['firstname'];
+// // // 	$lastname= $_SESSION['lastname'];
+// // // 	$tablename=$_POST['tablename'];
+// // // 	$dishname=$_POST['dishname'];
+// // // 	$condono=$_SESSION['condono'];
+
+// // // 	$_SESSION['room']=$room;
+// // // 	$_SESSION['dishname']=$dishname;
+// // // $sql=mysqli_query($con,	"insert into reservation(firstname,lastnameroom,tablename,timestamp,condono) values('$firstname','$lastname','$room','$tablename', '$timestamp', '$condono')");
+// // // $_SESSION['msg']="Reservation Confirmed !!";
+
+// 	$diningdate=$_POST['diningdate'];
+// 	$diningtime=$_POST['diningtime'];
+// 	$dishname=$_POST['dishname'];
+// 	$room=$_POST['room'];
+// 	$tablename=$_POST['tablename'];
+// 	$seats=$_POST['seats'];
+
+// 	$_SESSION['diningdate']=$_POST['diningdate'];
+// 	$_SESSION['diningtime']=$_POST['diningtime'];
+// 	$_SESSION['dishname']=$_POST['dishname'];
+// 	$_SESSION['room']=$_POST['room'];
+// 	$_SESSION['tablename']=$_POST['tablename'];
+// 	$_SESSION['seats']=$_POST['seats'];
+// }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,6 +88,7 @@ function getSeat(x) {
 		options +='<option>'+ i +'</option>'
 	}
 	seat.innerHTML = options;
+
 }
 
 function getDiningtime(val) {
@@ -82,6 +102,33 @@ function getDiningtime(val) {
 	});
 	getTable();
 }
+
+$(document).ready(function(){
+    $('#tablename').on('change',function(){
+        //var optionValue = $(this).val();
+        //var optionText = $('#dropdownList option[value="'+optionValue+'"]').text();
+        var tableName = $("#tablename option:selected").text();
+        document.getElementById('tablename_h').value = tableName;
+    });
+});
+
+$(document).ready(function(){
+    $('#diningtime').on('change',function(){
+        //var optionValue = $(this).val();
+        //var optionText = $('#dropdownList option[value="'+optionValue+'"]').text();
+        var diningTime = $("#diningtime option:selected").text();
+        document.getElementById('diningtime_h').value = diningTime;
+    });
+});
+
+$(document).ready(function(){
+    $('#roomid').on('change',function(){
+        //var optionValue = $(this).val();
+        //var optionText = $('#dropdownList option[value="'+optionValue+'"]').text();
+        var roomName = $("#roomid option:selected").text();
+        document.getElementById('roomname_h').value = roomName;
+    });
+});
 
 </script>
 
@@ -129,7 +176,7 @@ $(document).ready(function() {
 <br><br><br><br><br><br><br>
 
 
-<form method="post" enctype=plain/text>
+<form method="POST" action="review.php"  >
 							<p style="font-size: x-large; text-align: center; color: #f14634">Hello, <?php echo $_SESSION['firstname'];?></p>
 							<p style="font-size:xx-large; text-align: center;">Select a date</p><br>
 							<div class="row no-margin">
@@ -144,7 +191,7 @@ $(document).ready(function() {
 <div class="form-group">
 <label class="form-label" for="basicinput">Dining Date</label>
 <div class="controls">
-<select id="diningdate" name="timestamp" class="form-control" onChange="getDiningtime(this.value);"  required>
+<select id="diningdate" name="diningdate" class="form-control" onChange="getDiningtime(this.value);"  required>
 <option value="">Select Dining Date</option>
 <?php $query=mysqli_query($con,"SELECT DISTINCT diningdate FROM weeklymenu WHERE diningdate >= CURDATE() + INTERVAL 1 DAY");
 while($row=mysqli_fetch_array($query))
@@ -164,7 +211,7 @@ while($row=mysqli_fetch_array($query))
 </select>
 </div>
 </div>
-
+<input type="hidden" name="diningtime_h" id="diningtime_h">
 <div class="form-group">
 <label class="form-label" for="basicinput">Dish Name 1</label>
 <div class="controls">
@@ -193,6 +240,7 @@ while($row=mysqli_fetch_array($query))
 										<span class="select-arrow"></span>
 									</div>
 							</div>
+							<input type="hidden" name="roomname_h" id="roomname_h">
 							<div class="row no-margin">
 
 									<div class="form-group">
@@ -200,10 +248,11 @@ while($row=mysqli_fetch_array($query))
 										<select onchange="getSeat(this.value)" class="form-control" name="tablename" id="tablename" >
 										</select>
 									</div>
+									<input type="hidden" name="tablename_h" id="tablename_h">
 									<div class="row no-margin">
 									<div class="form-group">
 										<span class="form-label">Select number of seats</span>
-										<select class="form-control" name="seat" id="seat">
+										<select class="form-control" name="seats" id="seat">
 										</select>
 									</div>
 								</div>
