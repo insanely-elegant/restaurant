@@ -258,7 +258,7 @@ while($row=mysqli_fetch_array($query))
 								</div>
 							</div>
 <div class="form-btn">
-                <button id="submit" type="submit" name="submit" class="submit-btn" >REVIEW BOOKING</button>
+                <button id="submit" type="submit" name="submit2" class="submit-btn" >REVIEW BOOKING</button>
 </br></br><p style="font-size:xx-large; text-align: center;">Guest List for the week</p><br>
 <table id="example"  cellpadding="0" cellspacing="0" border="0" class="display datatable-1 table table-bordered table-striped" style="width:100%;">
     <thead>
@@ -269,9 +269,9 @@ while($row=mysqli_fetch_array($query))
         <th>Unit No</th>
         <th>Room</th>
         <th>Table Name</th>
-        <th>Total Seats</th>
         <th>Total Guests</th>
-        <th>Date & Time</th>
+        <th>Date</th>
+        <th>Time</th>
 
       </tr>
     </thead>
@@ -289,9 +289,9 @@ while($row=mysqli_fetch_array($query))
 											<td><?php echo htmlentities($row['condono']);?></td>
 											<td><?php echo htmlentities($row['room']);?></td>
 											<td><?php echo htmlentities($row['tablename']);?></td>
-											<td><?php echo htmlentities($row['seat']);?></td>
 											<td><?php echo htmlentities($row['guestno']);?></td>
-											<td><?php echo htmlentities($row['timestamp']);?></td>
+											<td><?php echo htmlentities($row['diningdate']);?></td>
+											<td><?php echo htmlentities($row['diningtime']);?></td>
 
 
 										</tr>

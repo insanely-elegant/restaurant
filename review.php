@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['login'])==0)
 	{
@@ -37,32 +38,46 @@ $currentTime = date( 'm-d-Y h:i:s A', time () );
 
  $guestprice = $mealprice2 * $guestno;
  $totalpri = $mealprice + $guestprice;
-    
-    
-    // echo "Condo no: "; echo $condono;
-    // echo "<br>";
-    // echo "Name :"; echo $name;
-    // echo "<br>";
-    // echo  $diningdate;
-    // echo "<br>";
-    // echo $diningtime;
-    // echo "<br>";
-    // echo $dishname;
-    // echo "<br>";
-    // echo $room;
-    // echo "<br>";
-    // echo $tablename;
-    // echo "<br>";
-    // echo "Total seats "; echo $seats;
-    // echo "<br>";
-    // echo "price for menber "; echo $mealprice;
-    // echo "<br>";
-    // echo "Price for "; echo $guestno; echo "guests "; echo $guestprice;
-    // echo "<br>";
-    // echo "Total price "; echo $totalpri;
-}
-?>
 
+
+// if(isset($_POST['submit']))
+// {  
+//     $sql=mysqli_query($con,	"insert into reservation(firstname,dishname,room,tablename,seat,diningdate,diningtime,guestno,condono) values('$name','$dishname','$room','$tablename', '$seats', '$diningdate', '$diningtime','$guestno','$condono')");
+//     $_SESSION['msg']="Reservation Confirmed !!";
+//     header('Location: confirmation.php');
+//     exit;
+
+
+
+
+?>
+<?php
+
+$dd = $_POST['dd'];
+$dt  = $_POST['dt'];
+$r = $_POST['r'];
+$tn = $_POST['tn'];
+$s = $_POST['s'];
+$gn = $_POST['gn'];
+$dn = $_POST['dn'];
+$condono=$_SESSION['login'];
+$name=$_SESSION['firstname'];
+$lname=$_SESSION['lastname'];
+
+
+if(isset($_POST['submit']))
+{  
+    $sql=mysqli_query($con,	"insert into reservation(firstname,lastname,dishname,room,tablename,seat,diningdate,diningtime,guestno,condono) values('$name','$lname','$dn','$r','$tn', '$s', '$dd', '$dt','$gn','$condono')");
+    $_SESSION['msg']="Reservation Confirmed !!";
+    header('Location: confirmation.php');
+    exit;
+
+
+
+}
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -240,6 +255,7 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
 <body style="margin: 0; padding: 0;">
 
 <!-- HEADER -->
+<form action="review.php" method="post">
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
     <tr>
         <td bgcolor="#EBEBEB">
@@ -268,6 +284,7 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
                                             <tr>
                                                 <td align="center" style="font-size: 38px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #EBEBEB; font-weight: 300;" class="pad-header-copy">
                                                     <?php echo htmlentities($diningdate); ?>
+                                                    
                                                 </td>
                                             </tr>
                                         </table>
@@ -372,6 +389,7 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
                                                                 <tr>
                                                                     <td align="center" style="padding: 0 0 0 0; font-family: Arial, sans-serif; color: #333333; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #999999; font-weight: 400; font-size: 12px; line-height: 22px; text-align: left;" bgcolor="#ffffff" class="flex-p">
                                                                     <?php echo htmlentities($diningdate); ?>
+                                                                    <input type="hidden" name="dd" value="<?php echo htmlentities($diningdate); ?>">
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -399,6 +417,7 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
                                                                 <tr>
                                                                     <td align="center" style="padding: 0 0 0 0; font-family: Arial, sans-serif; color: #333333; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #999999; font-weight: 400; font-size: 12px; line-height: 22px; text-align: left;" bgcolor="#ffffff" class="flex-p">
                                                                     <?php echo htmlentities($diningtime); ?>
+                                                                    <input type="hidden" name="dt", value="<?php echo htmlentities($diningtime); ?>">                                                                
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -426,6 +445,7 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
                                                                 <tr>
                                                                     <td align="center" style="padding: 0 0 0 0; font-family: Arial, sans-serif; color: #333333; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #999999; font-weight: 400; font-size: 12px; line-height: 22px; text-align: left;" bgcolor="#ffffff" class="flex-p">
                                                                     <?php echo htmlentities($room); ?>
+                                                                    <input type="hidden" name="r", value="<?php echo htmlentities($room); ?>">
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -455,6 +475,9 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
                                                                 <tr>
                                                                     <td align="center" style="padding: 0 0 0 0; font-family: Arial, sans-serif; color: #333333; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #999999; font-weight: 400; font-size: 12px; line-height: 22px; text-align: left;" bgcolor="#ffffff" class="flex-p">
                                                                     <?php echo htmlentities($tablename); ?>
+                                                                    <input type="hidden" name="tn" value="<?php echo htmlentities($tablename); ?>">
+                                                                    <input type="hidden" name="dn" value="<?php echo htmlentities($dishname); ?>">
+                                                                    <input type="hidden" name="gn" value="<?php echo htmlentities($guestno); ?>">
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -481,6 +504,7 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
                                                                 <tr>
                                                                     <td align="center" style="padding: 0 0 0 0; font-family: Arial, sans-serif; color: #333333; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #999999; font-weight: 400; font-size: 12px; line-height: 22px; text-align: left;" bgcolor="#ffffff" class="flex-p">
                                                                     <?php echo htmlentities($seats); ?>
+                                                                    <input type="hidden" name="s" value="<?php echo htmlentities($seats); ?>">
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -627,7 +651,7 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
                                         <!-- TOTAL -->
                                         <tr>
                                             <td align="right" style="padding: 0 0 0 0; font-size: 36px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #00b1b1; font-weight: 100;" class="align-total-charge">
-                                           $<?php echo htmlentities($totalpri); ?>
+                                            $<?php echo htmlentities($totalpri); ?>
                                             </td>
                                         </tr>
                                         <!-- TOTAL TITLE -->
@@ -672,6 +696,9 @@ body{height:100% !important; margin:0; padding:0; width:100% !important;}
         </td>
     </tr>
 </table>
+<button type="submit" name="submit">CONFIRM RESERVATION</button>
 
+</form>
+<?php } ?>
 </body>
 </html>
