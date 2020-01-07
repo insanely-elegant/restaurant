@@ -72,7 +72,7 @@ while($row=mysqli_fetch_array($query))
                                     <div class="card-body">
                                         <h5 class="text-muted">Total Booking</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">9</h1>
+                                            <h1 class="mb-1">19</h1>
                                         </div>
                                         <div class="metric-label d-inline-block float-right text-success font-weight-bold">
                                             <span><i class="fa fa-fw fa-arrow-up"></i></span><span>5.86%</span>
@@ -98,9 +98,9 @@ while($row=mysqli_fetch_array($query))
                             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Total Expense</h5>
+                                        <h5 class="text-muted">Total Users</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">0.00</h1>
+                                            <h1 class="mb-1">4</h1>
                                         </div>
                                         <div class="metric-label d-inline-block float-right text-primary font-weight-bold">
                                             <span>N/A</span>

@@ -104,11 +104,9 @@
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-ticket-alt"></i>Manage Reservations</a>
                                 <div id="submenu-5" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
+                                        
                                         <li class="nav-item">
-                                            <a class="nav-link" href="create-room.php">Manage Reservations</a>
-                                        </li>  
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="create-table-layout.php">See Today's Guest List</a>
+                                            <a class="nav-link" href="guestlist.php">See Today's Guest List</a>
                                         </li> 
                                           
                                                                    
@@ -167,17 +165,17 @@
                             <li class="nav-divider">
                                 Reports
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-11" aria-controls="submenu-11"><i class="fas fa-fw fa-file"></i> User Reports </a>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-11" aria-controls="submenu-11"><i class="fas fa-fw fa-file"></i> User Information </a>
                                 <div id="submenu-11" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="dashboard.php">View User Reports</a>
+                                            <a class="nav-link" href="dashboard.php">View User Table</a>
                                         </li>
                                         
                                     </ul>
                                 </div>
-                            </li>  
+                            </li>   -->
                             <li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fas fa-fw fa-file"></i> Dining Reports </a>
                                 <div id="submenu-12" class="collapse submenu" style="">
@@ -188,16 +186,7 @@
                                     </ul>
                                 </div>
                             </li>  
-                         <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-13" aria-controls="submenu-13"><i class="fas fa-fw fa-file"></i> Expense Reports </a>
-                                <div id="submenu-13" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="dashboard.php">View Expense Reports</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>  
+                         
                         </ul>
                     </div>
                 </nav>

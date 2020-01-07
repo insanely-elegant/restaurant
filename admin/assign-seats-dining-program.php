@@ -14,18 +14,16 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 if(isset($_POST['submit']))
 {
 	$diningdate=$_POST['diningdate'];
-	$diningtime=$_POST['diningtime'];
-	$dishname1=$_POST['dishname1'];
-	$dishname2=$_POST['dishname2'];
-$sql=mysqli_query($con,"insert into weeklymenu(diningdate,diningtime,dishname1,dishname2) values('$diningdate','$diningtime','$dishname1','$dishname2')");
-$_SESSION['msg']="New Dish Published To The Weekly Menu !!";
+	$roomid=$_POST['id'];
+$sql=mysqli_query($con,"update weeklymenu set roomid='$roomid' where diningdate='$diningdate'");
+$_SESSION['msg']="Room Assigned To The Dining Date !!";
 
 }
 
 if(isset($_GET['del']))
 		  {
 		          mysqli_query($con,"delete from weeklymenu where id = '".$_GET['id']."'");
-                  $_SESSION['delmsg']="Weekly Menu Item deleted !!";
+                  $_SESSION['delmsg']="Deleted Weekly Menu Item !!";
 		  }
 
 ?>
@@ -37,18 +35,7 @@ if(isset($_GET['del']))
     include('header.php');
        ?>
 
-<script>
-function getDiningtime(val) {
-	$.ajax({
-	type: "POST",
-	url: "get_diningtime.php",
-	data:'diningid='+val,
-	success: function(data){
-		$("#diningtime").html(data);
-	}
-	});
-}
-</script>
+
 </head>
 <body>
     <?php $query=mysqli_query($con,"select * from admins");
@@ -122,14 +109,13 @@ while($row=mysqli_fetch_array($query))
                                             <div class="form-group">
                                           
                                             <div class="alert alert-info" role="alert">
-                                               Tip! : You can select the date and time that was entered <a href="create-dining-dates.php">here</a> and attach
-                                               2 dishes to that period.
+                                               Tip! : You can select a dining date and assign a room to the date.
                                             </div>
-                                       <label class="col-form-label" for="inputText3"> Select a Dining Date</label>
-                                           <select name="diningdate" class="form-control" id="input-select" onChange="getDiningtime(this.value);" required>
+                                       <label class="col-form-label" for="inputText3"> Select a Dining Date created for the program</label>
+                                           <select name="diningdate" class="form-control" id="input-select" required>
                                             <option value="">Select a Date</option>
                                             <?php
-                                             $query=mysqli_query($con,"select DISTINCT diningdate  from diningdates where status = 'enabled'");
+                                             $query=mysqli_query($con,"select DISTINCT diningdate from weeklymenu");
                                             while($row=mysqli_fetch_array($query))
                                            {
                                             ?>
@@ -138,37 +124,22 @@ while($row=mysqli_fetch_array($query))
                                             </select>
                                             
                                             
-                                            <label class="col-form-label" for="inputText3"> Select a Dining Time</label>
-                                           <select name="diningtime" id="diningtime" class="form-control" id="input-select" required>
-                                            <!-- <option value="">Select a Time</option> -->
-                                            </select>
-                                            </div>
-                                            
-                                           <div class="form-group">
-                                                <label for="inputText3" class="col-form-label">Assign Room</label>
-                                                 <select name="room" class="form-control" id="input-select" required>
-                                            <option value="">Select the Room</option>
+                                            <label class="col-form-label" for="inputText3"> Select a Room for this date <a href="#" data-toggle="tooltip" title="Automatically imports all the tables and associated seats to this date"> [ ? ]</a></label>
+                                        <select name="roomid" class="form-control" id="input-select" required>
+                                            <option value="">Select a Room</option>
                                             <?php
                                              $query=mysqli_query($con,"select * from room");
                                             while($row=mysqli_fetch_array($query))
-                                           {?>
+                                           {
+                                            ?>
                                           <option value="<?php echo $row['id'];?>"><?php echo $row['roomname'];?></option>
                                       <?php } ?>
                                             </select>
+                                            
                                             </div>
-                                             <div class="form-group">
-                                                <label for="inputText3" class="col-form-label">Assign Specific table to this date and time</label>
-                                                 <select name="tablename" class="form-control" id="input-select" required>
-                                            <option value="">Select table</option>
-                                            <?php
-                                             $query=mysqli_query($con,"select * from tablename where totalseats != 0"); //need to pull the room selected above
-                                            while($row=mysqli_fetch_array($query))
-                                           {?>
-                                          <option value="<?php echo $row['id'];?>"><?php echo $row['tablename'];?></option>
-                                      <?php } ?>
-                                            </select>
-                                            </div>
-                                            <button type="submit" name="submit" class="btn btn-outline-dark">Publish The Menu!</a>
+                                            
+                                           
+                                            <button type="submit" name="submit" class="btn btn-outline-dark">Assign Room!</a>
                                         </form>
                                     </div>
                                 
@@ -181,26 +152,31 @@ while($row=mysqli_fetch_array($query))
 											<th>Dining Date</th>
 											<th>Dining Time</th>
 											<th>Dish Name 1</th>
-											<th>Dish Name 2 </th>
+                                            <th>Dish Name 2 </th>
+                                            <th>Room Name </th>                                            
+                                            <th>Total Tables</th>
 											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
 
-<?php $query=mysqli_query($con,"select * from weeklymenu");
+<?php $query=mysqli_query($con,"select weeklymenu.id as wid, weeklymenu.diningdate as dd, weeklymenu.diningtime as dt, weeklymenu.dishname1 as d1, weeklymenu.dishname2 as d2,
+weeklymenu.roomid as rid, room.id as roomid, room.roomname as rname, room.totaltables as tt,room.productimage1 as p1 from weeklymenu join room on weeklymenu.roomid = room.id");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {
 ?>									
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
-											<td><?php echo htmlentities($row['diningdate']);?></td>
-											<td><?php echo htmlentities($row['diningtime']);?></td>
-											<td><?php echo htmlentities($row['dishname1']);?></td>
-											<td><?php echo htmlentities($row['dishname2']);?></td>
+											<td><?php echo htmlentities($row['dd']);?></td>
+											<td><?php echo htmlentities($row['dt']);?></td>
+											<td><?php echo htmlentities($row['d1']);?></td>
+											<td><?php echo htmlentities($row['d2']);?></td>
+											<td><?php echo htmlentities($row['rname']);?></td>
+											<td><?php echo htmlentities($row['tt']);?></td>
 											<td>
-                                                <!-- <a href="edit-dining-program.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button> -->
-                                            <a href="create-dining-program.php?id=<?php echo $row['id']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
+                                          <a href="productimages/<?php echo $row['roomid'];?>/<?php echo htmlentities($row['p1']);?>">View Table Image </a>
+                                            <a href="create-dining-program.php?wid=<?php echo $row['wid']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
                                                 <i class="far fa-trash-alt"></i>
                                             </button>
 										</tr>
