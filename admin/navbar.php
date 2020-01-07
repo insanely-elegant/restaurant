@@ -165,7 +165,7 @@
                             <li class="nav-divider">
                                 Reports
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-11" aria-controls="submenu-11"><i class="fas fa-fw fa-file"></i> User Information </a>
                                 <div id="submenu-11" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
@@ -175,7 +175,7 @@
                                         
                                     </ul>
                                 </div>
-                            </li>  
+                            </li>   -->
                             <li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fas fa-fw fa-file"></i> Dining Reports </a>
                                 <div id="submenu-12" class="collapse submenu" style="">
