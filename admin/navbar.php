@@ -165,17 +165,17 @@
                             <li class="nav-divider">
                                 Reports
                             </li>
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-11" aria-controls="submenu-11"><i class="fas fa-fw fa-file"></i> User Information </a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-11" aria-controls="submenu-11"><i class="fas fa-fw fa-file"></i> Print Weekly Menu </a>
                                 <div id="submenu-11" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="dashboard.php">View User Table</a>
+                                            <a class="nav-link" href="weekly-menu-reports.php">Print Weekly Menu</a>
                                         </li>
                                         
                                     </ul>
                                 </div>
-                            </li>   -->
+                            </li>  
                             <li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fas fa-fw fa-file"></i> Dining Reports </a>
                                 <div id="submenu-12" class="collapse submenu" style="">
