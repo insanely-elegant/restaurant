@@ -74,7 +74,7 @@
                                     <ul class="nav flex-column">
                                       
                                         <li class="nav-item">
-                                            <a class="nav-link" href="assign-seats-dining-program.php">Assign Room to Table to Date & Time</a>
+                                            <a class="nav-link" href="assign-seats-dining-program.php">Assign Room to Dining Date</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="create-dining-program.php">Assign Dish to Date & Time</a>
