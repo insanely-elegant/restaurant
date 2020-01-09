@@ -150,20 +150,20 @@ while($row=mysqli_fetch_array($query))
 					</div>
 					<!-- End Unit No -->
 
-<!-- Begin Dining Date Selection -->
-<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">	
-<select id="diningdate" name="diningdate" class="form-control" onChange="getDiningtime(this.value);"  required>
-<option value="">Select Dining Date</option>
-<?php $query=mysqli_query($con,"SELECT DISTINCT diningdate FROM weeklymenu WHERE diningdate >= CURDATE() + INTERVAL 1 DAY");
-while($row=mysqli_fetch_array($query))
-{?>
+					<!-- Begin Dining Date Selection -->
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">	
+					<select id="diningdate" name="diningdate" class="form-control" onChange="getDiningtime(this.value);"  required>
+					<option value="">Select Dining Date</option>
+					<?php $query=mysqli_query($con,"SELECT DISTINCT diningdate FROM weeklymenu WHERE diningdate >= CURDATE() + INTERVAL 1 DAY");
+					while($row=mysqli_fetch_array($query))
+					{?>
 
-<option id="usrdate" value="<?php echo $row['diningdate'];?>"><?php echo $row['diningdate'];?></option>
-<?php } ?>
-</select>
-<span class="focus-input100"></span>
-</div>
-<!-- End Dining Date Selection -->
+					<option id="usrdate" value="<?php echo $row['diningdate'];?>"><?php echo $row['diningdate'];?></option>
+					<?php } ?>
+					</select>
+					<span class="focus-input100"></span>
+					</div>
+					<!-- End Dining Date Selection -->
 
 					<!-- Begin Dining Time -->
 					<div class="wrap-input100 validate-input m-b-16">
