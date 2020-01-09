@@ -9,7 +9,9 @@ header('location:index.php');
 else{
 date_default_timezone_set('America/Los_Angeles');
 $currentTime = date( 'm-d-Y h:i:s A', time () );
- $query=mysqli_query($con,"select * from room");
+
+
+ $query=mysqli_query($con,"select * from room"); // fetches room image from selected room id 
 while($row=mysqli_fetch_array($query))
 {
 	$rooms .="<option value=".$row['id'].">".$row['roomname']."</option>";
@@ -49,7 +51,7 @@ while($row=mysqli_fetch_array($query))
 
 
  <script>
-function getFood(val) {
+function getFood(val) { //fetches dishname
 	$.ajax({
 	type: "POST",
 	url: "get_food.php",
@@ -60,13 +62,13 @@ function getFood(val) {
 	});
 }
 
-function changeLayout(x) {
+function changeLayout(x) { //fetches room layout
 	roomlayout = document.getElementById('roomlayout');
 	<?php
 	echo $layouts;
 	 ?>
 }
-function getTable() {
+function getTable() { //fetches tablename
 	diningdate = document.getElementById('diningdate').value;
 	roomid = document.getElementById('roomid').value;
 	changeLayout(roomid);
@@ -79,7 +81,7 @@ function getTable() {
 	}
 	});
 }
-function getSeat(x) {
+function getSeat(x) { //fetches total available seats
 	seat = document.getElementById('seat');
 	options ='';
 	for (var i = x; i > 0; i--) {
@@ -88,7 +90,7 @@ function getSeat(x) {
 	seat.innerHTML = options;
 }
 
-function getDiningtime(val) {
+function getDiningtime(val) { //fetches dining time relative to dining dates
 	$.ajax({
 	type: "POST",
 	url: "get_diningtime.php",
@@ -100,21 +102,21 @@ function getDiningtime(val) {
 	getTable();
 }
 
-$(document).ready(function(){
+$(document).ready(function(){ //passes selected option name for tablename to hidden input fields
     $('#tablename').on('change',function(){
         var tableName = $("#tablename option:selected").text();
         document.getElementById('tablename_h').value = tableName;
     });
 });
 
-$(document).ready(function(){
+$(document).ready(function(){ //passes selected option name for diningtime to hidden input fields
     $('#diningtime').on('change',function(){
         var diningTime = $("#diningtime option:selected").text();
         document.getElementById('diningtime_h').value = diningTime;
     });
 });
 
-$(document).ready(function(){
+$(document).ready(function(){ //passes selected option name for roomid to hidden input fields
     $('#roomid').on('change',function(){
         var roomName = $("#roomid option:selected").text();
         document.getElementById('roomname_h').value = roomName;
