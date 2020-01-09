@@ -9,6 +9,11 @@ header('location:index.php');
 else{
 date_default_timezone_set('America/Los_Angeles');
 $currentTime = date( 'm-d-Y h:i:s A', time () );
+ $query=mysqli_query($con,"select * from room");
+while($row=mysqli_fetch_array($query))
+{
+	$rooms .="<option value=".$row['id'].">".$row['roomname']."</option>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -185,11 +190,9 @@ while($row=mysqli_fetch_array($query))
 										<span class="form-label">Select the Room</span>
 										<select id="roomid" class="form-control" name="room" onChange="getTable();"  >
 										<option value="">Select Dining Room</option>
-										<?php $query=mysqli_query($con,"select * from room");
-										while($row=mysqli_fetch_array($query))
-										{?>
-											<option value="<?php echo $row['id'];?>"><?php echo $row['roomname'];?></option>
-										<?php } ?>
+										<?php
+										echo $rooms;
+										?>
 										</select>
 										<span class="select-arrow"></span>
 									</div>
@@ -251,7 +254,7 @@ while($row=mysqli_fetch_array($query))
 										</tr>
 										<?php $cnt=$cnt+1; } ?>
 
-                                </table>
+      </table>
 
               </div>
 
