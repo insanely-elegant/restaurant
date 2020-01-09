@@ -16,7 +16,7 @@ while($row=mysqli_fetch_array($query))
 {
 	$rooms .="<option value=".$row['id'].">".$row['roomname']."</option>";
 	$layouts .= "if(x==".$row['id']."){
-		roomlayout.innerHTML='<img style=\"width:100%;\" src=\"./admin/productimages/'+x+'/".$row['productimage1']."\"/>';
+		roomlayout.innerHTML='Table Layout Image :  <img style=\"width:100%;\" src=\"./admin/productimages/'+x+'/".$row['productimage1']."\"/>';
 	}";
 }
 ?>
@@ -212,7 +212,10 @@ while($row=mysqli_fetch_array($query))
 					<div class="wrap-input100 validate-input m-b-16">
 						<select class="form-control" name="seats" id="seat">
 						</select>
-						<span class="focus-input100"></span>
+						<span class="focus-input100"></span>    
+						<small id="emailHelp" class="form-text text-muted">Select Number of seats you wish to book. </br>
+						 Currently showing remaining seats left at this table.</small>
+
 					</div>
 					<!-- End Number of seats -->
 					
@@ -221,6 +224,7 @@ while($row=mysqli_fetch_array($query))
 						Review Your Booking
 					</button>
 					</div>
+					
 					<div style="margin-top:10px;" id="roomlayout"></div> <!-- Shows Image of the Table -->
 					</form>
 

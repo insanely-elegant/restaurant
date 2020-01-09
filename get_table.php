@@ -1,4 +1,4 @@
-<option>Select Table</option>
+<option>Select Table Number / Name</option>
 <?php
 include('includes/config.php');
 if(!empty($_GET["room_id"]))
