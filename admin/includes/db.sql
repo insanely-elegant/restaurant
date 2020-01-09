@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2020 at 03:17 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Generation Time: Jan 09, 2020 at 08:34 AM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -231,17 +231,29 @@ CREATE TABLE `reservation` (
   `diningtime` time NOT NULL,
   `guestno` varchar(255) NOT NULL,
   `condono` varchar(255) NOT NULL,
+  `freedinersmealtotalprice` decimal(5,2) DEFAULT NULL,
   `isConfirmed` varchar(255) NOT NULL,
-  `isCheckedin` varchar(255) DEFAULT NULL
+  `isCheckedin` varchar(255) DEFAULT NULL,
+  `membermealprice` decimal(5,2) DEFAULT NULL,
+  `membermealtaxpercent` decimal(5,2) DEFAULT NULL,
+  `membermealtaxvalue` decimal(5,2) DEFAULT NULL,
+  `membermealtotalprice` decimal(5,2) DEFAULT NULL,
+  `guestmealprice` decimal(5,2) DEFAULT NULL,
+  `guestmealtaxpercent` decimal(5,2) DEFAULT NULL,
+  `guestmealtaxvalue` decimal(5,2) DEFAULT NULL,
+  `guestmealtotalprice` decimal(5,2) DEFAULT NULL,
+  `freedinersmealprice` decimal(5,2) DEFAULT NULL,
+  `freedinersmealtaxpercent` decimal(5,2) DEFAULT NULL,
+  `freedinersmealtaxvalue` decimal(5,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reservation`
 --
 
-INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `isConfirmed`, `isCheckedin`) VALUES
-(3, '', 'Duane', '', 'Apple Pie', 'Game Room', 'A2', 0, '3', '2020-01-09', '13:01:00', '2', 'E302', '', NULL),
-(5, '', 'Duane', '', 'Bread Basket', 'Game Room', 'A2', 0, '5', '2020-01-09', '13:01:00', '4', 'E302', '', NULL);
+INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `freedinersmealtotalprice`, `isConfirmed`, `isCheckedin`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `guestmealprice`, `guestmealtaxpercent`, `guestmealtaxvalue`, `guestmealtotalprice`, `freedinersmealprice`, `freedinersmealtaxpercent`, `freedinersmealtaxvalue`) VALUES
+(3, '', 'Duane', '', 'Apple Pie', 'Game Room', 'A2', 0, '3', '2020-01-09', '13:01:00', '2', 'E302', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, '', 'Duane', '', 'Bread Basket', 'Game Room', 'A2', 0, '5', '2020-01-09', '13:01:00', '4', 'E302', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -831,7 +843,15 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-07 01:08:24', NULL, 1),
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-07 01:18:13', NULL, 1),
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-07 01:21:45', NULL, 1),
-(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-07 01:26:32', NULL, 1);
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-07 01:26:32', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-08 05:32:46', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-08 17:37:51', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-08 17:43:32', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-08 18:01:48', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-08 18:02:40', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-08 18:39:39', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-08 18:40:15', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-08 19:30:42', NULL, 1);
 
 -- --------------------------------------------------------
 
