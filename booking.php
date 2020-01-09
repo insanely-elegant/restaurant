@@ -216,8 +216,6 @@ while($row=mysqli_fetch_array($query))
 					</div>
 					<!-- End Number of seats -->
 					
-					
-
 					<div class="container-login100-form-btn m-t-17">
 					<button id="submit" type="submit" name="submit2" class="login100-form-btn" style="background-color: #0c5460">
 						Review Your Booking
@@ -225,7 +223,6 @@ while($row=mysqli_fetch_array($query))
 					</div>
 					<div style="margin-top:10px;" id="roomlayout"></div> <!-- Shows Image of the Table -->
 					</form>
-				
 
 			</div>
 		</div>
