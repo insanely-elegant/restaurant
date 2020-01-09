@@ -221,7 +221,7 @@ while($row=mysqli_fetch_array($query))
 						Review Your Booking
 					</button>
 					</div>
-					<div style="margin-top:10px;" id="roomlayout"></div>
+					<div style="margin-top:10px;" id="roomlayout"></div> <!-- Shows Image of the Table -->
 					</form>
 				
 
