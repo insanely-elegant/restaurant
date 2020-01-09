@@ -39,6 +39,9 @@ var tableToExcel = (function() {
 
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width">
+	<?php $query=mysqli_query($con,"select * from users where unitno='".$_SESSION['login']."'");
+while($row=mysqli_fetch_array($query))
+{?>
     
   <style type="text/css">
 	@media only screen{
@@ -407,56 +410,108 @@ a:hover {
 </style>
 </head>
 <body>
-<?php $query=mysqli_query($con,"select * from users where unitno='".$_SESSION['login']."'");
-while($row=mysqli_fetch_array($query))
-{?>
-<a href="booking.php" class="previous">&laquo; Go Back to Home Page</a> <br><br>
+
+<a href="booking-history.php" class="previous">&laquo; Go Back </a> <br><br>
+<a href="booking.php" class="previous">&laquo; Go to Home Page </a> <br><br>
                         <table class="row" style="border-spacing:0;border-collapse:collapse;text-align:left;vertical-align:top;padding:0;width:100%;position:relative;display:table;">
                           <tbody>
                             <tr style="padding:0;vertical-align:top;text-align:left;">
                               <th class="small-12 large-12 columns first last" style="font-size:16px;padding:0;text-align:left;color:#0a0a0a;font-family:Helvetica, Arial, sans-serif;font-weight:normal;line-height:1.3;margin:0 auto;padding-bottom:16px;width:564px;padding-left:16px;padding-right:16px;">
                                 <p class="headline headline-lg heavy max-width-485" style="padding:0;margin:0;text-align:left;font-family:Helvetica, Helvetica, Arial, sans-serif;max-width:485px;font-weight:700;color:#000;line-height:1.3;font-size:32px;-webkit-hyphens:none;-ms-hyphens:none;margin-bottom:0 !important;">
-                                  Datewise Expenditure Summary for <?php echo $row['unitno'];?>
+                                  Datewise Expenditure Summary
                                 </p>
                               </th>
                             </tr>
                           </tbody>
                         </table>
                       </div>
-                      <div style="padding-bottom:8px;">
-                        <table class="row" style="border-spacing:0;border-collapse:collapse;text-align:left;vertical-align:top;padding:0;width:100%;position:relative;display:table;">
-                          <tbody>
-                            <tr style="padding:0;vertical-align:top;text-align:left;">
-                              <th class="small-12 large-12 columns first last" style="font-size:16px;padding:0;text-align:left;color:#0a0a0a;font-family:Helvetica, Arial, sans-serif;font-weight:normal;line-height:1.3;margin:0 auto;padding-bottom:16px;width:564px;padding-left:16px;padding-right:16px;">
-                                <p class="body body-lg body-link-rausch light" style="padding:0;margin:0;font-family:Helvetica, Helvetica, Arial, sans-serif;text-align:left;color:#000;line-height:1.4;font-size:16px;-webkit-hyphens:none;-ms-hyphens:none;margin-bottom:0px !important;">
-                                  You can generate your dining expenditure summary at Silver Glen. 
-                                <form role="form" method="post" action="booking-history-detailed.php">
-														<div class="form-group">
-															<label for="exampleInputPassword1">
-																 From Date:
-															</label>
-					<input type="date" class="form-control" name="fromdate" id="fromdate" value="" required='true'>
-														</div>
-		
-													<div class="form-group">
-															<label for="exampleInputPassword1">
-																 To Date::
-															</label>
-					 <input type="date" class="form-control" name="todate" id="todate" value="" required='true'>
+                      <div class="card">
+                                    <div class="card-body">
+                                        <div class="panel-body">
+<div class="row">
+<div class="col-md-12">
+</br>
 
-														</div>	
-														
-														</br>
-														<button type="submit" name="submit" id="submit" class="btn btn-o btn-success">
-															Show me my reservation history
-														</button>
-													</form>
-                         
-                                </th>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
+<?php
+$condo = $row['unitno'];
+$fdate=$_POST['fromdate'];
+$tdate=$_POST['todate'];
+
+?>
+<h5 align="center" style="color:blue">Dining Report for Unit No:  <?php echo $condo?> </br> <p style="color:black "> </br> from  </p> <?php echo $fdate?> <p style="color:black "></br> to </p><?php echo $tdate?></h5> </br>
+<div class="card-body">
+<div class="form-group"><input class="btn btn-secondary btn-lg" id="btnExport" type="button" onclick="Export()" value="Print Dining Report"></br> </br>
+    <div align="left"> Search by filters below: </div>  </br>
+    <input  class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Dish name" title="Type in a dish name"> </div>
+</div>
+    <table class="table table-hover" id="sample-table-1">
+<thead>
+<tr>
+<th class="center">#</th>
+<th>Booking Name </th>
+<th>Table Name </th>
+<th>Dining Date </th>
+<th>Dish Name</th>
+<th>Total Seats Booked </th>
+<th>Member Meal Price </th>
+<th>Guest Meal Price</th>
+</tr>
+</thead>
+<tbody>
+<?php
+ 
+$sql=mysqli_query($con,"SELECT * FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono = '$condo' ");
+$cnt=1;
+while($row=mysqli_fetch_array($sql))
+{
+?>
+<tr>
+<td class="center"><?php echo $cnt;?>.</td>
+<td><?php echo $row['lastname'];?></td>
+<td><?php echo $row['tablename'];?></td>
+<td><?php echo $row['diningdate'];?>
+<td><?php echo $row['dishname'];?>
+<td class="hidden-xs"><?php echo $row['guestno'];?></td>
+<td><?php echo $row['membermealprice'];?>
+<td><?php echo $row['guestmealprice'];?>
+</td>
+<td>
+
+
+
+</td>
+</tr>
+<?php 
+$cnt=$cnt+1;
+ }?></tbody>
+</table>
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("sample-table-1");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[4];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+</script>
+
+</div>
+</div>
+</div>
+</div>
+</div>
                        
                         
                         
@@ -464,8 +519,25 @@ while($row=mysqli_fetch_array($query))
         
                     
                         
-                    
-                    
+                    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script type="text/javascript">
+        function Export() {
+            html2canvas(document.getElementById('sample-table-1'), {
+                onrendered: function (canvas) {
+                    var data = canvas.toDataURL();
+                    var docDefinition = {
+                        content: [{
+                            image: data,
+                            width: 500
+                        }]
+                    };
+                    pdfMake.createPdf(docDefinition).download("Table.pdf");
+                }
+            });
+        }
+    </script>
+                
                     
                    
                 
