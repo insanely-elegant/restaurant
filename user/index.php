@@ -1,86 +1,85 @@
 <?php
-session_start();
-error_reporting(0);
+ session_start();
+ error_reporting(0);
 include('includes/config.php');
-{
-date_default_timezone_set('Asia/Kolkata');// change according timezone
-$currentTime = date( 'd-m-Y h:i:s A', time () );
 
-if(isset($_POST['submit']))
+// Code for User login
+if(isset($_POST['login']))
 {
-	
-	$timestamp=$_POST['timestamp'];
-	$room=$_POST['room'];
-	$firstname= $_SESSION['firstname'];
-	$lastname= $_SESSION['lastname'];
-	$tablename=$_POST['tablename'];
-	$condono=$_SESSION['condono'];
-$sql=mysqli_query($con,	"insert into reservation(firstname,lastnameroom,tablename,timestamp,condono) values('$firstname','$lastname','$room','$tablename', '$timestamp', '$condono')");
-$_SESSION['msg']="Reservation Confirmed !!";
-}	
+   $unitno=$_POST['unitno'];
+  $password=$_POST['password'];
+ $query=mysqli_query($con,"SELECT * FROM users WHERE unitno='$unitno' and password='$password'");
+ $num=mysqli_fetch_array($query);
+ if($num>0)
+ {
+ $extra="booking.php";
+ $_SESSION['login']=$_POST['unitno'];
+$_SESSION['id']=$num['id'];
+ $_SESSION['firstname']=$num['firstname'];
+ $_SESSION['lastname']=$num['lastname'];
+$uip=$_SERVER['REMOTE_ADDR'];
+$status=1;
+ $log=mysqli_query($con,"insert into userlog(unitno,userip,status) values('".$_SESSION['login']."','$uip','$status')");
+ $host=$_SERVER['HTTP_HOST'];
+$uri=rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
+header("location:http://$host$uri/$extra");
+ exit();
+ }
+}
+
+
 ?>
+
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>dataTables buttons and bootstrap 3</title>
-<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
-<link rel='stylesheet' href='https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css'>
-<link rel='stylesheet' href='https://cdn.datatables.net/buttons/1.2.2/css/buttons.bootstrap.min.css'><link rel="stylesheet" href="./style.css">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Silver Glen - Book a Table</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700" rel="stylesheet">
+
+
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+
+
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+
 
 </head>
-<body>
-<!-- partial:index.partial.html -->
-<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-	<thead>
-		<tr>
-			<th>ID</th>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Unit No</th>
-			<th>Room</th>
-			<th>Table Name</th>
-			<th>Total Seats</th>
-			<th>Total Guests</th>
-			<th>Date & Time</th>
-	
-		</tr>
-	</thead>
-	<tbody>
-	
-		<?php $query=mysqli_query($con,"select * from reservation");
-	$cnt=1;
-	while($row=mysqli_fetch_array($query))
-	{
-	?>
-		<tr>
-			<td><?php echo htmlentities($cnt);?></td>
-			<td><?php echo htmlentities($row['firstname']);?></td>
-			<td><?php echo htmlentities($row['lastname']);?></td>
-			<td><?php echo htmlentities($row['condono']);?></td>
-			<td><?php echo htmlentities($row['room']);?></td>
-			<td><?php echo htmlentities($row['tablename']);?></td>
-			<td><?php echo htmlentities($row['seat']);?></td>
-			<td><?php echo htmlentities($row['guestno']);?></td>
-			<td><?php echo htmlentities($row['timestamp']);?></td>
-	
-	
-		</tr>
-		<?php $cnt=$cnt+1; } ?>
-	
-		</table>
-<!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
-<script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
-<script src='https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js'></script>
-<script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.colVis.min.js'></script>
-<script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js'></script>
-<script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js'></script>
-<script src='https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js'></script>
-<script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.bootstrap.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js'></script>
-<script src='https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js'></script>
-<script src='https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js'></script><script  src="script.js"></script>
 
+<body>
+	<div id="booking" class="section">
+		<div class="section-center">
+			<div class="container">
+				<div class="row">
+					<div class="booking-form">
+						<form method="post">
+						<span style="color:red;">
+							<?php echo htmlentities($_SESSION['errmsg']); 	?>
+							<?php echo htmlentities($_SESSION['errmsg']=""); ?>
+						</span>
+							<p style="font-size:xx-large; text-align: center;">Silver Glen - Login</p></br>
+							<div class="form-group">
+								<span class="form-label">Unit Number</span>
+								<input class="form-control" name="unitno" type="text" placeholder="Your Residence Number" required>
+							</div>
+							<div class="form-group">
+								<span class="form-label">Password</span>
+								<input class="form-control" name="password" type="password" placeholder="Enter your password" required>
+							</div>
+							<div class="form-btn">
+								<button type="submit" class="submit-btn" name="login" value="login">Login</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
-</html> <?php } ?>
+
+</html>

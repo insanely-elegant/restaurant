@@ -1,35 +1,23 @@
 <?php
- session_start();
- error_reporting(0);
+session_start();
+error_reporting(1);
 include('includes/config.php');
-
-// Code for User login
-if(isset($_POST['login']))
-{
-   $unitno=$_POST['unitno'];
-  $password=$_POST['password'];
- $query=mysqli_query($con,"SELECT * FROM users WHERE unitno='$unitno' and password='$password'");
- $num=mysqli_fetch_array($query);
- if($num>0)
- {
- $extra="menu.php";
- $_SESSION['login']=$_POST['unitno'];
-$_SESSION['id']=$num['id'];
- $_SESSION['firstname']=$num['firstname'];
- $_SESSION['lastname']=$num['lastname'];
-$uip=$_SERVER['REMOTE_ADDR'];
-$status=1;
- $log=mysqli_query($con,"insert into userlog(unitno,userip,status) values('".$_SESSION['login']."','$uip','$status')");
- $host=$_SERVER['HTTP_HOST'];
-$uri=rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
-header("location:http://$host$uri/$extra");
- exit();
- }
+if(strlen($_SESSION['login'])==0)
+	{
+header('location:index.php');
 }
-
-
+else{
+date_default_timezone_set('America/Los_Angeles');
+$currentTime = date( 'm-d-Y h:i:s A', time () );
+ $query=mysqli_query($con,"select * from room");
+while($row=mysqli_fetch_array($query))
+{
+	$rooms .="<option value=".$row['id'].">".$row['roomname']."</option>";
+	$layouts .= "if(x==".$row['id']."){
+		roomlayout.innerHTML='<img style=\"width:100%;\" src=\"./admin/productimages/'+x+'/".$row['productimage1']."\"/>';
+	}";
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,57 +48,49 @@ header("location:http://$host$uri/$extra");
 <!--===============================================================================================-->
 </head>
 <body>
-	
+	<?php $query=mysqli_query($con,"select * from users where unitno='".$_SESSION['login']."'");
+while($row=mysqli_fetch_array($query))
+{?>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
-						
-				<form method="post" class="login100-form validate-form flex-sb flex-w">
-				<span style="color:red;">
-							<?php echo htmlentities($_SESSION['errmsg']); 	?>
-							<?php echo htmlentities($_SESSION['errmsg']=""); ?>
-						</span>
-					<span class="login100-form-title p-b-51">
-						Login
-					</span>
-
-					
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Unit Number is required">
-						<input class="input100" type="text" name="unitno" placeholder="Unit Number">
-						<span class="focus-input100"></span>
-					</div>
-					
-					
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<input class="input100" type="password" name="password" placeholder="Password">
-						<span class="focus-input100"></span>
-					</div>
-					
-					<div class="flex-sb-m w-full p-t-3 p-b-24">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Remember me
-							</label>
-						</div>
-
-						<div>
-							<a href="forgot.php" class="txt1">
-								Forgot?
-							</a>
-						</div>
-					</div>
-
-					<div class="container-login100-form-btn m-t-17">
-						<button type="submit" name="login" value="login" class="login100-form-btn">
-							Login
-						</button>
-					</div>
-
-				</form>
+			<p style="font-size: x-large; text-align: center; color: #f14634">Hello, <?php echo $_SESSION['firstname'];?></p>
+			
+			<div class="container-login100-form-btn m-t-17">
+			<button class="login100-form-btn" style="background-color: #0c5460" onClick="booking();">
+			Make a New Reservation
+			</button>
 			</div>
-		</div>
-	</div>
+
+			<div class="container-login100-form-btn m-t-17">
+			<button class="login100-form-btn" onClick="reservation();">
+			View Reservations by other members
+			</button>
+			</div>
+
+			<div class="container-login100-form-btn m-t-17">
+			<button class="login100-form-btn" style="background-color: #f3361dc4;" onClick="history();"> 
+			View Your Booking History
+			</button>
+			</div>
+			<script>
+			function booking()
+			{
+			location.href = "booking.php";
+			} 
+			function reservation()
+			{
+			location.href = "reserved/index.php"
+			}
+			function history()
+			{
+			location.href= "user/booking-history.php"	
+			}
+			</script>
+</div>
+</div>
+</div>
+				
 	
 
 	<div id="dropDownSelect1"></div>
@@ -133,4 +113,4 @@ header("location:http://$host$uri/$extra");
 	<script src="js/main.js"></script>
 
 </body>
-</html>
+</html><?php }} ?>
