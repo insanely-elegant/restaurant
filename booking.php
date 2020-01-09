@@ -13,6 +13,9 @@ $currentTime = date( 'm-d-Y h:i:s A', time () );
 while($row=mysqli_fetch_array($query))
 {
 	$rooms .="<option value=".$row['id'].">".$row['roomname']."</option>";
+	$layouts .= "if(x==".$row['id']."){
+		roomlayout.innerHTML='<img style=\"width:100%;\" src=\"./admin/productimages/'+x+'/".$row['productimage1']."\"/>';
+	}";
 }
 ?>
 <!DOCTYPE html>
@@ -41,10 +44,16 @@ function getFood(val) {
 	});
 }
 
-
+function changeLayout(x) {
+	roomlayout = document.getElementById('roomlayout');
+	<?php
+	echo $layouts;
+	 ?>
+}
 function getTable() {
 	diningdate = document.getElementById('diningdate').value;
 	roomid = document.getElementById('roomid').value;
+	changeLayout(roomid);
 	$.ajax({
 	type: "GET",
 	url: "get_table.php",
@@ -61,7 +70,6 @@ function getSeat(x) {
 		options +='<option>'+ i +'</option>'
 	}
 	seat.innerHTML = options;
-
 }
 
 function getDiningtime(val) {
@@ -216,6 +224,9 @@ while($row=mysqli_fetch_array($query))
 							</div>
 <div class="form-btn">
                 <button id="submit" type="submit" name="submit2" class="submit-btn" >REVIEW BOOKING</button>
+
+								<div style="margin-top:10px;" id="roomlayout"></div>
+
 </br></br><p style="font-size:xx-large; text-align: center;">Guest List for the week</p><br>
 <table id="example"  cellpadding="0" cellspacing="0" border="0" class="display datatable-1 table table-bordered table-striped" style="width:100%;">
     <thead>
