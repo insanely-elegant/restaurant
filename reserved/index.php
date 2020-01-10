@@ -183,7 +183,16 @@ $(document).ready(function (){
       <div class="card-title">
            <div class="row" style="margin-bottom: 0;">
              <div class="col s12 m4">
-               <h5>Silver Glen : Reservations</h5>
+			   <h5>Silver Glen : Reservations</h5>
+			   <button id="submit" type="submit" name="submit2" class="login100-form-btn" style="background-color: #0c5460; color:white;" onClick="booking();">
+				Book a Table
+					</button>
+					<script>
+					function booking()
+					{
+					location.href= "../booking.php"	
+					}
+					</script>
              </div>
              <div class="col s12 m3 right-align">
                <span style="font-size:18px;font-weight:500;" multiple="true">First Name:                </span>
