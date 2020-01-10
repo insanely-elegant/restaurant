@@ -124,6 +124,7 @@ while($row=mysqli_fetch_array($query))
                                                </br>Note: If you change the room name here, it'll reflect everywhere immediately. </br>This doesn't affect the data that was created when the 
                                                Tables and reservations already made before making adjustments here. </br> This will only affect the data from here onwards.
                                                </br> To Disable the Room, Please headover to the dates that you wish to disable the room and set Visibility Status to "Disabled".
+                                                    </br>Note: When Uploading a new Image, please ensure that the file name has no spaces or special characters. It must be one word.
                                             </div>
                                             <label class="col-form-label" for="inputText3">Create New Room Name</label>
                                             <input id="inputText3" name="roomname" type="text" class="form-control">
