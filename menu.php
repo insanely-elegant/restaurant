@@ -21,7 +21,7 @@ while($row=mysqli_fetch_array($query))
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Silver Glen - Login</title>
+	<title>Make a Selection - Silver Glen</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -84,7 +84,7 @@ while($row=mysqli_fetch_array($query))
 			}
 			function history()
 			{
-			location.href= "user/booking-history.php"	
+			location.href= "booking-history.php"	
 			}
 			</script>
 </div>

@@ -9,110 +9,252 @@ header('location:index.php');
 else{
 date_default_timezone_set('America/Los_Angeles');
 $currentTime = date( 'm-d-Y h:i:s A', time () );
- $query=mysqli_query($con,"select * from room");
-while($row=mysqli_fetch_array($query))
-{
-	$rooms .="<option value=".$row['id'].">".$row['roomname']."</option>";
-	$layouts .= "if(x==".$row['id']."){
-		roomlayout.innerHTML='<img style=\"width:100%;\" src=\"./admin/productimages/'+x+'/".$row['productimage1']."\"/>';
-	}";
-}
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<title>Table V02</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-<!--===============================================================================================-->
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>DataTables</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <script
+    type="text/javascript"
+    src="https://code.jquery.com/jquery-1.11.0.js"
+    
+  ></script>
+
+<script>
+body {
+  background: #fff;
+}
+</script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.css">
+      <script type="text/javascript" src="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+
+  <style id="compiled-css" type="text/css">
+      
+  </style>
+
+
+  <!-- TODO: Missing CoffeeScript 2 -->
+
+  <script type="text/javascript">//<![CDATA[
+
+    
+$(document).ready(function (){
+    var table = $('#example').DataTable({
+       dom: 'lrtip',
+        initComplete: function () {
+          this.api().columns([0]).every( function () {
+            var column = this;
+            console.log(column);
+            var select = $("#fnameFltr"); 
+            column.data().unique().sort().each( function ( d, j ) {
+              select.append( '<option value="'+d+'">'+d+'</option>' )
+            } );
+		  } );
+		  this.api().columns([1]).every( function () {
+            var column = this;
+            console.log(column);
+            var select = $("#lnameFltr"); 
+            column.data().unique().sort().each( function ( d, j ) {
+              select.append( '<option value="'+d+'">'+d+'</option>' )
+            } );
+		  } );
+		  this.api().columns([2]).every( function () {
+            var column = this;
+            console.log(column);
+            var select = $("#tableFltr"); 
+            column.data().unique().sort().each( function ( d, j ) {
+              select.append( '<option value="'+d+'">'+d+'</option>' )
+            } );
+		  } );
+		  this.api().columns([3]).every( function () {
+            var column = this;
+            console.log(column);
+            var select = $("#dateFltr"); 
+            column.data().unique().sort().each( function ( d, j ) {
+              select.append( '<option value="'+d+'">'+d+'</option>' )
+            } );
+          } );
+           this.api().columns([5]).every( function () {
+            var column = this;
+            console.log(column);
+            var select = $("#dishFltr"); 
+            column.data().unique().sort().each( function ( d, j ) {
+              select.append( '<option value="'+d+'">'+d+'</option>' )
+            } );
+          } );
+          $("#fnameFltr,#lnameFltr,#tableFltr,#dateFltr,#dishFltr").material_select();
+       }
+    });
+    
+    $('#fnameFltr').on('change', function(){
+    	var search = [];
+      
+      $.each($('#fnameFltr option:selected'), function(){
+      		search.push($(this).val());
+      });
+      
+      search = search.join('|');
+      table.column(0).search(search, true, false).draw();  
+    });
+	
+	 $('#lnameFltr').on('change', function(){
+    	var search = [];
+      
+      $.each($('#lnameFltr option:selected'), function(){
+      		search.push($(this).val());
+      });
+      
+      search = search.join('|');
+      table.column(1).search(search, true, false).draw();  
+    });
+	
+	
+	 $('#tableFltr').on('change', function(){
+    	var search = [];
+      
+      $.each($('#tableFltr option:selected'), function(){
+      		search.push($(this).val());
+      });
+      
+      search = search.join('|');
+      table.column(2).search(search, true, false).draw();  
+    });
+	
+	
+	 $('#dateFltr').on('change', function(){
+    	var search = [];
+      
+      $.each($('#dateFltr option:selected'), function(){
+      		search.push($(this).val());
+      });
+      
+      search = search.join('|');
+      table.column(3).search(search, true, false).draw();  
+    });
+    
+
+
+    $('#dishFltr').on('change', function(){
+    	var search = [];
+      
+      $.each($('#dishFltr option:selected'), function(){
+      		search.push($(this).val());
+      });
+      
+      search = search.join('|');
+      table.column(5).search(search, true, false).draw();
+    });
+});
+ 
+
+
+  //]]></script>
+
 </head>
 <body>
-	<?php $query=mysqli_query($con,"select * from users where unitno='".$_SESSION['login']."'");
-while($row=mysqli_fetch_array($query))
-{?>
-	<div class="limiter">
-		<div class="container-table100">
-			<div class="wrap-table100">
-					<div class="table">
-
-						<div class="row header">
-							
-							<div class="cell">
-								Full Name
-							</div>
-							
-							<div class="cell">
-								Unit No
-							</div>
-							<div class="cell">
-								Table
-							</div>
-							<div class="cell">
-								Date
-							</div>
-							<div class="cell">
-								Time
-							</div>
-						</div>
-
-<?php $query=mysqli_query($con,"select * from reservation");
+    <div class="row">
+  <div class="col s12">
+    <div class="card z-depth-3 hoverable">
+      <div class="card-title">
+           <div class="row" style="margin-bottom: 0;">
+             <div class="col s12 m4">
+               <h5>Summary</h5>
+             </div>
+             <div class="col s12 m3 right-align">
+               <span style="font-size:18px;font-weight:500;" multiple="true">First Name:                </span>
+               <select multiple="true" id="fnameFltr">
+               </select>
+			 </div>
+			  <div class="col s12 m3 right-align">
+			   <span style="font-size:18px;font-weight:500;">Last Name:
+			 </span>
+               <select id="lnameFltr">
+               </select>
+             </div>
+             <div class="col s6 m3">
+               <span style="font-size:18px;font-weight:500;">Table Name:</span>
+               <select id="tableFltr" multiple="true"></select>
+			 </div>
+			 <div class="col s12 m3 right-align">
+               <span style="font-size:18px;font-weight:500;" multiple="true">Dining Date:                </span>
+               <select multiple="true" id="dateFltr">
+               </select>
+             </div>
+             <div class="col s6 m3">
+               <span style="font-size:18px;font-weight:500;">Dish Name:</span>
+               <select id="dishFltr" multiple="true"></select>
+             </div>
+         </div>
+      </div>
+      <div class="card-action">
+        <div class="summTblDiv">
+              <table id="example" class="display" cellspacing="0" width="100%">
+                  <thead>
+                      <tr>
+						  <th>First Name</th>
+						  <th>Last Name</th>
+                          <th>Table name</th>
+                          <th>Dining Date</th>
+                          <th>Dining Time</th>
+                          <th>Dish Name</th>
+                          <th>Total Guests</th>
+                      </tr>
+                  </thead>
+                  <tfoot>
+                      <tr>
+						  <th>First Name</th>
+						  <th>Last Name</th>
+                          <th>Table name</th>
+                          <th>Dining Date</th>
+                          <th>Dining Time</th>
+                          <th>Dish Name</th>
+                          <th>Total Guests</th>
+                      </tr>
+                  </tfoot>
+                  <tbody>
+					  <?php
+ 
+$sql=mysqli_query($con,"SELECT * FROM reservation ");
 $cnt=1;
-while($row=mysqli_fetch_array($query))
+while($row=mysqli_fetch_array($sql))
 {
 ?>
-						<div class="row">
-							
-							<div class="cell" data-title="Full Name">
-							<?php echo htmlentities($row['firstname']);?>
-							</div>
-							
-							<div class="cell" data-title="Unit No">
-							<?php echo htmlentities($row['condono']);?>
-							</div>
-							<div class="cell" data-title="Table">
-							<?php echo htmlentities($row['tablename']);?>
-							</div>
-							<div class="cell" data-title="Date">
-							<?php echo htmlentities($row['diningdate']);?>
-							</div>
-							<div class="cell" data-title="Time">
-							<?php echo htmlentities($row['diningtime']);?>
-							</div>		
-						</div><?php $cnt=$cnt+1; } ?>
-					</div>
-				
-			</div>	
-		</div>
-	</div>
+                      <tr>
+ <td><?php echo $row['firstname'];?></td>
+<td><?php echo $row['lastname'];?></td>
+<td><?php echo $row['tablename'];?></td>
+<td><?php echo $row['diningdate'];?>
+<td><?php echo $row['diningtime'];?>
+<td><?php echo $row['dishname'];?>
+<td class="hidden-xs"><?php echo $row['guestno'];?></td>
+</tr>
+            <?php 
+$cnt=$cnt+1;
+ }?>      </tbody>
+              </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
 
-
-	
-
-<!--===============================================================================================-->	
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
-
+  
+  
 </body>
 </html>
-<?php }} ?>
+<?php
+
+}
+?>

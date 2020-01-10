@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(1);
+error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['login'])==0)
 	{
@@ -10,20 +10,68 @@ else{
 date_default_timezone_set('America/Los_Angeles');
 $currentTime = date( 'm-d-Y h:i:s A', time () );
 
+    $diningdate=$_POST['diningdate'];
+	$diningtime=$_POST['diningtime_h'];
+	$dishname=$_POST['dishname'];
+	$room=$_POST['roomname_h'];
+	$tablename=$_POST['tablename_h'];
+    $seats=$_POST['seats'];
+    $condono=$_SESSION['login'];
+    $name=$_SESSION['firstname'];
 
- $query=mysqli_query($con,"select * from room"); // fetches room image from selected room id 
-while($row=mysqli_fetch_array($query))
-{
-	$rooms .="<option value=".$row['id'].">".$row['roomname']."</option>";
-	$layouts .= "if(x==".$row['id']."){
-		roomlayout.innerHTML='<img style=\"width:100%;\" src=\"./admin/productimages/'+x+'/".$row['productimage1']."\"/>';
-	}";
-}
+
+    $member = 1;
+    $guestno = $seats - $member;
+
+    $query=mysqli_query($con,"SELECT * FROM pricingmodels WHERE dinerid=1");
+    $num=mysqli_fetch_array($query);
+    if($num>0)
+    {
+    $mealprice=$num['mealtotalprice'];
+ }
+ $query2=mysqli_query($con,"SELECT * FROM pricingmodels WHERE dinerid=2");
+    $num2=mysqli_fetch_array($query2);
+    if($num2>0)
+    {
+    $mealprice2=$num2['mealtotalprice'];
+ }
+
+ $guestprice = $mealprice2 * $guestno;
+ $totalpri = $mealprice + $guestprice;
+
 ?>
+<?php
+
+$dd = $_POST['dd'];
+$dt  = $_POST['dt'];
+$r = $_POST['r'];
+$tn = $_POST['tn'];
+$s = $_POST['s'];
+$gn = $_POST['gn'];
+$dn = $_POST['dn'];
+$condono=$_SESSION['login'];
+$name=$_SESSION['firstname'];
+$lname=$_SESSION['lastname'];
+
+
+if(isset($_POST['submit']))
+{
+    $sql=mysqli_query($con,	"insert into reservation(firstname,lastname,dishname,room,tablename,seat,diningdate,diningtime,guestno,condono) values('$name','$lname','$dn','$r','$tn', '$s', '$dd', '$dt','$gn','$condono')");
+    $_SESSION['msg']="Reservation Confirmed !!";
+    header('Location: confirmation.php');
+    exit;
+
+
+
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Silver Glen - Login</title>
+	<title>Review Your Booking Information - Silver Glen</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -102,19 +150,11 @@ while($row=mysqli_fetch_array($query))
 
 <!-- Header -->
 <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
-  <tr>
-    
-  </tr>
+  
   <tr>
     <td>
       <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff" style="border-radius: 10px 10px 0 0;">
-        <tr class="hiddenMobile">
-          <td height="40"></td>
-        </tr>
-        <tr class="visibleMobile">
-          <td height="30"></td>
-        </tr>
-
+    
         <tr>
           <td>
             <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
@@ -124,12 +164,6 @@ while($row=mysqli_fetch_array($query))
                     
                     <table width="220" border="0" cellpadding="0" cellspacing="0" align="right" class="col">
                       <tbody>
-                        <tr class="visibleMobile">
-                          <td height="20"></td>
-                        </tr>
-                        <tr>
-                          <td height="5"></td>
-                        </tr>
                         <tr>
                           <td style="font-size: 21px; color: #ff0000; letter-spacing: -1px; font-family: 'Open Sans', sans-serif; line-height: 1; vertical-align: top; text-align: right;">
                             Booking Details:
@@ -141,11 +175,59 @@ while($row=mysqli_fetch_array($query))
                         </tr>
                         <tr class="visibleMobile">
                           <td height="20"></td>
-                        </tr>
-                        <tr>
-                          <td style="font-size: 12px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
+						</tr>
+						<tr>
+                          <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
                            
-                            <small>MARCH 4TH 2016</small>
+                            <small> Booking First Name:  <strong> <?php echo htmlentities($name); ?></strong></small></br></br>
+                          </td>
+						</tr>
+						<tr>
+                          <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
+                           
+                            <small> Your Unit Number: <strong> <?php echo htmlentities($condono); ?></strong> </small></br></br>
+                          </td>
+						</tr>
+                        <tr>
+                          <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
+                           
+                            <small> Dining Date: <strong> <?php echo htmlentities($diningdate); ?>
+                                                                    <input type="hidden" name="dd" value="<?php echo htmlentities($diningdate); ?>"></strong></small></br></br>
+                          </td>
+						</tr>
+									
+						<tr>
+                          <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
+                           
+                            <small> Dining Time: <strong>
+						
+							<?php echo htmlentities($diningtime); ?>
+                                                                    <input type="hidden" name="dt", value="<?php echo htmlentities($diningtime); ?>">
+						</strong> </small></br></br>
+                          </td>
+						</tr>
+						<tr>
+                          <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
+                           
+                            <small> Selected Room: <strong>  <?php echo htmlentities($room); ?>
+                                                                    <input type="hidden" name="r", value="<?php echo htmlentities($room); ?>"></strong> </small></br></br>
+                          </td>
+						</tr>
+						<tr>
+                          <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
+                            <small> Your Table Number: <strong>
+							<?php echo htmlentities($tablename); ?>
+                                                                    <input type="hidden" name="tn" value="<?php echo htmlentities($tablename); ?>">
+                                                                    <input type="hidden" name="dn" value="<?php echo htmlentities($dishname); ?>">
+                                                                    <input type="hidden" name="gn" value="<?php echo htmlentities($guestno); ?>">		
+						
+						</strong> </small></br></br>
+                          </td>
+						</tr>
+						<tr>
+                          <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
+                            <small> Total Booked Seats: <strong> <?php echo htmlentities($seats); ?>
+                                                                    <input type="hidden" name="s" value="<?php echo htmlentities($seats); ?>"></strong> </small></br></br>
                           </td>
                         </tr>
                       </tbody>
@@ -204,8 +286,8 @@ while($row=mysqli_fetch_array($query))
                         Member
                       </td>
                       
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">1</td>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$299.95</td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"> 1 </td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$ <?php echo htmlentities($mealprice); ?></td>
                     </tr>
                     <tr>
                       <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
@@ -213,8 +295,8 @@ while($row=mysqli_fetch_array($query))
                     <tr>
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">Guest</td>
                      
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">1</td>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$29.95</td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"> <?php echo htmlentities($guestno); ?> </td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$ <?php echo htmlentities($mealprice2); ?></td>
                     </tr>
                     <tr>
                       <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
@@ -246,14 +328,7 @@ while($row=mysqli_fetch_array($query))
                 <!-- Table Total -->
                 <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
                   <tbody>
-                    <tr>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; ">
-                        Subtotal
-                      </td>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; white-space:nowrap;" width="80">
-                        $329.90
-                      </td>
-                    </tr>
+                   
                     <tr>
                     
                     </tr>
@@ -262,7 +337,7 @@ while($row=mysqli_fetch_array($query))
                         <strong>Grand Total (Incl.Tax)</strong>
                       </td>
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
-                        <strong>$344.90</strong>
+                        <strong>$<?php echo htmlentities($totalpri); ?></strong>
                       </td>
                     </tr>
                     <tr>
@@ -322,7 +397,7 @@ while($row=mysqli_fetch_array($query))
                             </tr>
                             <tr>
                               <td style="font-size: 21px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 1; vertical-align: top; ">
-                                <strong>Next Page: Booking will be confirmed!</strong>
+                                <strong>Booking will be confirmed in the next page.</strong>
                               </td>
                             </tr>
                             <tr>
@@ -330,7 +405,7 @@ while($row=mysqli_fetch_array($query))
                             </tr>
                             <tr>
                               <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
-                                Cancellations not applicable after booking is confirmed!
+                                Cancellations not applicable after booking is confirmed.
                               </td>
                             </tr>
                           </tbody>
@@ -357,8 +432,8 @@ while($row=mysqli_fetch_array($query))
 
 					
 					<div class="container-login100-form-btn m-t-17">
-					<button id="submit" type="submit" name="submit2" class="login100-form-btn" style="background-color: #0c5460">
-						Review Your Booking
+					<button id="submit" type="submit" name="submit" class="login100-form-btn" style="background-color: #0c5460">
+						Confirm Your Reservation
 					</button>
 					</div>
 					<div style="margin-top:10px;" id="roomlayout"></div> <!-- Shows Image of the Table -->
