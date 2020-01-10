@@ -29,7 +29,7 @@ for ($i = 0; $i < count($_POST['tablename']); $i++) {
 
 if(isset($_GET['del']))
 		  {
-		          mysqli_query($con,"delete from tablelayout where id = '".$_GET['tid']."'");
+		          mysqli_query($con,"delete from room where id = '".$_GET['id']."'");
                   $_SESSION['delmsg']="Table Layout deleted !!";
           }
 
@@ -216,19 +216,19 @@ while($row=mysqli_fetch_array($query))
 									</thead>
 									<tbody>
 
-<?php $query=mysqli_query($con,"select tablelayout.id as tid,room.roomname as rname, tablelayout.roomid as trid,tablelayout.totaltables as totals,room.id as rid, room.roomname as rname from tablelayout join room on room.id=tablelayout.roomid;");
+<?php $query=mysqli_query($con,"select * from room;");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {
 ?>
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
-											<td><?php echo htmlentities($row['rname']);?></td>
-											<td><?php echo htmlentities($row['totals']);?></td>
-                                            <td><?php echo htmlentities($row['available'] ? 'yes' : 'no' );?></td>
+											<td><?php echo htmlentities($row['roomname']);?></td>
+											<td><?php echo htmlentities($row['totaltables']);?></td>
+                                            <td><?php echo htmlentities($row['roomavailability'] ? 'yes' : 'no' );?></td>
 											<td>
-                                                <!-- <a href="edit-dining-program.php?id=<?php echo $row['tid']?>" class="btn btn-sm btn-outline-light">Edit</button> -->
-                                            <a href="create-table-layout.php?tid=<?php echo $row['tid']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
+                                                <!-- <a href="edit-dining-program.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button> -->
+                                            <a href="create-table-layout.php?id=<?php echo $row['id']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
                                                 <i class="far fa-trash-alt"></i>
                                             </button>
 										</tr>
