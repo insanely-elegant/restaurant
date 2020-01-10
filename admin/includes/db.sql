@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2020 at 09:40 AM
+-- Generation Time: Jan 10, 2020 at 05:47 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -108,15 +108,10 @@ CREATE TABLE `diningdates` (
 --
 
 INSERT INTO `diningdates` (`id`, `diningdate`, `diningtime`, `status`) VALUES
-(19, '2019-12-19', '00:00:00', 'enabled'),
-(20, '2019-12-27', '12:59:00', 'enabled'),
-(21, '2019-12-28', '01:59:00', 'enabled'),
-(22, '2019-12-27', '12:05:00', 'enabled'),
-(23, '2019-01-06', '10:10:00', 'enabled'),
-(24, '2020-01-09', '13:01:00', 'enabled'),
-(25, '2020-01-17', '14:09:00', 'enabled'),
-(26, '2020-01-01', '01:01:00', 'enabled'),
-(27, '2020-01-05', '21:01:00', 'enabled');
+(1, '2020-01-13', '19:30:00', 'enabled'),
+(2, '2020-01-13', '20:30:00', 'enabled'),
+(3, '2020-01-14', '17:30:00', 'enabled'),
+(4, '2020-01-15', '19:30:00', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -137,7 +132,9 @@ CREATE TABLE `dish` (
 INSERT INTO `dish` (`id`, `dishname`, `dishdescription`) VALUES
 (34, 'Bread Basket', 'Varied collection of breads.Includes Baguettes,Brown,white,bread sticks'),
 (35, 'Apple Pie', 'Cheese Pie!'),
-(36, 'Pasta Bolognese', 'Sauce reduced in scruptious italian pasta with ground beef and basil');
+(36, 'Pasta Bolognese', 'Sauce reduced in scruptious italian pasta with ground beef and basil'),
+(37, 'Tawa Shawarma', 'It\'s a snack!'),
+(38, 'Tuna Sandwich', 'Delicious!');
 
 -- --------------------------------------------------------
 
@@ -252,8 +249,9 @@ CREATE TABLE `reservation` (
 --
 
 INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `freedinersmealtotalprice`, `isConfirmed`, `isCheckedin`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `guestmealprice`, `guestmealtaxpercent`, `guestmealtaxvalue`, `guestmealtotalprice`, `freedinersmealprice`, `freedinersmealtaxpercent`, `freedinersmealtaxvalue`) VALUES
-(3, '', 'Duane', 'DeSalvo', 'Apple Pie', 'Game Room', 'A2', 0, '3', '2020-01-09', '13:01:00', '2', 'E302', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, '', 'David', 'Bowie', 'Bread Basket', 'Game Room', 'A2', 0, '5', '2020-01-09', '13:01:00', '4', 'E302', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(1, '', 'Isabella', 'James', 'Bread Basket', '', '', 0, '3', '2020-01-13', '00:00:00', '2', 'E410A', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, '', 'Duane', 'DeSalvo', 'Bread Basket', '', '', 0, '3', '2020-01-13', '00:00:00', '2', 'E302', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, '', 'Duane', 'DeSalvo', 'Tuna Sandwich', '', '', 0, '3', '2020-01-15', '00:00:00', '2', 'E302', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -274,9 +272,8 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`id`, `roomname`, `totaltables`, `roomavailability`, `productimage1`) VALUES
-(1, 'Dining Room', '7', '1', 'atom.png'),
-(2, 'Game Room', '3', '0', 'logo.png'),
-(3, 'Test Room', '5', '1', 'favicon.png');
+(1, 'Game Room', '4', '1', 'game-room.png'),
+(2, 'Dining Room', '10', '1', 'dining.png');
 
 -- --------------------------------------------------------
 
@@ -296,9 +293,20 @@ CREATE TABLE `tablelayout` (
 --
 
 INSERT INTO `tablelayout` (`id`, `roomid`, `tablename`, `totalseats`) VALUES
-(41, 2, 'A1', '5'),
-(42, 2, 'A2', '5'),
-(43, 2, 'A3', '6');
+(1, 1, '21', '6'),
+(2, 1, '22', '6'),
+(3, 1, '23', '6'),
+(4, 1, '24', '6'),
+(5, 2, 'A1', '6'),
+(6, 2, 'A2', '4'),
+(7, 2, 'A3', '6'),
+(8, 2, 'A4', '4'),
+(9, 2, 'A5', '3'),
+(10, 2, 'A6', '5'),
+(11, 2, 'A7', '2'),
+(12, 2, 'A8', '6'),
+(13, 2, 'A9', '3'),
+(14, 2, 'A10', '4');
 
 -- --------------------------------------------------------
 
@@ -1387,7 +1395,41 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 07:49:07', NULL, 1),
 (0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 07:53:59', NULL, 1),
 (0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 08:04:44', NULL, 1),
-(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 08:20:59', NULL, 1);
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 08:20:59', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 14:43:14', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 16:01:23', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 16:39:46', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 16:46:09', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 17:05:01', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 17:38:29', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 18:45:13', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 18:55:35', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 19:25:17', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 19:26:20', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 19:27:04', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 19:28:05', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 19:28:17', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 19:31:23', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 19:50:57', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 20:57:01', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 21:33:02', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-09 23:05:35', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-10 00:24:58', NULL, 1),
+(0, 'E302A', NULL, 0x3a3a3100000000000000000000000000, '2020-01-10 00:26:11', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-10 01:54:16', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-10 02:17:38', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-10 02:28:00', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-10 02:59:55', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-10 03:00:41', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-10 03:31:07', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-10 03:36:11', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-10 03:40:45', NULL, 1),
+(0, 'E409A', NULL, 0x3a3a3100000000000000000000000000, '2020-01-10 03:49:56', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-10 03:56:06', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-10 04:19:09', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-10 04:28:07', NULL, 1),
+(0, 'E410A', NULL, 0x3a3a3100000000000000000000000000, '2020-01-10 04:29:40', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-10 04:32:04', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1413,7 +1455,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `age`, `unitno`, `email`, `password`, `contactno`, `altcontactno`) VALUES
 (1, 'Duane', 'DeSalvo', '55', 'E302', 'duane.desalvo@gmail.com', 'asd', '306065801', '507064834'),
-(3, 'Rah', 'Vul', '34', 'E302A', 'test@test.com', 'asdasdasd', '234234234234', '234234234234234');
+(3, 'Rah', 'Vul', '34', 'E302A', 'test@test.com', 'asdasdasd', '234234234234', '234234234234234'),
+(4, 'Jinsang', 'Nakamoto', '49', 'E409A', 'test@justamail.com', 'password', '1333888445', ''),
+(5, 'Isabella', 'James', '55', 'E410A', 'hello@test.com', 'password', '5489334455', '');
 
 -- --------------------------------------------------------
 
@@ -1435,13 +1479,10 @@ CREATE TABLE `weeklymenu` (
 --
 
 INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `dishname1`, `dishname2`, `roomid`) VALUES
-(17, '2019-12-12', '13:05:00', 'Bread Basket', 'Apple Pie', 1),
-(19, '2019-12-27', '12:05:00', 'Pasta Bolognese', 'Bread Basket', 2),
-(20, '2019-01-06', '10:10:00', 'Bread Basket', 'Pasta Bolognese', 1),
-(22, '2020-01-17', '14:09:00', 'Pasta Bolognese', 'Pasta Bolognese', 1),
-(23, '2020-01-01', '01:01:00', 'Bread Basket', 'Apple Pie', 1),
-(24, '2020-01-09', '13:01:00', 'Bread Basket', 'Apple Pie', 2),
-(25, '2020-01-05', '21:01:00', 'Apple Pie', 'Bread Basket', 2);
+(1, '2020-01-13', '20:30:00', 'Bread Basket', 'Apple Pie', 0),
+(2, '2020-01-14', '17:30:00', 'Apple Pie', 'Pasta Bolognese', 0),
+(3, '2020-01-15', '19:30:00', 'Tawa Shawarma', 'Tuna Sandwich', 0),
+(4, '2020-01-13', '19:30:00', 'Pasta Bolognese', 'Tuna Sandwich', 0);
 
 --
 -- Indexes for dumped tables
@@ -1545,13 +1586,13 @@ ALTER TABLE `chef`
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `dish`
 --
 ALTER TABLE `dish`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `host`
@@ -1569,31 +1610,31 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tablelayout`
 --
 ALTER TABLE `tablelayout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
