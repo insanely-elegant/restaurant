@@ -14,30 +14,26 @@ $currentTime = date( 'm-d-Y h:i:s A', time () );
 <html>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>DataTables</title>
+  <title>Reservation History</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="googlebot" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <script
-    type="text/javascript"
-    src="https://code.jquery.com/jquery-1.11.0.js"
+  <script type="text/javascript" src="jquery-1.11.0.js"
     
   ></script>
 
-<script>
+<style>
 body {
   background: #fff;
 }
-</script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.css">
-      <script type="text/javascript" src="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.js"></script>
-      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+</style>
+      <script type="text/javascript" src="materialize.min.js"></script>
+      <script type="text/javascript" src="jquery.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="datatables.min.css">
+      <script type="text/javascript" src="datatables.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="materialize.min.css">
+      <script type="text/javascript" src="materialize.min.js"></script>
 
   <style id="compiled-css" type="text/css">
       
@@ -72,7 +68,7 @@ $(document).ready(function (){
 		  this.api().columns([2]).every( function () {
             var column = this;
             console.log(column);
-            var select = $("#tableFltr"); 
+            var select = $("#roomFltr"); 
             column.data().unique().sort().each( function ( d, j ) {
               select.append( '<option value="'+d+'">'+d+'</option>' )
             } );
@@ -80,12 +76,20 @@ $(document).ready(function (){
 		  this.api().columns([3]).every( function () {
             var column = this;
             console.log(column);
+            var select = $("#tableFltr"); 
+            column.data().unique().sort().each( function ( d, j ) {
+              select.append( '<option value="'+d+'">'+d+'</option>' )
+            } );
+		  } );
+		  this.api().columns([4]).every( function () {
+            var column = this;
+            console.log(column);
             var select = $("#dateFltr"); 
             column.data().unique().sort().each( function ( d, j ) {
               select.append( '<option value="'+d+'">'+d+'</option>' )
             } );
           } );
-           this.api().columns([5]).every( function () {
+           this.api().columns([6]).every( function () {
             var column = this;
             console.log(column);
             var select = $("#dishFltr"); 
@@ -93,7 +97,7 @@ $(document).ready(function (){
               select.append( '<option value="'+d+'">'+d+'</option>' )
             } );
           } );
-          $("#fnameFltr,#lnameFltr,#tableFltr,#dateFltr,#dishFltr").material_select();
+          $("#fnameFltr,#lnameFltr,#roomFltr,#tableFltr,#dateFltr,#dishFltr").material_select();
        }
     });
     
@@ -119,6 +123,16 @@ $(document).ready(function (){
       table.column(1).search(search, true, false).draw();  
     });
 	
+	 $('#roomFltr').on('change', function(){
+    	var search = [];
+      
+      $.each($('#roomFltr option:selected'), function(){
+      		search.push($(this).val());
+      });
+      
+      search = search.join('|');
+      table.column(2).search(search, true, false).draw();  
+    });
 	
 	 $('#tableFltr').on('change', function(){
     	var search = [];
@@ -128,7 +142,7 @@ $(document).ready(function (){
       });
       
       search = search.join('|');
-      table.column(2).search(search, true, false).draw();  
+      table.column(3).search(search, true, false).draw();  
     });
 	
 	
@@ -140,7 +154,7 @@ $(document).ready(function (){
       });
       
       search = search.join('|');
-      table.column(3).search(search, true, false).draw();  
+      table.column(4).search(search, true, false).draw();  
     });
     
 
@@ -153,7 +167,7 @@ $(document).ready(function (){
       });
       
       search = search.join('|');
-      table.column(5).search(search, true, false).draw();
+      table.column(6).search(search, true, false).draw();
     });
 });
  
@@ -169,7 +183,7 @@ $(document).ready(function (){
       <div class="card-title">
            <div class="row" style="margin-bottom: 0;">
              <div class="col s12 m4">
-               <h5>Summary</h5>
+               <h5>Silver Glen : Reservations</h5>
              </div>
              <div class="col s12 m3 right-align">
                <span style="font-size:18px;font-weight:500;" multiple="true">First Name:                </span>
@@ -181,7 +195,13 @@ $(document).ready(function (){
 			 </span>
                <select id="lnameFltr">
                </select>
-             </div>
+			 </div>
+
+			   <div class="col s6 m3">
+               <span style="font-size:18px;font-weight:500;">Room Name:</span>
+               <select id="roomFltr" multiple="true"></select>
+			 </div>
+			 
              <div class="col s6 m3">
                <span style="font-size:18px;font-weight:500;">Table Name:</span>
                <select id="tableFltr" multiple="true"></select>
@@ -204,6 +224,7 @@ $(document).ready(function (){
                       <tr>
 						  <th>First Name</th>
 						  <th>Last Name</th>
+						  <th>Room Name</th>
                           <th>Table name</th>
                           <th>Dining Date</th>
                           <th>Dining Time</th>
@@ -215,6 +236,7 @@ $(document).ready(function (){
                       <tr>
 						  <th>First Name</th>
 						  <th>Last Name</th>
+						  <th>Room Name</th>
                           <th>Table name</th>
                           <th>Dining Date</th>
                           <th>Dining Time</th>
@@ -233,10 +255,11 @@ while($row=mysqli_fetch_array($sql))
                       <tr>
  <td><?php echo $row['firstname'];?></td>
 <td><?php echo $row['lastname'];?></td>
+<td><?php echo $row['room'];?></td>
 <td><?php echo $row['tablename'];?></td>
-<td><?php echo $row['diningdate'];?>
-<td><?php echo $row['diningtime'];?>
-<td><?php echo $row['dishname'];?>
+<td><?php echo $row['diningdate'];?></td>
+<td><?php echo $row['diningtime'];?></td>
+<td><?php echo $row['dishname'];?></td>
 <td class="hidden-xs"><?php echo $row['guestno'];?></td>
 </tr>
             <?php 
