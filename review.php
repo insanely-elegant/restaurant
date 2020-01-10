@@ -12,6 +12,7 @@ $currentTime = date( 'm-d-Y h:i:s A', time () );
 
     $diningdate=$_POST['diningdate'];
 	$diningtime=$_POST['diningtime_h'];
+	$dishname_h=$_POST['dishname_h'];
 	$dishname=$_POST['dishname'];
 	$room=$_POST['roomname_h'];
 	$tablename=$_POST['tablename_h'];
@@ -27,17 +28,24 @@ $currentTime = date( 'm-d-Y h:i:s A', time () );
     $num=mysqli_fetch_array($query);
     if($num>0)
     {
-    $mealprice=$num['mealtotalprice'];
+	$mealprice=$num['mealtotalprice'];
+	$membermealtax=$num['mealtaxvalue'];
+	$membermealprice=$num['mealprice'];
+	$membertaxpercent=$num['mealtaxpercent'];
  }
  $query2=mysqli_query($con,"SELECT * FROM pricingmodels WHERE dinerid=2");
     $num2=mysqli_fetch_array($query2);
     if($num2>0)
     {
-    $mealprice2=$num2['mealtotalprice'];
+	$mealprice2=$num2['mealtotalprice'];
+	$guestmealtax=$num2['mealtaxvalue'];
+	$guestmealprice=$num2['mealprice'];
+	$guesttaxpercent=$num2['mealtaxpercent'];
  }
 
  $guestprice = $mealprice2 * $guestno;
  $totalpri = $mealprice + $guestprice;
+ $totaltaxvalue = $membermealtax + ($guestno * $guestmealtax);
 
 ?>
 <?php
@@ -56,7 +64,8 @@ $lname=$_SESSION['lastname'];
 
 if(isset($_POST['submit']))
 {
-    $sql=mysqli_query($con,	"insert into reservation(firstname,lastname,dishname,room,tablename,seat,diningdate,diningtime,guestno,condono) values('$name','$lname','$dn','$r','$tn', '$s', '$dd', '$dt','$gn','$condono')");
+	$sql=mysqli_query($con,	"insert into reservation(firstname,lastname,dishname,room,tablename,seat,diningdate,diningtime,guestno,condono,membermealprice,membermealtaxpercent,membermealtaxvalue,membermealtotalprice,guestmealprice,guestmealtaxpercent,guestmealtaxvalue,guestmealtotalprice) 
+	values('$name','$lname','$dn','$r','$tn', '$s', '$dd', '$dt','$gn','$condono','$membermealprice','$membertaxpercent','$membermealtax','$mealprice','$guestmealprice','$guesttaxpercent','$guestmealtax','$mealprice2')");
     $_SESSION['msg']="Reservation Confirmed !!";
     header('Location: confirmation.php');
     exit;
@@ -229,6 +238,12 @@ while($row=mysqli_fetch_array($query))
                             <small> Total Booked Seats: <strong> <?php echo htmlentities($seats); ?>
                                                                     <input type="hidden" name="s" value="<?php echo htmlentities($seats); ?>"></strong> </small></br></br>
                           </td>
+						</tr>
+						<tr>
+                          <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
+                            <small> Selected Meal: <strong> <?php echo htmlentities($dishname); ?>
+                                                                    <input type="hidden" name="dishname" value="<?php echo htmlentities($dishname); ?>"></strong> </small></br></br>
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -343,7 +358,7 @@ while($row=mysqli_fetch_array($query))
                     <tr>
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #b0b0b0; line-height: 22px; vertical-align: top; text-align:right; "><small>TAX</small></td>
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #b0b0b0; line-height: 22px; vertical-align: top; text-align:right; ">
-                        <small>$72.40</small>
+                        <small>$<?php echo htmlentities($totaltaxvalue); ?> </small>
                       </td>
                     </tr>
                   </tbody>

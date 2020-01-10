@@ -47,6 +47,8 @@ while($row=mysqli_fetch_array($query))
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 
 
@@ -106,6 +108,13 @@ $(document).ready(function(){ //passes selected option name for tablename to hid
     $('#tablename').on('change',function(){
         var tableName = $("#tablename option:selected").text();
         document.getElementById('tablename_h').value = tableName;
+    });
+});
+
+$(document).ready(function(){ //passes selected option name for tablename to hidden input fields
+    $('#dishname').on('change',function(){
+        var dishName = $("#dishname option:selected").text();
+        document.getElementById('dishname_h').value = dishName;
     });
 });
 
@@ -171,27 +180,28 @@ while($row=mysqli_fetch_array($query))
 					<?php } ?>
 					</select>
 					<span class="focus-input100"></span>
-					</div>
-					<!-- End Dining Date Selection -->
+						</div>
+						<!-- End Dining Date Selection -->
 
-					<!-- Begin Dining Time -->
-					<div class="wrap-input100 validate-input m-b-16">
-						<select name="diningtime" id="diningtime" class="form-control" onChange="getFood(this.value);"  required>
-						</select>
-						<span class="focus-input100"></span>
-					</div>
-					
-					<input type="hidden" name="diningtime_h" id="diningtime_h"> <!-- passing all selected values to hidden inputs for review.php -->
-					<!-- End Dining Time -->
+						<!-- Begin Dining Time -->
+						<div class="wrap-input100 validate-input m-b-16">
+							<select name="diningtime" id="diningtime" class="form-control" onChange="getFood(this.value);"  required>
+							</select>
+							<span class="focus-input100"></span>
+						</div>
+						
+						<input type="hidden" name="diningtime_h" id="diningtime_h"> <!-- passing all selected values to hidden inputs for review.php -->
+						<!-- End Dining Time -->
 
 					
 
 					<!-- Begin Dish Name -->
 					<div class="wrap-input100 validate-input m-b-16">
-						<select name="dishname"  id="dishname1" class="form-control" onChange="getFood2(this.value);" required>
+						<select name="dishname"  id="dishname1" class="form-control" required>
 						</select>
 						<span class="focus-input100"></span>
 					</div>
+					<input type="hidden" name="dishname_h" id="dishname_h"> <!-- passing all selected values to hidden inputs for review.php -->
 					<!-- End Dish Name  -->
 
 					<!-- Begin Room No -->
