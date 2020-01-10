@@ -6,7 +6,7 @@ if(!empty($_GET["room_id"]))
     $roomid = $_GET['room_id'];
     $diningdate=$_GET['diningdate'];
     $result = $con->query("SELECT * FROM
-        reservation WHERE room='$roomid'
+        reservation WHERE roomid='$roomid'
         AND
         diningdate='$diningdate' "
     );
