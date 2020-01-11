@@ -16,9 +16,10 @@ $currentTime = date( 'm-d-Y h:i:s A', time () );
 	$dishname=$_POST['dishname'];
 	$room=$_POST['roomname_h'];
 	$tablename=$_POST['tablename_h'];
-    $seats=$_POST['seats'];
-    $condono=$_SESSION['login'];
-    $name=$_SESSION['firstname'];
+  $seats=$_POST['seats'];
+  $condono=$_SESSION['login'];
+  $name=$_SESSION['firstname'];
+  $room_id=$_POST['room'];
 
 
     $member = 1;
@@ -60,12 +61,13 @@ $dn = $_POST['dn'];
 $condono=$_SESSION['login'];
 $name=$_SESSION['firstname'];
 $lname=$_SESSION['lastname'];
+$rid = $_POST['rid'];
 
 
 if(isset($_POST['submit']))
 {
-	$sql=mysqli_query($con,	"insert into reservation(firstname,lastname,dishname,room,tablename,seat,diningdate,diningtime,guestno,condono,membermealprice,membermealtaxpercent,membermealtaxvalue,membermealtotalprice,guestmealprice,guestmealtaxpercent,guestmealtaxvalue,guestmealtotalprice) 
-	values('$name','$lname','$dn','$r','$tn', '$s', '$dd', '$dt','$gn','$condono','$membermealprice','$membertaxpercent','$membermealtax','$mealprice','$guestmealprice','$guesttaxpercent','$guestmealtax','$mealprice2')");
+	$sql=mysqli_query($con,	"insert into reservation(firstname,lastname,dishname,roomid,room,tablename,seat,diningdate,diningtime,guestno,condono,membermealprice,membermealtaxpercent,membermealtaxvalue,membermealtotalprice,guestmealprice,guestmealtaxpercent,guestmealtaxvalue,guestmealtotalprice) 
+	values('$name','$lname','$dn','$rid','$r','$tn', '$s', '$dd', '$dt','$gn','$condono','$membermealprice','$membertaxpercent','$membermealtax','$mealprice','$guestmealprice','$guesttaxpercent','$guestmealtax','$mealprice2')");
     $_SESSION['msg']="Reservation Confirmed !!";
     header('Location: confirmation.php');
     exit;
@@ -229,6 +231,7 @@ while($row=mysqli_fetch_array($query))
                                                                     <input type="hidden" name="tn" value="<?php echo htmlentities($tablename); ?>">
                                                                     <input type="hidden" name="dn" value="<?php echo htmlentities($dishname); ?>">
                                                                     <input type="hidden" name="gn" value="<?php echo htmlentities($guestno); ?>">		
+                                                                    <input type="hidden" name="rid" value="<?php echo htmlentities($room_id); ?>">
 						
 						</strong> </small></br></br>
                           </td>
