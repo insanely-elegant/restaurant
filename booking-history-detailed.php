@@ -477,8 +477,8 @@ $tdate=$_POST['todate'];
 <th>Dining Date </th>
 <th>Dish Name</th>
 <th>Total Seats Booked </th>
-<th>Member Meal Price </th>
-<th>Guest Meal Price</th>
+<th>Total Price </th>
+<th>View Bill</th>
 </tr>
 </thead>
 <tbody>
@@ -496,9 +496,11 @@ while($row=mysqli_fetch_array($sql))
 <td><?php echo $row['diningdate'];?>
 <td><?php echo $row['dishname'];?>
 <td class="hidden-xs"><?php echo $row['guestno'];?></td>
-<td><?php echo $row['membermealprice'];?>
-<td><?php echo $row['guestmealprice'];?>
-</td>
+<td><?php echo $row['grandtotal'];?>
+
+<td>
+<a href="receipt.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-dark">View Invoice</button>
+</button>
 <td>
 
 

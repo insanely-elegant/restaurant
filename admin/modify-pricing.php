@@ -155,7 +155,7 @@ while($row=mysqli_fetch_array($query))
     mealprice= document.getElementById('mprice').value;
     mealtaxpercent = document.getElementById('mpercent').value;
     mealtaxvalue = mealprice*(mealtaxpercent/100);
-    mealtotalprice = parseFloat(mealprice )+ parseFloat(mealtaxpercent);
+    mealtotalprice = parseFloat(mealprice ) + parseFloat(mealtaxvalue);
     document.getElementById('mvalue').value = parseFloat(mealtaxvalue).toFixed(2);
     document.getElementById('mtotals').value = parseFloat(mealtotalprice).toFixed(2);
   }
