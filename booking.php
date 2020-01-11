@@ -208,9 +208,11 @@ while($row=mysqli_fetch_array($query))
 					<div class="wrap-input100 validate-input m-b-16">
 						<select id="roomid" class="form-control" name="room" onChange="getTable();" required >
 						<option value="">Select Dining Room</option>
-						<?php
-						echo $rooms;
-						?>
+						<?php $query=mysqli_query($con,"select * from room");
+										while($row2=mysqli_fetch_array($query))
+										{?>
+											<option value="<?php echo $row2['id'];?>"><?php echo $row2['roomname'];?></option>
+										<?php } ?>
 						</select>
 						<span class="focus-input100"></span>
 					</div>
