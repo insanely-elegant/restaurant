@@ -161,49 +161,7 @@ $count4 = $row4['bookingcount'];
                             <!-- ============================================================== -->
                         </div>
                         <div class="row">
-<div class="col-xl-3 col-lg-12 col-md-6 col-sm-12 col-12">
 
-
-
-
-<div class="card">
-<h5 class="card-header">Most Revenue by Diners  <a href="#" data-toggle="tooltip" title="" data-original-title="Showing 7 of the highest spenders with total bookings made by each diner"> [ ? ]</a></h5>
-<div class="card-body p-0">
-<div class="table-responsive">
-<table class="table no-wrap p-table">
-<thead class="bg-light">
-<tr class="border-0">
-<th class="border-0">#</th>
-<th class="border-0">First Name</th>
-<th class="border-0">Last Name</th>
-<th class="border-0">Total Bookings</th>
-<th class="border-0">Total Spent</th>
-</tr>
-</thead>
-<tbody>
-<?php $query=mysqli_query($con,"select firstname,lastname, COUNT(id) as 'countbooking',sum(membermealtotalprice) as 'countmoney' from reservation order by sum(membermealtotalprice) limit 6 ");
-$cnt=1;
-while($row=mysqli_fetch_array($query))
-{
-?>		
-<tr>
-<td><?php echo htmlentities($cnt);?></td>
-<td><?php echo htmlentities($row['firstname']);?></td>
-<td><?php echo htmlentities($row['lastname']);?></td>
-<td><?php echo htmlentities($row['countbooking']);?></td>
-<td><?php echo htmlentities($row['countmoney']);?></td>
-</tr>
-<?php $cnt=$cnt+1; } ?>
-<tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-
-
-
-</div>
 
 
 
@@ -257,16 +215,42 @@ while($row=mysqli_fetch_array($query))
 </div>
 </div>
 </div>
-
- 
-
-
-
-
-
-
-
-
+<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+<div class="card">
+<h5 class="card-header">Most Revenue by Diners  <a href="#" data-toggle="tooltip" title="" data-original-title="Showing 7 of the highest spenders with total bookings made by each diner"> [ ? ]</a></h5>
+<div class="card-body p-0">
+<div class="table-responsive">
+<table class="table no-wrap p-table">
+<thead class="bg-light">
+<tr class="border-0">
+<th class="border-0">#</th>
+<th class="border-0">First Name</th>
+<th class="border-0">Last Name</th>
+<th class="border-0">Total Bookings</th>
+<th class="border-0">Total Spent</th>
+</tr>
+</thead>
+<tbody>
+<?php $query=mysqli_query($con,"select firstname,lastname, COUNT(id) as 'countbooking',sum(membermealtotalprice) as 'countmoney' from reservation order by sum(membermealtotalprice) limit 6 ");
+$cnt=1;
+while($row=mysqli_fetch_array($query))
+{
+?>		
+<tr>
+<td><?php echo htmlentities($cnt);?></td>
+<td><?php echo htmlentities($row['firstname']);?></td>
+<td><?php echo htmlentities($row['lastname']);?></td>
+<td><?php echo htmlentities($row['countbooking']);?></td>
+<td><?php echo htmlentities($row['countmoney']);?></td>
+</tr>
+<?php $cnt=$cnt+1; } ?>
+<tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
 </div>
                     </div>
                 </div>
