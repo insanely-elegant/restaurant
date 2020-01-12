@@ -52,27 +52,49 @@ while($row=mysqli_fetch_array($query))
 while($row=mysqli_fetch_array($query))
 {?>
 	<div class="limiter">
+<?php
+
+date_default_timezone_set('America/Los_Angeles');
+$Hour = date('G');
+{
+if ( $Hour >= 5 && $Hour <= 11 ) {
+  $message = "Good Morning";
+} else if ( $Hour >= 12 && $Hour <= 18 ) {
+   $message = "Good Afternoon";
+} else if ( $Hour >= 19 || $Hour <= 4 ) {
+  $message = "Good Evening";
+}
+
+?>
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
-			<p style="font-size: x-large; text-align: center; color: #f14634">Hello, <?php echo $_SESSION['firstname'];?></p>
-			
+			<p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , <?php echo $_SESSION['firstname'];?></p>
+<?php } ?>
 			<div class="container-login100-form-btn m-t-17">
-			<button class="login100-form-btn" style="background-color: #0c5460" onClick="booking();">
+			<button class="login100-form-btn" style="background-color: #7584AD" onClick="booking();">
 			Make a New Reservation
 			</button>
 			</div>
 
 			<div class="container-login100-form-btn m-t-17">
-			<button class="login100-form-btn" onClick="reservation();">
+			<button class="login100-form-btn" style="background-color: #314570;" onClick="reservation();">
 			View Reservations by other members
 			</button>
 			</div>
 
 			<div class="container-login100-form-btn m-t-17">
-			<button class="login100-form-btn" style="background-color: #f3361dc4;" onClick="history();"> 
+			<button class="login100-form-btn" style="background-color: #AED1D6;" onClick="history();"> 
 			View Your Booking History
 			</button>
 			</div>
+
+			<div class="container-login100-form-btn m-t-17">
+			<button class="login100-form-btn" style="background-color: #E09873;" onClick="logout();"> 
+			Logout
+			</button>
+			</div>
+
+
 			<script>
 			function booking()
 			{
@@ -85,6 +107,11 @@ while($row=mysqli_fetch_array($query))
 			function history()
 			{
 			location.href= "booking-history.php"	
+			}
+
+			function logout()
+			{
+			location.href= "logout.php"	
 			}
 			</script>
 </div>
