@@ -174,9 +174,24 @@ while($row=mysqli_fetch_array($query))
 {?>
 
 	<div class="limiter">
+<?php
+
+date_default_timezone_set('America/Los_Angeles');
+$Hour = date('G');
+{
+if ( $Hour >= 5 && $Hour <= 11 ) {
+  $message = "Good Morning";
+} else if ( $Hour >= 12 && $Hour <= 18 ) {
+   $message = "Good Afternoon";
+} else if ( $Hour >= 19 || $Hour <= 4 ) {
+  $message = "Good Evening";
+}
+
+?>
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
-			<p style="font-size: x-large; text-align: center; color: #f14634">Hello, <?php echo $_SESSION['firstname'];?></p>
+			<p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , <?php echo $_SESSION['firstname'];?></p>
+<?php } ?>
 			
 			<form method="POST" action="review.php" class="login100-form validate-form flex-sb flex-w">
 					<span class="login100-form-title p-b-51">
