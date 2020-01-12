@@ -60,6 +60,9 @@ $squence = $totalr+1;
 $squence = str_pad($squence,4,0,STR_PAD_LEFT);
 $bookingid =  $code.$ymd.$squence;
 
+if($guestno < 1){
+  $type = "none";
+}
 
 
 ?>
@@ -335,11 +338,11 @@ while($row=mysqli_fetch_array($query))
                     <tr>
                       <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
                     </tr>
-                    <tr>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">Guest</td>
+                    <tr id="guestdivid">
+                      <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; display:<?php echo htmlentities($type); ?>; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">Guest</td>
                      
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"> <?php echo htmlentities($guestno); ?> </td>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$ <?php echo htmlentities($mealprice2); ?></td>
+                      <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"> <?php echo htmlentities($guestno); ?> </td>
+                      <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$ <?php echo htmlentities($mealprice2); ?></td>
                     </tr>
                     <tr>
                       <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
