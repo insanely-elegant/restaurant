@@ -220,7 +220,7 @@ while($row=mysqli_fetch_array($query))
 </tr>
 <?php $cnt=$cnt+1; } ?>
 <tr>
-<td colspan="11"><a href="#" class="btn btn-outline-light float-right">View All Reservations</a></td>
+<td colspan="11"><a href="guestlist.php" class="btn btn-outline-light float-right">View All Reservations</a></td>
 </tr>
 </tbody>
 </table>
