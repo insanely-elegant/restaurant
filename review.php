@@ -9,8 +9,8 @@ header('location:index.php');
 else{
 date_default_timezone_set('America/Los_Angeles');
 $currentTime = date( 'm-d-Y h:i:s A', time () );
-
-    $diningdate=$_POST['diningdate'];
+  
+  $diningdate=$_POST['diningdate'];
 	$diningtime=$_POST['diningtime_h'];
 	$dishname_h=$_POST['dishname_h'];
 	$dishname=$_POST['dishname'];
@@ -69,10 +69,16 @@ if(isset($_POST['submit']))
 {
 	$sql=mysqli_query($con,	"insert into reservation(firstname,lastname,dishname,roomid,room,tablename,seat,diningdate,diningtime,guestno,condono,membermealprice,membermealtaxpercent,membermealtaxvalue,membermealtotalprice,guestmealprice,guestmealtaxpercent,guestmealtaxvalue,guestmealtotalprice,grandtotal) 
 	values('$name','$lname','$dn','$rid','$r','$tn', '$s', '$dd', '$dt','$gn','$condono','$membermealprice','$membertaxpercent','$membermealtax','$mealprice','$guestmealprice','$guesttaxpercent','$guestmealtax','$mealprice2','$gt')");
-    $_SESSION['msg']="Reservation Confirmed !!";
-    header('Location: confirmation.php');
-    exit;
-
+  
+  if ($sql ==1){  
+  $_SESSION['msg']="Reservation Confirmed !!";
+    header('Location: confirm_success.php');
+    exit();
+  }
+  else {
+    header('Location: confirm_fail.php');
+    exit();
+  }
 
 
 }
