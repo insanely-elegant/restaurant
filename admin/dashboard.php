@@ -88,7 +88,7 @@ $count4 = $row4['bookingcount'];
 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
 <div class="card border-3 border-top border-top-primary">
 <div class="card-body">
-<h5 class="text-muted">Total Revenue from Members & Guests</h5>
+<h5 class="text-muted">Total Revenue from Members & Guests <a href="#" data-toggle="tooltip" title="" data-original-title="Showing all time revenue from members & guests including new bookings"> [ ? ]</a></h5>
 <div class="metric-value d-inline-block">
 <h1 class="mb-1">$<?php echo htmlentities($count1);?></h1>
 </div>
@@ -102,7 +102,7 @@ $count4 = $row4['bookingcount'];
 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
 <div class="card border-3 border-top border-top-primary">
 <div class="card-body">
-<h5 class="text-muted">Total Guests Dined</h5>
+<h5 class="text-muted">Total Guests Dined <a href="#" data-toggle="tooltip" title="" data-original-title="Showing data from all the guests that members brought to Silver Glen"> [ ? ]</a> </h5>
 <div class="metric-value d-inline-block">
 <h1 class="mb-1"><?php echo htmlentities($count2);?></h1>
 </div>
@@ -118,7 +118,7 @@ $count4 = $row4['bookingcount'];
 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
 <div class="card border-3 border-top border-top-primary">
 <div class="card-body">
-<h5 class="text-muted">Total Meals Served</h5>
+<h5 class="text-muted">Total Meals Served <a href="#" data-toggle="tooltip" title="" data-original-title="Showing data from all of the diners who has checkedin"> [ ? ]</a></h5>
 <div class="metric-value d-inline-block">
 <h1 class="mb-1"><?php echo htmlentities($count3);?></h1>
 </div>
@@ -132,7 +132,7 @@ $count4 = $row4['bookingcount'];
 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
 <div class="card border-3 border-top border-top-primary">
 <div class="card-body">
-<h5 class="text-muted">Total All Time Bookings</h5>
+<h5 class="text-muted">Total All Time Bookings <a href="#" data-toggle="tooltip" title="" data-original-title="This number represents all the bookings ever made in Silver Glen"> [ ? ]</a></h5>
 <div class="metric-value d-inline-block">
 <h1 class="mb-1"><?php echo htmlentities($count4);?></h1>
 </div>
