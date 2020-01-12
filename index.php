@@ -24,9 +24,17 @@ $status=1;
 $uri=rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
 header("location:http://$host$uri/$extra");
  exit();
- }
 }
-
+else
+{
+$_SESSION['errmsg']="Invalid username or password";
+$extra="index.php";
+$host  = $_SERVER['HTTP_HOST'];
+$uri  = rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
+header("location:http://$host$uri/$extra");
+exit();
+}
+}
 
 ?>
 
@@ -66,14 +74,14 @@ header("location:http://$host$uri/$extra");
 			<div class="wrap-login100 p-t-50 p-b-90">
 						
 				<form method="post" class="login100-form validate-form flex-sb flex-w">
-				<span style="color:red;">
-							<?php echo htmlentities($_SESSION['errmsg']); 	?>
-							<?php echo htmlentities($_SESSION['errmsg']=""); ?>
-						</span>
+				
 					<span class="login100-form-title p-b-51">
 						Login
 					</span>
-
+<span style="color:red;">
+							<?php echo htmlentities($_SESSION['errmsg']); 	?>
+							<?php echo htmlentities($_SESSION['errmsg']=""); ?>
+						</span>
 					
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Unit Number is required">
 						<input class="input100" autofocus type="text" name="unitno" placeholder="Unit Number">
@@ -95,9 +103,9 @@ header("location:http://$host$uri/$extra");
 						</div>
 
 						<div>
-							<a href="forgot.php" class="txt1">
+							<!-- <a href="forgot.php" class="txt1">
 								Forgot?
-							</a>
+							</a> -->
 						</div>
 					</div>
 
