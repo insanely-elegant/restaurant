@@ -76,7 +76,7 @@ header("location:http://$host$uri/$extra");
 
 					
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Unit Number is required">
-						<input class="input100" type="text" name="unitno" placeholder="Unit Number">
+						<input class="input100" autofocus type="text" name="unitno" placeholder="Unit Number">
 						<span class="focus-input100"></span>
 					</div>
 					
