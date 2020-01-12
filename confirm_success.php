@@ -1,3 +1,7 @@
+<?php
+$id=intval($_GET['id']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Reservation Successfull!</title>
-    <!--===============================================================================================-->	
+<!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -377,10 +381,10 @@ body {
 			</div>
 			<!--/.icon-->
 			<h1>Success!</h1>
-			<p>We've sent the booing confirmation to your e-mail
+			<p>We've sent the booking confirmation to your e-mail
 				<br>for verification.</p>
 			<button type="button" onclick="location.href = 'menu.php';" class="redo btn">Goto Home</button>
-            <button style="background-color:#5f6caf;color:#fff" type="button" onclick="location.href = 'receipt.php?';" class="redo btn">Show Invoice</button>
+            <button style="background-color:#5f6caf;color:#fff" type="button" onclick="location.href = 'receipt.php?id=<?php echo $id ?>';" class="redo btn">Show Invoice</button>
 		</div>
 		<!--/.success-->
 	</div>

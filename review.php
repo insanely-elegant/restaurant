@@ -71,8 +71,9 @@ if(isset($_POST['submit']))
 	values('$name','$lname','$dn','$rid','$r','$tn', '$s', '$dd', '$dt','$gn','$condono','$membermealprice','$membertaxpercent','$membermealtax','$mealprice','$guestmealprice','$guesttaxpercent','$guestmealtax','$mealprice2','$gt')");
   
   if ($sql ==1){  
+    $last_id = $con->insert_id;
   $_SESSION['msg']="Reservation Confirmed !!";
-    header('Location: confirm_success.php');
+    header('Location: confirm_success.php?id='.$last_id);
     exit();
   }
   else {
