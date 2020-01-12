@@ -153,8 +153,20 @@ while($row=mysqli_fetch_array($query))
 			</ol>
 			</nav>
 			</br>
-
-			<p style="font-size: x-large; text-align: center; color: #f14634">Hello, <?php echo $_SESSION['firstname'];?></p>
+<?php
+date_default_timezone_set('America/Los_Angeles');
+$Hour = date('G');
+{
+if ( $Hour >= 5 && $Hour <= 11 ) {
+  $message = "Good Morning";
+} else if ( $Hour >= 12 && $Hour <= 18 ) {
+   $message = "Good Afternoon";
+} else if ( $Hour >= 19 || $Hour <= 4 ) {
+  $message = "Good Evening";
+}
+?>
+ 
+			<p style="font-size: x-large; text-align: center; color: black"><?php echo($message); ?>,  <?php echo $row['firstname']; ?>  </h2> <?php } ?></p>
 			
 			<form method="POST" action="review.php" class="login100-form validate-form flex-sb flex-w">
 					<span class="login100-form-title p-b-51">
@@ -241,7 +253,7 @@ while($row=mysqli_fetch_array($query))
 					<!-- End Number of seats -->
 					
 					<div class="container-login100-form-btn m-t-17">
-					<button id="submit" type="submit" name="submit2" class="login100-form-btn" style="background-color: #0c5460">
+					<button id="submit" type="submit" name="submit2" class="login100-form-btn" style="background-color: #7584AD">
 						Review Your Booking
 					</button>
 					</div>
@@ -249,7 +261,7 @@ while($row=mysqli_fetch_array($query))
 					<div style="margin-top:10px;" id="roomlayout"></div> <!-- Shows Image of the Table -->
 					</form>
 <div class="container-login100-form-btn m-t-17">
-					<button class="login100-form-btn" style="background-color: #56jjjj" onClick="reservation();">
+					<button class="login100-form-btn" style="background-color: #314570" onClick="reservation();">
 						View Bookings by others
 					</button>
 					<script>
@@ -259,7 +271,19 @@ while($row=mysqli_fetch_array($query))
 					}
 					</script>
 					</div>
+					<div class="container-login100-form-btn m-t-17">
+			<button class="login100-form-btn" style="background-color: #AED1D6" onClick="home();">
+			Go Back
+			</button>
+			<script>
+					function home()
+					{
+					location.href= "menu.php"	
+					}
+					</script>
 			</div>
+			</div>
+			
 		</div>
 	</div>
 	

@@ -2,7 +2,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                             Copyright © 2019 - Duane and Toni DeSalvo. All rights reserved. Built by <a href="https://www.insanelyelegant.com/">InsanelyElegant.com</a>.
+                             Copyright © 2020 - Duane and Toni DeSalvo. All rights reserved. Built by <a href="https://www.insanelyelegant.com/">InsanelyElegant.com</a>.
                         </div>
                        
                     </div>

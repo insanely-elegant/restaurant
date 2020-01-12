@@ -99,10 +99,22 @@ while($row=mysqli_fetch_array($query))
                     <!-- ============================================================== -->
                     <!-- pageheader  -->
                     <!-- ============================================================== -->
+                    <?php
+date_default_timezone_set('America/Los_Angeles');
+$Hour = date('G');
+{
+if ( $Hour >= 5 && $Hour <= 11 ) {
+  $message = "Good Morning";
+} else if ( $Hour >= 12 && $Hour <= 18 ) {
+   $message = "Good Afternoon";
+} else if ( $Hour >= 19 || $Hour <= 4 ) {
+  $message = "Good Evening";
+}
+?>
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h2 class="pageheader-title">Hello,  <?php echo $row['firstname']; ?>  </h2>
+<h2 class="pageheader-title"><?php echo($message); ?>,  <?php echo $row['firstname']; ?>  </h2> <?php } ?>
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">

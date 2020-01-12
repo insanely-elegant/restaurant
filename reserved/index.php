@@ -28,6 +28,8 @@ body {
   background: #fff;
 }
 </style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
       <script type="text/javascript" src="materialize.min.js"></script>
       <script type="text/javascript" src="jquery.min.js"></script>
       <link rel="stylesheet" type="text/css" href="datatables.min.css">
@@ -180,11 +182,15 @@ $(document).ready(function (){
     <div class="row">
   <div class="col s12">
     <div class="card z-depth-3 hoverable">
-      <div class="card-title">
+      <div class="card-title"><div class="container-login100-form-btn m-t-17">
+			<button class="login100-form-btn" style="background-color: black; color: white" onClick="reservation();">
+			Go Back
+			</button>
+			</div>
            <div class="row" style="margin-bottom: 0;">
              <div class="col s12 m4">
 			   <h5>Silver Glen : Reservations</h5>
-			   <button id="submit" type="submit" name="submit2" class="login100-form-btn" style="background-color: #0c5460; color:white;" onClick="booking();">
+			   <button id="submit" type="submit" name="submit2" class="login100-form-btn" style="background-color: #314570; color:white;" onClick="booking();">
 				Book a Table
 					</button>
 					<script>
@@ -194,6 +200,7 @@ $(document).ready(function (){
 					}
 					</script>
              </div>
+             
              <div class="col s12 m3 right-align">
                <span style="font-size:18px;font-weight:500;" multiple="true">First Name:                </span>
                <select multiple="true" id="fnameFltr">
