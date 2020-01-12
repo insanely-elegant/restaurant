@@ -183,7 +183,7 @@ $(document).ready(function (){
   <div class="col s12">
     <div class="card z-depth-3 hoverable">
       <div class="card-title"><div class="container-login100-form-btn m-t-17">
-			<button class="login100-form-btn" style="background-color: black; color: white" onClick="reservation();">
+			<button class="login100-form-btn" style="background-color: black; color: white" onClick="goback();">
 			Go Back
 			</button>
 			</div>
@@ -197,6 +197,10 @@ $(document).ready(function (){
 					function booking()
 					{
 					location.href= "../booking.php"	
+          }
+          function goback()
+					{
+					location.href= "../menu.php"	
 					}
 					</script>
              </div>
