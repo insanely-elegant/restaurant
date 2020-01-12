@@ -113,6 +113,7 @@ while($row=mysqli_fetch_array($query))
 											<th>Table Name</th>
 											<th>Seat</th>
                                             <th>Date</th>
+                                            <th>Time</th>
                                             <th>Guest No</th>
                                             <th>Condo No</th>                                            
                                             <th>CheckedIn Status</th>
@@ -139,7 +140,8 @@ while($row=mysqli_fetch_array($query))
 											<td><?php echo htmlentities($row['room']);?></td>
 											<td><?php echo htmlentities($row['tablename']);?></td>
                                             <td><?php echo htmlentities($row['seat']);?></td>
-                                            <td><?php echo htmlentities($row['timestamp']);?></td>
+                                            <td><?php echo htmlentities($row['diningdate']);?></td>
+                                            <td><?php echo htmlentities($row['diningtime']);?></td>
                                             <td><?php echo htmlentities($row['guestno']);?></td>
                                             <td><?php echo htmlentities($row['condono']);?></td>                                            
                                             <td><?php echo htmlentities($row['isCheckedin'] ? 'yes' : 'no' );?></td>
