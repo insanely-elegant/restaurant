@@ -265,7 +265,7 @@ while($row=mysqli_fetch_array($query))
 <td><?php echo htmlentities($row['firstname']);?></td>
 <td><?php echo htmlentities($row['lastname']);?></td>
 <td><?php echo htmlentities($row['countbooking']);?></td>
-<td><?php echo htmlentities($row['countmoney']);?></td>
+<td><?php echo htmlentities('$' .$row['countmoney']);?></td>
 </tr>
 <?php $cnt=$cnt+1; } ?>
 <tr>
