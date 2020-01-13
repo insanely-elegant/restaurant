@@ -101,12 +101,15 @@
                                 
 
                                 <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-ticket-alt"></i>Manage Reservations</a>
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-ticket-alt"></i>Manage Reservations & Takeouts</a>
                                 <div id="submenu-5" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         
                                         <li class="nav-item">
                                             <a class="nav-link" href="guestlist.php">See Today's Guest List</a>
+                                        </li> 
+                                           <li class="nav-item">
+                                            <a class="nav-link" href="takeoutlist.php">See Order Takeout List</a>
                                         </li> 
                                           
                                                                    

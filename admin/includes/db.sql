@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2020 at 11:12 PM
+-- Generation Time: Jan 13, 2020 at 01:11 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -182,6 +182,40 @@ INSERT INTO `menu` (`id`, `primarydishid`, `seconddishid`, `dishdate`) VALUES
 (4, 3, 6, '10/21/2019'),
 (5, 2, 1, '10/22/2019'),
 (6, 4, 6, '10/23/2019');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pickups`
+--
+
+CREATE TABLE `pickups` (
+  `id` int(11) NOT NULL,
+  `bookingid` varchar(255) NOT NULL,
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `dishname` varchar(255) NOT NULL,
+  `diningdate` date NOT NULL,
+  `diningtime` time NOT NULL,
+  `condono` varchar(255) NOT NULL,
+  `membermealprice` decimal(5,2) NOT NULL,
+  `membermealtaxpercent` decimal(5,2) NOT NULL,
+  `membermealtaxvalue` decimal(5,2) NOT NULL,
+  `membermealtotalprice` decimal(5,2) NOT NULL,
+  `grandtotal` decimal(5,2) NOT NULL,
+  `isPickedup` varchar(255) NOT NULL,
+  `timestamp` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pickups`
+--
+
+INSERT INTO `pickups` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `diningdate`, `diningtime`, `condono`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `grandtotal`, `isPickedup`, `timestamp`) VALUES
+(1, '', 'Duane', 'DeSalvo', '', '2020-01-14', '17:30:00', 'e302', '14.94', '0.00', '0.00', '14.94', '14.94', '1', '01-12-2020 03:56:18 PM'),
+(3, '', 'Duane', 'DeSalvo', 'Tawa Shawarma', '2020-01-15', '19:30:00', 'e302', '14.94', '0.00', '0.00', '14.94', '14.94', '1', '01-12-2020 03:56:32 PM'),
+(4, '', 'Duane', 'DeSalvo', 'Tuna Sandwich', '2020-01-15', '19:30:00', 'e302', '14.94', '0.00', '0.00', '14.94', '14.94', '', NULL),
+(5, '', 'Duane', 'DeSalvo', 'Tawa Shawarma', '2020-01-15', '19:30:00', 'e302', '14.94', '0.00', '0.00', '14.94', '14.94', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -4887,7 +4921,11 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-12 21:47:33', NULL, 1),
 (0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-12 21:48:52', NULL, 1),
 (0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-12 22:01:31', NULL, 1),
-(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-12 22:11:54', NULL, 1);
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-12 22:11:54', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-12 22:35:21', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-12 23:14:33', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-12 23:23:19', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-12 23:52:01', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -4989,6 +5027,12 @@ ALTER TABLE `menu`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `pickups`
+--
+ALTER TABLE `pickups`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pricingmodels`
 --
 ALTER TABLE `pricingmodels`
@@ -5065,10 +5109,16 @@ ALTER TABLE `menu`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `pickups`
+--
+ALTER TABLE `pickups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `room`

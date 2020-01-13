@@ -96,6 +96,14 @@ $count3 = $row3['mealcount'];
 $result4 = mysqli_query($con, "SELECT COUNT(id) AS `bookingcount` FROM `reservation`");
 $row4 = mysqli_fetch_array($result4);
 $count4 = $row4['bookingcount'];
+
+$result5 = mysqli_query($con, "SELECT COUNT(id) AS `takeoutcount` FROM `pickups`");
+$row5 = mysqli_fetch_array($result5);
+$count5 = $row5['takeoutcount'];
+
+$result6 = mysqli_query($con, "SELECT SUM(membermealtotalprice) AS `takeoutvalue` FROM `pickups`");
+$row6 = mysqli_fetch_array($result6);
+$count6 = $row6['takeoutvalue'];
 ?>
 
 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
@@ -112,12 +120,13 @@ $count4 = $row4['bookingcount'];
 </div>
 
 
+
 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
 <div class="card border-3 border-top border-top-primary">
 <div class="card-body">
-<h5 class="text-muted">Total Guests Dined <a href="#" data-toggle="tooltip" title="" data-original-title="Showing data from all the guests that members brought to Silver Glen"> [ ? ]</a> </h5>
+<h5 class="text-muted">Total Revenue from Order Takeouts<a href="#" data-toggle="tooltip" title="" data-original-title="Showing all time total revenue from takeout orders"> [ ? ]</a></h5>
 <div class="metric-value d-inline-block">
-<h1 class="mb-1"><?php echo htmlentities($count2);?></h1>
+<h1 class="mb-1">$<?php echo htmlentities($count6);?></h1>
 </div>
 <div class="metric-label d-inline-block float-right text-success font-weight-bold">
 </div>
@@ -195,7 +204,7 @@ $count4 = $row4['bookingcount'];
 <th class="border-0">Date</th>
 <th class="border-0">Time</th>
 <th class="border-0">Guests</th>
-<th class="border-0">Condo No</th>                                            
+<th class="border-0">Unit No</th>                                            
 <th class="border-0">Checked In?</th>
 </tr>
 </thead>
@@ -228,6 +237,8 @@ while($row=mysqli_fetch_array($query))
 </div>
 </div>
 </div>
+
+
 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
 <div class="card">
 <h5 class="card-header">Most Revenue by Diners  <a href="#" data-toggle="tooltip" title="" data-original-title="Showing 7 of the highest spenders with total bookings made by each diner"> [ ? ]</a></h5>
@@ -263,8 +274,75 @@ while($row=mysqli_fetch_array($query))
 </div>
 </div>
 </div>
+<div class="card border-3 border-top border-top-primary">
+<div class="card-body">
+<h5 class="text-muted">Total Order Takeouts<a href="#" data-toggle="tooltip" title="" data-original-title="Showing all time total takeout orders"> [ ? ]</a></h5>
+<div class="metric-value d-inline-block">
+<h1 class="mb-1"><?php echo htmlentities($count5);?></h1>
+</div>
+<div class="metric-label d-inline-block float-right text-danger font-weight-bold">
 </div>
 </div>
+</div>
+
+
+<div class="card border-3 border-top border-top-primary">
+<div class="card-body">
+<h5 class="text-muted">Total Guests Dined <a href="#" data-toggle="tooltip" title="" data-original-title="Showing data from all the guests that members brought to Silver Glen"> [ ? ]</a> </h5>
+<div class="metric-value d-inline-block">
+<h1 class="mb-1"><?php echo htmlentities($count2);?></h1>
+</div>
+<div class="metric-label d-inline-block float-right text-danger font-weight-bold">
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12">
+<div class="card">
+<h5 class="card-header">Recent Order Takeouts <a href="#" data-toggle="tooltip" title="" data-original-title="Showing 10 of the most recent takeout orders"> [ ? ]</a></h5>
+<div class="card-body p-0">
+<div class="table-responsive">
+<table class="table">
+<thead class="bg-light">
+<tr class="border-0">
+<th class="border-0">#</th>
+<th class="border-0">First Name</th>
+<th class="border-0">Last Name</th>
+<th class="border-0">Pickup Date</th>
+<th class="border-0">Pickup Time</th>
+<th class="border-0">Unit No</th>         
+</tr>
+</thead>
+<tbody>
+<?php $query=mysqli_query($con,"select * from pickups order by id DESC LIMIT 10");
+$cnt=1;
+while($row=mysqli_fetch_array($query))
+{
+?>		
+<tr>
+<td><?php echo htmlentities($cnt);?></td>
+<td><?php echo htmlentities($row['firstname']);?></td>
+<td><?php echo htmlentities($row['lastname']);?></td>
+<td><?php echo htmlentities($row['diningdate']);?></td>
+<td><?php echo htmlentities($row['diningtime']);?></td>
+<td><?php echo htmlentities($row['condono']);?></td>
+</tr>
+<?php $cnt=$cnt+1; } ?>
+<tr>
+<td colspan="11"><a href="takeoutlist.php" class="btn btn-outline-light float-right">View All Takeout Orders</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
                     </div>
                 </div>
             </div>

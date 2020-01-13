@@ -77,19 +77,25 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 			</div>
 
 			<div class="container-login100-form-btn m-t-17">
-			<button class="login100-form-btn" style="background-color: #314570;" onClick="reservation();">
+			<button class="login100-form-btn" style="background-color: #314570;" onClick="takeout();">
+			Order a Takeout
+			</button>
+			</div>
+
+			<div class="container-login100-form-btn m-t-17">
+			<button class="login100-form-btn" style="background-color: #AED1D6;" onClick="reservation();">
 			View Reservations by other members
 			</button>
 			</div>
 
 			<div class="container-login100-form-btn m-t-17">
-			<button class="login100-form-btn" style="background-color: #AED1D6;" onClick="history();"> 
+			<button class="login100-form-btn" style="background-color: #E09873;" onClick="history();"> 
 			View Your Booking History
 			</button>
 			</div>
 
 			<div class="container-login100-form-btn m-t-17">
-			<button class="login100-form-btn" style="background-color: #E09873;" onClick="logout();"> 
+			<button class="login100-form-btn" style="background-color: #A37F6F;" onClick="logout();"> 
 			Logout
 			</button>
 			</div>
@@ -100,6 +106,10 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 			{
 			location.href = "booking.php";
 			} 
+			function takeout()
+			{
+			location.href = "pickup.php"
+			}
 			function reservation()
 			{
 			location.href = "reserved/index.php"

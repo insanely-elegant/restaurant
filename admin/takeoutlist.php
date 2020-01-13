@@ -7,19 +7,19 @@ include('includes/config.php');
 // header('location:index.php');
 // }
 // else{
-date_default_timezone_set('Asia/Kolkata');// change according timezone
-$currentTime = date( 'd-m-Y h:i:s A', time () );
+date_default_timezone_set('America/Los_Angeles');// change according timezone
+$currentTime = date( 'm-d-Y h:i:s A', time () );
 
 if(isset($_GET['noshow']))
 		  {
-		          mysqli_query($con,"update reservation set isCheckedin= 0 where id = '".$_GET['id']."'");
-                  $_SESSION['delmsg']="User marked No Show !!";
+		          mysqli_query($con,"update pickups set isPickedup= 0 where id = '".$_GET['id']."'");
+                  $_SESSION['delmsg']="User marked as No Show !!";
           }
 
-if(isset($_GET['checkin']))
+if(isset($_GET['pickedup']))
 		  {
-		          mysqli_query($con,"update reservation set isCheckedin= 1 where id = '".$_GET['id']."'");
-                  $_SESSION['msg']="User sucessfully checkin !!";
+		          mysqli_query($con,"update pickups set isPickedup= 1, timestamp = '$currentTime' where id = '".$_GET['id']."'");
+                  $_SESSION['msg']="User sucessfully marked as Picked up!!";
           }
 
 ?>
@@ -78,7 +78,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">View Guest Lists</li>
+                                            <li class="breadcrumb-item active" aria-current="page">View Order Takeout Lists</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -91,8 +91,8 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                     <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="section-block" id="basicform">
-                                    <h3 class="section-title">View Guest Lists </h3>
-                                    <p>You can view the list of guests here</p>
+                                    <h3 class="section-title">View Takeout Lists </h3>
+                                    <p>You can view the list of order takeouts here</p>
                                 </div>
                                 <?php if(isset($_GET['checkin']))
 {?>
@@ -122,21 +122,18 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                                             <th>First Name</th>
                                             <th>Last Name</th>
                                             <th>Action</th>
-											<th>Room Name</th>
-											<th>Table Name</th>
-											<th>Seat</th>
                                             <th>Date</th>
                                             <th>Time</th>
-                                            <th>Number of Guests</th>
-                                            <th>Unit No</th>                                            
-                                            <th>CheckedIn?</th>
+                                            <th>Condo No</th>                                            
+                                            <th>Order Pickup Status</th>                                
+                                            <th>Order Pickedup at</th>
                                             <th>View Invoice</th>
                                             
 										</tr>
 									</thead>
 									<tbody>
 
-<?php $query=mysqli_query($con,"select * from reservation");
+<?php $query=mysqli_query($con,"select * from pickups");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {
@@ -146,20 +143,17 @@ while($row=mysqli_fetch_array($query))
                                             <td><?php echo htmlentities($row['firstname']);?></td>
                                             <td><?php echo htmlentities($row['lastname']);?></td>
                                             <td>
-                                                <a href="guestlist.php?id=<?php echo $row['id']?>&checkin=checkin" class="btn btn-sm btn-success">Checkin</a>
+                                                <a href="takeoutlist.php?id=<?php echo $row['id']?>&pickedup=pickedup" class="btn btn-sm btn-success">Pickedup</a>
                                             <br><br>
-                                                <a href="guestlist.php?id=<?php echo $row['id']?>&noshow=noshow" onClick="return confirm('Are you sure you want to mark no show?')" class="btn btn-sm btn-danger">
+                                                <a href="takeoutlist.php?id=<?php echo $row['id']?>&noshow=noshow" onClick="return confirm('Are you sure you want to mark no show?')" class="btn btn-sm btn-danger">
                                                 No Show
                                             </a></td>
-											<td><?php echo htmlentities($row['room']);?></td>
-											<td><?php echo htmlentities($row['tablename']);?></td>
-                                            <td><?php echo htmlentities($row['seat']);?></td>
                                             <td><?php echo htmlentities($row['diningdate']);?></td>
                                             <td><?php echo htmlentities($row['diningtime']);?></td>
-                                            <td><?php echo htmlentities($row['guestno']);?></td>
                                             <td><?php echo htmlentities($row['condono']);?></td>                                            
-                                            <td><?php echo htmlentities($row['isCheckedin'] ? 'Yes' : 'No' );?></td>
-                                            <td> <a href="receipt.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
+                                            <td><?php echo htmlentities($row['isPickedup'] ? 'Yes' : 'No' );?></td>                       
+                                            <td><?php echo htmlentities($row['timestamp']);?></td>
+                                            <td> <a href="pickup-receipt.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
 										</tr>
 										<?php $cnt=$cnt+1; } ?>
 										
