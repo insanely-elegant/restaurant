@@ -185,13 +185,13 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                                           <option value="<?php echo $row['diningdate'];?>"><?php echo $row['diningdate'];?></option>
                                       <?php } ?>
                                             </select>
-                                            
+                                            </div>
                                             <div class="form-group">
                                                 <label for="inputText3">Create a Dining Time</label>
                                                  <input name="diningtime" type="time" class="form-control">
                                             </div>
 
-                                            </div>
+                                            
                                             
 
 
