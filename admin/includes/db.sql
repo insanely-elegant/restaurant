@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2020 at 01:11 AM
+-- Generation Time: Jan 16, 2020 at 11:02 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -99,7 +99,6 @@ INSERT INTO `dinertype` (`dinerid`, `dinername`) VALUES
 CREATE TABLE `diningdates` (
   `id` int(11) NOT NULL,
   `diningdate` date NOT NULL,
-  `diningtime` time NOT NULL,
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -107,11 +106,11 @@ CREATE TABLE `diningdates` (
 -- Dumping data for table `diningdates`
 --
 
-INSERT INTO `diningdates` (`id`, `diningdate`, `diningtime`, `status`) VALUES
-(1, '2020-01-13', '19:30:00', 'enabled'),
-(2, '2020-01-13', '20:30:00', 'enabled'),
-(3, '2020-01-14', '17:30:00', 'enabled'),
-(4, '2020-01-15', '19:30:00', 'enabled');
+INSERT INTO `diningdates` (`id`, `diningdate`, `status`) VALUES
+(1, '2020-01-13', 'enabled'),
+(2, '2020-01-13', 'enabled'),
+(3, '2020-01-14', 'enabled'),
+(4, '2020-01-15', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -4925,7 +4924,9 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-12 22:35:21', NULL, 1),
 (0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-12 23:14:33', NULL, 1),
 (0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-12 23:23:19', NULL, 1),
-(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-12 23:52:01', NULL, 1);
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-12 23:52:01', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-16 20:58:56', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-16 21:36:31', NULL, 1);
 
 -- --------------------------------------------------------
 

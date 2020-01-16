@@ -14,12 +14,11 @@ $currentTime = date( 'd-m-Y h:i:s A', time () );
 if(isset($_POST['submit']))
 {
 	$diningdate=$_POST['diningdate'];
-	$diningtime=$_POST['diningtime'];
 	$status="enabled";
-$sql=mysqli_query($con,"insert into diningdates(diningdate,diningtime,status) values('$diningdate','$diningtime','$status')");
-$last_inserted_sqlid = mysqli_insert_id($con);
-$sql2=mysqli_query($con,"insert into diningtimes(did, diningtime, status) values('$last_inserted_sqlid','$diningtime','$status')");
-$_SESSION['msg']="New Dining Date & Time Enabled !!";
+ $sql=mysqli_query($con,"insert into diningdates(diningdate,status) values('$diningdate','$status')");
+// $last_inserted_sqlid = mysqli_insert_id($con);
+// $sql2=mysqli_query($con,"insert into diningtimes(did, diningtime, status) values('$last_inserted_sqlid','$diningtime','$status')");
+$_SESSION['msg']="New Dining Date Added & Auto-Enabled !!";
 
 }
 
@@ -110,10 +109,10 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                                     <h3 class="section-title">Manage Dining Program Dates / Calender</h3>
                                     <div class="alert alert-primary" role="alert">
                                                 <h4 class="alert-heading">Tip!</h4>
-                                                <p>You can create the dining program date and timings for the week here and enable them or disable them. <br> If you are finished 
-                                    with a date, please disable them from here to prevent further bookings from this date and time. <br> </p>
+                                                <p>You can create the dining program date for the week here and enable them or disable them. <br> If you are finished 
+                                    with a date, please disable them from here to prevent further bookings from this date. <br> </p>
                                                 <hr>
-                                                <p class="mb-0">If you select the DESTROY button, the dates and associated time will be permanently removed from all the records <br>made on the system, that includes reports and dining history.</p>
+                                                <p class="mb-0">If you select the DESTROY button, the date will be permanently removed from only the records <br>made for the week on the system, that includes weekly menu</p>
                                             </div>
                                   
                                 </div>
@@ -156,10 +155,10 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                                                 <label for="inputText3" class="col-form-label">Date</label>
                                                 <input name="diningdate" type="date" class="form-control">
                                             </div>
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label for="inputText3">Time</label>
                                                  <input name="diningtime" type="time" class="form-control">
-                                            </div>
+                                            </div> --> <!--removed time !-->
                                              
                                             <button type="submit" name="submit" class="btn btn-outline-dark">Add into calendar</a>
                                         </form>
@@ -173,7 +172,6 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 										<tr>
 											<th>#</th>
 											<th>Dining Date</th>
-											<th>Dining Time</th>
                                             <th>Date Status</th>
 											<th>Action</th>
 										</tr>
@@ -188,7 +186,6 @@ while($row=mysqli_fetch_array($query))
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
 											<td><?php echo htmlentities($row['diningdate']);?></td>
-											<td><?php echo htmlentities($row['diningtime']);?></td>
 											<td><?php echo htmlentities($row['status']);?></td>
 											<td>
                                                 <!-- <a href="edit-dining-dates.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button> -->
