@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2020 at 11:02 PM
+-- Generation Time: Jan 17, 2020 at 12:34 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -110,7 +110,8 @@ INSERT INTO `diningdates` (`id`, `diningdate`, `status`) VALUES
 (1, '2020-01-13', 'enabled'),
 (2, '2020-01-13', 'enabled'),
 (3, '2020-01-14', 'enabled'),
-(4, '2020-01-15', 'enabled');
+(4, '2020-01-15', 'enabled'),
+(5, '2020-01-31', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -4966,20 +4967,19 @@ CREATE TABLE `weeklymenu` (
   `id` int(11) NOT NULL,
   `diningdate` date NOT NULL,
   `diningtime` time NOT NULL,
+  `roomid` int(50) NOT NULL,
+  `tableid` int(50) NOT NULL,
   `dishname1` varchar(255) NOT NULL,
-  `dishname2` varchar(255) NOT NULL,
-  `roomid` int(50) NOT NULL
+  `dishname2` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `weeklymenu`
 --
 
-INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `dishname1`, `dishname2`, `roomid`) VALUES
-(1, '2020-01-13', '20:30:00', 'Bread Basket', 'Apple Pie', 1),
-(2, '2020-01-14', '17:30:00', 'Apple Pie', 'Pasta Bolognese', 1),
-(3, '2020-01-15', '19:30:00', 'Tawa Shawarma', 'Tuna Sandwich', 1),
-(4, '2020-01-13', '19:30:00', 'Pasta Bolognese', 'Tuna Sandwich', 2);
+INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `roomid`, `tableid`, `dishname1`, `dishname2`) VALUES
+(1, '2020-01-31', '13:30:00', 2, 7, 'Pasta Bolognese', 'Apple Pie'),
+(2, '2020-01-15', '16:44:00', 1, 3, 'Bread Basket', 'Tawa Shawarma');
 
 --
 -- Indexes for dumped tables
@@ -5089,7 +5089,7 @@ ALTER TABLE `chef`
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `dish`
@@ -5143,7 +5143,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
