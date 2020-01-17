@@ -11,8 +11,13 @@ if(!empty($_GET["room_id"]))
         AND
         diningdate='$diningdate' and diningtime='$diningtime'"
     );
-    $result2 = $con->query("SELECT * FROM tablelayout
-        WHERE roomid='$roomid'"
+    $result2 = $con->query("SELECT weeklymenu.diningdate as wdd,weeklymenu.diningtime as wdt,
+     tablelayout.tablename as ttname,tablelayout.totalseats as ttotseats
+      FROM tablelayout join weeklymenu 
+      on weeklymenu.tableid = tablelayout.id 
+      WHERE weeklymenu.diningdate='$diningdate' 
+      and weeklymenu.diningtime='$diningtime' 
+      and weeklymenu.roomid='$roomid'"
     );
     $output=[[],[]];
     $counter=[0,0];
@@ -23,14 +28,14 @@ if(!empty($_GET["room_id"]))
       $output[1][$counter[1]++]=$row;
     }
     foreach ($output[1] as $key => $value) {
-      $totalseat=$value['totalseats'];
+      $totalseat=$value['ttotseats'];
       foreach ($output[0] as $k => $v) {
-        if($value['tablename']==$v['tablename']){
+        if($value['ttname']==$v['ttname']){
           $totalseat-=$v['seat'];
         }
       }
       if($totalseat!=0){
-        echo "<option value='".$totalseat."'>".$value['tablename']."</option>";
+        echo "<option value='".$totalseat."'>".$value['ttname']."</option>";
       }
     }
 }

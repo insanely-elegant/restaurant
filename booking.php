@@ -105,7 +105,7 @@ function getTable() { //fetches tablename
 	$.ajax({
 	type: "GET",
 	url: "get_table.php",
-	data:'room_id='+roomid+'&diningdate='+diningdate+'&diningtime='+diningdate,
+	data:'room_id='+roomid+'&diningdate='+diningdate+'&diningtime='+diningtime,
 	success: function(data){
 		$("#tablename").html(data);
 	}
