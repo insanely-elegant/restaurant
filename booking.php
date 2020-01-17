@@ -57,9 +57,36 @@ function getFood(val) { //fetches dishname
 	$.ajax({
 	type: "POST",
 	url: "get_food.php",
-	data:'diningtime='+val,
+	data:'diningdate='+val,
 	success: function(data){
 		$("#dishname1").html(data);
+	}
+	});
+}
+
+function getDiningTime(val) { //fetches dishname
+	$.ajax({
+	type: "POST",
+	url: "get_time.php",
+	data:'diningdate='+val,
+	success: function(data){
+		$("#diningtime").html(data);
+	}
+	});
+}
+
+function storeTime(val) { //fetches Time & Stores it in a hidden variable
+	document.getElementById('storedtime_h').value = val;
+}
+
+
+function getRoom(val) { //fetches Roomname
+	$.ajax({
+	type: "POST",
+	url: "get_room.php",
+	data:'diningdate='+val,
+	success: function(data){
+		$("#room").html(data);
 	}
 	});
 }
@@ -71,13 +98,14 @@ function changeLayout(x) { //fetches room layout
 	 ?>
 }
 function getTable() { //fetches tablename
+	diningtime = document.getElementById('storedtime_h').value;
 	diningdate = document.getElementById('diningdate').value;
-	roomid = document.getElementById('roomid').value;
+	roomid = document.getElementById('room').value;
 	changeLayout(roomid);
 	$.ajax({
 	type: "GET",
 	url: "get_table.php",
-	data:'room_id='+roomid+'&diningdate='+diningdate,
+	data:'room_id='+roomid+'&diningdate='+diningdate+'&diningtime='+diningdate,
 	success: function(data){
 		$("#tablename").html(data);
 	}
@@ -181,9 +209,9 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 					<!-- End Unit No -->
 
 					<!-- Begin Dining Date Selection -->
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">	
-					<select id="diningdate" name="diningdate" class="form-control" onChange="getDiningtime(this.value);"  required>
-					<option value="">Select Dining Date</option>
+					<div class="wrap-input100 validate-input m-b-16">
+					<select id="diningdate" name="diningdate" class="form-control" onChange="getFood(value);getDiningTime(this.value);getRoom(this.value);"  required>
+					<option value="">Select a Dining Date</option>
 					<?php $query=mysqli_query($con,"SELECT DISTINCT diningdate FROM weeklymenu WHERE diningdate >= CURDATE() + INTERVAL 1 DAY");
 					while($row=mysqli_fetch_array($query))
 					{?>
@@ -194,21 +222,9 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 					<span class="focus-input100"></span>
 						</div>
 						<!-- End Dining Date Selection -->
-
-						<!-- Begin Dining Time -->
-						<div class="wrap-input100 validate-input m-b-16">
-							<select name="diningtime" id="diningtime" class="form-control" onChange="getFood(this.value);"  required>
-							</select>
-							<span class="focus-input100"></span>
-						</div>
-						
-						<input type="hidden" name="diningtime_h" id="diningtime_h"> <!-- passing all selected values to hidden inputs for review.php -->
-						<!-- End Dining Time -->
-
-					
-
-					<!-- Begin Dish Name -->
+							<!-- Begin Dish Name -->
 					<div class="wrap-input100 validate-input m-b-16">
+											<label for="inputText3">Dish</label>
 						<select name="dishname"  id="dishname1" class="form-control" required>
 						</select>
 						<span class="focus-input100"></span>
@@ -216,23 +232,36 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 					<input type="hidden" name="dishname_h" id="dishname_h"> <!-- passing all selected values to hidden inputs for review.php -->
 					<!-- End Dish Name  -->
 
-					<!-- Begin Room No -->
-					<div class="wrap-input100 validate-input m-b-16">
-						<select id="roomid" class="form-control" name="room" onChange="getTable();" required >
-						<option value="">Select Dining Room</option>
-						<?php $query=mysqli_query($con,"select * from room");
-										while($row2=mysqli_fetch_array($query))
-										{?>
-											<option value="<?php echo $row2['id'];?>"><?php echo $row2['roomname'];?></option>
-										<?php } ?>
-						</select>
-						<span class="focus-input100"></span>
+
+						<!-- Begin Dining Time -->
+						<div class="wrap-input100 validate-input m-b-16">
+												<label for="inputText3">Time<label>
+							<select name="diningtime" id="diningtime" class="form-control" onChange="storeTime(this.value);" required>
+							</select>
+							<span class="focus-input100"></span>
+						</div>
+					
+						<input type="hidden" name="diningtime_h" id="diningtime_h"> <!-- passing all selected values to hidden inputs for review.php -->
+						<!-- End Dining Time -->
+
+					<!-- this field is for storing date for processing -->
+					<input type="hidden" name="storedtime_h" id="storedtime_h">
+					<!-- done -->
+
+					 <div class="form-group">
+						<label for="inputText3">Select a Room</label>
+						<select name="room" id="room" class="form-control" id="input-select" onChange="getTable(this.value);" required>
+                        <option value="">Select a Room</option>
+                    	</select>
 					</div>
+					
 					<input type="hidden" name="roomname_h" id="roomname_h"> <!-- passing all selected values to hidden inputs for review.php -->
 					<!-- End Room No -->
 
 					<!-- Begin Table No -->
-					<div class="wrap-input100 validate-input m-b-16">
+					<div class="wrap-input100 validate-input m-b-16">	
+										<label for="inputText3">Select a Table</label>
+
 						<select onchange="getSeat(this.value)" class="form-control" name="tablename" id="tablename" required >
 						</select>
 						<span class="focus-input100"></span>
@@ -240,6 +269,10 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 
 					<input type="hidden" name="tablename_h" id="tablename_h"> <!-- passing all selected values to hidden inputs for review.php -->
 					<!-- End Table No -->
+					
+
+				
+					
 
 					<!-- Begin Number of seats -->
 					<div class="wrap-input100 validate-input m-b-16">

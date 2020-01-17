@@ -1,9 +1,9 @@
 <?php
 include('includes/config.php');
-if(!empty($_POST["diningtime"])) 
+if(!empty($_POST["diningdate"])) 
 {
- $id=$_POST['diningtime'];
-$query=mysqli_query($con,"select * from weeklymenu where id='$id'");
+ $id=$_POST['diningdate'];
+$query=mysqli_query($con,"select DISTINCT dishname1, dishname2 from weeklymenu where diningdate='$id'");
 ?>
 <option value="">Select one of 2 available Dishes</option>
 <?php

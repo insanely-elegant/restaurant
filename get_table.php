@@ -3,12 +3,13 @@
 include('includes/config.php');
 if(!empty($_GET["room_id"]))
 {
+    $diningtime = $_GET['diningtime'];
     $roomid = $_GET['room_id'];
     $diningdate=$_GET['diningdate'];
     $result = $con->query("SELECT * FROM
         reservation WHERE roomid='$roomid'
         AND
-        diningdate='$diningdate' "
+        diningdate='$diningdate' and diningtime='$diningtime'"
     );
     $result2 = $con->query("SELECT * FROM tablelayout
         WHERE roomid='$roomid'"
