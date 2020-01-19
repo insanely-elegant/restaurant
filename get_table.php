@@ -30,7 +30,7 @@ if(!empty($_GET["room_id"]))
     foreach ($output[1] as $key => $value) {
       $totalseat=$value['ttotseats'];
       foreach ($output[0] as $k => $v) {
-        if($value['ttname']==$v['ttname']){
+        if($value['ttname']==$v['tablename']){
           $totalseat-=$v['seat'];
         }
       }
