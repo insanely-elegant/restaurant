@@ -77,6 +77,7 @@ function getDiningTime(val) { //fetches dishname
 
 function storeTime(val) { //fetches Time & Stores it in a hidden variable
 	document.getElementById('storedtime_h').value = val;
+	document.getElementById("room").selectedIndex = 0; 
 }
 
 
