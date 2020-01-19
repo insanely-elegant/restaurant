@@ -77,7 +77,9 @@ function getDiningTime(val) { //fetches dishname
 
 function storeTime(val) { //fetches Time & Stores it in a hidden variable
 	document.getElementById('storedtime_h').value = val;
-	document.getElementById("room").selectedIndex = 0; 
+	document.getElementById("room").selectedIndex = 0;
+	document.getElementById("tablename").selectedIndex = 0;  
+	document.getElementById("seats").selectedIndex = 0; 
 }
 
 
@@ -211,6 +213,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 
 					<!-- Begin Dining Date Selection -->
 					<div class="wrap-input100 validate-input m-b-16">
+					<label for="inputText3">Dining Date<label>
 					<select id="diningdate" name="diningdate" class="form-control" onChange="getFood(value);getDiningTime(this.value);getRoom(this.value);"  required>
 					<option value="">Select a Dining Date</option>
 					<?php $query=mysqli_query($con,"SELECT DISTINCT diningdate FROM weeklymenu WHERE diningdate >= CURDATE() + INTERVAL 1 DAY");
@@ -225,7 +228,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 						<!-- End Dining Date Selection -->
 							<!-- Begin Dish Name -->
 					<div class="wrap-input100 validate-input m-b-16">
-											<label for="inputText3">Dish</label>
+											<label for="inputText3">Menu Options</label>
 						<select name="dishname"  id="dishname1" class="form-control" required>
 						</select>
 						<span class="focus-input100"></span>
@@ -236,7 +239,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 
 						<!-- Begin Dining Time -->
 						<div class="wrap-input100 validate-input m-b-16">
-												<label for="inputText3">Time<label>
+						<label for="inputText3">Time<label>
 							<select name="diningtime" id="diningtime" class="form-control" onChange="storeTime(this.value);" required>
 							</select>
 							<span class="focus-input100"></span>
@@ -250,7 +253,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 					<!-- done -->
 
 					 <div class="form-group">
-						<label for="inputText3">Select a Room</label>
+						<label for="inputText3">Dining Room</label>
 						<select name="room" id="room" class="form-control" id="input-select" onChange="getTable(this.value);" required>
                         <option value="">Select a Room</option>
                     	</select>
@@ -261,9 +264,8 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 
 					<!-- Begin Table No -->
 					<div class="wrap-input100 validate-input m-b-16">	
-										<label for="inputText3">Select a Table</label>
-
-						<select onchange="getSeat(this.value)" class="form-control" name="tablename" id="tablename" required >
+					<label for="inputText3">Select a Table</label>
+						<select onchange="getSeat(this.value)" class="form-control" name="tablename" id="tablename" required>
 						</select>
 						<span class="focus-input100"></span>
 					</div>
@@ -277,6 +279,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 
 					<!-- Begin Number of seats -->
 					<div class="wrap-input100 validate-input m-b-16">
+					<label for="inputText3">Total Seats Required<label>
 						<select class="form-control" name="seats" id="seat" required>
 						</select>
 						<span class="focus-input100"></span>    
