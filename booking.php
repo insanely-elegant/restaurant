@@ -157,8 +157,8 @@ $(document).ready(function(){ //passes selected option name for diningtime to hi
 });
 
 $(document).ready(function(){ //passes selected option name for roomid to hidden input fields
-    $('#roomid').on('change',function(){
-        var roomName = $("#roomid option:selected").text();
+    $('#room').on('change',function(){
+        var roomName = $("#room option:selected").text();
         document.getElementById('roomname_h').value = roomName;
     });
 });
