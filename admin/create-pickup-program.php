@@ -7,26 +7,25 @@ include('includes/config.php');
 // header('location:index.php');
 // }
 // else{
-date_default_timezone_set('Asia/Kolkata');// change according timezone
+date_default_timezone_set('America/Los_Angeles');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
 
 
 if(isset($_POST['submit']))
 {
     $room=$_POST['room'];
-	$table=$_POST['table'];
 	$diningdate=$_POST['diningdate'];
 	$diningtime=$_POST['diningtime'];
 	$dishname1=$_POST['dishname1'];
 	$dishname2=$_POST['dishname2'];
-$sql=mysqli_query($con,"insert into weeklymenu(roomid,tableid,diningdate,diningtime,dishname1,dishname2) values('$room','$table','$diningdate','$diningtime','$dishname1','$dishname2')");
-$_SESSION['msg']="Published To The Weekly Menu !!";
+$sql=mysqli_query($con,"insert into pickupweeklymenu(roomid,pickupdate,pickuptime,dishname1,dishname2) values('$room','$diningdate','$diningtime','$dishname1','$dishname2')");
+$_SESSION['msg']="Published To The Weekly Order Pickup Menu !!";
 
 }
 
 if(isset($_GET['del']))
 		  {
-		          mysqli_query($con,"delete from weeklymenu where id = '".$_GET['id']."'");
+		          mysqli_query($con,"delete from pickupweeklymenu where id = '".$_GET['id']."'");
                   $_SESSION['delmsg']="Weekly Menu Item deleted !!";
 		  }
 
@@ -112,7 +111,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Manage Dining Program</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Manage Order Pickup Program</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -125,8 +124,8 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                     <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="section-block" id="basicform">
-                                    <h3 class="section-title">Create Dining Program</h3>
-                                    <p>You can create the menu for the week here</p>
+                                    <h3 class="section-title">Create Order Pickup Program</h3>
+                                    <p>You can create the menu for the week here for Order Pickups</p>
                                 </div>
                                 <?php if(isset($_POST['submit']))
 {?>
@@ -151,7 +150,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                                           
                                             <div class="alert alert-info" role="alert">
                                                Tip! : Click  <a href="create-dining-dates.php">here</a> to create your program's dining dates and then come 
-                                               back to this page and assign rooms, tables and dates to times & dishes.
+                                               back to this page and assign rooms, dates to times & dishes for the pickups.
                                             </div>
 
 
@@ -167,18 +166,15 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                                           <option value="<?php echo $row['id'];?>"><?php echo $row['roomname'];?></option>
                                       <?php } ?>
                                             </select>
-                                         <label class="col-form-label" for="inputText3"> Select a Table</label>
-                                           <select name="table" id="table" class="form-control" id="input-select" required>
-                                            <option value="">Select a Table</option>
-                                            </select>
+                                        
                                             </div>
 
 
-                                            <label class="col-form-label" for="inputText3"> Select a Dining Date</label>
+                                            <label class="col-form-label" for="inputText3"> Select a Order Pickup Date</label>
                                            <select name="diningdate" class="form-control" id="input-select" required>
                                             <option value="">Select a Date</option>
                                             <?php
-                                             $query=mysqli_query($con,"select DISTINCT diningdate  from diningdates where status = 'enabled' and diningdate >= CURDATE() + INTERVAL 8 HOUR ORDER BY diningdate ASC");
+                                             $query=mysqli_query($con,"select DISTINCT diningdate from diningdates where status = 'enabled' and diningdate >= CURDATE() + INTERVAL 8 HOUR ORDER BY diningdate ASC");
                                             while($row=mysqli_fetch_array($query))
                                            {
                                             ?>
@@ -187,10 +183,9 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                                             </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="inputText3">Create a Dining Time</label>
-                                                 <input id="diningtime" name="diningtime" type="time" class="form-control">
+                                                <label for="inputText3">Create a Order Pickup Time</label>
+                                                 <input name="diningtime" type="time" class="form-control">
                                             </div>
-                                            
                                            
                                             <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Dish Name 1</label>
@@ -217,20 +212,19 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                                       <?php } ?>
                                             </select>
                                             </div>
-                                            <button type="submit" name="submit" class="btn btn-outline-dark">Publish The Menu!</a>
+                                            <button type="submit" name="submit" class="btn btn-outline-dark">Submit!</a>
                                         </form>
                                     </div>
                                 
                                 </div>
-                                 <div class="module-body table"> <h3 class="section-title">Weekly Menu</h3> <br>
+                                 <div class="module-body table"> <h3 class="section-title">Order Takeout Schedule</h3> <br>
 								<table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
 									<thead>
 										<tr>
 											<th>#</th>
 											<th>Room</th>
-											<th>Table Name</th>
-											<th>Dining Date</th>
-											<th>Dining Time</th>
+											<th>Pickup Date</th>
+											<th>Pickup Time</th>
 											<th>Dish Name 1</th>
 											<th>Dish Name 2 </th>
 											<th>Action</th>
@@ -238,10 +232,10 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 									</thead>
 									<tbody>
 
-<?php $query=mysqli_query($con,"select room.roomname as rname,tablelayout.tablename as tname, weeklymenu.diningdate as dd, 
-weeklymenu.diningtime as dt, 
-weeklymenu.dishname1 as d1, weeklymenu.dishname2 as d2 from weeklymenu
-join room on room.id=weeklymenu.roomid join tablelayout on tablelayout.id=weeklymenu.tableid");
+<?php $query=mysqli_query($con,"select room.roomname as rname,pickupweeklymenu.pickupdate as dd, 
+pickupweeklymenu.pickuptime as dt, 
+pickupweeklymenu.dishname1 as d1, pickupweeklymenu.dishname2 as d2 from pickupweeklymenu
+join room on room.id=pickupweeklymenu.roomid where pickupdate >= CURDATE() ORDER BY pickupweeklymenu.pickupdate ASC");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {
@@ -249,7 +243,6 @@ while($row=mysqli_fetch_array($query))
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
 											<td><?php echo htmlentities($row['rname']);?></td>
-											<td><?php echo htmlentities($row['tname']);?></td>
 											<td><?php echo htmlentities($row['dd']);?></td>
 											<td><?php echo htmlentities($row['dt']);?></td>
 											<td><?php echo htmlentities($row['d1']);?></td>

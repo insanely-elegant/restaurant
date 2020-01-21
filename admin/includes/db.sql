@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2020 at 04:05 PM
+-- Generation Time: Jan 21, 2020 at 05:28 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -107,12 +107,7 @@ CREATE TABLE `diningdates` (
 --
 
 INSERT INTO `diningdates` (`id`, `diningdate`, `status`) VALUES
-(1, '2020-01-13', 'enabled'),
-(2, '2020-01-13', 'enabled'),
-(3, '2020-01-14', 'enabled'),
-(4, '2020-01-15', 'enabled'),
-(5, '2020-01-31', 'enabled'),
-(6, '2020-02-01', 'enabled');
+(1, '2020-01-23', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -131,11 +126,8 @@ CREATE TABLE `dish` (
 --
 
 INSERT INTO `dish` (`id`, `dishname`, `dishdescription`) VALUES
-(34, 'Bread Basket', 'Varied collection of breads.Includes Baguettes,Brown,white,bread sticks'),
-(35, 'Apple Pie', 'Cheese Pie!'),
-(36, 'Pasta Bolognese', 'Sauce reduced in scruptious italian pasta with ground beef and basil'),
-(37, 'Tawa Shawarma', 'It\'s a snack!'),
-(38, 'Tuna Sandwich', 'Delicious!');
+(1, 'Cobb salad', 'In 1937, Bob Cobb, the owner of The Brown Derby, was scrounging around at the restaurant\'s North Vine location for a meal for Sid Grauman of Grauman\'s Theater when he put together a salad with what he found in the fridge: a head of lettuce, an avocado, so'),
+(2, 'Fajitas', 'Grill skirt steak (faja in Spanish) over the campfire, wrap in a tortilla, and you\'ve got the beginning of a Rio Grande region tradition. The fajita is thought to have come off the range and into popular culture when a certain Sonny Falcon began operating');
 
 -- --------------------------------------------------------
 
@@ -213,10 +205,30 @@ CREATE TABLE `pickups` (
 --
 
 INSERT INTO `pickups` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `diningdate`, `diningtime`, `condono`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `grandtotal`, `isPickedup`, `timestamp`) VALUES
-(1, '', 'Duane', 'DeSalvo', '', '2020-01-14', '17:30:00', 'e302', '14.94', '0.00', '0.00', '14.94', '14.94', '1', '01-12-2020 03:56:18 PM'),
-(3, '', 'Duane', 'DeSalvo', 'Tawa Shawarma', '2020-01-15', '19:30:00', 'e302', '14.94', '0.00', '0.00', '14.94', '14.94', '1', '01-12-2020 03:56:32 PM'),
-(4, '', 'Duane', 'DeSalvo', 'Tuna Sandwich', '2020-01-15', '19:30:00', 'e302', '14.94', '0.00', '0.00', '14.94', '14.94', '', NULL),
-(5, '', 'Duane', 'DeSalvo', 'Tawa Shawarma', '2020-01-15', '19:30:00', 'e302', '14.94', '0.00', '0.00', '14.94', '14.94', '', NULL);
+(1, '', 'Duane', 'DeSalvo', 'Cobb salad', '2020-01-23', '22:02:00', 'e302', '14.94', '0.00', '0.00', '14.94', '14.94', '', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pickupweeklymenu`
+--
+
+CREATE TABLE `pickupweeklymenu` (
+  `id` int(50) NOT NULL,
+  `pickupdate` date NOT NULL,
+  `pickuptime` time NOT NULL,
+  `roomid` int(50) NOT NULL,
+  `dishname1` varchar(255) NOT NULL,
+  `dishname2` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pickupweeklymenu`
+--
+
+INSERT INTO `pickupweeklymenu` (`id`, `pickupdate`, `pickuptime`, `roomid`, `dishname1`, `dishname2`, `status`) VALUES
+(1, '2020-01-23', '22:02:00', 1, 'Cobb salad', 'Fajitas', '');
 
 -- --------------------------------------------------------
 
@@ -281,13 +293,6 @@ CREATE TABLE `reservation` (
   `freedinersmealtaxvalue` decimal(5,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `reservation`
---
-
-INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `roomid`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `freedinersmealtotalprice`, `isConfirmed`, `isCheckedin`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `guestmealprice`, `guestmealtaxpercent`, `guestmealtaxvalue`, `guestmealtotalprice`, `grandtotal`, `freedinersmealprice`, `freedinersmealtaxpercent`, `freedinersmealtaxvalue`) VALUES
-(18, 'SG2001310001', 'Duane', 'DeSalvo', 'Tawa Shawarma', 1, '1', '24', 0, '4', '2020-01-31', '17:37:00', '3', 'e302', NULL, '', NULL, '14.94', '0.00', '0.00', '14.94', '16.95', '5.00', '0.85', '17.80', '68.34', NULL, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -307,8 +312,7 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`id`, `roomname`, `totaltables`, `roomavailability`, `productimage1`) VALUES
-(1, 'Game Room', '4', '1', 'game-room.png'),
-(2, 'Dining Room', '10', '1', 'dining.png');
+(1, 'Game Room', '4', '1', 'game-room.png');
 
 -- --------------------------------------------------------
 
@@ -331,17 +335,7 @@ INSERT INTO `tablelayout` (`id`, `roomid`, `tablename`, `totalseats`) VALUES
 (1, 1, '21', '6'),
 (2, 1, '22', '6'),
 (3, 1, '23', '6'),
-(4, 1, '24', '6'),
-(5, 2, 'A1', '6'),
-(6, 2, 'A2', '4'),
-(7, 2, 'A3', '6'),
-(8, 2, 'A4', '4'),
-(9, 2, 'A5', '3'),
-(10, 2, 'A6', '5'),
-(11, 2, 'A7', '2'),
-(12, 2, 'A8', '6'),
-(13, 2, 'A9', '3'),
-(14, 2, 'A10', '4');
+(4, 1, '24', '6');
 
 -- --------------------------------------------------------
 
@@ -9482,7 +9476,14 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-16 20:58:56', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-16 21:36:31', NULL, 1),
 (0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-16 23:49:12', NULL, 1),
-(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-19 10:06:01', NULL, 1);
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-19 10:06:01', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-19 15:39:26', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-19 15:52:08', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-20 22:20:09', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 04:12:04', NULL, 1),
+(0, 'chef', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 04:32:49', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 04:33:12', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 13:12:25', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -9533,9 +9534,7 @@ CREATE TABLE `weeklymenu` (
 --
 
 INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `roomid`, `tableid`, `dishname1`, `dishname2`) VALUES
-(1, '2020-02-01', '01:01:00', 2, 8, 'Tuna Sandwich', 'Bread Basket'),
-(2, '2020-01-31', '17:37:00', 1, 4, 'Tawa Shawarma', 'Apple Pie'),
-(3, '2020-01-31', '17:05:00', 1, 3, 'Tawa Shawarma', 'Apple Pie');
+(1, '2020-01-23', '20:15:00', 1, 1, 'Cobb salad', 'Fajitas');
 
 --
 -- Indexes for dumped tables
@@ -9587,6 +9586,12 @@ ALTER TABLE `menu`
 -- Indexes for table `pickups`
 --
 ALTER TABLE `pickups`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pickupweeklymenu`
+--
+ALTER TABLE `pickupweeklymenu`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -9645,13 +9650,13 @@ ALTER TABLE `chef`
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `dish`
 --
 ALTER TABLE `dish`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `host`
@@ -9669,25 +9674,31 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `pickups`
 --
 ALTER TABLE `pickups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `pickupweeklymenu`
+--
+ALTER TABLE `pickupweeklymenu`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tablelayout`
 --
 ALTER TABLE `tablelayout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -9699,7 +9710,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
