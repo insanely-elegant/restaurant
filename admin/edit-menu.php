@@ -7,14 +7,14 @@ include('includes/config.php');
 // header('location:index.php');
 // }
 // else{
-date_default_timezone_set('Asia/Kolkata');// change according timezone
+date_default_timezone_set('America/Los_Angeles');
 $currentTime = date( 'd-m-Y h:i:s A', time () );
 
 
 if(isset($_POST['submit']))
 {
-	$dishname=$_POST['dishname'];
-	$dishdescription=$_POST['dishdescription'];
+    $dishname = mysqli_real_escape_string($con, $_POST['dishname']);
+    $dishdescription = mysqli_real_escape_string($con, $_POST['dishdescription']);
 	$id=intval($_GET['id']);
 $sql=mysqli_query($con,"update dish set dishname='$dishname',dishdescription='$dishdescription' where id='$id'");
 $_SESSION['msg']="Menu Item Updated !!";
