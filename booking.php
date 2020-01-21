@@ -216,7 +216,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 					<label for="inputText3">Dining Date<label>
 					<select id="diningdate" name="diningdate" class="form-control" onChange="getFood(value);getDiningTime(this.value);getRoom(this.value);"  required>
 					<option value="">Select a Dining Date</option>
-					<?php $query=mysqli_query($con,"SELECT DISTINCT diningdate FROM weeklymenu WHERE diningdate >= CURDATE() + INTERVAL 1 DAY");
+					<?php $query=mysqli_query($con,"SELECT DISTINCT diningdate FROM weeklymenu WHERE diningdate >= CURDATE() + INTERVAL 8 HOUR ORDER BY diningdate ASC");
 					while($row=mysqli_fetch_array($query))
 					{?>
 
