@@ -2,25 +2,29 @@
 error_reporting(0);
 session_start();
 include('includes/config.php');
-if(strlen($_SESSION['login'])==0)
-	{	
-header('location:index.php');
-}
-else{
+// if(strlen($_SESSION['alogin'])==0)
+// 	{	
+// header('location:index.php');
+// }
+// else{
 date_default_timezone_set('Asia/Kolkata');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
 
-if(isset($_GET['noshow']))
-		  {
-		          mysqli_query($con,"update reservation set isCheckedin= 0 where id = '".$_GET['id']."'");
-                  $_SESSION['delmsg']="User marked No Show !!";
-          }
 
-if(isset($_GET['checkin']))
+if(isset($_POST['submit']))
+{
+    $dishname=mysqli_real_escape_string($con,$_POST['dishname']);
+	$dishdescription=mysqli_real_escape_string($con,$_POST['dishdescription']);
+$sql=mysqli_query($con,"insert into dish(dishname,dishdescription) values('$dishname','$dishdescription')");
+$_SESSION['msg']="New Menu Item Created !!";
+
+}
+
+if(isset($_GET['del']))
 		  {
-		          mysqli_query($con,"update reservation set isCheckedin= 1 where id = '".$_GET['id']."'");
-                  $_SESSION['msg']="User sucessfully checkin !!";
-          }
+		          mysqli_query($con,"delete from dish where id = '".$_GET['id']."'");
+                  $_SESSION['delmsg']="Menu Item deleted !!";
+		  }
 
 ?>
 <!doctype html>
@@ -28,12 +32,12 @@ if(isset($_GET['checkin']))
  
 <head>
    <?php
-    include('../admin/header.php');
+    include('header.php');
        ?>
 </head>
 
 <body>
-    <?php $query=mysqli_query($con,"select * from host where hostname='".$_SESSION['login']."'");
+    <?php $query=mysqli_query($con,"select * from chef");
 while($row=mysqli_fetch_array($query))
 {?>
     <!-- ============================================================== -->
@@ -73,12 +77,12 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-<h2 class="pageheader-title"><?php echo($message); ?>,  <?php echo $row['hostname']; ?>  </h2> <?php } ?>
+<h2 class="pageheader-title"><?php echo($message); ?>,  <?php echo $row['chefname']; ?>  </h2> <?php } ?>
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a class="breadcrumb-link">Dashboard</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">View Free Diners Lists</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Create, Edit & Manage Menu Items</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -91,66 +95,67 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                     <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="section-block" id="basicform">
-                                    <h3 class="section-title">View Free Diners Lists </h3>
-                                    <p>You can view the list of guests here</p>
+                                    <h3 class="section-title">Create Menu</h3>
+                                    <p>You can create the menu here by dish name</p>
                                 </div>
-                                <?php if(isset($_GET['checkin']))
+                                <?php if(isset($_POST['submit']))
 {?>
 									 <div class="alert alert-success" role="alert">
 										<button type="button" class="close" data-dismiss="alert">×</button>
 									<strong>Well done!</strong>	<?php echo htmlentities($_SESSION['msg']);?><?php echo htmlentities($_SESSION['msg']="");?>
 									</div>
-
 <?php } ?>
 
-									<?php if(isset($_GET['noshow']))
+
+									<?php if(isset($_GET['del']))
 {?>
 									 <div class="alert alert-danger" role="alert">
 										<button type="button" class="close" data-dismiss="alert">×</button>
 									<strong>Oh snap!</strong> 	<?php echo htmlentities($_SESSION['delmsg']);?><?php echo htmlentities($_SESSION['delmsg']="");?>
 									</div>
 <?php } ?>
-
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form method="post" >
+                                            <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Dish Name</label>
+                                                <input id="inputText3" name="dishname" type="text" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Dish Description</label>
+                                                <textarea class="form-control" name="dishdescription" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            </div>
+                                            <button type="submit" name="submit" class="btn btn-outline-dark">Insert into menu</a>
+                                        </form>
+                                    </div>
+                                
+                                </div>
                                  <div class="module-body table">
 								<table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
 									<thead>
 										<tr>
 											<th>#</th>
-                                            <th>Last Name</th>
-                                            <th>Action</th>
-											<th>Room Name</th>
-											<th>Table Name</th>
-											<th>Seat</th>
-                                            <th>Date</th>
-                                            <th>Guest No</th>
-                                            <th>Condo No</th>
-                                            <th>Order Details</th>
-                                            
+											<th>Dish Name</th>
+											<th>Dish Description</th>
+											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
 
-<?php $query=mysqli_query($con,"select * from reservation");
+<?php $query=mysqli_query($con,"select * from dish");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {
 ?>									
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
-                                            <td><?php echo htmlentities($row['lastname']);?></td>
-                                            <td>
-                                                <a href="guestlist.php?id=<?php echo $row['id']?>&checkin=checkin" class="btn btn-sm btn-success">Checkin</a>
-                                            <br><br>
-                                                <a href="guestlist.php?id=<?php echo $row['id']?>&noshow=noshow" onClick="return confirm('Are you sure you want to mark no show?')" class="btn btn-sm btn-danger">
-                                                No Show
-                                            </a></td>
-											<td><?php echo htmlentities($row['room']);?></td>
-											<td><?php echo htmlentities($row['tablename']);?></td>
-                                            <td><?php echo htmlentities($row['seat']);?></td>
-                                            <td><?php echo htmlentities($row['timestamp']);?></td>
-                                            <td><?php echo htmlentities($row['guestno']);?></td>
-                                            <td><?php echo htmlentities($row['condono']);?></td>
-                                            <td> <a href="order-details.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button></td>
+											<td><?php echo htmlentities($row['dishname']);?></td>
+											<td><?php echo htmlentities($row['dishdescription']);?></td>
+											<td>
+                                                <a href="edit-menu.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button>
+                                            <a href="create-menu.php?id=<?php echo $row['id']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
+                                                <i class="far fa-trash-alt"></i>
+                                            </button>
 										</tr>
 										<?php $cnt=$cnt+1; } ?>
 										
@@ -191,5 +196,8 @@ while($row=mysqli_fetch_array($query))
 
 </body>
 
-    <?php }} ?>
+<?php } ?>
 </html>
+<?php
+// }
+?>

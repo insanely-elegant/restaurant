@@ -44,63 +44,50 @@ $currentTime = date( 'm-d-Y h:i:s A', time () );
 
 
  <script>
-function getFood(val) { //fetches dishname
+
+
+function getDiningtime(val) { //fetches dining time relative to dining dates
 	$.ajax({
 	type: "POST",
-	url: "get_food.php",
-	data:'diningtime='+val,
+	url: "get_pickup_time.php",
+	data:'diningdate='+val,
+	success: function(data){
+		$("#diningtime").html(data);
+	}
+	});
+}
+
+function getRoom(val) { //fetches dining time relative to dining dates
+	diningdate = document.getElementById('diningdate').value;
+	diningtime = document.getElementById('storedtime_h').value;
+	$.ajax({
+	type: "POST",
+	url: "get_pickup_room.php",
+	data:'diningdate='+diningdate+'&diningtime='+diningtime,
+	success: function(data){
+		$("#room").html(data);
+	}
+	});
+}
+
+function getFood(val) { //fetches dishname
+	diningdate = document.getElementById('diningdate').value;
+	diningtime = document.getElementById('storedtime_h').value;
+	room = document.getElementById('room').value;
+	$.ajax({
+	type: "POST",
+	url: "get_pickup_food.php",
+	data:'diningdate='+diningdate+'&diningtime='+diningtime+'&room='+room,
 	success: function(data){
 		$("#dishname1").html(data);
 	}
 	});
 }
 
-function changeLayout(x) { //fetches room layout
-	roomlayout = document.getElementById('roomlayout');
-	<?php
-	echo $layouts;
-	 ?>
-}
-function getTable() { //fetches tablename
-	diningdate = document.getElementById('diningdate').value;
-	roomid = document.getElementById('roomid').value;
-	changeLayout(roomid);
-	$.ajax({
-	type: "GET",
-	url: "get_table.php",
-	data:'room_id='+roomid+'&diningdate='+diningdate,
-	success: function(data){
-		$("#tablename").html(data);
-	}
-	});
-}
-function getSeat(x) { //fetches total available seats
-	seat = document.getElementById('seat');
-	options ='';
-	for (var i = x; i > 0; i--) {
-		options +='<option>'+ i +'</option>'
-	}
-	seat.innerHTML = options;
+function storeTime(val) { //fetches Time & Stores it in a hidden variable
+	document.getElementById('storedtime_h').value = val;
 }
 
-function getDiningtime(val) { //fetches dining time relative to dining dates
-	$.ajax({
-	type: "POST",
-	url: "get_diningtime.php",
-	data:'diningdate='+val,
-	success: function(data){
-		$("#diningtime").html(data);
-	}
-	});
-	getTable();
-}
-
-$(document).ready(function(){ //passes selected option name for tablename to hidden input fields
-    $('#tablename').on('change',function(){
-        var tableName = $("#tablename option:selected").text();
-        document.getElementById('tablename_h').value = tableName;
-    });
-});
 
 $(document).ready(function(){ //passes selected option name for tablename to hidden input fields
     $('#dishname').on('change',function(){
@@ -172,14 +159,14 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 					<!-- End Unit No -->
 
 					<!-- Begin Dining Date Selection -->
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">	
-					<select id="diningdate" name="diningdate" class="form-control" onChange="getDiningtime(this.value);"  required>
+					<div class="wrap-input100 validate-input m-b-16">	
+					<select id="diningdate" name="diningdate" class="form-control" onChange="getDiningtime(this.value);getRoom(this.value);GetFood(this.value);"  required>
 					<option value="">Select Pickup Date</option>
-					<?php $query=mysqli_query($con,"SELECT DISTINCT diningdate FROM weeklymenu WHERE diningdate >= CURDATE() + INTERVAL 1 DAY");
+					<?php $query=mysqli_query($con,"SELECT DISTINCT pickupdate FROM pickupweeklymenu WHERE pickupdate >= CURDATE() + INTERVAL 8 HOUR ORDER BY pickupdate ASC");
 					while($row=mysqli_fetch_array($query))
 					{?>
 
-					<option id="usrdate" value="<?php echo $row['diningdate'];?>"><?php echo $row['diningdate'];?></option>
+					<option id="usrdate" value="<?php echo $row['pickupdate'];?>"><?php echo $row['pickupdate'];?></option>
 					<?php } ?>
 					</select>
 					<span class="focus-input100"></span>
@@ -188,15 +175,24 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 
 						<!-- Begin Dining Time -->
 						<div class="wrap-input100 validate-input m-b-16">
-							<select name="diningtime" id="diningtime" class="form-control" onChange="getFood(this.value);"  required>
+							<select name="diningtime" id="diningtime" class="form-control" onChange="storeTime(this.value);getRoom(this.value);">
 							</select>
 							<span class="focus-input100"></span>
 						</div>
 						
 						<input type="hidden" name="diningtime_h" id="diningtime_h"> <!-- passing all selected values to hidden inputs for review.php -->
+						<input type="hidden" name="storedtime_h" id="storedtime_h"> <!-- passing all selected values to hidden inputs for review.php -->
+
 						<!-- End Dining Time -->
 
+					<div class="form-group">
+						<label for="inputText3">Dining Room</label>
+						<select name="room" id="room" class="form-control" id="input-select" required onChange="getFood(this.value);">
+                    	</select>
+					</div>
 					
+					<input type="hidden" name="roomname_h" id="roomname_h"> <!-- passing all selected values to hidden inputs for review.php -->
+					<!-- End Room No -->
 
 					<!-- Begin Dish Name -->
 					<div class="wrap-input100 validate-input m-b-16">

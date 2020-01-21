@@ -2,12 +2,12 @@
 error_reporting(0);
 session_start();
 include('includes/config.php');
-if(strlen($_SESSION['login'])==0)
-	{	
-header('location:index.php');
-}
-else{
-date_default_timezone_set('Asia/Kolkata');// change according timezone
+// if(strlen($_SESSION['login'])==0)
+// 	{	
+// header('location:index.php');
+// }
+// else{
+date_default_timezone_set('America/Los_Angeles');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
 
 if(isset($_GET['noshow']))
@@ -28,12 +28,12 @@ if(isset($_GET['checkin']))
  
 <head>
    <?php
-    include('../admin/header.php');
+    include('header.php');
        ?>
 </head>
 
 <body>
-    <?php $query=mysqli_query($con,"select * from host where hostname='".$_SESSION['login']."'");
+    <?php $query=mysqli_query($con,"select * from host");
 while($row=mysqli_fetch_array($query))
 {?>
     <!-- ============================================================== -->
@@ -77,7 +77,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
+                                            <li class="breadcrumb-item"><a class="breadcrumb-link">Dashboard</a></li>
                                             <li class="breadcrumb-item active" aria-current="page">View Guest Lists</li>
                                         </ol>
                                     </nav>
@@ -111,20 +111,26 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 									</div>
 <?php } ?>
 
+
+
+
                                  <div class="module-body table">
 								<table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
 									<thead>
 										<tr>
 											<th>#</th>
+                                            <th>First Name</th>
                                             <th>Last Name</th>
                                             <th>Action</th>
 											<th>Room Name</th>
 											<th>Table Name</th>
-											<th>Seat</th>
+											<th>Total Seats</th>
                                             <th>Date</th>
-                                            <th>Guest No</th>
-                                            <th>Condo No</th>
-                                            <th>Order Details</th>
+                                            <th>Time</th>
+                                            <th>Number of Guests</th>
+                                            <th>Unit No</th>                                            
+                                            <th>CheckedIn?</th>
+                                            <th>View Invoice</th>
                                             
 										</tr>
 									</thead>
@@ -137,6 +143,7 @@ while($row=mysqli_fetch_array($query))
 ?>									
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
+                                            <td><?php echo htmlentities($row['firstname']);?></td>
                                             <td><?php echo htmlentities($row['lastname']);?></td>
                                             <td>
                                                 <a href="guestlist.php?id=<?php echo $row['id']?>&checkin=checkin" class="btn btn-sm btn-success">Checkin</a>
@@ -147,10 +154,12 @@ while($row=mysqli_fetch_array($query))
 											<td><?php echo htmlentities($row['room']);?></td>
 											<td><?php echo htmlentities($row['tablename']);?></td>
                                             <td><?php echo htmlentities($row['seat']);?></td>
-                                            <td><?php echo htmlentities($row['timestamp']);?></td>
+                                            <td><?php echo htmlentities($row['diningdate']);?></td>
+                                            <td><?php echo htmlentities($row['diningtime']);?></td>
                                             <td><?php echo htmlentities($row['guestno']);?></td>
-                                            <td><?php echo htmlentities($row['condono']);?></td>
-                                            <td> <a href="order-details.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button></td>
+                                            <td><?php echo htmlentities($row['condono']);?></td>                                            
+                                            <td><?php echo htmlentities($row['isCheckedin'] ? 'Yes' : 'No' );?></td>
+                                            <td> <a href="receipt.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
 										</tr>
 										<?php $cnt=$cnt+1; } ?>
 										
@@ -191,5 +200,5 @@ while($row=mysqli_fetch_array($query))
 
 </body>
 
-    <?php }} ?>
+    <?php }?>
 </html>

@@ -90,7 +90,13 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 
 			<div class="container-login100-form-btn m-t-17">
 			<button class="login100-form-btn" style="background-color: #E09873;" onClick="history();"> 
-			View Your Booking History
+			View Your Reservation History
+			</button>
+			</div>
+
+			<div class="container-login100-form-btn m-t-17">
+			<button class="login100-form-btn" style="background-color: #E09853;" onClick="pickuphistory();"> 
+			View Your Order Takeout History
 			</button>
 			</div>
 
@@ -117,6 +123,10 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 			function history()
 			{
 			location.href= "booking-history.php"	
+			}
+			function pickuphistory()
+			{
+			location.href= "pickup-history.php"	
 			}
 
 			function logout()

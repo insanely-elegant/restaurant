@@ -7,7 +7,7 @@ include('includes/config.php');
 // header('location:index.php');
 // }
 // else{
-date_default_timezone_set('Asia/Kolkata');// change according timezone
+date_default_timezone_set('America/Los_Angeles');
 $currentTime = date( 'd-m-Y h:i:s A', time () );
 
 
@@ -178,7 +178,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 									</thead>
 									<tbody>
 
-<?php $query=mysqli_query($con,"select * from diningdates");
+<?php $query=mysqli_query($con,"select * from diningdates WHERE diningdate ORDER BY diningdate DESC");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {

@@ -150,8 +150,8 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                                             <div class="form-group">
                                           
                                             <div class="alert alert-info" role="alert">
-                                               Tip! : Click  <a href="create-dining-dates.php">here</a> to create your program's dining dates and then come 
-                                               back to this page and assign rooms, tables, those dates to times & dishes.
+                                               Tip! : Click  <a href="create-dining-dates.php" style="color: red">here</a> to create your program's dining dates and then come 
+                                               back to this page and assign rooms, tables and dates to times & dishes.
                                             </div>
 
 
@@ -178,7 +178,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                                            <select name="diningdate" class="form-control" id="input-select" required>
                                             <option value="">Select a Date</option>
                                             <?php
-                                             $query=mysqli_query($con,"select DISTINCT diningdate  from diningdates where status = 'enabled'");
+                                             $query=mysqli_query($con,"select DISTINCT diningdate  from diningdates where status = 'enabled' and diningdate >= CURDATE() + INTERVAL 8 HOUR ORDER BY diningdate ASC");
                                             while($row=mysqli_fetch_array($query))
                                            {
                                             ?>
@@ -188,29 +188,9 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                                             </div>
                                             <div class="form-group">
                                                 <label for="inputText3">Create a Dining Time</label>
-                                                 <input name="diningtime" type="time" class="form-control">
+                                                 <input id="diningtime" name="diningtime" type="time" class="form-control">
                                             </div>
-
                                             
-                                            
-
-
-                                        <!-- <label class="col-form-label" for="inputText3"> Select a Dining Date</label>
-                                           <select name="diningdate" class="form-control" id="input-select" onChange="getDiningtime(this.value);" required>
-                                            <option value="">Select a Date</option>
-                                            <?php
-                                            // $query=mysqli_query($con,"select DISTINCT diningdate  from diningdates where status = 'enabled'");
-                                          //  while($row=mysqli_fetch_array($query))
-                                         //  {
-                                            ?>
-                                          <option value="<?php // echo $row['diningdate'];?>"><?php // echo $row['diningdate'];?></option>
-                                      <?php // } ?>
-                                            </select> -->
-                                            
-                                      <!-- <label class="col-form-label" for="inputText3"> Select a Dining Time</label>
-                                           <select name="diningtime" id="diningtime" class="form-control" id="input-select" required> -->
-                                            <!-- <option value="">Select a Time</option> -->
-                                            <!-- </select> -->
                                            
                                             <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Dish Name 1</label>
