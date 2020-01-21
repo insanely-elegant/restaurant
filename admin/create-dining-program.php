@@ -150,7 +150,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                                             <div class="form-group">
                                           
                                             <div class="alert alert-info" role="alert">
-                                               Tip! : Click  <a href="create-dining-dates.php">here</a> to create your program's dining dates and then come 
+                                               Tip! : Click  <a href="create-dining-dates.php" style="color: red">here</a> to create your program's dining dates and then come 
                                                back to this page and assign rooms, tables and dates to times & dishes.
                                             </div>
 
