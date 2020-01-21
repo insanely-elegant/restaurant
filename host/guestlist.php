@@ -7,7 +7,7 @@ include('includes/config.php');
 // header('location:index.php');
 // }
 // else{
-date_default_timezone_set('Asia/Kolkata');// change according timezone
+date_default_timezone_set('America/Los_Angeles');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
 
 if(isset($_GET['noshow']))
@@ -33,7 +33,7 @@ if(isset($_GET['checkin']))
 </head>
 
 <body>
-    <?php $query=mysqli_query($con,"select * from admins");
+    <?php $query=mysqli_query($con,"select * from host");
 while($row=mysqli_fetch_array($query))
 {?>
     <!-- ============================================================== -->
@@ -73,11 +73,11 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-<h2 class="pageheader-title"><?php echo($message); ?>,  <?php echo $row['firstname']; ?>  </h2> <?php } ?>
+<h2 class="pageheader-title"><?php echo($message); ?>,  <?php echo $row['hostname']; ?>  </h2> <?php } ?>
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
+                                            <li class="breadcrumb-item"><a class="breadcrumb-link">Dashboard</a></li>
                                             <li class="breadcrumb-item active" aria-current="page">View Guest Lists</li>
                                         </ol>
                                     </nav>

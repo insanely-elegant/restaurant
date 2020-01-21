@@ -77,7 +77,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
+                                            <li class="breadcrumb-item"><a class="breadcrumb-link">Dashboard</a></li>
                                             <li class="breadcrumb-item active" aria-current="page">View Free Diners Lists</li>
                                         </ol>
                                     </nav>
