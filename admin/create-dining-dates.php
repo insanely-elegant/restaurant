@@ -178,7 +178,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 									</thead>
 									<tbody>
 
-<?php $query=mysqli_query($con,"select * from diningdates WHERE diningdate >= CURDATE() + INTERVAL 8 HOUR ORDER BY diningdate ASC");
+<?php $query=mysqli_query($con,"select * from diningdates WHERE diningdate ORDER BY diningdate DESC");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {
