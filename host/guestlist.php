@@ -124,7 +124,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                                             <th>Action</th>
 											<th>Room Name</th>
 											<th>Table Name</th>
-											<th>Seat</th>
+											<th>Total Seats</th>
                                             <th>Date</th>
                                             <th>Time</th>
                                             <th>Number of Guests</th>
