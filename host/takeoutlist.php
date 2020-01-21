@@ -31,7 +31,7 @@ if (isset($_GET['pickedup'])) {
 </head>
 
 <body>
-    <?php $query = mysqli_query($con, "select * from admins");
+    <?php $query = mysqli_query($con, "select * from host");
     while ($row = mysqli_fetch_array($query)) { ?>
         <!-- ============================================================== -->
         <!-- main wrapper -->
@@ -69,11 +69,11 @@ if (isset($_GET['pickedup'])) {
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="page-header">
-                                        <h2 class="pageheader-title"><?php echo ($message); ?>, <?php echo $row['firstname']; ?> </h2> <?php } ?>
+                                        <h2 class="pageheader-title"><?php echo ($message); ?>, <?php echo $row['hostname']; ?> </h2> <?php } ?>
                                     <div class="page-breadcrumb">
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">
-                                                <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Dashboard</a></li>
                                                 <li class="breadcrumb-item active" aria-current="page">View Order Takeout Lists</li>
                                             </ol>
                                         </nav>
@@ -118,9 +118,9 @@ if (isset($_GET['pickedup'])) {
                                                     <th>Action</th>
                                                     <th>Date of Pickup</th>
                                                     <th>Time of Pickup</th>
-                                                    <th>Selected Dish</th>
                                                     <th>Condo No</th>
-                                                    <th>Order Pickup Status</th>
+                                                    <th>Selected Dish</th>
+                                                    <th>Order Pickup Status </th>
                                                     <th>Time Log of Status Change</th>
                                                     <th>View Invoice</th>
 
@@ -144,8 +144,8 @@ if (isset($_GET['pickedup'])) {
                                                             </a></td>
                                                         <td><?php echo htmlentities($row['diningdate']); ?></td>
                                                         <td><?php echo htmlentities($row['diningtime']); ?></td>
-                                                        <td><?php echo htmlentities($row['dishname']); ?></td>
                                                         <td><?php echo htmlentities($row['condono']); ?></td>
+                                                        <td><?php echo htmlentities($row['dishname']); ?></td>
                                                         <td><?php echo htmlentities($row['isPickedup'] ? 'Yes' : 'No'); ?></td>
                                                         <td><?php echo htmlentities($row['timestamp']); ?></td>
                                                         <td> <a href="pickup-receipt.php?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
