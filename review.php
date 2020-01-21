@@ -261,7 +261,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 						<tr>
                           <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
                            
-                            <small> Selected Room: <strong>  <?php echo htmlentities($room); ?>
+                            <small> Selected Room: <strong>  <?php echo htmlentities($room_id); ?>
                                                                     <input type="hidden" name="r", value="<?php echo htmlentities($room); ?>"></strong> </small></br></br>
                           </td>
 						</tr>
