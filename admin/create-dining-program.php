@@ -238,7 +238,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 									</thead>
 									<tbody>
 
-<?php $query=mysqli_query($con,"select room.roomname as rname,tablelayout.tablename as tname, weeklymenu.diningdate as dd, 
+<?php $query=mysqli_query($con,"select room.roomname as rname,tablelayout.tablename as tname, weeklymenu.diningdate as dd, weeklymenu.id as wid,
 weeklymenu.diningtime as dt, 
 weeklymenu.dishname1 as d1, weeklymenu.dishname2 as d2 from weeklymenu
 join room on room.id=weeklymenu.roomid join tablelayout on tablelayout.id=weeklymenu.tableid");
@@ -255,8 +255,8 @@ while($row=mysqli_fetch_array($query))
 											<td><?php echo htmlentities($row['d1']);?></td>
 											<td><?php echo htmlentities($row['d2']);?></td>
 											<td>
-                                                <!-- <a href="edit-dining-program.php?id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-light">Edit</button> -->
-                                            <a href="create-dining-program.php?id=<?php echo $row['id']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
+                                                <!-- <a href="edit-dining-program.php?id=<?php echo $row['wid']?>" class="btn btn-sm btn-outline-light">Edit</button> -->
+                                            <a href="create-dining-program.php?id=<?php echo $row['wid']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
                                                 <i class="far fa-trash-alt"></i>
                                             </button>
 										</tr>
