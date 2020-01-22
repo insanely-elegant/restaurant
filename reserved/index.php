@@ -277,28 +277,18 @@ if (strlen($_SESSION['login']) == 0) {
                 <tbody>
                   <?php
 
-                  $sql = mysqli_query($con, "SELECT room.id as rid,
-room.roomname as rname,
-reservation.firstname as fname,
-reservation.lastname as lname,
-reservation.roomid as rrid,
-reservation.tablename as tablename,
-reservation.diningdate as dd,
-reservation.diningtime as dt,
-reservation.guestno as guestno,
-reservation.dishname as dname FROM reservation join room on room.id=reservation.id 
- WHERE reservation.diningdate >= CURDATE() ORDER BY reservation.diningdate ASC");
+                  $sql = mysqli_query($con, "SELECT * from reservation");
                   $cnt = 1;
                   while ($row = mysqli_fetch_array($sql)) {
                   ?>
                     <tr>
-                      <td><?php echo $row['fname']; ?></td>
-                      <td><?php echo $row['lname']; ?></td>
-                      <td><?php echo $row['rname']; ?></td>
+                      <td><?php echo $row['firstname']; ?></td>
+                      <td><?php echo $row['lastname']; ?></td>
+                      <td><?php echo $row['room']; ?></td>
                       <td><?php echo $row['tablename']; ?></td>
-                      <td><?php echo $row['dd']; ?></td>
-                      <td><?php echo $row['dt']; ?></td>
-                      <td><?php echo $row['dname']; ?></td>
+                      <td><?php echo $row['diningdate']; ?></td>
+                      <td><?php echo $row['diningtime']; ?></td>
+                      <td><?php echo $row['dishname']; ?></td>
                       <td class="hidden-xs"><?php echo $row['guestno']; ?></td>
                     </tr>
                   <?php
