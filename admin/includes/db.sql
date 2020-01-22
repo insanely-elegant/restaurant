@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2020 at 05:28 PM
+-- Generation Time: Jan 22, 2020 at 02:55 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -67,7 +67,6 @@ CREATE TABLE `chef` (
 --
 
 INSERT INTO `chef` (`id`, `chefname`, `contactno`, `altcontactno`, `email`, `password`) VALUES
-(1, 'chef2', '423', '2345', 'another@chef.com', 'chef2'),
 (3, 'chef', '324', 'asd', 'test@chef.com', 'chef');
 
 -- --------------------------------------------------------
@@ -107,7 +106,11 @@ CREATE TABLE `diningdates` (
 --
 
 INSERT INTO `diningdates` (`id`, `diningdate`, `status`) VALUES
-(1, '2020-01-23', 'enabled');
+(1, '2020-01-25', 'enabled'),
+(2, '2020-01-26', 'enabled'),
+(3, '2020-01-27', 'enabled'),
+(4, '2020-01-31', 'enabled'),
+(5, '2020-01-23', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -117,7 +120,7 @@ INSERT INTO `diningdates` (`id`, `diningdate`, `status`) VALUES
 
 CREATE TABLE `dish` (
   `id` int(11) NOT NULL,
-  `dishname` varchar(255) NOT NULL,
+  `dishname` text NOT NULL,
   `dishdescription` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -126,8 +129,9 @@ CREATE TABLE `dish` (
 --
 
 INSERT INTO `dish` (`id`, `dishname`, `dishdescription`) VALUES
-(1, 'Cobb salad', 'In 1937, Bob Cobb, the owner of The Brown Derby, was scrounging around at the restaurant\'s North Vine location for a meal for Sid Grauman of Grauman\'s Theater when he put together a salad with what he found in the fridge: a head of lettuce, an avocado, so'),
-(2, 'Fajitas', 'Grill skirt steak (faja in Spanish) over the campfire, wrap in a tortilla, and you\'ve got the beginning of a Rio Grande region tradition. The fajita is thought to have come off the range and into popular culture when a certain Sonny Falcon began operating');
+(1, 'pasta bolognese', 'bolognese with red sauce reduction.'),
+(2, 'Chicken Burger', 'Burger!'),
+(3, 'Beef Burger', 'Burger');
 
 -- --------------------------------------------------------
 
@@ -164,18 +168,6 @@ CREATE TABLE `menu` (
   `dishdate` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `menu`
---
-
-INSERT INTO `menu` (`id`, `primarydishid`, `seconddishid`, `dishdate`) VALUES
-(1, 1, 2, '10/18/2019'),
-(2, 2, 3, '10/19/2019'),
-(3, 1, 4, '10/20/2019'),
-(4, 3, 6, '10/21/2019'),
-(5, 2, 1, '10/22/2019'),
-(6, 4, 6, '10/23/2019');
-
 -- --------------------------------------------------------
 
 --
@@ -205,7 +197,7 @@ CREATE TABLE `pickups` (
 --
 
 INSERT INTO `pickups` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `diningdate`, `diningtime`, `condono`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `grandtotal`, `isPickedup`, `timestamp`) VALUES
-(1, '', 'Duane', 'DeSalvo', 'Cobb salad', '2020-01-23', '22:02:00', 'e302', '14.94', '0.00', '0.00', '14.94', '14.94', '', NULL);
+(1, '', 'Duane', 'DeSalvo', 'Beef Burger', '2020-01-27', '22:50:00', 'E302', '500.00', '10.00', '50.00', '550.00', '550.00', '0', '01-21-2020 05:20:25 PM');
 
 -- --------------------------------------------------------
 
@@ -228,7 +220,7 @@ CREATE TABLE `pickupweeklymenu` (
 --
 
 INSERT INTO `pickupweeklymenu` (`id`, `pickupdate`, `pickuptime`, `roomid`, `dishname1`, `dishname2`, `status`) VALUES
-(1, '2020-01-23', '22:02:00', 1, 'Cobb salad', 'Fajitas', '');
+(1, '2020-01-27', '22:50:00', 1, 'Chicken Burger', 'Beef Burger', '');
 
 -- --------------------------------------------------------
 
@@ -251,7 +243,7 @@ CREATE TABLE `pricingmodels` (
 --
 
 INSERT INTO `pricingmodels` (`id`, `dinerid`, `mealprice`, `mealtaxpercent`, `mealtaxvalue`, `mealtotalprice`, `datemodified`) VALUES
-(1, '1', '14.94', '0.00', '0.00', '14.94', '01-05-2020 01:38:57 AM'),
+(1, '1', '19.00', '10.00', '1.90', '20.90', '22-01-2020 06:48:46 AM'),
 (2, '2', '16.95', '5.00', '0.85', '17.80', '11-01-2020 11:13:02 PM'),
 (3, '3', '0.00', '0.00', '0.00', '0.00', '2020-01-04 13:00:12');
 
@@ -293,6 +285,13 @@ CREATE TABLE `reservation` (
   `freedinersmealtaxvalue` decimal(5,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `reservation`
+--
+
+INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `roomid`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `freedinersmealtotalprice`, `isConfirmed`, `isCheckedin`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `guestmealprice`, `guestmealtaxpercent`, `guestmealtaxvalue`, `guestmealtotalprice`, `grandtotal`, `freedinersmealprice`, `freedinersmealtaxpercent`, `freedinersmealtaxvalue`) VALUES
+(1, 'SG2001260001', 'Duane', 'DeSalvo', 'Chicken Burger', 1, 'Game Room', '22', 0, '2', '2020-01-26', '21:20:00', '1', 'E302', NULL, '', '0', '500.00', '10.00', '50.00', '550.00', '16.95', '5.00', '0.85', '17.80', '567.80', NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -333,9 +332,9 @@ CREATE TABLE `tablelayout` (
 
 INSERT INTO `tablelayout` (`id`, `roomid`, `tablename`, `totalseats`) VALUES
 (1, 1, '21', '6'),
-(2, 1, '22', '6'),
-(3, 1, '23', '6'),
-(4, 1, '24', '6');
+(2, 1, '22', '3'),
+(3, 1, '23', '4'),
+(4, 1, '24', '5');
 
 -- --------------------------------------------------------
 
@@ -9483,7 +9482,63 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 04:12:04', NULL, 1),
 (0, 'chef', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 04:32:49', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 04:33:12', NULL, 1),
-(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 13:12:25', NULL, 1);
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 13:12:25', NULL, 1),
+(0, 'chef', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 17:01:28', NULL, 1),
+(0, '', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 17:03:22', NULL, 0),
+(0, 'chef', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 17:03:28', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 18:40:51', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 18:42:03', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 18:43:12', NULL, 1),
+(0, '', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 18:48:25', NULL, 0),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 18:48:29', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 18:49:02', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 18:49:28', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 18:50:07', NULL, 1),
+(0, '', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 18:50:30', NULL, 0),
+(0, '', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 18:50:34', NULL, 0),
+(0, '', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 18:50:39', NULL, 0),
+(0, 'chef', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 18:51:25', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 18:52:43', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 19:29:35', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 19:37:31', NULL, 1),
+(0, 'chef', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 19:43:46', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 19:49:01', NULL, 1),
+(0, 'chef', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 19:49:25', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 19:54:20', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 19:54:42', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 20:04:26', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 20:05:20', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 20:48:12', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 20:51:29', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 21:30:21', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 21:50:45', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 21:56:15', NULL, 1),
+(0, 'E609', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 22:42:34', NULL, 1),
+(0, 'E609', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 22:42:46', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 22:55:06', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 23:15:47', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 23:32:37', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 23:33:23', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 23:40:01', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 23:42:24', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 23:49:37', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-21 23:56:26', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 00:08:20', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 00:13:11', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 00:25:35', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 00:35:27', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 00:42:23', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 00:45:03', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 00:46:07', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 00:48:10', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 00:59:09', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 01:10:07', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 01:16:10', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 01:17:35', NULL, 1),
+(0, 'chef', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 01:29:05', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 01:30:22', NULL, 1),
+(0, 'chef', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 01:32:45', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 01:34:04', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -9534,7 +9589,11 @@ CREATE TABLE `weeklymenu` (
 --
 
 INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `roomid`, `tableid`, `dishname1`, `dishname2`) VALUES
-(1, '2020-01-23', '20:15:00', 1, 1, 'Cobb salad', 'Fajitas');
+(3, '2020-01-27', '20:53:00', 1, 1, 'pasta bolognese', 'Beef Burger'),
+(4, '2020-01-27', '21:55:00', 1, 3, 'pasta bolognese', 'Beef Burger'),
+(6, '2020-01-26', '21:20:00', 1, 2, 'Chicken Burger', 'Beef Burger'),
+(7, '2020-01-31', '22:59:00', 1, 3, 'Chicken Burger', 'pasta bolognese'),
+(8, '2020-01-23', '23:03:00', 1, 3, 'Chicken Burger', 'pasta bolognese');
 
 --
 -- Indexes for dumped tables
@@ -9644,19 +9703,19 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `chef`
 --
 ALTER TABLE `chef`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `dish`
 --
 ALTER TABLE `dish`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `host`
@@ -9686,7 +9745,7 @@ ALTER TABLE `pickupweeklymenu`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `room`
@@ -9704,13 +9763,13 @@ ALTER TABLE `tablelayout`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
