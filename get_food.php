@@ -10,8 +10,8 @@ $query=mysqli_query($con,"select DISTINCT dishname1, dishname2 from weeklymenu w
  while($row=mysqli_fetch_array($query))
  {
 ?>
-  <option value="<?php echo htmlentities($row['dishname1']); ?>"><?php echo htmlentities("1. " .$row['dishname1']); ?></option>
-  <option value="<?php echo htmlentities($row['dishname2']); ?>"><?php echo htmlentities("2. " .$row['dishname2']); ?></option>
+  <option value="<?php echo htmlentities($row['dishname1']); ?>"><?php echo htmlentities($row['dishname1']); ?></option>
+  <option value="<?php echo htmlentities($row['dishname2']); ?>"><?php echo htmlentities($row['dishname2']); ?></option>
   <?php
  }
 }
