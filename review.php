@@ -9,7 +9,7 @@ header('location:index.php');
 else{
 date_default_timezone_set('America/Los_Angeles');
 $currentTime = date( 'm-d-Y h:i:s A', time () );
-  
+
   $diningdate=$_POST['diningdate'];
 	$diningtime=$_POST['diningtime_h'];
 	$dishname_h=$_POST['dishname_h'];
@@ -85,12 +85,15 @@ $bkid = $_POST['bkid'];
 
 if(isset($_POST['submit']))
 {
-	$sql=mysqli_query($con,	"insert into reservation(bookingid,firstname,lastname,dishname,roomid,room,tablename,seat,diningdate,diningtime,guestno,condono,membermealprice,membermealtaxpercent,membermealtaxvalue,membermealtotalprice,guestmealprice,guestmealtaxpercent,guestmealtaxvalue,guestmealtotalprice,grandtotal) 
+	$sql=mysqli_query($con,	"insert into reservation(bookingid,firstname,lastname,dishname,roomid,room,tablename,seat,diningdate,diningtime,guestno,condono,membermealprice,membermealtaxpercent,membermealtaxvalue,membermealtotalprice,guestmealprice,guestmealtaxpercent,guestmealtaxvalue,guestmealtotalprice,grandtotal)
 	values('$bkid','$name','$lname','$dn','$rid','$r','$tn', '$s', '$dd', '$dt','$gn','$condono','$membermealprice','$membertaxpercent','$membermealtax','$mealprice','$guestmealprice','$guesttaxpercent','$guestmealtax','$mealprice2','$gt')");
-  
-  if ($sql ==1){  
+
+  if ($sql ==1){
     $last_id = $con->insert_id;
-  $_SESSION['msg']="Reservation Confirmed !!";
+  	$_SESSION['msg']="Reservation Confirmed !!";
+		$msg = "Hello $name, \n Booking of table has been successfull \n  <a src='confirm_success.php?id=$last_id' > Click here to view</a>";
+		$msg = wordwrap($msg,70);
+		mail($_SESSION['email'],"Booking Status",$msg);
     header('Location: confirm_success.php?id='.$last_id);
     exit();
   }
@@ -111,7 +114,7 @@ if(isset($_POST['submit']))
 	<title>Review Your Booking Information - Silver Glen</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -121,13 +124,13 @@ if(isset($_POST['submit']))
 	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
@@ -136,14 +139,14 @@ if(isset($_POST['submit']))
 
 
 
-				
+
 <style type="text/css">
   @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
-  
+
   div, p, a, li, td { -webkit-text-size-adjust: none; }
   .ReadMsgBody { width: 100%; background-color: #ffffff; }
   .ExternalClass { width: 100%; background-color: #ffffff; }
-  
+
   p { padding: 0 !important; margin-top: 0 !important; margin-right: 0 !important; margin-bottom: 0 !important; margin-left: 0 !important; }
   .visibleMobile { display: none; }
   .hiddenMobile { display: block; }
@@ -192,28 +195,28 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 			<div class="wrap-login100 p-t-50 p-b-90">
 			<p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , <?php echo $_SESSION['firstname'];?></p>
 <?php } ?>
-			
+
 			<form method="POST" action="review.php" class="login100-form validate-form flex-sb flex-w">
 					<span class="login100-form-title p-b-51">
 						Review Your Booking Information
 					</span>
 
-					
+
 
 <!-- Header -->
 <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
-  
+
   <tr>
     <td>
       <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff" style="border-radius: 10px 10px 0 0;">
-    
+
         <tr>
           <td>
             <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
               <tbody>
                 <tr>
                   <td>
-                    
+
                     <table width="220" border="0" cellpadding="0" cellspacing="0" align="right" class="col">
                       <tbody>
                         <tr>
@@ -230,29 +233,29 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 						</tr>
 						<tr>
                           <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-                           
+
                             <small> Booking First Name:  <strong> <?php echo htmlentities($name); ?></strong></small></br></br>
                           </td>
 						</tr>
 						<tr>
                           <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-                           
+
                             <small> Your Unit Number: <strong> <?php echo htmlentities($condono); ?></strong> </small></br></br>
                           </td>
 						</tr>
                         <tr>
                           <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-                           
+
                             <small> Dining Date: <strong> <?php echo htmlentities($diningdate); ?>
                                                                     <input type="hidden" name="dd" value="<?php echo htmlentities($diningdate); ?>"></strong></small></br></br>
                           </td>
 						</tr>
-									
+
 						<tr>
                           <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-                           
+
                             <small> Dining Time: <strong>
-						
+
 							<?php echo htmlentities($diningtime); ?>
                                                                     <input type="hidden" name="dt", value="<?php echo htmlentities($diningtime); ?>">
 						</strong> </small></br></br>
@@ -260,7 +263,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 						</tr>
 						<tr>
                           <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-                           
+
                             <small> Selected Room: <strong>  <?php echo htmlentities($room); ?>
                                                                     <input type="hidden" name="r", value="<?php echo htmlentities($room); ?>"></strong> </small></br></br>
                           </td>
@@ -271,11 +274,11 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 							<?php echo htmlentities($tablename); ?>
                                                                     <input type="hidden" name="tn" value="<?php echo htmlentities($tablename); ?>">
                                                                     <input type="hidden" name="dn" value="<?php echo htmlentities($dishname); ?>">
-                                                                    <input type="hidden" name="gn" value="<?php echo htmlentities($guestno); ?>">		
+                                                                    <input type="hidden" name="gn" value="<?php echo htmlentities($guestno); ?>">
                                                                     <input type="hidden" name="rid" value="<?php echo htmlentities($room_id); ?>">
                                                                     <input type="hidden" name="gt" value="<?php echo htmlentities($totalpri); ?>">
                                                                     <input type="hidden" name="bkid" value="<?php echo htmlentities($bookingid); ?>">
-						
+
 						</strong> </small></br></br>
                           </td>
 						</tr>
@@ -346,7 +349,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">
                         Member
                       </td>
-                      
+
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"> 1 </td>
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$ <?php echo htmlentities($mealprice); ?></td>
                     </tr>
@@ -355,7 +358,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                     </tr>
                     <tr id="guestdivid">
                       <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; display:<?php echo htmlentities($type); ?>; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">Guest</td>
-                     
+
                       <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"> <?php echo htmlentities($guestno); ?> </td>
                       <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$ <?php echo htmlentities($mealprice2); ?></td>
                     </tr>
@@ -389,9 +392,9 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                 <!-- Table Total -->
                 <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
                   <tbody>
-                   
+
                     <tr>
-                    
+
                     </tr>
                     <tr>
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
@@ -436,7 +439,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
             </tr>
             <tr>
               <td>
-                
+
               </td>
             </tr>
             <tr>
@@ -445,7 +448,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                   <tbody>
                     <tr>
                       <td>
-                        
+
 
 
                         <table width="220" border="0" cellpadding="0" cellspacing="0" align="right" class="col">
@@ -491,7 +494,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 </table>
 <!-- /Information -->
 
-					
+
 					<div class="container-login100-form-btn m-t-17">
 					<button id="submit" type="submit" name="submit" class="login100-form-btn" style="background-color: #0c5460">
 						Confirm Your Reservation
@@ -503,10 +506,10 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
 			</div>
 		</div>
 	</div>
-	
+
 
 	<div id="dropDownSelect1"></div>
-	
+
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
