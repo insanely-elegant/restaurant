@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 include('includes/config.php');
 // if(strlen($_SESSION['alogin'])==0)
 // 	{	
@@ -13,7 +14,8 @@ if (isset($_POST['submit'])) {
     //var_dump($_POST['room']);
 
     $i = 0;
-    $field_values_array = $_POST['diningdate'];
+    $field_values_array1 = $_POST['table'];
+    $field_values_array2 = $_POST['diningdate'];
     //print_r($field_values_array);
     $room = $_POST['room'];
     $table = $_POST['table'];
@@ -22,8 +24,12 @@ if (isset($_POST['submit'])) {
     $dishname1 = $_POST['dishname1'];
     $dishname2 = $_POST['dishname2'];
 
-    foreach ($field_values_array as $value) {
-        $sql = mysqli_query($con, "insert into weeklymenu(roomid,tableid,diningdate,diningtime,dishname1,dishname2) values('$room[$i]','$table[$i]','$diningdate[$i]','$diningtime[$i]','$dishname1[$i]','$dishname2[$i]')");
+    foreach ($field_values_array1 as $value1) { // This Loop Execute for Tables Selection
+        $table = $value1;
+        foreach ($field_values_array2 as $value2) { // This Loop Execute for Diningdate Selection
+            $sql = mysqli_query($con, "insert into weeklymenu(roomid,tableid,diningdate,diningtime,dishname1,dishname2) values('$room','$table','$value2','$diningtime','$dishname1','$dishname2')");
+        }
+
         $i++;
     }
     $_SESSION['msg'] = "Published To The Weekly Menu !!";
@@ -52,6 +58,7 @@ if (isset($_GET['del'])) {
                 data: 'id=' + val,
                 success: function(data) {
                     $("#table" + sl).html(data);
+                    $("#table" + sl).multiselect('rebuild');
                 }
             });
         }
@@ -144,7 +151,7 @@ if (isset($_GET['del'])) {
 
                                                     <div class="field_wrapper">
 
-                                                        <select name="room[]" rsl='1' class="form-control" id="room1" onChange="getRoomtables(this.value,1);" required>
+                                                        <select name="room" rsl='1' class="form-control" id="room1" onChange="getRoomtables(this.value,1);" required>
                                                             <option value="">Select a Room</option>
                                                             <?php
                                                             $query = mysqli_query($con, "select * from room where roomavailability = 1");
@@ -154,12 +161,12 @@ if (isset($_GET['del'])) {
                                                             <?php } ?>
                                                         </select>
 
-                                                        <select name="table[]" id="table1" tsl='1' class="form-control" id="input-select" required>
-                                                            <option value="">Select a Table</option>
+                                                        <select name="table[]" id="table1" tsl='1' class="form-control multipleSelectTable" multiple="multiple" id="input-select" required>
+
                                                         </select>
 
-                                                        <select name="diningdate[]" class="form-control" id="input-select" required>
-                                                            <option value="">Select a Date</option>
+                                                        <select name="diningdate[]" multiple="multiple" class="form-control multipleSelectDianingDate" id="input-select" required>
+                                                            <!-- <option value="">Select a Date</option> -->
                                                             <?php
                                                             $query = mysqli_query($con, "select DISTINCT diningdate  from diningdates where status = 'enabled' and diningdate >= CURDATE() + INTERVAL 8 HOUR ORDER BY diningdate ASC");
                                                             while ($row = mysqli_fetch_array($query)) {
@@ -168,9 +175,9 @@ if (isset($_GET['del'])) {
                                                             <?php } ?>
                                                         </select>
 
-                                                        <input id="diningtime[]" name="diningtime" type="time" class="form-control" required>
+                                                        <input id="diningtime" name="diningtime" type="time" class="form-control" required>
 
-                                                        <select name="dishname1[]" class="form-control" id="input-select" required>
+                                                        <select name="dishname1" class="form-control" id="input-select" required>
                                                             <option value="">Select a Dish</option>
                                                             <?php
                                                             $query = mysqli_query($con, "select * from dish");
@@ -179,7 +186,7 @@ if (isset($_GET['del'])) {
                                                             <?php } ?>
                                                         </select>
 
-                                                        <select name="dishname2[]" class="form-control" id="input-select" required>
+                                                        <select name="dishname2" class="form-control" id="input-select" required>
                                                             <option value="">Select a Dish</option>
                                                             <?php
                                                             $query = mysqli_query($con, "select * from dish");
@@ -188,7 +195,7 @@ if (isset($_GET['del'])) {
                                                             <?php } ?>
                                                         </select>
 
-                                                        <button type="button" class="add_button btn btn-primary" title="Add new field"><i class="fa fa-plus-circle"></i></button>
+                                                        <!-- <button type="button" class="add_button btn btn-primary" title="Add new field"><i class="fa fa-plus-circle"></i></button> -->
 
                                                     </div>
 
@@ -274,39 +281,6 @@ join room on room.id=weeklymenu.roomid join tablelayout on tablelayout.id=weekly
         <!-- ============================================================== -->
         <!-- end main wrapper  -->
         <!-- ============================================================== -->
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var maxField = 50; //Input fields increment limitation
-                var addButton = $('.add_button'); //Add button selector
-                var wrapper = $('.field_wrapper'); //Input field wrapper
-                //var fieldHTML = '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button"><i class="fa fa-times-circle"></i></a></div>'; //New input field html 
-
-                var x = 1; //Initial field counter is 1
-
-                //Once add button is clicked
-                $(addButton).click(function() {
-                    //Check maximum number of input fields
-                    if (x < maxField) {
-                        x++; //Increment field counter
-                        //$(wrapper).append(fieldHTML); //Add field html
-                        $(wrapper).append(
-                            '<div> <select name="room[]" class="form-control" rsl="' + x + '" id="room' + x + '" onChange="getRoomtables(this.value,' + x + ');" required><option value="">Select a Room</option> <?php $query = mysqli_query($con, "select * from room where roomavailability = 1");
-                                                                                                                                                                                                                    while ($row = mysqli_fetch_array($query)) { ?> <option value="<?php echo $row['id']; ?>"><?php echo $row['roomname']; ?></option> <?php } ?></select> <select name="table[]" tsl="' + x + '" id="table' + x + '" class="form-control" id="input-select" required> <option value="">Select a Table</option> </select> <select name="diningdate[]" class="form-control" id="input-select" required> <option value="">Select a Date</option> <?php $query = mysqli_query($con, "select DISTINCT diningdate  from diningdates where status = 'enabled' and diningdate >= CURDATE() + INTERVAL 8 HOUR ORDER BY diningdate ASC");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                while ($row = mysqli_fetch_array($query)) { ?> <option value="<?php echo $row['diningdate']; ?>"><?php echo $row['diningdate']; ?></option> <?php } ?> </select> <input id="diningtime" name="diningtime[]" type="time" class="form-control" required> <select name="dishname1[]" class="form-control" id="input-select" required> <option value="">Select a Dish</option> <?php $query = mysqli_query($con, "select * from dish");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                while ($row = mysqli_fetch_array($query)) { ?> <option value="<?php echo $row['dishname']; ?>"><?php echo $row['dishname']; ?></option> <?php } ?> </select> <select name="dishname2[]" class="form-control" id="input-select" required> <option value="">Select a Dish</option> <?php $query = mysqli_query($con, "select * from dish");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        while ($row = mysqli_fetch_array($query)) { ?> <option value="<?php echo $row['dishname']; ?>"><?php echo $row['dishname']; ?></option> <?php } ?> </select> <button type="button" class="remove_button btn btn-danger" title="Remove field"><i class="fa fa-times-circle"></i></button> </div>'
-                        ); //Add field html
-                    }
-                });
-
-                //Once remove button is clicked
-                $(wrapper).on('click', '.remove_button', function(e) {
-                    e.preventDefault();
-                    $(this).parent('div').remove(); //Remove field html
-                    x--; //Decrement field counter
-                });
-            });
-        </script>
 
 </body>
 
