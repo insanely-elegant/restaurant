@@ -54,17 +54,17 @@
 
          // Multi Select Dropdown with Checkboxes
          $('.multipleSelectTable').multiselect({ // For Table Selection
-             buttonWidth: '160px',
+             buttonWidth: '190px',
              enableFiltering: true,
-             nonSelectedText: 'Select an Option',
+             nonSelectedText: 'Select Tables',
              includeSelectAllOption: true,
              selectAllJustVisible: false
          });
 
          $('.multipleSelectDianingDate').multiselect({ // For Dianing Date Selection
-             buttonWidth: '160px',
+             buttonWidth: '190px',
              enableFiltering: true,
-             nonSelectedText: 'Select a Date',
+             nonSelectedText: 'Select Dates',
              includeSelectAllOption: true,
              selectAllJustVisible: false
          });
