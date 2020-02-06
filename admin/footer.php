@@ -46,8 +46,8 @@
  <script src="assets/vendor/local/dataTables.select.min.js"></script>
  <script src="assets/vendor/local/dataTables.fixedHeader.min.js"></script>
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+ <script src="assets/bootstrap-multiselect.js"></script>
+ <link rel="stylesheet" href="assets/bootstrap-multiselect.css">
 
  <script type="text/javascript">
      $(document).ready(function() {
