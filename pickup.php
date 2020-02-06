@@ -70,11 +70,10 @@ if (strlen($_SESSION['login']) == 0) {
 			function getFood(val) { //fetches dishname
 				diningdate = document.getElementById('diningdate').value;
 				diningtime = document.getElementById('storedtime_h').value;
-				room = document.getElementById('room').value;
 				$.ajax({
 					type: "POST",
 					url: "get_pickup_food.php",
-					data: 'diningdate=' + diningdate + '&diningtime=' + diningtime + '&room=' + room,
+					data: 'diningdate=' + diningdate + '&diningtime=' + diningtime,
 					success: function(data) {
 						$("#dishname1").html(data);
 					}
@@ -169,7 +168,7 @@ if (strlen($_SESSION['login']) == 0) {
 
 								<!-- Begin Dining Time -->
 								<div class="wrap-input100 validate-input m-b-16">
-									<select name="diningtime" id="diningtime" class="form-control" onChange="storeTime(this.value);getRoom(this.value);">
+									<select name="diningtime" id="diningtime" class="form-control" onChange="storeTime(this.value);getRoom(this.value);getFood(this.value);">
 									</select>
 									<span class="focus-input100"></span>
 								</div>
@@ -179,14 +178,7 @@ if (strlen($_SESSION['login']) == 0) {
 
 								<!-- End Dining Time -->
 
-								<div class="form-group">
-									<label for="inputText3">Dining Room</label>
-									<select name="room" id="room" class="form-control" id="input-select" required onChange="getFood(this.value);">
-									</select>
-								</div>
-
-								<input type="hidden" name="roomname_h" id="roomname_h"> <!-- passing all selected values to hidden inputs for review.php -->
-								<!-- End Room No -->
+								
 
 								<!-- Begin Dish Name -->
 								<div class="wrap-input100 validate-input m-b-16">

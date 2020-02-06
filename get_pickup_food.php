@@ -4,8 +4,7 @@ if(!empty($_POST["diningdate"]))
 {
  $dd=$_POST['diningdate'];
  $dt=$_POST['diningtime'];
- $rid=$_POST['room'];
-$query=mysqli_query($con,"select * from pickupweeklymenu where pickupdate='$dd' and pickuptime='$dt' and roomid='$rid'");
+$query=mysqli_query($con,"select * from pickupweeklymenu where pickupdate='$dd' and pickuptime='$dt'");
 ?>
 <option value="">Select one of 2 available Dishes</option>
 <?php
