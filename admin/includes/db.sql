@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2020 at 02:55 AM
+-- Generation Time: Feb 11, 2020 at 12:35 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -110,7 +110,13 @@ INSERT INTO `diningdates` (`id`, `diningdate`, `status`) VALUES
 (2, '2020-01-26', 'enabled'),
 (3, '2020-01-27', 'enabled'),
 (4, '2020-01-31', 'enabled'),
-(5, '2020-01-23', 'enabled');
+(5, '2020-01-23', 'enabled'),
+(6, '2020-02-21', 'enabled'),
+(7, '2020-02-22', 'enabled'),
+(8, '2020-02-23', 'enabled'),
+(9, '2020-02-24', 'enabled'),
+(10, '2020-02-25', 'enabled'),
+(11, '2020-02-26', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -121,7 +127,7 @@ INSERT INTO `diningdates` (`id`, `diningdate`, `status`) VALUES
 CREATE TABLE `dish` (
   `id` int(11) NOT NULL,
   `dishname` text NOT NULL,
-  `dishdescription` varchar(255) NOT NULL
+  `dishdescription` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -130,8 +136,8 @@ CREATE TABLE `dish` (
 
 INSERT INTO `dish` (`id`, `dishname`, `dishdescription`) VALUES
 (1, 'pasta bolognese', 'bolognese with red sauce reduction.'),
-(2, 'Chicken Burger', 'Burger!'),
-(3, 'Beef Burger', 'Burger');
+(2, 'Chicken Burger', 'grandma\'s juicy chicken patties can be grilled, pan fried and served \"naked\" with quinoa and salad or in a burger.'),
+(3, 'Beef Burger', 'A hamburger (also burger for short) is a food consisting of one or more cooked patties of ground meat, usually beef, placed inside a sliced bread roll or bun. The patty may be pan fried, grilled, smoked or flame broiled.');
 
 -- --------------------------------------------------------
 
@@ -209,7 +215,6 @@ CREATE TABLE `pickupweeklymenu` (
   `id` int(50) NOT NULL,
   `pickupdate` date NOT NULL,
   `pickuptime` time NOT NULL,
-  `roomid` int(50) NOT NULL,
   `dishname1` varchar(255) NOT NULL,
   `dishname2` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL
@@ -219,8 +224,10 @@ CREATE TABLE `pickupweeklymenu` (
 -- Dumping data for table `pickupweeklymenu`
 --
 
-INSERT INTO `pickupweeklymenu` (`id`, `pickupdate`, `pickuptime`, `roomid`, `dishname1`, `dishname2`, `status`) VALUES
-(1, '2020-01-27', '22:50:00', 1, 'Chicken Burger', 'Beef Burger', '');
+INSERT INTO `pickupweeklymenu` (`id`, `pickupdate`, `pickuptime`, `dishname1`, `dishname2`, `status`) VALUES
+(1, '2020-02-26', '22:50:00', 'Chicken Burger', 'Beef Burger', ''),
+(2, '2020-02-26', '10:51:00', 'Beef Burger', 'Chicken Burger', ''),
+(3, '2020-02-26', '22:51:00', 'Chicken Burger', 'Beef Burger', '');
 
 -- --------------------------------------------------------
 
@@ -306,13 +313,6 @@ CREATE TABLE `room` (
   `productimage1` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `room`
---
-
-INSERT INTO `room` (`id`, `roomname`, `totaltables`, `roomavailability`, `productimage1`) VALUES
-(1, 'Game Room', '4', '1', 'game-room.png');
-
 -- --------------------------------------------------------
 
 --
@@ -334,7 +334,9 @@ INSERT INTO `tablelayout` (`id`, `roomid`, `tablename`, `totalseats`) VALUES
 (1, 1, '21', '6'),
 (2, 1, '22', '3'),
 (3, 1, '23', '4'),
-(4, 1, '24', '5');
+(4, 1, '24', '5'),
+(5, 2, 'A1', '4'),
+(6, 2, 'A2', '6');
 
 -- --------------------------------------------------------
 
@@ -9538,7 +9540,18 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'chef', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 01:29:05', NULL, 1),
 (0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 01:30:22', NULL, 1),
 (0, 'chef', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 01:32:45', NULL, 1),
-(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 01:34:04', NULL, 1);
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 01:34:04', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-29 18:25:03', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-29 18:29:51', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-02-01 13:48:16', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-02-02 03:50:26', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-02-03 19:46:44', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-02-03 19:46:58', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-02-03 20:10:29', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-02-04 16:54:31', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-02-06 00:17:13', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-02-10 20:22:27', NULL, 1),
+(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-02-10 20:53:42', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -9589,11 +9602,56 @@ CREATE TABLE `weeklymenu` (
 --
 
 INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `roomid`, `tableid`, `dishname1`, `dishname2`) VALUES
-(3, '2020-01-27', '20:53:00', 1, 1, 'pasta bolognese', 'Beef Burger'),
 (4, '2020-01-27', '21:55:00', 1, 3, 'pasta bolognese', 'Beef Burger'),
 (6, '2020-01-26', '21:20:00', 1, 2, 'Chicken Burger', 'Beef Burger'),
 (7, '2020-01-31', '22:59:00', 1, 3, 'Chicken Burger', 'pasta bolognese'),
-(8, '2020-01-23', '23:03:00', 1, 3, 'Chicken Burger', 'pasta bolognese');
+(8, '2020-01-23', '23:03:00', 1, 3, 'Chicken Burger', 'pasta bolognese'),
+(9, '2020-02-22', '19:56:00', 1, 1, 'pasta bolognese', 'Chicken Burger'),
+(10, '2020-02-23', '00:00:00', 1, 2, 'pasta bolognese', 'Beef Burger'),
+(11, '2020-02-21', '22:21:00', 1, 2, 'Chicken Burger', 'Chicken Burger'),
+(12, '2020-02-22', '22:21:00', 1, 2, 'Chicken Burger', 'Chicken Burger'),
+(13, '2020-02-23', '22:21:00', 1, 2, 'Chicken Burger', 'Chicken Burger'),
+(14, '2020-02-24', '22:21:00', 1, 2, 'Chicken Burger', 'Chicken Burger'),
+(15, '2020-02-21', '22:21:00', 1, 3, 'Chicken Burger', 'Chicken Burger'),
+(16, '2020-02-22', '22:21:00', 1, 3, 'Chicken Burger', 'Chicken Burger'),
+(17, '2020-02-23', '22:21:00', 1, 3, 'Chicken Burger', 'Chicken Burger'),
+(18, '2020-02-24', '22:21:00', 1, 3, 'Chicken Burger', 'Chicken Burger'),
+(19, '2020-02-21', '21:22:00', 2, 5, 'Chicken Burger', 'Beef Burger'),
+(20, '2020-02-22', '21:22:00', 2, 5, 'Chicken Burger', 'Beef Burger'),
+(21, '2020-02-23', '21:22:00', 2, 5, 'Chicken Burger', 'Beef Burger'),
+(22, '2020-02-24', '21:22:00', 2, 5, 'Chicken Burger', 'Beef Burger'),
+(23, '2020-02-25', '21:22:00', 2, 5, 'Chicken Burger', 'Beef Burger'),
+(24, '2020-02-26', '21:22:00', 2, 5, 'Chicken Burger', 'Beef Burger'),
+(25, '2020-02-21', '21:22:00', 2, 6, 'Chicken Burger', 'Beef Burger'),
+(26, '2020-02-22', '21:22:00', 2, 6, 'Chicken Burger', 'Beef Burger'),
+(27, '2020-02-23', '21:22:00', 2, 6, 'Chicken Burger', 'Beef Burger'),
+(28, '2020-02-24', '21:22:00', 2, 6, 'Chicken Burger', 'Beef Burger'),
+(29, '2020-02-25', '21:22:00', 2, 6, 'Chicken Burger', 'Beef Burger'),
+(30, '2020-02-26', '21:22:00', 2, 6, 'Chicken Burger', 'Beef Burger'),
+(31, '2020-02-21', '01:30:00', 1, 1, 'Chicken Burger', 'Beef Burger'),
+(32, '2020-02-22', '01:30:00', 1, 1, 'Chicken Burger', 'Beef Burger'),
+(33, '2020-02-23', '01:30:00', 1, 1, 'Chicken Burger', 'Beef Burger'),
+(34, '2020-02-24', '01:30:00', 1, 1, 'Chicken Burger', 'Beef Burger'),
+(35, '2020-02-25', '01:30:00', 1, 1, 'Chicken Burger', 'Beef Burger'),
+(36, '2020-02-26', '01:30:00', 1, 1, 'Chicken Burger', 'Beef Burger'),
+(37, '2020-02-21', '01:30:00', 1, 2, 'Chicken Burger', 'Beef Burger'),
+(38, '2020-02-22', '01:30:00', 1, 2, 'Chicken Burger', 'Beef Burger'),
+(39, '2020-02-23', '01:30:00', 1, 2, 'Chicken Burger', 'Beef Burger'),
+(40, '2020-02-24', '01:30:00', 1, 2, 'Chicken Burger', 'Beef Burger'),
+(41, '2020-02-25', '01:30:00', 1, 2, 'Chicken Burger', 'Beef Burger'),
+(42, '2020-02-26', '01:30:00', 1, 2, 'Chicken Burger', 'Beef Burger'),
+(43, '2020-02-21', '01:30:00', 1, 3, 'Chicken Burger', 'Beef Burger'),
+(44, '2020-02-22', '01:30:00', 1, 3, 'Chicken Burger', 'Beef Burger'),
+(45, '2020-02-23', '01:30:00', 1, 3, 'Chicken Burger', 'Beef Burger'),
+(46, '2020-02-24', '01:30:00', 1, 3, 'Chicken Burger', 'Beef Burger'),
+(47, '2020-02-25', '01:30:00', 1, 3, 'Chicken Burger', 'Beef Burger'),
+(48, '2020-02-26', '01:30:00', 1, 3, 'Chicken Burger', 'Beef Burger'),
+(49, '2020-02-21', '01:30:00', 1, 4, 'Chicken Burger', 'Beef Burger'),
+(50, '2020-02-22', '01:30:00', 1, 4, 'Chicken Burger', 'Beef Burger'),
+(51, '2020-02-23', '01:30:00', 1, 4, 'Chicken Burger', 'Beef Burger'),
+(52, '2020-02-24', '01:30:00', 1, 4, 'Chicken Burger', 'Beef Burger'),
+(53, '2020-02-25', '01:30:00', 1, 4, 'Chicken Burger', 'Beef Burger'),
+(54, '2020-02-26', '01:30:00', 1, 4, 'Chicken Burger', 'Beef Burger');
 
 --
 -- Indexes for dumped tables
@@ -9703,13 +9761,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `chef`
 --
 ALTER TABLE `chef`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `dish`
@@ -9727,7 +9785,7 @@ ALTER TABLE `host`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pickups`
@@ -9739,7 +9797,7 @@ ALTER TABLE `pickups`
 -- AUTO_INCREMENT for table `pickupweeklymenu`
 --
 ALTER TABLE `pickupweeklymenu`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `reservation`
@@ -9751,25 +9809,25 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tablelayout`
 --
 ALTER TABLE `tablelayout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
