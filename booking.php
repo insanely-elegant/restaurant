@@ -162,6 +162,17 @@ if (strlen($_SESSION['login']) == 0) {
 					document.getElementById('roomname_h').value = roomName;
 				});
 			});
+
+			function getFoodDescription(val) { //fetches dishname
+				$.ajax({
+					type: "POST",
+					url: "get_food_description.php",
+					data: 'dishname=' + val,
+					success: function(data) {
+						$("#dishdescription").html(data);
+					}
+				});
+			}
 		</script>
 
 
@@ -226,9 +237,11 @@ if (strlen($_SESSION['login']) == 0) {
 								<!-- Begin Dish Name -->
 								<div class="wrap-input100 validate-input m-b-16">
 									<label for="inputText3">Menu Options</label>
-									<select name="dishname" id="dishname1" class="form-control" required>
+									<select name="dishname" id="dishname1" class="form-control" onChange="getFoodDescription(value);" required>
 									</select>
 									<span class="focus-input100"></span>
+								</div>
+								<div class="card-body" name="dishdescription" id="dishdescription">
 								</div>
 								<input type="hidden" name="dishname_h" id="dishname_h"> <!-- passing all selected values to hidden inputs for review.php -->
 								<!-- End Dish Name  -->
