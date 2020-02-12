@@ -137,8 +137,10 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                   <th>First Name</th>
                                   <th>Last Name</th>
                                   <th>Unit Number</th>
+                                  <th>Room Name </th>
                                   <th>Table Name </th>
                                   <th>Dining Date </th>
+                                  <th>Had Checked In?</th>
                                   <th>Dish Name</th>
                                 </tr>
                               </thead>
@@ -154,8 +156,10 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                     <td class="hidden-xs"><?php echo $row['firstname']; ?></td>
                                     <td><?php echo $row['lastname']; ?></td>
                                     <td><?php echo $row['condono']; ?></td>
+                                    <td><?php echo $row['roomname']; ?></td>
                                     <td><?php echo $row['tablename']; ?></td>
                                     <td><?php echo $row['diningdate']; ?>
+                                    <td><?php echo htmlentities($row['isCheckedin'] ? 'Yes' : 'No'); ?></td>
                                     <td><?php echo $row['dishname']; ?>
                                     </td>
                                     <td>
@@ -168,6 +172,9 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                   $cnt = $cnt + 1;
                                 } ?></tbody>
                             </table>
+                            <?php
+                            
+                            ?>
                             <script>
                               function myFunction() {
                                 var input, filter, table, tr, td, i, txtValue;

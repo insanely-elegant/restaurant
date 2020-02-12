@@ -484,7 +484,7 @@ $tdate=$_POST['todate'];
 <tbody>
 <?php
  
-$sql=mysqli_query($con,"SELECT * FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono = '$condo' ");
+$sql=mysqli_query($con,"SELECT * FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono = '$condo'");
 $cnt=1;
 while($row=mysqli_fetch_array($sql))
 {
