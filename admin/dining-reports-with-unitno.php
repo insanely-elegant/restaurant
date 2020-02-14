@@ -91,21 +91,21 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                                 <form role="form" method="post" action="dining-reports-with-unitno-detailed.php">
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">
-                                                            From Date:
+                                                            From Date: *
                                                         </label>
                                                         <input type="date" class="form-control" name="fromdate" id="fromdate" value="" required='true'>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">
-                                                            To Date:
+                                                            To Date: *
                                                         </label>
                                                         <input type="date" class="form-control" name="todate" id="todate" value="" required='true'>
 
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">
-                                                            Unit Number:
+                                                            Unit Number: *
                                                         </label>
                                                         <input type="text" class="form-control" name="unitno" id="todate" value="" required='true'>
 
