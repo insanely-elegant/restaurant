@@ -166,18 +166,18 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                     <td><?php echo $row['condono']; ?></td>
                                     <td><?php echo $row['room']; ?></td>
                                     <td><?php echo $row['tablename']; ?></td>
-                                    <td><?php echo $row['diningdate']; ?>
+                                    <td><?php echo $row['diningdate']; ?></td>
                                     <td style="font-weight: bold;text-transform: uppercase;"><?php echo htmlentities($row['isCheckedin'] ? 'Yes' : 'No'); ?></td>
-                                    <td><?php echo $row['dishname']; ?>
-                                    <td><?php echo $row['membermealprice']; ?>
-                                    <td><?php echo $row['membermealtaxpercent']; ?>
-                                    <td><?php echo $row['membermealtaxvalue']; ?>
-                                    <td><?php echo $row['membermealtotalprice']; ?>
-                                    <td><?php echo $row['guestmealprice']; ?>
-                                    <td><?php echo $row['guestmealtaxpercent']; ?>
-                                    <td><?php echo $row['membermealtaxvalue']; ?>
-                                    <td><?php echo $row['membermealtotalprice']; ?>
-                                    <td><?php echo $row['grandtotal']; ?>
+                                    <td><?php echo $row['dishname']; ?></td>
+                                    <td><?php echo $row['membermealprice']; ?></td>
+                                    <td><?php echo $row['membermealtaxpercent']; ?></td>
+                                    <td><?php echo $row['membermealtaxvalue']; ?></td>
+                                    <td><?php echo $row['membermealtotalprice']; ?></td>
+                                    <td><?php echo $row['guestmealprice']; ?></td>
+                                    <td><?php echo $row['guestmealtaxpercent']; ?></td>
+                                    <td><?php echo $row['membermealtaxvalue']; ?></td>
+                                    <td><?php echo $row['membermealtotalprice']; ?></td>
+                                    <td><?php echo $row['grandtotal']; ?></td>
                                     </td>
                                     <td>
 
