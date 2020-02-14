@@ -156,7 +156,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                     <td class="hidden-xs"><?php echo $row['firstname']; ?></td>
                                     <td><?php echo $row['lastname']; ?></td>
                                     <td><?php echo $row['condono']; ?></td>
-                                    <td><?php echo $row['roomname']; ?></td>
+                                    <td><?php echo $row['room']; ?></td>
                                     <td><?php echo $row['tablename']; ?></td>
                                     <td><?php echo $row['diningdate']; ?>
                                     <td><?php echo htmlentities($row['isCheckedin'] ? 'Yes' : 'No'); ?></td>
