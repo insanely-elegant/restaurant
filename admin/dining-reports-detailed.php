@@ -116,7 +116,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             $fdate = $_POST['fromdate'];
                             $tdate = $_POST['todate'];
                             ?>
-                            <h5 align="center" style="color:blue">Dining Report from <?php echo $fdate ?> to <?php echo $tdate ?></h5> </br>
+                            <h5 align="center" style="color:blue">Dining Report from <span style="color:red"><?php echo $fdate ?></span> to <span style="color:red"><?php echo $tdate ?></span></h5> </br>
                             <div class="card-body">
                               <div class="form-group">
                                 <div align="left"> Search by either filters below: </div> </br>

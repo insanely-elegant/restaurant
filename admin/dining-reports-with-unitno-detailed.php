@@ -117,7 +117,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             $tdate = $_POST['todate'];
                             $unitno = $_POST['unitno'];
                             ?>
-                            <h5 align="center" style="color:blue">Dining Report from <?php echo $fdate ?> to <?php echo $tdate ?></h5> </br>
+                            <h5 align="center" style="color:blue">Dining Report from <span style="color:red"><?php echo $fdate ?></span> to <span style="color:red"><?php echo $tdate ?></span> of <span style="color: #872D62"><?php echo $unitno ?></span></h5> </br>
                             <div class="card-body">
                               <div class="form-group">
                                 <div align="left"> Search by either filters below: </div> </br>
