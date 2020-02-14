@@ -142,6 +142,15 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                   <th>Dining Date </th>
                                   <th>Had Checked In?</th>
                                   <th>Dish Name</th>
+                                  <th>Member Meal Base Price(in $)</th>
+                                  <th>Member Meal Tax Percent (in %)</th>
+                                  <th>Member Meal Tax Value(in $)</th>
+                                  <th>Member Meal Grand Total(in $)</th>
+                                  <th>Guest Meal Base Price(in $)</th>
+                                  <th>Guest Meal Tax Percent (in %)</th>
+                                  <th>Guest Meal Tax Value(in $)</th>
+                                  <th>Guest Meal Grand Total(in $)</th>
+                                  <th>Gross Total Price ( Member Total + Guest Total in $)</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -161,6 +170,15 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                     <td><?php echo $row['diningdate']; ?>
                                     <td style="font-weight: bold;text-transform: uppercase;"><?php echo htmlentities($row['isCheckedin'] ? 'Yes' : 'No'); ?></td>
                                     <td><?php echo $row['dishname']; ?>
+                                    <td><?php echo $row['membermealprice']; ?>
+                                    <td><?php echo $row['membermealtaxpercent']; ?>
+                                    <td><?php echo $row['membermealtaxvalue']; ?>
+                                    <td><?php echo $row['membermealtotalprice']; ?>
+                                    <td><?php echo $row['guestmealprice']; ?>
+                                    <td><?php echo $row['guestmealtaxpercent']; ?>
+                                    <td><?php echo $row['membermealtaxvalue']; ?>
+                                    <td><?php echo $row['membermealtotalprice']; ?>
+                                    <td><?php echo $row['grandtotal']; ?>
                                     </td>
                                     <td>
 
