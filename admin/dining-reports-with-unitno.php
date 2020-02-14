@@ -103,7 +103,16 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                                         <input type="date" class="form-control" name="todate" id="todate" value="" required='true'>
 
                                                     </div>
-                                                                                                        <button type="submit" name="submit" id="submit" class="btn btn-o btn-primary">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword1">
+                                                            Unit Number:
+                                                        </label>
+                                                        <input type="text" class="form-control" name="unitno" id="todate" value="" required='true'>
+
+                                                    </div>
+
+
+                                                    <button type="submit" name="submit" id="submit" class="btn btn-o btn-primary">
                                                         Submit
                                                     </button>
                                                 </form>

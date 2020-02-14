@@ -115,6 +115,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             <?php
                             $fdate = $_POST['fromdate'];
                             $tdate = $_POST['todate'];
+                            $unitno = $_POST['unitno'];
                             ?>
                             <h5 align="center" style="color:blue">Dining Report from <?php echo $fdate ?> to <?php echo $tdate ?></h5> </br>
                             <div class="card-body">
@@ -155,7 +156,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                               <tbody>
                                 <?php
 
-                                $sql = mysqli_query($con, "SELECT * FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate'");
+                                $sql = mysqli_query($con, "SELECT * FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono = '$unitno'");
                                 $cnt = 1;
                                 while ($row = mysqli_fetch_array($sql)) {
                                 ?>
