@@ -159,7 +159,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                     <td><?php echo $row['room']; ?></td>
                                     <td><?php echo $row['tablename']; ?></td>
                                     <td><?php echo $row['diningdate']; ?>
-                                    <td><?php echo htmlentities($row['isCheckedin'] ? 'Yes' : 'No'); ?></td>
+                                    <td style="font-weight: bold;text-transform: uppercase;"><?php echo htmlentities($row['isCheckedin'] ? 'Yes' : 'No'); ?></td>
                                     <td><?php echo $row['dishname']; ?>
                                     </td>
                                     <td>
@@ -173,7 +173,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                 } ?></tbody>
                             </table>
                             <?php
-                            
+
                             ?>
                             <script>
                               function myFunction() {
