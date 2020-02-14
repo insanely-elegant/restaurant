@@ -121,14 +121,14 @@ if (isset($_GET['del'])) {
                                                     <th>First Name</th>
                                                     <th>Last Name</th>
                                                     <th>Action</th>
+                                                    <th>CheckedIn?</th>
+                                                    <th>Unit No</th>
                                                     <th>Room Name</th>
                                                     <th>Table Name</th>
-                                                    <th>Seat</th>
-                                                    <th>Date</th>
-                                                    <th>Time</th>
+                                                    <th>Total Seats</th>
+                                                    <th>Dining Date</th>
+                                                    <th>Dining Time</th>
                                                     <th>Number of Guests</th>
-                                                    <th>Unit No</th>
-                                                    <th>CheckedIn?</th>
                                                     <th>View Invoice</th>
                                                     <th>Cancel & Delete Reservation</th>
 
@@ -136,8 +136,10 @@ if (isset($_GET['del'])) {
                                             </thead>
                                             <tbody>
 
-                                                <?php $query = mysqli_query($con, "select * from reservation");
+                                                <?php $query = mysqli_query($con, "select * from reservation ORDER BY diningdate ASC");
                                                 $cnt = 1;
+                                                $colorMap[0] = 'green';
+                                                $colorMap[1] = 'red';
                                                 while ($row = mysqli_fetch_array($query)) {
                                                 ?>
                                                     <tr>
@@ -150,14 +152,14 @@ if (isset($_GET['del'])) {
                                                             <a href="guestlist.php?id=<?php echo $row['id'] ?>&noshow=noshow" onClick="return confirm('Are you sure you want to mark no show?')" class="btn btn-sm btn-danger">
                                                                 No Show
                                                             </a></td>
+                                                        <td style="color: <?php echo $colorMap[$row['isCheckedin'] ? '0' : '1']; ?>;font-weight: bold;text-transform: uppercase;"><?php echo htmlentities($row['isCheckedin'] ? 'Yes' : 'No'); ?></td>
+                                                        <td><?php echo htmlentities($row['condono']); ?></td>
                                                         <td><?php echo htmlentities($row['room']); ?></td>
                                                         <td><?php echo htmlentities($row['tablename']); ?></td>
                                                         <td><?php echo htmlentities($row['seat']); ?></td>
                                                         <td><?php echo htmlentities($row['diningdate']); ?></td>
                                                         <td><?php echo htmlentities($row['diningtime']); ?></td>
                                                         <td><?php echo htmlentities($row['guestno']); ?></td>
-                                                        <td><?php echo htmlentities($row['condono']); ?></td>
-                                                        <td><?php echo htmlentities($row['isCheckedin'] ? 'Yes' : 'No'); ?></td>
                                                         <td> <a href="receipt.php?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
                                                         <td> <a href="guestlist.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('Are you sure you want to cancel & delete this reservation?')" class="btn btn-sm btn-outline-light">
                                                                 <button> <i class="far fa-trash-alt"></i>
