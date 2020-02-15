@@ -37,18 +37,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav flex-column">
-                    <li class="nav-divider">
-                        Main Menu
-                    </li>
+                   
                     <li class="nav-item ">
-                        <a class="nav-link active" href="dashboard.php" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
-                        <div id="submenu-1" class="collapse submenu" style="">
-                            <ul class="nav flex-column">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="dashboard.php">Home - View Dashboard</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <a class="nav-link" href="dashboard.php" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
+                        
                     </li>
 
                     <li class="nav-divider">
