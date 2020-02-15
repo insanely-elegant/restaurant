@@ -155,7 +155,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                               <tbody>
                                 <?php
 
-                                $sql = mysqli_query($con, "SELECT * FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate'");
+                                $sql = mysqli_query($con, "SELECT * FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' ORDER BY condono ASC");
                                 $cnt = 1;
                                 while ($row = mysqli_fetch_array($sql)) {
                                 ?>
