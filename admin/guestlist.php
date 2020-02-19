@@ -140,6 +140,8 @@ if (isset($_GET['del'])) {
                                                 $cnt = 1;
                                                 $colorMap[0] = 'green';
                                                 $colorMap[1] = 'red';
+                                                $colorBadge[0] = 'badge-dot badge-success mr-1';
+                                                $colorBadge[1] = 'badge-dot badge-danger mr-1';
                                                 while ($row = mysqli_fetch_array($query)) {
                                                 ?>
                                                     <tr>
@@ -152,8 +154,10 @@ if (isset($_GET['del'])) {
                                                             <a href="guestlist.php?id=<?php echo $row['id'] ?>&noshow=noshow" onClick="return confirm('Are you sure you want to mark no show?')" class="btn btn-sm btn-danger">
                                                                 No Show
                                                             </a></td>
-                                                        <td style="color: <?php echo $colorMap[$row['isCheckedin'] ? '0' : '1']; ?>;font-weight: bold;text-transform: uppercase;"><?php echo htmlentities($row['isCheckedin'] ? 'Yes' : 'No'); ?></td>
-                                                        <td><?php echo htmlentities($row['condono']); ?></td>
+                                                        <td style="color: <?php echo $colorMap[$row['isCheckedin'] ? '0' : '1']; ?>;font-weight: bold;text-transform: uppercase;">
+                                                            <span class="<?php echo $colorBadge[$row['isCheckedin'] ? '0' : '1']; ?>"></span>
+                                                            <?php echo htmlentities($row['isCheckedin'] ? 'Yes' : 'No'); ?></td>
+                                                        <td style="text-transform: uppercase;"><?php echo $row['condono']; ?></td>
                                                         <td><?php echo htmlentities($row['room']); ?></td>
                                                         <td><?php echo htmlentities($row['tablename']); ?></td>
                                                         <td><?php echo htmlentities($row['seat']); ?></td>

@@ -83,7 +83,15 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                         <h3 class="section-title">Dining Reports</h3>
                                         <p>You can generate reports here.</p>
                                     </div>
+                                    <script>
+                                        $(document).ready(function() {
 
+                                            // assuming the controls you want to attach the plugin to
+                                            // have the "datepicker" class set
+                                            $('input.datepicker').Zebra_DatePicker();
+
+                                        });
+                                    </script>
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="panel-body">
@@ -93,17 +101,17 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                                         <label for="exampleInputPassword1">
                                                             From Date: *
                                                         </label>
-                                                        <input type="date" class="form-control" name="fromdate" id="fromdate" value="" required='true'>
+                                                        <input type="date" class="datepicker" name="fromdate" id="fromdate" value="" required='true'>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">
                                                             To Date: *
                                                         </label>
-                                                        <input type="date" class="form-control" name="todate" id="todate" value="" required='true'>
+                                                        <input type="date" class="datepicker" name="todate" id="todate" value="" required='true'>
 
                                                     </div>
-                                                                                                        <button type="submit" name="submit" id="submit" class="btn btn-o btn-primary">
+                                                    <button type="submit" name="submit" id="submit" class="btn btn-o btn-primary">
                                                         Submit
                                                     </button>
                                                 </form>
