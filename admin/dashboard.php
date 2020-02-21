@@ -223,7 +223,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                                                     <td><?php echo htmlentities($row['diningdate']); ?></td>
                                                                     <td><?php echo htmlentities($row['diningtime']); ?></td>
                                                                     <td><?php echo htmlentities($row['guestno']); ?></td>
-                                                                    <td><?php echo htmlentities($row['condono']); ?></td>
+                                                                    <td style="text-transform: uppercase;"><?php echo $row['condono']; ?></td>
                                                                     <td> <span class="<?php echo $colorMap[$row['isCheckedin'] ? '0' : '1']; ?>"></span><?php echo htmlentities($row['isCheckedin'] ? 'Yes' : 'No'); ?></td>
                                                                 </tr>
                                                             <?php $cnt = $cnt + 1;
