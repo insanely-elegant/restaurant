@@ -40,7 +40,7 @@
        -moz-appearance: textfield;
     }
  </style>
- <!-- <script type="text/javascript">
+ <script type="text/javascript">
     $(function() {
        $('#datetimepicker4').datetimepicker({
           //pickTime: false
@@ -48,4 +48,4 @@
 
        });
     });
- </script> -->
+ </script>

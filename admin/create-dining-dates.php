@@ -10,11 +10,11 @@ include('includes/config.php');
 date_default_timezone_set('America/Los_Angeles');
 $currentTime = date('d-m-Y h:i:s A', time());
 
-
 if (isset($_POST['submit'])) {
     $diningdate = $_POST['diningdate'];
     $status = "enabled";
-    $sql = mysqli_query($con, "insert into diningdates(diningdate,status) values('$diningdate','$status')");
+    $newDate = date('Y-m-d', strtotime(str_replace('-', '/', $diningdate)));
+    $sql = mysqli_query($con, "insert into diningdates(diningdate,status) values('$newDate','$status')");
     // $last_inserted_sqlid = mysqli_insert_id($con);
     // $sql2=mysqli_query($con,"insert into diningtimes(did, diningtime, status) values('$last_inserted_sqlid','$diningtime','$status')");
     $_SESSION['msg'] = "New Dining Date Added & Auto-Enabled !!";
@@ -140,26 +140,21 @@ if (isset($_GET['del'])) {
                                     <div class="card">
                                         <div class="card-body">
                                             <form method="post">
-                                                <p>Date: <input type="text" id="datepicker" class="datepicker"></p>
+                                                
 
-
-                                                <div class="form-group">
+                                                <!-- <div class="form-group">
                                                     <label for="inputText3">Dining Date</label>
                                                     <input name="diningdate" type="date" class="form-control" placeholder="yyyy-mm-dd">
-                                                </div> 
-                                                <!-- <div class="form-group">
+                                                </div>  -->
+                                                <div class="form-group">
                                                     <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
                                                         <input type="text" id="diningdate" name="diningdate" class="form-control datetimepicker-input" data-target="#datetimepicker4">
                                                         <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
                                                             <div class="input-group-text" name="diningdate"><i class="far fa-calendar-alt"></i></div>
                                                         </div>
                                                     </div>
-                                                </div> -->
-                                                <!-- <div class="form-group">
-                                                <label for="inputText3">Time</label>
-                                                 <input name="diningtime" type="time" class="form-control">
-                                            </div> -->
-                                                <!--removed time !-->
+                                                </div>
+                                               
 
                                                 <button type="submit" name="submit" class="btn btn-outline-dark">Add into calendar</a>
                                             </form>
