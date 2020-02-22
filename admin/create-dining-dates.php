@@ -140,10 +140,21 @@ if (isset($_GET['del'])) {
                                     <div class="card">
                                         <div class="card-body">
                                             <form method="post">
+                                                <p>Date: <input type="text" id="datepicker" class="datepicker"></p>
+
+
                                                 <div class="form-group">
-                                                    <label for="inputText3" class="col-form-label">Date</label>
-                                                    <input name="diningdate" type="date" class="form-control">
-                                                </div>
+                                                    <label for="inputText3">Dining Date</label>
+                                                    <input name="diningdate" type="date" class="form-control" placeholder="yyyy-mm-dd">
+                                                </div> 
+                                                <!-- <div class="form-group">
+                                                    <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                                                        <input type="text" id="diningdate" name="diningdate" class="form-control datetimepicker-input" data-target="#datetimepicker4">
+                                                        <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                                                            <div class="input-group-text" name="diningdate"><i class="far fa-calendar-alt"></i></div>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
                                                 <!-- <div class="form-group">
                                                 <label for="inputText3">Time</label>
                                                  <input name="diningtime" type="time" class="form-control">
@@ -182,9 +193,9 @@ if (isset($_GET['del'])) {
                                                                 <i class="fas fa-ban"></i>
                                                                 <a href="create-dining-dates.php?id=<?php echo $row['id'] ?>&enable=enable" onClick="return confirm('Are you sure you want to re-enable this date & time?')" class="btn btn-sm btn-outline-light">Re-Enable
                                                                     <i class="fas fa-check-circle"></i>
-                                                         <a href="create-dining-dates.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
-                                                                <i class="far fa-trash-alt"></i>
-                                                                </button>
+                                                                    <a href="create-dining-dates.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
+                                                                        <i class="far fa-trash-alt"></i>
+                                                                        </button>
                                                     </tr>
                                                 <?php $cnt = $cnt + 1;
                                                 } ?>
