@@ -19,6 +19,22 @@
  <script src="assets/vendor/datepicker/moment.js"></script>
  <script src="assets/vendor/datepicker/tempusdominus-bootstrap-4.js"></script>
  <script src="assets/vendor/datepicker/datepicker.js"></script>
+ 
+<!-- for some reason having below files twice makes dining program work, otherwise once clicked, the select table doesn't come back without page refresh -->
+
+ <link rel="stylesheet" href="assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
+ <link rel="stylesheet" href="assets/vendor/charts/c3charts/c3.css">
+ <link rel="stylesheet" href="assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
+ <link href="assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+ <link rel="stylesheet" href="assets/libs/css/style.css">
+ <link rel="stylesheet" href="assets/vendor/datepicker/tempusdominus-bootstrap-4.css" />
+ <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+ <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+ <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+ <script src="assets/libs/js/main-js.js"></script>
+ <script src="assets/vendor/datepicker/moment.js"></script>
+ <script src="assets/vendor/datepicker/tempusdominus-bootstrap-4.js"></script>
+ <script src="assets/vendor/datepicker/datepicker.js"></script>
  <title>Silver Glen - Admin</title>
  <style type="text/css">
     .field_wrapper select {
