@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2020 at 12:35 AM
+-- Generation Time: Mar 18, 2020 at 10:21 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -67,7 +67,8 @@ CREATE TABLE `chef` (
 --
 
 INSERT INTO `chef` (`id`, `chefname`, `contactno`, `altcontactno`, `email`, `password`) VALUES
-(3, 'chef', '324', 'asd', 'test@chef.com', 'chef');
+(3, 'chef', '324', 'asd', 'test@chef.com', 'chef'),
+(5, 'Sam Columbi', '4253726169', '', 'samcolumbi@gmail.com', 'chef');
 
 -- --------------------------------------------------------
 
@@ -106,17 +107,39 @@ CREATE TABLE `diningdates` (
 --
 
 INSERT INTO `diningdates` (`id`, `diningdate`, `status`) VALUES
-(1, '2020-01-25', 'enabled'),
-(2, '2020-01-26', 'enabled'),
-(3, '2020-01-27', 'enabled'),
-(4, '2020-01-31', 'enabled'),
-(5, '2020-01-23', 'enabled'),
-(6, '2020-02-21', 'enabled'),
-(7, '2020-02-22', 'enabled'),
-(8, '2020-02-23', 'enabled'),
-(9, '2020-02-24', 'enabled'),
-(10, '2020-02-25', 'enabled'),
-(11, '2020-02-26', 'enabled');
+(11, '2020-02-05', 'disabled'),
+(12, '2020-02-06', 'disabled'),
+(17, '2020-02-27', 'enabled'),
+(18, '2020-02-28', 'enabled'),
+(22, '2020-02-29', 'enabled'),
+(23, '2020-03-01', 'enabled'),
+(24, '2020-03-01', 'enabled'),
+(25, '0000-00-00', 'enabled'),
+(26, '0000-00-00', 'enabled'),
+(27, '0000-00-00', 'enabled'),
+(28, '0000-00-00', 'enabled'),
+(29, '0000-00-00', 'enabled'),
+(30, '0000-00-00', 'enabled'),
+(31, '0000-00-00', 'enabled'),
+(32, '0000-00-00', 'enabled'),
+(33, '0000-00-00', 'enabled'),
+(34, '0000-00-00', 'enabled'),
+(35, '0000-00-00', 'enabled'),
+(36, '0000-00-00', 'enabled'),
+(37, '0000-00-00', 'enabled'),
+(38, '0000-00-00', 'enabled'),
+(39, '2020-02-28', 'enabled'),
+(40, '0000-00-00', 'enabled'),
+(41, '0000-00-00', 'enabled'),
+(42, '0000-00-00', 'enabled'),
+(43, '0000-00-00', 'enabled'),
+(44, '0000-00-00', 'enabled'),
+(45, '0000-00-00', 'enabled'),
+(46, '0000-00-00', 'enabled'),
+(47, '2020-03-11', 'enabled'),
+(48, '2020-03-14', 'enabled'),
+(49, '2020-03-12', 'enabled'),
+(50, '2020-03-13', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -136,8 +159,16 @@ CREATE TABLE `dish` (
 
 INSERT INTO `dish` (`id`, `dishname`, `dishdescription`) VALUES
 (1, 'pasta bolognese', 'bolognese with red sauce reduction.'),
-(2, 'Chicken Burger', 'grandma\'s juicy chicken patties can be grilled, pan fried and served \"naked\" with quinoa and salad or in a burger.'),
-(3, 'Beef Burger', 'A hamburger (also burger for short) is a food consisting of one or more cooked patties of ground meat, usually beef, placed inside a sliced bread roll or bun. The patty may be pan fried, grilled, smoked or flame broiled.');
+(2, 'Chicken Burger', 'Deliciously seasoned 100% chicken breast – from chickens raised without the use of antibiotics – battered and breaded to perfection with toasted wheat crumbs, wheat flour and spices, topped with mouth-watering bacon from pork raised without the use of antibiotics, crisp lettuce, tomato and mayo, served on a toasted 7-grain bun.'),
+(3, 'Beef Burger', '100% all natural Black Angus beef. Single and double patties offered for all Burgers.'),
+(4, 'Classic Hot Rueben Sandwich', 'with onion rings'),
+(5, 'Meat Lasagna', 'With Asiago and Romano Cheese'),
+(6, 'Chicken Alfredo over Penne Pasta', 'Juicy grilled chicken is served warm on a bed of fettuccine pasta tossed with broccoli and rich Alfredo sauce and topped with Parmesan cheese.'),
+(7, 'Denver Omelette', 'Bacon, Breakfast Potatoes'),
+(8, 'Bacon Cheeseburger', 'With Bleu or Cheddar Cheese, French Fries'),
+(9, 'Chipotle Burger (V)', 'With French Fries'),
+(10, 'Beef Pot Roast', 'Mashed Potatoes and Gravy'),
+(11, 'Almond Crusted Cod', 'Most and Flakey');
 
 -- --------------------------------------------------------
 
@@ -198,13 +229,6 @@ CREATE TABLE `pickups` (
   `timestamp` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `pickups`
---
-
-INSERT INTO `pickups` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `diningdate`, `diningtime`, `condono`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `grandtotal`, `isPickedup`, `timestamp`) VALUES
-(1, '', 'Duane', 'DeSalvo', 'Beef Burger', '2020-01-27', '22:50:00', 'E302', '500.00', '10.00', '50.00', '550.00', '550.00', '0', '01-21-2020 05:20:25 PM');
-
 -- --------------------------------------------------------
 
 --
@@ -225,9 +249,9 @@ CREATE TABLE `pickupweeklymenu` (
 --
 
 INSERT INTO `pickupweeklymenu` (`id`, `pickupdate`, `pickuptime`, `dishname1`, `dishname2`, `status`) VALUES
-(1, '2020-02-26', '22:50:00', 'Chicken Burger', 'Beef Burger', ''),
-(2, '2020-02-26', '10:51:00', 'Beef Burger', 'Chicken Burger', ''),
-(3, '2020-02-26', '22:51:00', 'Chicken Burger', 'Beef Burger', '');
+(1, '2020-02-27', '17:35:00', 'Chicken Burger', 'Beef Burger', ''),
+(2, '2020-02-28', '17:35:00', 'Classic Hot Rueben Sandwich', 'Meat Lasagna', ''),
+(3, '2020-02-29', '17:35:00', 'Chicken Alfredo over Penne Pasta', 'Denver Omelette', '');
 
 -- --------------------------------------------------------
 
@@ -250,9 +274,10 @@ CREATE TABLE `pricingmodels` (
 --
 
 INSERT INTO `pricingmodels` (`id`, `dinerid`, `mealprice`, `mealtaxpercent`, `mealtaxvalue`, `mealtotalprice`, `datemodified`) VALUES
-(1, '1', '19.00', '10.00', '1.90', '20.90', '22-01-2020 06:48:46 AM'),
-(2, '2', '16.95', '5.00', '0.85', '17.80', '11-01-2020 11:13:02 PM'),
-(3, '3', '0.00', '0.00', '0.00', '0.00', '2020-01-04 13:00:12');
+(1, '1', '14.00', '0.00', '0.00', '14.00', '30-01-2020 10:19:31 AM'),
+(2, '2', '17.00', '10.00', '1.70', '18.70', '30-01-2020 10:19:57 AM'),
+(3, '3', '0.00', '0.00', '0.00', '0.00', '2020-01-04 13:00:12'),
+(4, '4', '14.00', '0.00', '0.00', '14.00', '04/03/2020');
 
 -- --------------------------------------------------------
 
@@ -297,7 +322,15 @@ CREATE TABLE `reservation` (
 --
 
 INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `roomid`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `freedinersmealtotalprice`, `isConfirmed`, `isCheckedin`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `guestmealprice`, `guestmealtaxpercent`, `guestmealtaxvalue`, `guestmealtotalprice`, `grandtotal`, `freedinersmealprice`, `freedinersmealtaxpercent`, `freedinersmealtaxvalue`) VALUES
-(1, 'SG2001260001', 'Duane', 'DeSalvo', 'Chicken Burger', 1, 'Game Room', '22', 0, '2', '2020-01-26', '21:20:00', '1', 'E302', NULL, '', '0', '500.00', '10.00', '50.00', '550.00', '16.95', '5.00', '0.85', '17.80', '567.80', NULL, NULL, NULL);
+(1, 'SG2002270001', 'Toni', 'DeSalvo', 'Chicken Burger', 1, 'Main Dining Room', '5', 0, '4', '2020-02-27', '18:00:00', '3', 'E302a', NULL, '', '1', '14.00', '0.00', '0.00', '14.00', '17.00', '10.00', '1.70', '18.70', '70.10', NULL, NULL, NULL),
+(2, 'SG2002280001', 'Gloria', 'Pong', 'Chicken Burger', 1, 'Main Dining Room', '1', 0, '1', '2020-02-28', '17:10:00', '0', 'E201A', NULL, '', '1', '14.00', '0.00', '0.00', '14.00', '17.00', '10.00', '1.70', '18.70', '14.00', NULL, NULL, NULL),
+(3, 'SG2002270002', 'Duane', 'DeSalvo', 'Beef Burger', 1, 'Main Dining Room', '5', 0, '1', '2020-02-27', '18:00:00', '0', 'E302B', NULL, '', '1', '14.00', '0.00', '0.00', '14.00', '17.00', '10.00', '1.70', '18.70', '14.00', NULL, NULL, NULL),
+(4, 'SG2002270003', 'Toni', 'DeSalvo', 'Beef Burger', 1, 'Main Dining Room', '2', 0, '2', '2020-02-27', '18:00:00', '1', 'e302a', NULL, '', NULL, '14.00', '0.00', '0.00', '14.00', '17.00', '10.00', '1.70', '18.70', '32.70', NULL, NULL, NULL),
+(5, 'SG2002290001', 'Duane', 'DeSalvo', 'Chicken Burger', 1, 'Main Dining Room', '3', 0, '1', '2020-02-29', '17:10:00', '0', 'e302b', NULL, '', '1', '14.00', '0.00', '0.00', '14.00', '17.00', '10.00', '1.70', '18.70', '14.00', NULL, NULL, NULL),
+(6, 'SG2003110001', 'James', 'Git', 'Chicken Burger', 1, 'Main Dining Room', '6', 0, '3', '2020-03-11', '19:30:00', '3', 'e101', NULL, '', NULL, '14.00', '0.00', '0.00', '14.00', '17.00', '10.00', '1.70', '18.70', '42.00', NULL, NULL, NULL),
+(7, 'SG2003110002', 'Toni', 'DeSalvo', 'Meat Lasagna', 1, 'Main Dining Room', '6', 0, '3', '2020-03-11', '18:30:00', '3', 'E302A', NULL, '', NULL, '14.00', '0.00', '0.00', '14.00', '17.00', '10.00', '1.70', '18.70', '42.00', NULL, NULL, NULL),
+(8, 'SG2003110003', 'Toni', 'DeSalvo', 'Meat Lasagna', 1, 'Main Dining Room', '10', 0, '3', '2020-03-11', '18:30:00', '3', 'E302A', NULL, '', NULL, '14.00', '0.00', '0.00', '14.00', '17.00', '10.00', '1.70', '18.70', '42.00', NULL, NULL, NULL),
+(9, 'SG2003120001', 'Toni', 'DeSalvo', 'Chicken Burger', 1, 'Main Dining Room', '3', 0, '2', '2020-03-12', '19:30:00', '2', 'E302A', NULL, '', NULL, '14.00', '0.00', '0.00', '14.00', '17.00', '10.00', '1.70', '18.70', '28.00', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -312,6 +345,13 @@ CREATE TABLE `room` (
   `roomavailability` varchar(255) DEFAULT NULL,
   `productimage1` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`id`, `roomname`, `totaltables`, `roomavailability`, `productimage1`) VALUES
+(1, 'Main Dining Room', '13', '1', 'SG Main Dining Room layout 2420.jpg');
 
 -- --------------------------------------------------------
 
@@ -331,12 +371,19 @@ CREATE TABLE `tablelayout` (
 --
 
 INSERT INTO `tablelayout` (`id`, `roomid`, `tablename`, `totalseats`) VALUES
-(1, 1, '21', '6'),
-(2, 1, '22', '3'),
-(3, 1, '23', '4'),
-(4, 1, '24', '5'),
-(5, 2, 'A1', '4'),
-(6, 2, 'A2', '6');
+(1, 1, '1', '5'),
+(2, 1, '2', '4'),
+(3, 1, '3', '4'),
+(4, 1, '4', '4'),
+(5, 1, '5', '8'),
+(6, 1, '6', '4'),
+(7, 1, '7', '4'),
+(8, 1, '8', '4'),
+(9, 1, '9', '4'),
+(10, 1, '10', '5'),
+(11, 1, '11', '5'),
+(12, 1, '13', '4'),
+(13, 1, '14', '4');
 
 -- --------------------------------------------------------
 
@@ -9541,17 +9588,100 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 01:30:22', NULL, 1),
 (0, 'chef', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 01:32:45', NULL, 1),
 (0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-01-22 01:34:04', NULL, 1),
-(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-01-29 18:25:03', NULL, 1),
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-01-29 18:29:51', NULL, 1),
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-02-01 13:48:16', NULL, 1),
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-02-02 03:50:26', NULL, 1),
-(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-02-03 19:46:44', NULL, 1),
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-02-03 19:46:58', NULL, 1),
-(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-02-03 20:10:29', NULL, 1),
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-02-04 16:54:31', NULL, 1),
-(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-02-06 00:17:13', NULL, 1),
-(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-02-10 20:22:27', NULL, 1),
-(0, 'e302', NULL, 0x3a3a3100000000000000000000000000, '2020-02-10 20:53:42', NULL, 1);
+(0, 'e302', NULL, 0x3131352e39392e39332e313935000000, '2020-01-22 01:56:00', NULL, 1),
+(0, 'e302', NULL, 0x32342e31372e3138332e353600000000, '2020-01-22 03:33:36', NULL, 1),
+(0, 'E302', NULL, 0x3135372e34352e34352e373300000000, '2020-01-22 03:44:09', NULL, 1),
+(0, 'admin', NULL, 0x3135372e34352e34352e373300000000, '2020-01-22 04:05:38', NULL, 1),
+(0, 'E302', NULL, 0x3135372e34392e3139362e3434000000, '2020-01-22 09:53:20', NULL, 1),
+(0, 'E302', NULL, 0x34392e3230352e3231392e3234350000, '2020-01-24 05:05:59', NULL, 1),
+(0, 'e302', NULL, 0x3136372e3137322e3235302e37000000, '2020-01-29 18:24:00', NULL, 1),
+(0, 'e302', NULL, 0x3136372e3137322e3235302e37000000, '2020-01-29 18:24:24', NULL, 1),
+(0, 'admin', NULL, 0x3136372e3137322e3235302e37000000, '2020-01-29 18:24:45', NULL, 1),
+(0, 'admin', NULL, 0x32342e31372e3138332e353600000000, '2020-01-30 04:00:37', NULL, 1),
+(0, 'E302B', NULL, 0x32342e31372e3138332e353600000000, '2020-01-30 04:37:30', NULL, 1),
+(0, 'admin', NULL, 0x3135372e34352e3132352e3231360000, '2020-01-31 13:43:05', NULL, 1),
+(0, '', NULL, 0x3135372e34352e3132352e3231360000, '2020-01-31 13:44:25', NULL, 0),
+(0, '', NULL, 0x3135372e34352e3132352e3231360000, '2020-01-31 13:44:33', NULL, 0),
+(0, '', NULL, 0x3135372e34352e3132352e3231360000, '2020-01-31 13:44:39', NULL, 0),
+(0, 'E302B', NULL, 0x3135372e34352e3132352e3231360000, '2020-01-31 13:44:46', NULL, 1),
+(0, 'E302B', NULL, 0x3135372e34352e3132352e3231360000, '2020-01-31 14:40:03', NULL, 1),
+(0, 'e302a', NULL, 0x3135372e34352e3132352e3231360000, '2020-01-31 14:40:14', NULL, 1),
+(0, 'admin', NULL, 0x3135372e34352e3132352e3231360000, '2020-01-31 14:50:01', NULL, 1),
+(0, 'E302A', NULL, 0x3130332e3232312e3233332e33310000, '2020-01-31 19:45:57', NULL, 1),
+(0, 'E302A', NULL, 0x3130332e3232312e3233332e33310000, '2020-01-31 19:45:57', NULL, 1),
+(0, 'admin', NULL, 0x312e32322e3136352e34310000000000, '2020-02-02 02:28:40', NULL, 1),
+(0, 'admin', NULL, 0x3136352e3233312e3235332e35320000, '2020-02-03 20:05:22', NULL, 1),
+(0, 'E302B', NULL, 0x3136352e3233312e3235332e35320000, '2020-02-03 20:13:48', NULL, 1),
+(0, 'e302b', NULL, 0x3136352e3233312e3235332e35320000, '2020-02-03 20:16:43', NULL, 1),
+(0, 'E201a', NULL, 0x32342e31372e3138332e353600000000, '2020-02-04 07:20:32', NULL, 1),
+(0, 'admin', NULL, 0x31342e3134322e3135302e3334000000, '2020-02-04 16:50:22', NULL, 1),
+(0, 'E201a', NULL, 0x32342e31372e3138332e353600000000, '2020-02-05 02:02:11', NULL, 1),
+(0, 'admin', NULL, 0x32342e31372e3138332e353600000000, '2020-02-05 05:14:16', NULL, 1),
+(0, 'e302a', NULL, 0x32342e31372e3138332e353600000000, '2020-02-05 23:33:10', NULL, 1),
+(0, 'admin', NULL, 0x312e32322e3136352e38320000000000, '2020-02-06 00:05:55', NULL, 1),
+(0, 'e302b', NULL, 0x312e32322e3136352e38320000000000, '2020-02-06 04:58:22', NULL, 1),
+(0, 'admin', NULL, 0x312e32322e3136352e38320000000000, '2020-02-06 05:00:30', NULL, 1),
+(0, 'admin', NULL, 0x32342e31372e3138332e353600000000, '2020-02-06 06:39:06', NULL, 1),
+(0, 'admin', NULL, 0x312e32322e3136352e38320000000000, '2020-02-06 06:53:30', NULL, 1),
+(0, 'admin', NULL, 0x32342e31372e3138332e353600000000, '2020-02-06 06:58:50', NULL, 1),
+(0, 'e302a', NULL, 0x32342e31372e3138332e353600000000, '2020-02-06 07:05:44', NULL, 1),
+(0, 'e302b', NULL, 0x312e32322e3136352e38320000000000, '2020-02-06 07:07:51', NULL, 1),
+(0, 'e302b', NULL, 0x32342e31372e3138332e353600000000, '2020-02-06 07:14:03', NULL, 1),
+(0, 'admin', NULL, 0x312e32322e3136352e38320000000000, '2020-02-06 07:17:17', NULL, 1),
+(0, 'e302b', NULL, 0x312e32322e3136352e38320000000000, '2020-02-06 07:19:13', NULL, 1),
+(0, 'e302b', NULL, 0x32342e31372e3138332e353600000000, '2020-02-06 12:58:13', NULL, 1),
+(0, 'e302b', NULL, 0x32342e31372e3138332e353600000000, '2020-02-07 00:55:11', NULL, 1),
+(0, 'admin', NULL, 0x312e32322e3136352e31373800000000, '2020-02-07 03:20:42', NULL, 1),
+(0, 'admin', NULL, 0x312e32322e3136372e31350000000000, '2020-02-10 09:35:30', NULL, 1),
+(0, 'admin', NULL, 0x312e32322e3136372e31350000000000, '2020-02-10 09:43:28', NULL, 1),
+(0, 'admin', NULL, 0x312e32322e3136372e31350000000000, '2020-02-10 10:01:21', NULL, 1),
+(0, 'admin', NULL, 0x312e32322e3136372e31350000000000, '2020-02-10 10:07:09', NULL, 1),
+(0, 'E302a', NULL, 0x312e32322e3136372e31350000000000, '2020-02-10 10:11:41', NULL, 1),
+(0, 'admin', NULL, 0x312e32322e3136372e31350000000000, '2020-02-10 10:14:26', NULL, 1),
+(0, 'e302a', NULL, 0x38392e34362e3130332e313732000000, '2020-02-10 21:06:18', NULL, 1),
+(0, 'admin', NULL, 0x38392e34362e3130332e313732000000, '2020-02-10 21:07:09', NULL, 1),
+(0, 'e302a', NULL, 0x38392e34362e3130332e313732000000, '2020-02-10 21:09:59', NULL, 1),
+(0, 'E302a', NULL, 0x32342e31372e3138332e353600000000, '2020-02-11 15:39:00', NULL, 1),
+(0, 'E302a', NULL, 0x3135372e34392e3235302e3400000000, '2020-02-11 18:53:07', NULL, 1),
+(0, 'e302a', NULL, 0x31342e3134322e3135302e3334000000, '2020-02-11 19:02:20', NULL, 1),
+(0, 'E201A', NULL, 0x32342e31372e3138332e353600000000, '2020-02-12 00:14:05', NULL, 1),
+(0, 'e302a', NULL, 0x32342e31372e3138332e353600000000, '2020-02-12 02:32:36', NULL, 1),
+(0, 'e302a', NULL, 0x32342e31372e3138332e353600000000, '2020-02-12 02:32:49', NULL, 1),
+(0, 'E302B', NULL, 0x32342e31372e3138332e353600000000, '2020-02-12 04:59:14', NULL, 1),
+(0, 'e302a', NULL, 0x3138352e3230332e3132322e32390000, '2020-02-12 08:29:37', NULL, 1),
+(0, 'admin', NULL, 0x3138352e3230332e3132322e32390000, '2020-02-12 08:31:51', NULL, 1),
+(0, 'e302a', NULL, 0x312e32322e3136362e36330000000000, '2020-02-12 09:53:20', NULL, 1),
+(0, 'host', NULL, 0x32342e31372e3138332e353600000000, '2020-02-12 15:39:21', NULL, 1),
+(0, 'admin', NULL, 0x3130372e3137352e39382e3633000000, '2020-02-12 17:27:15', NULL, 1),
+(0, 'E302B', NULL, 0x32342e31372e3138332e353600000000, '2020-02-12 17:44:07', NULL, 1),
+(0, 'E302B', NULL, 0x32342e31392e3136322e313900000000, '2020-02-12 17:56:01', NULL, 1),
+(0, 'E302B', NULL, 0x32342e31392e3136322e313900000000, '2020-02-12 18:15:21', NULL, 1),
+(0, 'E302B', NULL, 0x32342e31392e3136322e313900000000, '2020-02-12 18:23:36', NULL, 1),
+(0, 'e302b', NULL, 0x32342e31392e3136322e313900000000, '2020-02-12 18:29:46', NULL, 1),
+(0, 'e302a', NULL, 0x3130372e3137352e39382e3633000000, '2020-02-12 18:56:51', NULL, 1),
+(0, 'E302B', NULL, 0x3130372e3137352e39382e3633000000, '2020-02-12 18:58:28', NULL, 1),
+(0, 'E302B', NULL, 0x3135372e34392e3232372e3137380000, '2020-02-12 18:59:56', NULL, 1),
+(0, 'E302A', NULL, 0x3a3a3100000000000000000000000000, '2020-02-12 20:03:42', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-02-14 11:26:13', NULL, 1),
+(0, 'e302a', NULL, 0x3a3a3100000000000000000000000000, '2020-02-14 11:28:30', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-02-14 12:03:51', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-02-14 12:08:19', NULL, 1),
+(0, '', NULL, 0x3a3a3100000000000000000000000000, '2020-02-14 12:08:26', NULL, 0),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-02-14 12:08:28', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-02-18 20:10:36', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-02-19 11:04:51', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-02-19 11:31:15', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-02-19 11:32:33', NULL, 1),
+(0, '', NULL, 0x3a3a3100000000000000000000000000, '2020-02-21 21:46:21', NULL, 0),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-02-21 21:46:27', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-02-23 12:53:28', NULL, 1),
+(0, 'e302a', NULL, 0x3a3a3100000000000000000000000000, '2020-03-03 20:39:13', NULL, 1),
+(0, 'E302a', NULL, 0x3a3a3100000000000000000000000000, '2020-03-03 20:40:16', NULL, 1),
+(0, 'e302b', NULL, 0x3a3a3100000000000000000000000000, '2020-03-03 20:40:22', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-03-03 20:45:51', NULL, 1),
+(0, 'E101', NULL, 0x3a3a3100000000000000000000000000, '2020-03-03 20:57:37', NULL, 1),
+(0, 'e101', NULL, 0x3a3a3100000000000000000000000000, '2020-03-03 21:33:24', NULL, 1),
+(0, 'E302A', NULL, 0x3a3a3100000000000000000000000000, '2020-03-05 18:40:27', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -9576,10 +9706,17 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `age`, `unitno`, `email`, `password`, `contactno`, `altcontactno`) VALUES
-(1, 'Duane', 'DeSalvo', '55', 'E302', 'duane.desalvo@gmail.com', 'asd', '306065801', '507064834'),
-(3, 'Rah', 'Vul', '34', 'E302A', 'test@test.com', 'asdasdasd', '234234234234', '234234234234234'),
-(4, 'Jinsang', 'Nakamoto', '49', 'E409A', 'test@justamail.com', 'password', '1333888445', ''),
-(5, 'Isabella', 'James', '55', 'E410A', 'hello@test.com', 'password', '5489334455', '');
+(7, 'Duane', 'DeSalvo', '', 'E302B', 'duane.desalvo@gmail.com', 'E302B', '4254409304', ''),
+(8, 'Toni', 'DeSalvo', '', 'E302A', 'toni.desalvo@gmail.com', 'E302A', '4254409304', ''),
+(9, 'Gloria', 'Pong', '', 'E201A', '', 'E201A', '4256435528', ''),
+(10, 'Bill', 'Absher', '', 'W108A', '', 'W108A', '2532290167', ''),
+(11, 'Blanche ', 'Adams', '', 'E208A', '', 'E208A', '4256441308', ''),
+(12, 'Jacqueline', 'Alten', '', 'W204A', '', 'W204A', '4257474889', ''),
+(13, 'Syvia', 'Anderson', '', 'E113A', '', 'E113A', '4256981668', ''),
+(14, 'Bob', 'Anderson', '', 'E113B', '', 'E113B', '4256981668', ''),
+(15, 'Susan', 'Baileys ', '', 'C209A', '', 'C209A', '4256412036', ''),
+(16, 'Colleen', 'Bangert', '', 'E216A', '', 'E216A', '4254498940', ''),
+(17, 'James', 'Git', '44', 'E101', 'test@test.com', 'password', '123456', '234567');
 
 -- --------------------------------------------------------
 
@@ -9602,56 +9739,121 @@ CREATE TABLE `weeklymenu` (
 --
 
 INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `roomid`, `tableid`, `dishname1`, `dishname2`) VALUES
-(4, '2020-01-27', '21:55:00', 1, 3, 'pasta bolognese', 'Beef Burger'),
-(6, '2020-01-26', '21:20:00', 1, 2, 'Chicken Burger', 'Beef Burger'),
-(7, '2020-01-31', '22:59:00', 1, 3, 'Chicken Burger', 'pasta bolognese'),
-(8, '2020-01-23', '23:03:00', 1, 3, 'Chicken Burger', 'pasta bolognese'),
-(9, '2020-02-22', '19:56:00', 1, 1, 'pasta bolognese', 'Chicken Burger'),
-(10, '2020-02-23', '00:00:00', 1, 2, 'pasta bolognese', 'Beef Burger'),
-(11, '2020-02-21', '22:21:00', 1, 2, 'Chicken Burger', 'Chicken Burger'),
-(12, '2020-02-22', '22:21:00', 1, 2, 'Chicken Burger', 'Chicken Burger'),
-(13, '2020-02-23', '22:21:00', 1, 2, 'Chicken Burger', 'Chicken Burger'),
-(14, '2020-02-24', '22:21:00', 1, 2, 'Chicken Burger', 'Chicken Burger'),
-(15, '2020-02-21', '22:21:00', 1, 3, 'Chicken Burger', 'Chicken Burger'),
-(16, '2020-02-22', '22:21:00', 1, 3, 'Chicken Burger', 'Chicken Burger'),
-(17, '2020-02-23', '22:21:00', 1, 3, 'Chicken Burger', 'Chicken Burger'),
-(18, '2020-02-24', '22:21:00', 1, 3, 'Chicken Burger', 'Chicken Burger'),
-(19, '2020-02-21', '21:22:00', 2, 5, 'Chicken Burger', 'Beef Burger'),
-(20, '2020-02-22', '21:22:00', 2, 5, 'Chicken Burger', 'Beef Burger'),
-(21, '2020-02-23', '21:22:00', 2, 5, 'Chicken Burger', 'Beef Burger'),
-(22, '2020-02-24', '21:22:00', 2, 5, 'Chicken Burger', 'Beef Burger'),
-(23, '2020-02-25', '21:22:00', 2, 5, 'Chicken Burger', 'Beef Burger'),
-(24, '2020-02-26', '21:22:00', 2, 5, 'Chicken Burger', 'Beef Burger'),
-(25, '2020-02-21', '21:22:00', 2, 6, 'Chicken Burger', 'Beef Burger'),
-(26, '2020-02-22', '21:22:00', 2, 6, 'Chicken Burger', 'Beef Burger'),
-(27, '2020-02-23', '21:22:00', 2, 6, 'Chicken Burger', 'Beef Burger'),
-(28, '2020-02-24', '21:22:00', 2, 6, 'Chicken Burger', 'Beef Burger'),
-(29, '2020-02-25', '21:22:00', 2, 6, 'Chicken Burger', 'Beef Burger'),
-(30, '2020-02-26', '21:22:00', 2, 6, 'Chicken Burger', 'Beef Burger'),
-(31, '2020-02-21', '01:30:00', 1, 1, 'Chicken Burger', 'Beef Burger'),
-(32, '2020-02-22', '01:30:00', 1, 1, 'Chicken Burger', 'Beef Burger'),
-(33, '2020-02-23', '01:30:00', 1, 1, 'Chicken Burger', 'Beef Burger'),
-(34, '2020-02-24', '01:30:00', 1, 1, 'Chicken Burger', 'Beef Burger'),
-(35, '2020-02-25', '01:30:00', 1, 1, 'Chicken Burger', 'Beef Burger'),
-(36, '2020-02-26', '01:30:00', 1, 1, 'Chicken Burger', 'Beef Burger'),
-(37, '2020-02-21', '01:30:00', 1, 2, 'Chicken Burger', 'Beef Burger'),
-(38, '2020-02-22', '01:30:00', 1, 2, 'Chicken Burger', 'Beef Burger'),
-(39, '2020-02-23', '01:30:00', 1, 2, 'Chicken Burger', 'Beef Burger'),
-(40, '2020-02-24', '01:30:00', 1, 2, 'Chicken Burger', 'Beef Burger'),
-(41, '2020-02-25', '01:30:00', 1, 2, 'Chicken Burger', 'Beef Burger'),
-(42, '2020-02-26', '01:30:00', 1, 2, 'Chicken Burger', 'Beef Burger'),
-(43, '2020-02-21', '01:30:00', 1, 3, 'Chicken Burger', 'Beef Burger'),
-(44, '2020-02-22', '01:30:00', 1, 3, 'Chicken Burger', 'Beef Burger'),
-(45, '2020-02-23', '01:30:00', 1, 3, 'Chicken Burger', 'Beef Burger'),
-(46, '2020-02-24', '01:30:00', 1, 3, 'Chicken Burger', 'Beef Burger'),
-(47, '2020-02-25', '01:30:00', 1, 3, 'Chicken Burger', 'Beef Burger'),
-(48, '2020-02-26', '01:30:00', 1, 3, 'Chicken Burger', 'Beef Burger'),
-(49, '2020-02-21', '01:30:00', 1, 4, 'Chicken Burger', 'Beef Burger'),
-(50, '2020-02-22', '01:30:00', 1, 4, 'Chicken Burger', 'Beef Burger'),
-(51, '2020-02-23', '01:30:00', 1, 4, 'Chicken Burger', 'Beef Burger'),
-(52, '2020-02-24', '01:30:00', 1, 4, 'Chicken Burger', 'Beef Burger'),
-(53, '2020-02-25', '01:30:00', 1, 4, 'Chicken Burger', 'Beef Burger'),
-(54, '2020-02-26', '01:30:00', 1, 4, 'Chicken Burger', 'Beef Burger');
+(1, '2020-02-27', '17:10:00', 1, 1, 'Chicken Burger', 'Beef Burger'),
+(2, '2020-02-28', '17:10:00', 1, 1, 'Chicken Burger', 'Beef Burger'),
+(3, '2020-02-29', '17:10:00', 1, 1, 'Chicken Burger', 'Beef Burger'),
+(4, '2020-02-27', '17:10:00', 1, 3, 'Chicken Burger', 'Beef Burger'),
+(5, '2020-02-28', '17:10:00', 1, 3, 'Chicken Burger', 'Beef Burger'),
+(6, '2020-02-29', '17:10:00', 1, 3, 'Chicken Burger', 'Beef Burger'),
+(16, '2020-02-27', '17:30:00', 1, 7, 'Chicken Burger', 'Beef Burger'),
+(17, '2020-02-28', '17:30:00', 1, 7, 'Chicken Burger', 'Beef Burger'),
+(18, '2020-02-29', '17:30:00', 1, 7, 'Chicken Burger', 'Beef Burger'),
+(19, '2020-02-27', '17:30:00', 1, 10, 'Chicken Burger', 'Beef Burger'),
+(20, '2020-02-28', '17:30:00', 1, 10, 'Chicken Burger', 'Beef Burger'),
+(21, '2020-02-29', '17:30:00', 1, 10, 'Chicken Burger', 'Beef Burger'),
+(22, '2020-02-27', '17:40:00', 1, 8, 'Chicken Burger', 'Beef Burger'),
+(23, '2020-02-28', '17:40:00', 1, 8, 'Chicken Burger', 'Beef Burger'),
+(24, '2020-02-29', '17:40:00', 1, 8, 'Chicken Burger', 'Beef Burger'),
+(25, '2020-02-27', '17:40:00', 1, 11, 'Chicken Burger', 'Beef Burger'),
+(26, '2020-02-28', '17:40:00', 1, 11, 'Chicken Burger', 'Beef Burger'),
+(27, '2020-02-29', '17:40:00', 1, 11, 'Chicken Burger', 'Beef Burger'),
+(28, '2020-02-27', '17:50:00', 1, 9, 'Chicken Burger', 'Beef Burger'),
+(29, '2020-02-28', '17:50:00', 1, 9, 'Chicken Burger', 'Beef Burger'),
+(30, '2020-02-29', '17:50:00', 1, 9, 'Chicken Burger', 'Beef Burger'),
+(31, '2020-02-27', '17:50:00', 1, 12, 'Chicken Burger', 'Beef Burger'),
+(32, '2020-02-28', '17:50:00', 1, 12, 'Chicken Burger', 'Beef Burger'),
+(33, '2020-02-29', '17:50:00', 1, 12, 'Chicken Burger', 'Beef Burger'),
+(34, '2020-02-27', '18:00:00', 1, 2, 'Chicken Burger', 'Beef Burger'),
+(35, '2020-02-28', '18:00:00', 1, 2, 'Chicken Burger', 'Beef Burger'),
+(36, '2020-02-29', '18:00:00', 1, 2, 'Chicken Burger', 'Beef Burger'),
+(37, '2020-02-27', '18:00:00', 1, 5, 'Chicken Burger', 'Beef Burger'),
+(38, '2020-02-28', '18:00:00', 1, 5, 'Chicken Burger', 'Beef Burger'),
+(39, '2020-02-29', '18:00:00', 1, 5, 'Chicken Burger', 'Beef Burger'),
+(40, '2020-02-29', '05:20:00', 1, 4, 'Chicken Burger', 'Beef Burger'),
+(41, '2020-02-29', '05:20:00', 1, 13, 'Chicken Burger', 'Beef Burger'),
+(42, '2020-02-29', '05:20:00', 1, 6, 'Chicken Burger', 'Beef Burger'),
+(43, '2020-02-28', '05:20:00', 1, 6, 'Chicken Burger', 'Beef Burger'),
+(44, '2020-02-28', '05:20:00', 1, 4, 'Chicken Burger', 'Beef Burger'),
+(45, '2020-02-28', '05:20:00', 1, 13, 'Chicken Burger', 'Beef Burger'),
+(46, '2020-02-27', '05:20:00', 1, 4, 'Chicken Burger', 'Beef Burger'),
+(47, '2020-02-27', '05:20:00', 1, 13, 'Chicken Burger', 'Beef Burger'),
+(48, '2020-02-27', '05:20:00', 1, 6, 'Chicken Burger', 'Beef Burger'),
+(49, '2020-03-01', '17:00:00', 1, 1, 'Beef Pot Roast', 'Almond Crusted Cod'),
+(50, '2020-03-01', '17:00:00', 1, 2, 'Beef Pot Roast', 'Almond Crusted Cod'),
+(51, '2020-03-01', '17:00:00', 1, 3, 'Beef Pot Roast', 'Almond Crusted Cod'),
+(52, '2020-03-01', '17:00:00', 1, 4, 'Beef Pot Roast', 'Almond Crusted Cod'),
+(53, '2020-03-01', '17:00:00', 1, 5, 'Beef Pot Roast', 'Almond Crusted Cod'),
+(54, '2020-03-01', '17:00:00', 1, 6, 'Beef Pot Roast', 'Almond Crusted Cod'),
+(55, '2020-03-01', '17:00:00', 1, 7, 'Beef Pot Roast', 'Almond Crusted Cod'),
+(56, '2020-03-01', '17:00:00', 1, 8, 'Beef Pot Roast', 'Almond Crusted Cod'),
+(57, '2020-03-01', '17:00:00', 1, 9, 'Beef Pot Roast', 'Almond Crusted Cod'),
+(58, '2020-03-01', '17:00:00', 1, 10, 'Beef Pot Roast', 'Almond Crusted Cod'),
+(59, '2020-03-01', '17:00:00', 1, 11, 'Beef Pot Roast', 'Almond Crusted Cod'),
+(60, '2020-03-01', '17:00:00', 1, 12, 'Beef Pot Roast', 'Almond Crusted Cod'),
+(61, '2020-03-01', '17:00:00', 1, 13, 'Beef Pot Roast', 'Almond Crusted Cod'),
+(62, '2020-03-01', '17:00:00', 1, 1, 'Bacon Cheeseburger', 'Chipotle Burger (V)'),
+(63, '2020-03-01', '17:00:00', 1, 2, 'Bacon Cheeseburger', 'Chipotle Burger (V)'),
+(64, '2020-03-01', '17:00:00', 1, 3, 'Bacon Cheeseburger', 'Chipotle Burger (V)'),
+(65, '2020-03-01', '17:00:00', 1, 4, 'Bacon Cheeseburger', 'Chipotle Burger (V)'),
+(66, '2020-03-01', '17:00:00', 1, 5, 'Bacon Cheeseburger', 'Chipotle Burger (V)'),
+(67, '2020-03-01', '17:00:00', 1, 6, 'Bacon Cheeseburger', 'Chipotle Burger (V)'),
+(68, '2020-03-01', '17:00:00', 1, 7, 'Bacon Cheeseburger', 'Chipotle Burger (V)'),
+(69, '2020-03-01', '17:00:00', 1, 8, 'Bacon Cheeseburger', 'Chipotle Burger (V)'),
+(70, '2020-03-01', '17:00:00', 1, 9, 'Bacon Cheeseburger', 'Chipotle Burger (V)'),
+(71, '2020-03-01', '17:00:00', 1, 10, 'Bacon Cheeseburger', 'Chipotle Burger (V)'),
+(72, '2020-03-01', '17:00:00', 1, 11, 'Bacon Cheeseburger', 'Chipotle Burger (V)'),
+(73, '2020-03-01', '17:00:00', 1, 12, 'Bacon Cheeseburger', 'Chipotle Burger (V)'),
+(74, '2020-03-01', '17:00:00', 1, 13, 'Bacon Cheeseburger', 'Chipotle Burger (V)'),
+(75, '2020-03-11', '19:30:00', 1, 1, 'Chicken Burger', 'Meat Lasagna'),
+(76, '2020-03-12', '19:30:00', 1, 1, 'Chicken Burger', 'Meat Lasagna'),
+(77, '2020-03-13', '19:30:00', 1, 1, 'Chicken Burger', 'Meat Lasagna'),
+(78, '2020-03-14', '19:30:00', 1, 1, 'Chicken Burger', 'Meat Lasagna'),
+(79, '2020-03-11', '19:30:00', 1, 2, 'Chicken Burger', 'Meat Lasagna'),
+(80, '2020-03-12', '19:30:00', 1, 2, 'Chicken Burger', 'Meat Lasagna'),
+(81, '2020-03-13', '19:30:00', 1, 2, 'Chicken Burger', 'Meat Lasagna'),
+(82, '2020-03-14', '19:30:00', 1, 2, 'Chicken Burger', 'Meat Lasagna'),
+(83, '2020-03-11', '19:30:00', 1, 3, 'Chicken Burger', 'Meat Lasagna'),
+(84, '2020-03-12', '19:30:00', 1, 3, 'Chicken Burger', 'Meat Lasagna'),
+(85, '2020-03-13', '19:30:00', 1, 3, 'Chicken Burger', 'Meat Lasagna'),
+(86, '2020-03-14', '19:30:00', 1, 3, 'Chicken Burger', 'Meat Lasagna'),
+(87, '2020-03-11', '19:30:00', 1, 6, 'Chicken Burger', 'Meat Lasagna'),
+(88, '2020-03-12', '19:30:00', 1, 6, 'Chicken Burger', 'Meat Lasagna'),
+(89, '2020-03-13', '19:30:00', 1, 6, 'Chicken Burger', 'Meat Lasagna'),
+(90, '2020-03-14', '19:30:00', 1, 6, 'Chicken Burger', 'Meat Lasagna'),
+(91, '2020-03-11', '19:30:00', 1, 9, 'Chicken Burger', 'Meat Lasagna'),
+(92, '2020-03-12', '19:30:00', 1, 9, 'Chicken Burger', 'Meat Lasagna'),
+(93, '2020-03-13', '19:30:00', 1, 9, 'Chicken Burger', 'Meat Lasagna'),
+(94, '2020-03-14', '19:30:00', 1, 9, 'Chicken Burger', 'Meat Lasagna'),
+(95, '2020-03-11', '19:30:00', 1, 11, 'Chicken Burger', 'Meat Lasagna'),
+(96, '2020-03-12', '19:30:00', 1, 11, 'Chicken Burger', 'Meat Lasagna'),
+(97, '2020-03-13', '19:30:00', 1, 11, 'Chicken Burger', 'Meat Lasagna'),
+(98, '2020-03-14', '19:30:00', 1, 11, 'Chicken Burger', 'Meat Lasagna'),
+(99, '2020-03-11', '19:30:00', 1, 12, 'Chicken Burger', 'Meat Lasagna'),
+(100, '2020-03-12', '19:30:00', 1, 12, 'Chicken Burger', 'Meat Lasagna'),
+(101, '2020-03-13', '19:30:00', 1, 12, 'Chicken Burger', 'Meat Lasagna'),
+(102, '2020-03-14', '19:30:00', 1, 12, 'Chicken Burger', 'Meat Lasagna'),
+(103, '2020-03-11', '19:30:00', 1, 13, 'Chicken Burger', 'Meat Lasagna'),
+(104, '2020-03-12', '19:30:00', 1, 13, 'Chicken Burger', 'Meat Lasagna'),
+(105, '2020-03-13', '19:30:00', 1, 13, 'Chicken Burger', 'Meat Lasagna'),
+(106, '2020-03-14', '19:30:00', 1, 13, 'Chicken Burger', 'Meat Lasagna'),
+(107, '2020-03-11', '18:30:00', 1, 6, 'Chicken Burger', 'Meat Lasagna'),
+(108, '2020-03-12', '18:30:00', 1, 6, 'Chicken Burger', 'Meat Lasagna'),
+(109, '2020-03-13', '18:30:00', 1, 6, 'Chicken Burger', 'Meat Lasagna'),
+(110, '2020-03-14', '18:30:00', 1, 6, 'Chicken Burger', 'Meat Lasagna'),
+(111, '2020-03-11', '18:30:00', 1, 10, 'Chicken Burger', 'Meat Lasagna'),
+(112, '2020-03-12', '18:30:00', 1, 10, 'Chicken Burger', 'Meat Lasagna'),
+(113, '2020-03-13', '18:30:00', 1, 10, 'Chicken Burger', 'Meat Lasagna'),
+(114, '2020-03-14', '18:30:00', 1, 10, 'Chicken Burger', 'Meat Lasagna'),
+(115, '2020-03-11', '18:30:00', 1, 12, 'Chicken Burger', 'Meat Lasagna'),
+(116, '2020-03-12', '18:30:00', 1, 12, 'Chicken Burger', 'Meat Lasagna'),
+(117, '2020-03-13', '18:30:00', 1, 12, 'Chicken Burger', 'Meat Lasagna'),
+(118, '2020-03-14', '18:30:00', 1, 12, 'Chicken Burger', 'Meat Lasagna'),
+(119, '2020-03-11', '20:30:00', 1, 3, 'Chicken Burger', 'Meat Lasagna'),
+(120, '2020-03-14', '20:30:00', 1, 3, 'Chicken Burger', 'Meat Lasagna'),
+(121, '2020-03-11', '20:30:00', 1, 5, 'Chicken Burger', 'Meat Lasagna'),
+(122, '2020-03-14', '20:30:00', 1, 5, 'Chicken Burger', 'Meat Lasagna'),
+(123, '2020-03-11', '20:30:00', 1, 10, 'Chicken Burger', 'Meat Lasagna'),
+(124, '2020-03-14', '20:30:00', 1, 10, 'Chicken Burger', 'Meat Lasagna');
 
 --
 -- Indexes for dumped tables
@@ -9761,19 +9963,19 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `chef`
 --
 ALTER TABLE `chef`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `dish`
 --
 ALTER TABLE `dish`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `host`
@@ -9791,7 +9993,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `pickups`
 --
 ALTER TABLE `pickups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pickupweeklymenu`
@@ -9803,31 +10005,31 @@ ALTER TABLE `pickupweeklymenu`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tablelayout`
 --
 ALTER TABLE `tablelayout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
