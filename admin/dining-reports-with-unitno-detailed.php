@@ -108,7 +108,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
 
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="card">
-                      
+
                       <div class="card-body">
 
                         </br>
@@ -158,8 +158,10 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             <tbody>
                               <?php
 
-                              $sql = mysqli_query($con, "SELECT * FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' AND condono = '$unitno'");
+                              $sql = mysqli_query($con, "SELECT * FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' AND condono LIKE '$unitno%'");
                               $cnt = 1;
+                              $LinkMap[1] = 'receipt.php';
+                              $LinkMap[0] = 'receipt-guest.php';
                               while ($row = mysqli_fetch_array($sql)) {
                               ?>
                                 <tr>
@@ -173,7 +175,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                   <td style="font-weight: bold;text-transform: uppercase;"><?php echo htmlentities($row['isCheckedin'] ? 'Yes' : 'No'); ?></td>
                                   <td><?php echo $row['dishname']; ?></td>
                                   <td><?php echo '$' . $row['membermealprice']; ?></td>
-                                  <td><?php echo '$' . $row['membermealtaxpercent']; ?></td>
+                                  <td><?php echo $row['membermealtaxpercent'] . '%'; ?></td>
                                   <td><?php echo '$' . $row['membermealtaxvalue']; ?></td>
                                   <td><?php echo '$' . $row['membermealtotalprice']; ?></td>
                                   <td><?php echo '$' . $row['guestmealprice']; ?></td>
@@ -181,7 +183,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                   <td><?php echo '$' . $row['membermealtaxvalue']; ?></td>
                                   <td><?php echo '$' . $row['membermealtotalprice']; ?></td>
                                   <td><?php echo '$' . $row['grandtotal']; ?></td>
-                                  <td> <a href="receipt.php?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
+                                  <td> <a href="<?php echo $LinkMap[$row['guestmealprice'] != NULL ? '0' : '1']; ?>?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
                                 </tr>
                               <?php
                                 $cnt = $cnt + 1;
