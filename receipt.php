@@ -13,13 +13,14 @@ if (strlen($_SESSION['login']) == 0) {
   $query = mysqli_query($con, "select * from reservation where id='$id'");
   while ($row = mysqli_fetch_array($query)) {
     $memprice = $row['membermealprice'];
-    $guestprice = $row['guestmealprice'];
+    $guestprice = $row['membermealprice'];
     $gn = $row['guestno'];
     $memtax = $row['membermealtaxvalue'];
-    $gutax = $row['guestmealtaxvalue'];
+    $gutax = $row['memberguestmealtaxvalue'];
 
     $subtotal = $memprice + ($gn * $guestprice);
     $totaltax = $memtax + ($gn * $gutax);
+    $grandtotal = $subtotal + $totaltax;
 
     if ($gn < 1) {
       $type = 'none';
@@ -291,7 +292,7 @@ if (strlen($_SESSION['login']) == 0) {
                           <tr>
                             <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">Member Guest</td>
                             <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; display:<?php echo htmlentities($type); ?>; line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"><?php echo  htmlentities($gn); ?></td>
-                            <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$<?php echo  htmlentities($row['guestmealtotalprice']); ?></td>
+                            <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$<?php echo  htmlentities($row['memberguestmealtotalprice']); ?></td>
                           </tr>
                           <tr>
                             <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
@@ -344,7 +345,7 @@ if (strlen($_SESSION['login']) == 0) {
                               <strong>Grand Total (Incl.Tax)</strong>
                             </td>
                             <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
-                              <strong>$<?php echo  htmlentities($row['grandtotal']); ?></strong>
+                              <strong>$<?php echo  htmlentities($grandtotal); ?></strong>
                             </td>
                           </tr>
 

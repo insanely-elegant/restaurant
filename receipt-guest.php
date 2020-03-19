@@ -18,6 +18,7 @@ if (strlen($_SESSION['login']) == 0) {
 
     $subtotal = $gn * $guestprice;
     $totaltax = $gn * $gutax;
+    $grantotal = $subtotal + $totaltax;
 
     if ($gn < 1) {
       $type = 'none';
@@ -330,7 +331,7 @@ if (strlen($_SESSION['login']) == 0) {
                               <strong>Grand Total (Incl.Tax)</strong>
                             </td>
                             <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
-                              <strong>$<?php echo  htmlentities($row['grandtotal']); ?></strong>
+                              <strong>$<?php echo  htmlentities($grantotal); ?></strong>
                             </td>
                           </tr>
 

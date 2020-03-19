@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2020 at 10:21 AM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Generation Time: Mar 19, 2020 at 09:21 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -88,7 +88,8 @@ CREATE TABLE `dinertype` (
 INSERT INTO `dinertype` (`dinerid`, `dinername`) VALUES
 (1, 'member'),
 (2, 'guest'),
-(3, 'freediner');
+(3, 'freediner'),
+(4, 'memberguest');
 
 -- --------------------------------------------------------
 
@@ -139,7 +140,10 @@ INSERT INTO `diningdates` (`id`, `diningdate`, `status`) VALUES
 (47, '2020-03-11', 'enabled'),
 (48, '2020-03-14', 'enabled'),
 (49, '2020-03-12', 'enabled'),
-(50, '2020-03-13', 'enabled');
+(50, '2020-03-13', 'enabled'),
+(51, '2020-03-23', 'enabled'),
+(52, '2020-03-24', 'enabled'),
+(53, '2020-03-30', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -312,25 +316,14 @@ CREATE TABLE `reservation` (
   `guestmealtaxvalue` decimal(5,2) DEFAULT NULL,
   `guestmealtotalprice` decimal(5,2) DEFAULT NULL,
   `grandtotal` decimal(5,2) NOT NULL,
+  `memberguestmealprice` decimal(5,2) DEFAULT NULL,
+  `memberguestmealtaxpercent` decimal(5,2) DEFAULT NULL,
+  `memberguestmealtaxvalue` decimal(5,2) DEFAULT NULL,
+  `memberguestmealtotalprice` decimal(5,2) DEFAULT NULL,
   `freedinersmealprice` decimal(5,2) DEFAULT NULL,
   `freedinersmealtaxpercent` decimal(5,2) DEFAULT NULL,
   `freedinersmealtaxvalue` decimal(5,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `reservation`
---
-
-INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `roomid`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `freedinersmealtotalprice`, `isConfirmed`, `isCheckedin`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `guestmealprice`, `guestmealtaxpercent`, `guestmealtaxvalue`, `guestmealtotalprice`, `grandtotal`, `freedinersmealprice`, `freedinersmealtaxpercent`, `freedinersmealtaxvalue`) VALUES
-(1, 'SG2002270001', 'Toni', 'DeSalvo', 'Chicken Burger', 1, 'Main Dining Room', '5', 0, '4', '2020-02-27', '18:00:00', '3', 'E302a', NULL, '', '1', '14.00', '0.00', '0.00', '14.00', '17.00', '10.00', '1.70', '18.70', '70.10', NULL, NULL, NULL),
-(2, 'SG2002280001', 'Gloria', 'Pong', 'Chicken Burger', 1, 'Main Dining Room', '1', 0, '1', '2020-02-28', '17:10:00', '0', 'E201A', NULL, '', '1', '14.00', '0.00', '0.00', '14.00', '17.00', '10.00', '1.70', '18.70', '14.00', NULL, NULL, NULL),
-(3, 'SG2002270002', 'Duane', 'DeSalvo', 'Beef Burger', 1, 'Main Dining Room', '5', 0, '1', '2020-02-27', '18:00:00', '0', 'E302B', NULL, '', '1', '14.00', '0.00', '0.00', '14.00', '17.00', '10.00', '1.70', '18.70', '14.00', NULL, NULL, NULL),
-(4, 'SG2002270003', 'Toni', 'DeSalvo', 'Beef Burger', 1, 'Main Dining Room', '2', 0, '2', '2020-02-27', '18:00:00', '1', 'e302a', NULL, '', NULL, '14.00', '0.00', '0.00', '14.00', '17.00', '10.00', '1.70', '18.70', '32.70', NULL, NULL, NULL),
-(5, 'SG2002290001', 'Duane', 'DeSalvo', 'Chicken Burger', 1, 'Main Dining Room', '3', 0, '1', '2020-02-29', '17:10:00', '0', 'e302b', NULL, '', '1', '14.00', '0.00', '0.00', '14.00', '17.00', '10.00', '1.70', '18.70', '14.00', NULL, NULL, NULL),
-(6, 'SG2003110001', 'James', 'Git', 'Chicken Burger', 1, 'Main Dining Room', '6', 0, '3', '2020-03-11', '19:30:00', '3', 'e101', NULL, '', NULL, '14.00', '0.00', '0.00', '14.00', '17.00', '10.00', '1.70', '18.70', '42.00', NULL, NULL, NULL),
-(7, 'SG2003110002', 'Toni', 'DeSalvo', 'Meat Lasagna', 1, 'Main Dining Room', '6', 0, '3', '2020-03-11', '18:30:00', '3', 'E302A', NULL, '', NULL, '14.00', '0.00', '0.00', '14.00', '17.00', '10.00', '1.70', '18.70', '42.00', NULL, NULL, NULL),
-(8, 'SG2003110003', 'Toni', 'DeSalvo', 'Meat Lasagna', 1, 'Main Dining Room', '10', 0, '3', '2020-03-11', '18:30:00', '3', 'E302A', NULL, '', NULL, '14.00', '0.00', '0.00', '14.00', '17.00', '10.00', '1.70', '18.70', '42.00', NULL, NULL, NULL),
-(9, 'SG2003120001', 'Toni', 'DeSalvo', 'Chicken Burger', 1, 'Main Dining Room', '3', 0, '2', '2020-03-12', '19:30:00', '2', 'E302A', NULL, '', NULL, '14.00', '0.00', '0.00', '14.00', '17.00', '10.00', '1.70', '18.70', '28.00', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -9681,7 +9674,25 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-03-03 20:45:51', NULL, 1),
 (0, 'E101', NULL, 0x3a3a3100000000000000000000000000, '2020-03-03 20:57:37', NULL, 1),
 (0, 'e101', NULL, 0x3a3a3100000000000000000000000000, '2020-03-03 21:33:24', NULL, 1),
-(0, 'E302A', NULL, 0x3a3a3100000000000000000000000000, '2020-03-05 18:40:27', NULL, 1);
+(0, 'E302A', NULL, 0x3a3a3100000000000000000000000000, '2020-03-05 18:40:27', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-03-18 17:57:03', NULL, 1),
+(0, 'E302B', NULL, 0x3a3a3100000000000000000000000000, '2020-03-18 17:59:14', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-03-18 18:02:05', NULL, 1),
+(0, 'E302B', NULL, 0x3a3a3100000000000000000000000000, '2020-03-18 18:06:49', NULL, 1),
+(0, 'E302B', NULL, 0x3a3a3100000000000000000000000000, '2020-03-19 07:53:43', NULL, 1),
+(0, 'E302B', NULL, 0x3a3a3100000000000000000000000000, '2020-03-19 09:44:03', NULL, 1),
+(0, 'E302B', NULL, 0x3a3a3100000000000000000000000000, '2020-03-19 16:22:57', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-03-19 16:25:58', NULL, 1),
+(0, 'E302B', NULL, 0x3a3a3100000000000000000000000000, '2020-03-19 16:27:28', NULL, 1),
+(0, 'E302A', NULL, 0x3a3a3100000000000000000000000000, '2020-03-19 16:49:42', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-03-19 18:56:37', NULL, 1),
+(0, 'E302B', NULL, 0x3a3a3100000000000000000000000000, '2020-03-19 18:59:47', NULL, 1),
+(0, 'E302B', NULL, 0x3a3a3100000000000000000000000000, '2020-03-19 19:28:34', NULL, 1),
+(0, 'E302B', NULL, 0x3a3a3100000000000000000000000000, '2020-03-19 19:34:28', NULL, 1),
+(0, 'E302B', NULL, 0x3a3a3100000000000000000000000000, '2020-03-19 19:40:03', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-03-19 20:15:53', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-03-19 20:16:34', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-03-19 20:16:55', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -9706,17 +9717,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `age`, `unitno`, `email`, `password`, `contactno`, `altcontactno`) VALUES
-(7, 'Duane', 'DeSalvo', '', 'E302B', 'duane.desalvo@gmail.com', 'E302B', '4254409304', ''),
-(8, 'Toni', 'DeSalvo', '', 'E302A', 'toni.desalvo@gmail.com', 'E302A', '4254409304', ''),
-(9, 'Gloria', 'Pong', '', 'E201A', '', 'E201A', '4256435528', ''),
-(10, 'Bill', 'Absher', '', 'W108A', '', 'W108A', '2532290167', ''),
-(11, 'Blanche ', 'Adams', '', 'E208A', '', 'E208A', '4256441308', ''),
-(12, 'Jacqueline', 'Alten', '', 'W204A', '', 'W204A', '4257474889', ''),
-(13, 'Syvia', 'Anderson', '', 'E113A', '', 'E113A', '4256981668', ''),
-(14, 'Bob', 'Anderson', '', 'E113B', '', 'E113B', '4256981668', ''),
-(15, 'Susan', 'Baileys ', '', 'C209A', '', 'C209A', '4256412036', ''),
-(16, 'Colleen', 'Bangert', '', 'E216A', '', 'E216A', '4254498940', ''),
-(17, 'James', 'Git', '44', 'E101', 'test@test.com', 'password', '123456', '234567');
+(7, 'Duane', 'DeSalvo', '', 'E302', 'duane.desalvo@gmail.com', 'E302', '4254409304', '');
 
 -- --------------------------------------------------------
 
@@ -9853,7 +9854,37 @@ INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `roomid`, `tableid`,
 (121, '2020-03-11', '20:30:00', 1, 5, 'Chicken Burger', 'Meat Lasagna'),
 (122, '2020-03-14', '20:30:00', 1, 5, 'Chicken Burger', 'Meat Lasagna'),
 (123, '2020-03-11', '20:30:00', 1, 10, 'Chicken Burger', 'Meat Lasagna'),
-(124, '2020-03-14', '20:30:00', 1, 10, 'Chicken Burger', 'Meat Lasagna');
+(124, '2020-03-14', '20:30:00', 1, 10, 'Chicken Burger', 'Meat Lasagna'),
+(125, '2020-03-23', '12:30:00', 1, 1, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(126, '2020-03-24', '12:30:00', 1, 1, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(127, '2020-03-23', '12:30:00', 1, 2, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(128, '2020-03-24', '12:30:00', 1, 2, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(129, '2020-03-23', '12:30:00', 1, 3, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(130, '2020-03-24', '12:30:00', 1, 3, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(131, '2020-03-23', '12:30:00', 1, 4, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(132, '2020-03-24', '12:30:00', 1, 4, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(133, '2020-03-23', '12:30:00', 1, 5, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(134, '2020-03-24', '12:30:00', 1, 5, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(135, '2020-03-23', '12:30:00', 1, 6, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(136, '2020-03-24', '12:30:00', 1, 6, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(137, '2020-03-23', '12:30:00', 1, 7, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(138, '2020-03-24', '12:30:00', 1, 7, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(139, '2020-03-23', '12:30:00', 1, 8, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(140, '2020-03-24', '12:30:00', 1, 8, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(141, '2020-03-23', '12:30:00', 1, 9, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(142, '2020-03-24', '12:30:00', 1, 9, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(143, '2020-03-23', '12:30:00', 1, 10, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(144, '2020-03-24', '12:30:00', 1, 10, 'Chicken Alfredo over Penne Pasta', 'Denver Omelette'),
+(145, '2020-03-30', '21:00:00', 1, 1, 'Beef Burger', 'Beef Pot Roast'),
+(146, '2020-03-30', '21:00:00', 1, 2, 'Beef Burger', 'Beef Pot Roast'),
+(147, '2020-03-30', '21:00:00', 1, 3, 'Beef Burger', 'Beef Pot Roast'),
+(148, '2020-03-30', '21:00:00', 1, 4, 'Beef Burger', 'Beef Pot Roast'),
+(149, '2020-03-30', '21:00:00', 1, 5, 'Beef Burger', 'Beef Pot Roast'),
+(150, '2020-03-30', '21:00:00', 1, 6, 'Beef Burger', 'Beef Pot Roast'),
+(151, '2020-03-30', '21:00:00', 1, 7, 'Beef Burger', 'Beef Pot Roast'),
+(152, '2020-03-30', '21:00:00', 1, 8, 'Beef Burger', 'Beef Pot Roast'),
+(153, '2020-03-30', '21:00:00', 1, 9, 'Beef Burger', 'Beef Pot Roast'),
+(154, '2020-03-30', '21:00:00', 1, 10, 'Beef Burger', 'Beef Pot Roast');
 
 --
 -- Indexes for dumped tables
@@ -9969,7 +10000,7 @@ ALTER TABLE `chef`
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `dish`
@@ -10005,7 +10036,7 @@ ALTER TABLE `pickupweeklymenu`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `room`
@@ -10029,7 +10060,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
