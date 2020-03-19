@@ -160,8 +160,8 @@ $currentTime = date('d-m-Y h:i:s A', time());
 
                               $sql = mysqli_query($con, "SELECT * FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' ORDER BY condono ASC");
                               $cnt = 1;
-                              $LinkMap[1] = '../receipt.php';
-                              $LinkMap[0] = '../receipt-guest.php';
+                              $LinkMap[1] = 'receipt.php';
+                              $LinkMap[0] = 'receipt-guest.php';
                               while ($row = mysqli_fetch_array($sql)) {
                               ?>
                                 <tr>
