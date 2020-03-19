@@ -17,7 +17,7 @@ if (strlen($_SESSION['login']) == 0) {
   $tablename = $_POST['tablename_h'];
   $seats = $_POST['seats'];
   $condono = strtoupper($_SESSION['login']);
-  $guestunit = strtoupper($_SESSION['login']). "G";
+  $guestunit = $_POST['guestunit_h'];
   $name = $_SESSION['firstname'];
   $room_id = $_POST['room'];
 
@@ -63,7 +63,7 @@ if (strlen($_SESSION['login']) == 0) {
   $s = $_POST['s'];
   $gn = $_POST['gn'];
   $dn = $_POST['dn'];
-  $condono = strtoupper($_SESSION['login']); //capitalizes the unit no for consistency
+  $guno = $_POST['guno']; //capitalizes the unit no for consistency
   $name = $_SESSION['firstname'];
   $lname = $_SESSION['lastname'];
   $rid = $_POST['rid'];
@@ -73,7 +73,7 @@ if (strlen($_SESSION['login']) == 0) {
 
   if (isset($_POST['submit'])) {
     $sql = mysqli_query($con,  "insert into reservation(bookingid,firstname,lastname,dishname,roomid,room,tablename,seat,diningdate,diningtime,guestno,condono,guestmealprice,guestmealtaxpercent,guestmealtaxvalue,guestmealtotalprice,grandtotal)
-	values('$bkid','$name','$lname','$dn','$rid','$r','$tn', '$s', '$dd', '$dt','$gn','$condono','$guestmealprice','$guesttaxpercent','$guestmealtax','$mealprice2','$gt')");
+	values('$bkid','$name','$lname','$dn','$rid','$r','$tn', '$s', '$dd', '$dt','$gn','$guno','$guestmealprice','$guesttaxpercent','$guestmealtax','$mealprice2','$gt')");
 
     if ($sql == 1) {
       $last_id = $con->insert_id;
@@ -308,7 +308,7 @@ if (strlen($_SESSION['login']) == 0) {
                                               <input type="hidden" name="dd" value="<?php echo htmlentities($diningdate); ?>"></strong></small></br></br>
                                         </td>
                                       </tr>
-
+                                              <input type="hidden" name="guno" value="<?php echo htmlentities($guestunit); ?>">
                                       <tr>
                                         <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
 

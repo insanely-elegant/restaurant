@@ -270,6 +270,7 @@ if (strlen($_SESSION['login']) == 0) {
 
 								<!-- this field is for storing date for processing -->
 								<input type="hidden" name="storedtime_h" id="storedtime_h">
+								<input type="hidden" name="guestunit_h" id="guestunit_h" value="<?php echo  htmlentities($guestunit); ?>">
 								<!-- done -->
 
 								<div class="form-group">
