@@ -117,7 +117,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                         $tdate = $_POST['todate'];
                         $unitno = $_POST['unitno'];
                         ?>
-                        <h5 align="center" style="color:blue">Dining Report from <span style="color:red"><?php echo $fdate ?></span> to <span style="color:red"><?php echo $tdate ?></span> of <span style="color: #872D62"><?php echo $unitno ?></span></h5> </br>
+                        <h5 align="center" style="color:blue">Dining Report from <span style="color:red"><?php echo $fdate ?></span> to <span style="color:red"><?php echo $tdate ?></span> of Units Matching : <span style="color: #872D62"><?php echo $unitno ?> </span> </h5> </br>
                         <div class="card-body">
                           <div class="form-group">
                             <div align="left"> Search by either filters below: </div> </br>
@@ -132,7 +132,8 @@ $currentTime = date('d-m-Y h:i:s A', time());
                         </div>
                         <div class="table-responsive">
                           <table id="example" class="table table-striped table-bordered second" style="width:100%">
-                            <thead>
+                            <thead class="thead-light">
+
                               <tr>
                                 <th class="center">#</th>
                                 <th>First Name</th>
@@ -185,9 +186,11 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                   <td><?php echo '$' . $row['grandtotal']; ?></td>
                                   <td> <a href="<?php echo $LinkMap[$row['guestmealprice'] != NULL ? '0' : '1']; ?>?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
                                 </tr>
+
                               <?php
                                 $cnt = $cnt + 1;
-                              } ?></tbody>
+                              } ?>
+                            </tbody>
                           </table>
                           <script>
                             function myFunction() {
