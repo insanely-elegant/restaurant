@@ -31,7 +31,7 @@ if (strlen($_SESSION['login']) == 0) {
     $membermealprice = $num['mealprice'];
     $membertaxpercent = $num['mealtaxpercent'];
   }
-  $query2 = mysqli_query($con, "SELECT * FROM pricingmodels WHERE dinerid=2");
+  $query2 = mysqli_query($con, "SELECT * FROM pricingmodels WHERE dinerid=4");
   $num2 = mysqli_fetch_array($query2);
   if ($num2 > 0) {
     $mealprice2 = $num2['mealtotalprice'];
@@ -417,7 +417,7 @@ if (strlen($_SESSION['login']) == 0) {
                                     <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
                                   </tr>
                                   <tr id="guestdivid">
-                                    <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; display:<?php echo htmlentities($type); ?>; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">Guest</td>
+                                    <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; display:<?php echo htmlentities($type); ?>; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">Member Guest</td>
 
                                     <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"> <?php echo htmlentities($guestno); ?> </td>
                                     <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$ <?php echo htmlentities($mealprice2); ?></td>
