@@ -1,5 +1,8 @@
 <?php
-
+$total['membermealtotal']=0;
+$total['membermealtaxvalue']=0;
+$total['guestmealprice']=0;
+$total['grandtotal'] =0;
 session_start();
 include('includes/config.php');
 // if(strlen($_SESSION['alogin'])==0)
@@ -185,12 +188,21 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                   <td><?php echo '$' . $row['membermealtotalprice']; ?></td>
                                   <td><?php echo '$' . $row['grandtotal']; ?></td>
                                   <td> <a href="<?php echo $LinkMap[$row['guestmealprice'] != NULL ? '0' : '1']; ?>?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
-
+                                  <?php
+                                     $total['membermealtotal'] += $row['membermealtotalprice'];
+                                     $total['membermealtaxvalue'] += $row['membermealtaxvalue'];
+                                     $total['guestmealprice'] += $row['guestmealprice'];
+                                     $total['grandtotal'] += $row['grandtotal'];
+                                  ?>
                                 </tr>
                               <?php
                                 $cnt = $cnt + 1;
                               } ?></tbody>
                           </table>
+                          <?php echo "Meal Total (Members) : ".$total['membermealtotal'];
+                                echo  "<br>Total Meal Tax (Members) :".$total['membermealtaxvalue'];
+                                echo  "<br>Meal Total (Guests) :".$total['guestmealprice'];
+                                echo "<br> Grand total :".$total['grandtotal'];?>
                           <script>
                             function myFunction() {
                               var input, filter, table, tr, td, i, txtValue;
