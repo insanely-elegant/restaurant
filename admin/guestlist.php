@@ -128,6 +128,7 @@ if (isset($_GET['del'])) {
                                                     <th>Dining Date</th>
                                                     <th>Dining Time</th>
                                                     <th>Number of Guests</th>
+                                                    <th>Diner Type</th>
                                                     <th>View Invoice</th>
                                                     <th>Cancel & Delete Reservation</th>
 
@@ -163,6 +164,7 @@ if (isset($_GET['del'])) {
                                                         <td><?php echo htmlentities($row['diningdate']); ?></td>
                                                         <td><?php echo htmlentities($row['diningtime']); ?></td>
                                                         <td><?php echo htmlentities($row['guestno']); ?></td>
+                                                        <td><?php echo htmlentities($row['dinerType']); ?></td>
                                                         <td> <a href="receipt.php?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
                                                         <td> <a href="guestlist.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('Are you sure you want to cancel & delete this reservation?')" class="btn btn-sm btn-outline-light">
                                                                 <button> <i class="far fa-trash-alt"></i>
