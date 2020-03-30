@@ -21,6 +21,7 @@ if (strlen($_SESSION['login']) == 0) {
   $name = $_SESSION['firstname'];
   $room_id = $_POST['room'];
 
+
   $guestno = $seats;
 
   $query2 = mysqli_query($con, "SELECT * FROM pricingmodels WHERE dinerid=2");
@@ -47,6 +48,7 @@ if (strlen($_SESSION['login']) == 0) {
   $squence = $totalr + 1;
   $squence = str_pad($squence, 4, 0, STR_PAD_LEFT);
   $bookingid =  $code . $ymd . $squence;
+  $dinertype = "guest";
 
   if ($guestno < 1) {
     $type = "none";
@@ -69,11 +71,12 @@ if (strlen($_SESSION['login']) == 0) {
   $rid = $_POST['rid'];
   $gt = $_POST['gt'];
   $bkid = $_POST['bkid'];
+  $dntype = $_POST['dntype'];
 
 
   if (isset($_POST['submit'])) {
-    $sql = mysqli_query($con,  "insert into reservation(bookingid,firstname,lastname,dishname,roomid,room,tablename,seat,diningdate,diningtime,guestno,condono,guestmealprice,guestmealtaxpercent,guestmealtaxvalue,guestmealtotalprice,grandtotal)
-	values('$bkid','$name','$lname','$dn','$rid','$r','$tn', '$s', '$dd', '$dt','$gn','$guno','$guestmealprice','$guesttaxpercent','$guestmealtax','$mealprice2','$gt')");
+    $sql = mysqli_query($con,  "insert into reservation(bookingid,firstname,lastname,dishname,roomid,room,tablename,seat,diningdate,diningtime,guestno,condono,dinerType,guestmealprice,guestmealtaxpercent,guestmealtaxvalue,guestmealtotalprice,grandtotal)
+	values('$bkid','$name','$lname','$dn','$rid','$r','$tn', '$s', '$dd', '$dt','$gn','$guno','$dntype','$guestmealprice','$guesttaxpercent','$guestmealtax','$mealprice2','$gt')");
 
     if ($sql == 1) {
       $last_id = $con->insert_id;
@@ -336,6 +339,7 @@ if (strlen($_SESSION['login']) == 0) {
                                               <input type="hidden" name="rid" value="<?php echo htmlentities($room_id); ?>">
                                               <input type="hidden" name="gt" value="<?php echo htmlentities($totalpri); ?>">
                                               <input type="hidden" name="bkid" value="<?php echo htmlentities($bookingid); ?>">
+                                              <input type="hidden" name="dntype" value="<?php echo htmlentities($dinertype); ?>">
 
                                             </strong> </small></br></br>
                                         </td>
