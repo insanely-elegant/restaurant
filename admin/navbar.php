@@ -184,7 +184,7 @@
                                 <a class="nav-link" href="dining-reports.php">View Dining Reports by Date</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="dining-reports-with-unitno.php">View Dining Reports by Date & Unitno</a> Navbar Fixed
+                                    <a class="nav-link" href="dining-reports-with-unitno.php">View Dining Reports by Date & Unitno</a>
                                 </li>
                             </ul>
                         </div>
