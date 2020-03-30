@@ -179,15 +179,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-13" aria-controls="submenu-13"><i class="fas fa-fw fa-file"></i> Dining Reports </a>
-                        <div id="submenu-13" class="collapse submenu" style="">
+                        <div id="submenu-13" class="collapse submenu">
                             <ul class="nav flex-column">
-                                <li class="nav-item">
-
-                                    <a class="nav-link" href="dining-reports.php">.</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="dining-reports-with-unitno.php">.</a>
-                                    <a class="nav-link" href="dining-reports.php">View Dining Reports by Date</a>
+                                <a class="nav-link" href="dining-reports.php">View Dining Reports by Date</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="dining-reports-with-unitno.php">View Dining Reports by Date & Unitno</a> Navbar Fixed
