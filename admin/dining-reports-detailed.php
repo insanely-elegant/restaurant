@@ -1,8 +1,14 @@
 <?php
-$total['membermealtotal']=0;
-$total['membermealtaxvalue']=0;
-$total['guestmealprice']=0;
-$total['grandtotal'] =0;
+$total['membermealtotal'] = 0;
+$total['membermealtaxvalue'] = 0;
+$total['memberguestmealtaxvalue'] = 0;
+$total['seat'] = 0;
+$total['memberguestmealprice'] = 0;
+$total['guestmealprice'] = 0;
+$total['guestmealtaxvalue'] = 0;
+$total['totaltaxvalues'] = 0;
+$total['memberguestmealtotalprice'] = 0;
+$total['grandtotal'] = 0;
 session_start();
 include('includes/config.php');
 // if(strlen($_SESSION['alogin'])==0)
@@ -142,6 +148,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                 <th>Unit Number</th>
                                 <th>Room Name </th>
                                 <th>Table Name </th>
+                                <th>Total Seats </th>
                                 <th>Dining Date </th>
                                 <th>Had Checked In?</th>
                                 <th>Dish Name</th>
@@ -149,6 +156,10 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                 <th>Member Meal Tax Percent</th>
                                 <th>Member Meal Tax Value</th>
                                 <th>Member Meal Grand Total</th>
+                                <th>Member Guest Meal Base Price</th>
+                                <th>Member Guest Meal Tax Percent</th>
+                                <th>Member Guest Meal Tax Value</th>
+                                <th>Member Guest Meal Grand Total</th>
                                 <th>Guest Meal Base Price</th>
                                 <th>Guest Meal Tax Percent</th>
                                 <th>Guest Meal Tax Value</th>
@@ -174,35 +185,159 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                   <td style="text-transform: uppercase;"><?php echo $row['condono']; ?></td>
                                   <td><?php echo $row['room']; ?></td>
                                   <td><?php echo $row['tablename']; ?></td>
+                                  <td><?php echo $row['seat']; ?></td>
                                   <td><?php echo $row['diningdate']; ?></td>
                                   <td style="font-weight: bold;text-transform: uppercase;"><?php echo htmlentities($row['isCheckedin'] ? 'Yes' : 'No'); ?></td>
                                   <td><?php echo $row['dishname']; ?></td>
-                                  <td><?php echo '$' . $row['membermealprice']; ?></td>
-                                  <td><?php echo $row['membermealtaxpercent'] . '%'; ?></td>
-                                  <td><?php echo '$' . $row['membermealtaxvalue']; ?></td>
-                                  <td><?php echo '$' . $row['membermealtotalprice']; ?></td>
-                                  <td><?php echo '$' . $row['guestmealprice']; ?></td>
-                                  <td><?php echo $row['guestmealtaxpercent'] . '%';?></td>
-                                  <!-- <td><?php // echo is_null($row['guestmealtaxpercent'] . '%') ? "N/A" : $row['guestmealtaxpercent']; ?></td> -->
-                                  <td><?php echo '$' . $row['membermealtaxvalue']; ?></td>
-                                  <td><?php echo '$' . $row['membermealtotalprice']; ?></td>
-                                  <td><?php echo '$' . $row['grandtotal']; ?></td>
+                                  <td><?php
+                                      if ($row['membermealprice'] != NULL) {
+                                        echo '$' . $row['membermealprice'];
+                                      } else {
+                                        echo "";
+                                      }
+                                      ?></td>
+                                  <td><?php
+                                      if ($row['membermealtaxpercent'] != NULL) {
+                                        echo $row['membermealtaxpercent'] . '%';
+                                      } else {
+                                        echo "";
+                                      }
+                                      ?></td>
+
+                                  <td><?php
+                                      if ($row['membermealtaxvalue'] != NULL) {
+                                        echo '$' . $row['membermealtaxvalue'];
+                                      } else {
+                                        echo "";
+                                      }
+                                      ?></td>
+
+                                  <td><?php
+                                      if ($row['membermealtotalprice'] != NULL) {
+                                        echo '$' . $row['membermealtotalprice'];
+                                      } else {
+                                        echo "";
+                                      }
+                                      ?></td>
+
+                                  <td><?php
+                                      if ($row['memberguestmealprice'] != NULL) {
+                                        echo '$' . $row['memberguestmealprice'];
+                                      } else {
+                                        echo "";
+                                      }
+                                      ?></td>
+                                  <td><?php
+                                      if ($row['memberguestmealtaxpercent'] != NULL) {
+                                        echo $row['memberguestmealtaxpercent'] . '%';
+                                      } else {
+                                        echo "";
+                                      }
+                                      ?></td>
+                                  <td><?php
+                                      if ($row['memberguestmealtaxvalue'] != NULL) {
+                                        echo $row['memberguestmealtaxvalue'] . '%';
+                                      } else {
+                                        echo "";
+                                      }
+                                      ?></td>
+                                  <td><?php
+                                      if ($row['memberguestmealtotalprice'] != NULL) {
+                                        echo '$' . $row['memberguestmealtotalprice'];
+                                      } else {
+                                        echo "";
+                                      }
+                                      ?></td>
+                                  <td><?php if ($row['guestmealprice'] != NULL) {
+                                        echo '$' . $row['guestmealprice'];
+                                      } else {
+                                        echo "";
+                                      } ?></td>
+                                  <td><?php
+                                      if ($row['guestmealtaxpercent'] != NULL) {
+                                        echo $row['guestmealtaxpercent'] . '%';
+                                      } else {
+                                        echo "";
+                                      }
+                                      ?></td>
+
+                                  <td><?php if ($row['guestmealtaxvalue'] != NULL) {
+                                        echo '$' . $row['guestmealtaxvalue'];
+                                      } else {
+                                        echo "";
+                                      } ?></td>
+                                  <td><?php if ($row['guestmealtotalprice'] != NULL) {
+                                        echo '$' . $row['guestmealtotalprice'];
+                                      } else {
+                                        echo "";
+                                      } ?></td>
+                                  <td><?php if ($row['grandtotal'] != NULL) {
+                                        echo '$' . $row['grandtotal'];
+                                      } else {
+                                        echo "";
+                                      } ?></td>
+
                                   <td> <a href="<?php echo $LinkMap[$row['guestmealprice'] != NULL ? '0' : '1']; ?>?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
+
                                   <?php
-                                     $total['membermealtotal'] += $row['membermealtotalprice'];
-                                     $total['membermealtaxvalue'] += $row['membermealtaxvalue'];
-                                     $total['guestmealprice'] += $row['guestmealprice'];
-                                     $total['grandtotal'] += $row['grandtotal'];
+                                  $total['membermealtotal'] += $row['membermealtotalprice'];
+                                  $total['membermealtaxvalue'] += $row['membermealtaxvalue'];
+
+                                  $total['seat'] += $row['seat'];
+                                  $total['memberguestmealtaxvalue'] += $row['memberguestmealtaxvalue'];
+
+                                  $total['memberguestmealprice'] += $row['memberguestmealprice'];
+                                  $total['memberguestmealtotalprice'] += $row['memberguestmealtotalprice'];
+
+                                  $total['guestmealprice'] += $row['guestmealprice'];
+                                  $total['guestmealtaxvalue'] += $row['guestmealtaxvalue'];
+                                  $total['totaltaxvalues'] += $row['guestmealtaxvalue'] + $row['membermealtaxvalue'] + $row['memberguestmealtaxvalue'];
+                                  $total['grandtotal'] += $row['grandtotal'];
                                   ?>
+
                                 </tr>
                               <?php
                                 $cnt = $cnt + 1;
-                              } ?></tbody>
+                              } ?>
+                              <div class="card-body border-top">
+                                <div class="row">
+
+                                  <div class="offset-xl-1 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 p-3">
+                                    <h2 class="font-weight-normal mb-3"><span><?php echo '$' . $total['totaltaxvalues']; ?></span> </h2>
+                                    <div class="mb-0 mt-3 legend-item">
+                                      <span class="fa-xs text-primary mr-1 legend-title "><i class="fa fa-fw fa-square-full"></i></span>
+                                      <span class="legend-text">Total Tax Collected:</span></div>
+                                  </div>
+                                  <div class="offset-xl-1 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 p-3">
+                                    <h2 class="font-weight-normal mb-3">
+                                      <span><?php echo '$' . $total['grandtotal']; ?></span>
+                                    </h2>
+                                    <div class="text-muted mb-0 mt-3 legend-item">
+                                      <span class="fa-xs text-secondary mr-1 legend-title">
+                                        <i class="fa fa-fw fa-square-full"></i></span><span class="legend-text">Gross Total Revenue </span></div>
+                                  </div>
+                                  <div class="offset-xl-1 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 p-3">
+                                    <h4> Total Meals Served: <?php echo $total['seat']; ?></h4>
+                                    <p> Data shows total meals served during the period selected.
+                                    </p>
+
+                                  </div>
+                                </div>
+                              </div>
+
+                            </tbody>
                           </table>
-                          <?php echo "Meal Total (Members) : ".$total['membermealtotal'];
-                                echo  "<br>Total Meal Tax (Members) :".$total['membermealtaxvalue'];
-                                echo  "<br>Meal Total (Guests) :".$total['guestmealprice'];
-                                echo "<br> Grand total :".$total['grandtotal'];?>
+                          <?php
+                          echo "Net Revenue (Members) : " . '$' . $total['membermealtotal'];
+                          echo "<br>Net Tax Value (Members) :" . '$' . $total['membermealtaxvalue'] . "</br>";
+
+                          echo "<br>Net Revenue (Member Guest) : " . '$' . $total['memberguestmealtotalprice'];
+                          echo "<br>Net Tax Value (Member Guest) : " . '$' . $total['memberguestmealtaxvalue'] . "</br>";
+
+                          echo "<br>Guest Price Net Total : " . '$' . $total['guestmealprice'];
+                          echo "<br>Guest Meal Tax Value : " . '$' . $total['guestmealtaxvalue'];
+                          echo "<br>Total Meals Served : " . $total['seat'];
+                          echo "<br>Grand total : " . '$' . $total['grandtotal']; ?>
                           <script>
                             function myFunction() {
                               var input, filter, table, tr, td, i, txtValue;
