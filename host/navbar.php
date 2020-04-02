@@ -48,6 +48,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="takeoutlist.php">View Order Takeout List</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="freediners.php">View Free Diner List</a>
+                                </li>
                                 
 
                             </ul>
