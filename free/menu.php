@@ -47,8 +47,7 @@ if (strlen($_SESSION['login']) == 0) {
 	</head>
 
 	<body>
-		<?php $query = mysqli_query($con, "select * from users where unitno='" . $_SESSION['login'] . "'");
-		while ($row = mysqli_fetch_array($query)) { ?>
+		
 			<div class="limiter">
 				<?php
 
@@ -65,7 +64,7 @@ if (strlen($_SESSION['login']) == 0) {
 				?>
 					<div class="container-login100">
 						<div class="wrap-login100 p-t-50 p-b-90">
-							<p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , <?php echo $_SESSION['firstname']; ?></p>
+							<p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , Diner</p>
 						<?php } ?>
 						<div class="container-login100-form-btn m-t-17">
 							<button class="login100-form-btn" style="background-color: #7584AD" onClick="booking();">
@@ -73,35 +72,7 @@ if (strlen($_SESSION['login']) == 0) {
 							</button>
 						</div>
 
-						<div class="container-login100-form-btn m-t-17">
-							<button class="login100-form-btn" style="background-color: #75845A" onClick="bookingguest();">
-								Make a New Guest Reservation
-							</button>
-						</div>
-
-						<div class="container-login100-form-btn m-t-17">
-							<button class="login100-form-btn" style="background-color: #314570;" onClick="takeout();">
-								Order a Takeout
-							</button>
-						</div>
-
-						<div class="container-login100-form-btn m-t-17">
-							<button class="login100-form-btn" style="background-color: #AED1D6;" onClick="reservation();">
-								View Reservations by other members
-							</button>
-						</div>
-
-						<div class="container-login100-form-btn m-t-17">
-							<button class="login100-form-btn" style="background-color: #E09873;" onClick="history();">
-								View Your Reservation History
-							</button>
-						</div>
-
-						<div class="container-login100-form-btn m-t-17">
-							<button class="login100-form-btn" style="background-color: #E09853;" onClick="pickuphistory();">
-								View Your Order Takeout History
-							</button>
-						</div>
+						
 
 						<div class="container-login100-form-btn m-t-17">
 							<button class="login100-form-btn" style="background-color: #A37F6F;" onClick="logout();">
@@ -112,29 +83,8 @@ if (strlen($_SESSION['login']) == 0) {
 
 						<script>
 							function booking() {
-								location.href = "booking.php";
-							}
-
-							function bookingguest() {
 								location.href = "booking-guest.php";
 							}
-
-							function takeout() {
-								location.href = "pickup.php"
-							}
-
-							function reservation() {
-								location.href = "reserved/index.php"
-							}
-
-							function history() {
-								location.href = "booking-history.php"
-							}
-
-							function pickuphistory() {
-								location.href = "pickup-history.php"
-							}
-
 							function logout() {
 								location.href = "logout.php"
 							}
@@ -167,4 +117,4 @@ if (strlen($_SESSION['login']) == 0) {
 	</body>
 
 	</html><?php }
-	} ?>
+	 ?>

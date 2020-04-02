@@ -380,9 +380,9 @@ body {
 				<span class="glyphicon glyphicon-ok"></span>
 			</div>
 			<!--/.icon-->
-			<h1>Bullshit!!</h1>
-			<p>Bullshit
-				<br>for verification.</p>
+			<h1>Confirmed!!</h1>
+			<p>Thanks
+				<br>for booking.</p>
 			<button type="button" onclick="location.href = 'menu.php';" class="redo btn">Goto Home</button>
             <button style="background-color:#5f6caf;color:#fff" type="button" onclick="location.href = 'receipt-guest.php?id=<?php echo $id ?>';" class="redo btn">Show Invoice</button>
 		</div>

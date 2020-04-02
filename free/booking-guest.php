@@ -180,8 +180,6 @@ if (strlen($_SESSION['login']) == 0) {
 	</head>
 
 	<body>
-		<?php $query = mysqli_query($con, "select * from users where unitno='" . $_SESSION['login'] . "'");
-		while ($row = mysqli_fetch_array($query)) { ?>
 
 			<div class="limiter">
 				<div class="container-login100">
@@ -206,29 +204,20 @@ if (strlen($_SESSION['login']) == 0) {
 							}
 						?>
 
-							<p style="font-size: x-large; text-align: center; color: black"><?php echo ($message); ?>, <?php echo $row['firstname']; ?> </h2> <?php } ?></p>
+							<p style="font-size: x-large; text-align: center; color: black"><?php echo ($message); ?>, Diner </h2> <?php } ?></p>
 
 							<form method="POST" action="review-guest.php" class="login100-form validate-form flex-sb flex-w">
 								<span class="login100-form-title p-b-51">
-									Reserve Table For Your Guests
+									Reserve Table For Free Diners
 								</span>
 
 								<!-- Begin Unit No -->
 								<div class="wrap-input100 validate-input m-b-16">
-									<input class="input100" type="text" name="condono" value="<?php echo "Your Unit No: " . $row['unitno']; ?>" disabled>
+									<input class="input100" type="text" name="condono" value="Free Diner" disabled>
 									<span class="focus-input100"></span>
 								</div>
 								<!-- End Unit No -->
-								<!-- Begin Guest Unit No -->
-								<div class="wrap-input100 validate-input m-b-16" style="background:#AED1D6;">
-									<?php
-									$justunit = $row['unitno']; //default unit no
-									$guestunit = $row['unitno'] . "G"; // Guest Identifier stored in new variable
-									?>
-									<input class="input100" type="text" name="guestunit" value="<?php echo "Your Guest ID: " . $guestunit; ?>" disabled>
-									<span class="focus-input100"></span>
-								</div>
-								<!-- End Guest Unit No -->
+								
 
 								<!-- Begin Dining Date Selection -->
 								<div class="wrap-input100 validate-input m-b-16">
@@ -270,7 +259,7 @@ if (strlen($_SESSION['login']) == 0) {
 
 								<!-- this field is for storing date for processing -->
 								<input type="hidden" name="storedtime_h" id="storedtime_h">
-								<input type="hidden" name="guestunit_h" id="guestunit_h" value="<?php echo  htmlentities($guestunit); ?>">
+								<input type="hidden" name="guestunit_h" id="guestunit_h" value="freediner">
 								<!-- done -->
 
 								<div class="form-group">
@@ -319,14 +308,6 @@ if (strlen($_SESSION['login']) == 0) {
 								<div style="margin-top:10px;" id="roomlayout"></div> <!-- Shows Image of the Table -->
 							</form>
 							<div class="container-login100-form-btn m-t-17">
-								<button class="login100-form-btn" style="background-color: #7584AD" onClick="reservation();">
-									View Bookings by others
-								</button>
-								<script>
-									function reservation() {
-										location.href = "reserved/index.php"
-									}
-								</script>
 							</div>
 							<div class="container-login100-form-btn m-t-17">
 								<button class="login100-form-btn" style="background-color: #AED1D6" onClick="home();">
@@ -365,5 +346,4 @@ if (strlen($_SESSION['login']) == 0) {
 
 	</body>
 
-	</html><?php }
-	} ?>
+	</html><?php } ?>

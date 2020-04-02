@@ -6,22 +6,14 @@ include('includes/config.php');
 // Code for User login
 if(isset($_POST['login']))
 {
-   $unitno=$_POST['unitno'];
-  $password=$_POST['password'];
- $query=mysqli_query($con,"SELECT * FROM users WHERE unitno='$unitno' and password='$password'");
- $num=mysqli_fetch_array($query);
- if($num>0)
- {
+   $unitno="free";
+  $password="free";
+ if($unitno == $password){
  $extra="menu.php";
- $_SESSION['login']=$_POST['unitno'];
-$_SESSION['id']=$num['id'];
- $_SESSION['firstname']=$num['firstname'];
- $_SESSION['lastname']=$num['lastname'];
- $_SESSION['email']=$num['email'];
+ $_SESSION['login']="free";
 $uip=$_SERVER['REMOTE_ADDR'];
 $status=1;
- $log=mysqli_query($con,"insert into userlog(unitno,userip,status) values('".$_SESSION['login']."','$uip','$status')");
- $host=$_SERVER['HTTP_HOST'];
+$host=$_SERVER['HTTP_HOST'];
 $uri=rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
 header("location:http://$host$uri/$extra");
  exit();

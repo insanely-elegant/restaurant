@@ -16,39 +16,41 @@ if (strlen($_SESSION['login']) == 0) {
   $room = $_POST['roomname_h'];
   $tablename = $_POST['tablename_h'];
   $seats = $_POST['seats'];
-  $condono = strtoupper($_SESSION['login']);
-  $guestunit = $_POST['guestunit_h'];
-  $name = $_SESSION['firstname'];
+  $name = "Free Diner";
   $room_id = $_POST['room'];
+  
+
 
 
   $guestno = $seats;
 
-  $query2 = mysqli_query($con, "SELECT * FROM pricingmodels WHERE dinerid=2");
+  $query2 = mysqli_query($con, "SELECT * FROM pricingmodels WHERE dinerid=1");
   $num2 = mysqli_fetch_array($query2);
   if ($num2 > 0) {
     $mealprice2 = $num2['mealprice'];
-    $guestmealtax = $num2['mealtaxvalue'];
-    $guestmealprice = $num2['mealprice'];
-    $guesttaxpercent = $num2['mealtaxpercent'];
+    $freedinermealtax = $num2['mealtaxvalue'];
+    $freedinermealprice = $num2['mealprice'];
+    $freedinertaxpercent = $num2['mealtaxpercent'];
   }
 
   $memberguestprice = $mealprice2 * $guestno;
   $totalpri = $mealprice + $memberguestprice;
   $totaltaxvalue = $guestno * $guestmealtax;
+  $grandtotal = $totalpri + $totaltaxvalue;
+  $freedinertotal = $grandtotal * 0;
 
   // generating bookingid
-  $query = mysqli_query($con, "SELECT COUNT(*) FROM reservation WHERE diningdate='$diningdate'");
+  $query = mysqli_query($con, "SELECT COUNT(*) FROM freediner WHERE diningdate='$diningdate'");
   $row = mysqli_fetch_array($query);
   $totalr = $row[0];
 
-  $code = 'SG';
+  $code = 'SGFD';
   $date1 = $diningdate;
   $ymd = date("ymd", strtotime($date1));
   $squence = $totalr + 1;
   $squence = str_pad($squence, 4, 0, STR_PAD_LEFT);
   $bookingid =  $code . $ymd . $squence;
-  $dinertype = "guest";
+  $dinertype = "freediner";
 
   if ($guestno < 1) {
     $type = "none";
@@ -65,18 +67,20 @@ if (strlen($_SESSION['login']) == 0) {
   $s = $_POST['s'];
   $gn = $_POST['gn'];
   $dn = $_POST['dn'];
-  $guno = $_POST['guno']; //capitalizes the unit no for consistency
-  $name = $_SESSION['firstname'];
-  $lname = $_SESSION['lastname'];
+  $name = "Free Diner";
   $rid = $_POST['rid'];
   $gt = $_POST['gt'];
   $bkid = $_POST['bkid'];
   $dntype = $_POST['dntype'];
+  $freegrandtotal = $_POST['freegrandtotal'];
+  $freetotal = $_POST['freetotal'];
+
+
 
 
   if (isset($_POST['submit'])) {
-    $sql = mysqli_query($con,  "insert into reservation(bookingid,firstname,lastname,dishname,roomid,room,tablename,seat,diningdate,diningtime,guestno,condono,dinerType,guestmealprice,guestmealtaxpercent,guestmealtaxvalue,guestmealtotalprice,grandtotal)
-	values('$bkid','$name','$lname','$dn','$rid','$r','$tn', '$s', '$dd', '$dt','$gn','$guno','$dntype','$guestmealprice','$guesttaxpercent','$guestmealtax','$mealprice2','$gt')");
+    $sql = mysqli_query($con,  "insert into freediner(bookingid,name,dishname,roomid,room,tablename,seat,guestno,diningdate,diningtime,dinerType,freedinermealprice,freedinermealtaxpercent,freedinermealtaxvalue,freedinermealtotalprice,grandtotal,freedinertotal)
+	values('$bkid','$name','$dn','$rid','$r','$tn', '$s','$gn', '$dd', '$dt','$dntype','$freedinermealprice','$freedinertaxpercent','$freedinermealtax','$mealprice2','$freegrandtotal', '$freetotal')");
 
     if ($sql == 1) {
       $last_id = $con->insert_id;
@@ -227,8 +231,7 @@ if (strlen($_SESSION['login']) == 0) {
   </head>
 
   <body>
-    <?php $query = mysqli_query($con, "select * from users where unitno='" . $_SESSION['login'] . "'");
-    while ($row = mysqli_fetch_array($query)) { ?>
+    
 
       <div class="limiter">
         <?php
@@ -246,7 +249,7 @@ if (strlen($_SESSION['login']) == 0) {
         ?>
           <div class="container-login100">
             <div class="wrap-login100 p-t-50 p-b-90">
-              <p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , <?php echo $_SESSION['firstname']; ?></p>
+              <p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , Diner</p>
             <?php } ?>
 
             <form method="POST" action="review-guest.php" class="login100-form validate-form flex-sb flex-w">
@@ -289,19 +292,7 @@ if (strlen($_SESSION['login']) == 0) {
                                       <tr>
                                         <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
 
-                                          <small> Booking First Name: <strong> <?php echo htmlentities($name); ?></strong></small></br></br>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-
-                                          <small> Your Unit Number: <strong> <?php echo htmlentities($condono); ?></strong> </small></br></br>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-
-                                          <small> Your Guest Unit ID: <strong> <?php echo htmlentities($guestunit); ?></strong> </small></br></br>
+                                          <small> Booking Name: <strong> Free Diner</strong></small></br></br>
                                         </td>
                                       </tr>
                                       <tr>
@@ -311,14 +302,14 @@ if (strlen($_SESSION['login']) == 0) {
                                               <input type="hidden" name="dd" value="<?php echo htmlentities($diningdate); ?>"></strong></small></br></br>
                                         </td>
                                       </tr>
-                                              <input type="hidden" name="guno" value="<?php echo htmlentities($guestunit); ?>">
+                                             
                                       <tr>
                                         <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
 
                                           <small> Dining Time: <strong>
 
                                               <?php echo htmlentities($diningtime); ?>
-                                              <input type="hidden" name="dt" , value="<?php echo htmlentities($diningtime); ?>">
+                                              <input type="hidden" name="dt" value="<?php echo htmlentities($diningtime); ?>">
                                             </strong> </small></br></br>
                                         </td>
                                       </tr>
@@ -326,7 +317,7 @@ if (strlen($_SESSION['login']) == 0) {
                                         <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
 
                                           <small> Selected Room: <strong> <?php echo htmlentities($room); ?>
-                                              <input type="hidden" name="r" , value="<?php echo htmlentities($room); ?>"></strong> </small></br></br>
+                                              <input type="hidden" name="r" value="<?php echo htmlentities($room); ?>"></strong> </small></br></br>
                                         </td>
                                       </tr>
                                       <tr>
@@ -445,7 +436,8 @@ if (strlen($_SESSION['login']) == 0) {
                                   <tr>
 
                                   </tr>
-                                  <tr>
+                                  <!-- Hiding the net total and tax -->
+                                  <!-- <tr>
                                     <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
                                       <strong>Net Total</strong>
                                     </td>
@@ -459,7 +451,7 @@ if (strlen($_SESSION['login']) == 0) {
                                       <small style="color:black;">$<?php echo htmlentities($totaltaxvalue); ?> </small>
                                     </td>
                                   </tr>
-                                  <tr>
+                                  <tr> -->
 
                                   </tr>
                                   <tr>
@@ -467,7 +459,9 @@ if (strlen($_SESSION['login']) == 0) {
                                       <strong>Grand Total</strong>
                                     </td>
                                     <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
-                                      <strong>$<?php echo htmlentities($totalpri + $totaltaxvalue); ?></strong>
+                                      <strong>$<?php echo htmlentities($freedinertotal); ?></strong>
+                                      <input type="hidden" name="freegrandtotal" value="<?php echo htmlentities($grandtotal); ?>">
+                                      <input type="hidden" name="freetotal" value="<?php echo htmlentities($freedinertotal); ?>">
                                     </td>
                                   </tr>
                                   
@@ -591,4 +585,4 @@ if (strlen($_SESSION['login']) == 0) {
   </body>
 
   </html><?php }
-      } ?>
+       ?>
