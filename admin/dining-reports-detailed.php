@@ -148,22 +148,22 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                 <th>Unit Number</th>
                                 <th>Room Name </th>
                                 <th>Table Name </th>
-                                <th>Total Seats </th>
                                 <th>Dining Date </th>
                                 <th>Had Checked In?</th>
                                 <th>Dish Name</th>
                                 <th>Member Meal Base Price</th>
                                 <th>Member Meal Tax Percent</th>
                                 <th>Member Meal Tax Value</th>
-                                <th>Member Meal Grand Total</th>
+                                <!-- <th>Member Meal Grand Total</th> -->
                                 <th>Member Guest Meal Base Price</th>
                                 <th>Member Guest Meal Tax Percent</th>
                                 <th>Member Guest Meal Tax Value</th>
-                                <th>Member Guest Meal Grand Total</th>
+                                <!-- <th>Member Guest Meal Grand Total</th> -->
                                 <th>Guest Meal Base Price</th>
                                 <th>Guest Meal Tax Percent</th>
                                 <th>Guest Meal Tax Value</th>
-                                <th>Guest Meal Grand Total</th>
+                                <!-- <th>Guest Meal Grand Total</th> -->
+                                <th>Total Seats </th>
                                 <th>Gross Total Price (Member Total + Guest Total)</th>
                                 <th>View Invoice</th>
 
@@ -171,8 +171,8 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             </thead>
                             <tbody>
                               <?php
-
                               $sql = mysqli_query($con, "SELECT * FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' ORDER BY condono ASC");
+
                               $cnt = 1;
                               $LinkMap[1] = 'receipt.php';
                               $LinkMap[0] = 'receipt-guest.php';
@@ -185,7 +185,6 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                   <td style="text-transform: uppercase;"><?php echo $row['condono']; ?></td>
                                   <td><?php echo $row['room']; ?></td>
                                   <td><?php echo $row['tablename']; ?></td>
-                                  <td><?php echo $row['seat']; ?></td>
                                   <td><?php echo $row['diningdate']; ?></td>
                                   <td style="font-weight: bold;text-transform: uppercase;"><?php echo htmlentities($row['isCheckedin'] ? 'Yes' : 'No'); ?></td>
                                   <td><?php echo $row['dishname']; ?></td>
@@ -212,13 +211,13 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                       }
                                       ?></td>
 
-                                  <td><?php
-                                      if ($row['membermealtotalprice'] != NULL) {
-                                        echo '$' . $row['membermealtotalprice'];
-                                      } else {
-                                        echo "";
-                                      }
-                                      ?></td>
+                                  <!-- <td><?php
+                                            if ($row['membermealtotalprice'] != NULL) {
+                                              echo '$' . $row['membermealtotalprice'];
+                                            } else {
+                                              echo "";
+                                            }
+                                            ?></td> -->
 
                                   <td><?php
                                       if ($row['memberguestmealprice'] != NULL) {
@@ -241,13 +240,13 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                         echo "";
                                       }
                                       ?></td>
-                                  <td><?php
-                                      if ($row['memberguestmealtotalprice'] != NULL) {
-                                        echo '$' . $row['memberguestmealtotalprice'];
-                                      } else {
-                                        echo "";
-                                      }
-                                      ?></td>
+                                  <!-- <td><?php
+                                            if ($row['memberguestmealtotalprice'] != NULL) {
+                                              echo '$' . $row['memberguestmealtotalprice'];
+                                            } else {
+                                              echo "";
+                                            }
+                                            ?></td> -->
                                   <td><?php if ($row['guestmealprice'] != NULL) {
                                         echo '$' . $row['guestmealprice'];
                                       } else {
@@ -266,11 +265,12 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                       } else {
                                         echo "";
                                       } ?></td>
-                                  <td><?php if ($row['guestmealtotalprice'] != NULL) {
-                                        echo '$' . $row['guestmealtotalprice'];
-                                      } else {
-                                        echo "";
-                                      } ?></td>
+                                  <!-- <td><?php if ($row['guestmealtotalprice'] != NULL) {
+                                              echo '$' . $row['guestmealtotalprice'];
+                                            } else {
+                                              echo "";
+                                            } ?></td> -->
+                                  <td><?php echo $row['seat']; ?></td>
                                   <td><?php if ($row['grandtotal'] != NULL) {
                                         echo '$' . $row['grandtotal'];
                                       } else {
@@ -328,16 +328,37 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             </tbody>
                           </table>
                           <?php
-                          echo "Net Revenue (Members) : " . '$' . $total['membermealtotal'];
-                          echo "<br>Net Tax Value (Members) :" . '$' . $total['membermealtaxvalue'] . "</br>";
 
-                          echo "<br>Net Revenue (Member Guest) : " . '$' . $total['memberguestmealtotalprice'];
-                          echo "<br>Net Tax Value (Member Guest) : " . '$' . $total['memberguestmealtaxvalue'] . "</br>";
+                          $result1 = mysqli_query($con, "SELECT membermealtaxpercent,memberguestmealtaxpercent,membermealtaxvalue, sum(grandtotal) as membertotal FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono NOT LIKE '%G'");
+                          $row1 = mysqli_fetch_array($result1);
+                          $membermealtaxpercent = $row1['membermealtaxpercent'];
+                          $memberguestmealtaxpercent = $row1['memberguestmealtaxpercent'];
+                          $membermealtaxvalue = $row1['membermealtaxvalue'];
+                          $membertotal = $row1['membertotal'];
+                          $membernetvalue = $membertotal - $membermealtaxvalue;
+                          echo "Net Revenue (Members + MemberGuests) : " . '$' . htmlentities($membernetvalue);
+                          echo "<br>Tax Percentage (Members)  : " . htmlentities($membermealtaxpercent) . '%';
+                          echo "<br>Tax Percentage (MemberGuests)  : " . htmlentities($memberguestmealtaxpercent) . '%';
+                          echo "<br>Tax Value (Members + MemberGuests) : " . '$' . htmlentities($membermealtaxvalue);
+                          echo "<br>Gross Total Revenue (Members) : " . '$' . htmlentities($membertotal) . "</br>";
 
-                          echo "<br>Guest Price Net Total : " . '$' . $total['guestmealprice'];
-                          echo "<br>Guest Meal Tax Value : " . '$' . $total['guestmealtaxvalue'];
+                          $result2 = mysqli_query($con, "SELECT sum(grandtotal) as guesttotal, guestmealtaxpercent, sum(guestmealtaxvalue) as guestmealtaxvalue FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono LIKE '%G'");
+                          $row2 = mysqli_fetch_array($result2);
+                          $guesttotal = $row2['guesttotal'];
+                          $guestmealtaxpercent = $row2['guestmealtaxpercent'];
+                          $guestmealtaxvalue = $row2['guestmealtaxvalue'];
+                          $guestnet = $guesttotal - $guestmealtaxvalue;
+
+                          echo "<br>Net Revenue (Guest) : " . '$' . htmlentities($guestnet);
+                          echo "<br>Tax Percentage (Guest)  : " . htmlentities($guestmealtaxpercent) . '%';
+                          echo "<br>Tax Value (Guest)  : " . '$' . htmlentities($guestmealtaxvalue);
+                          echo "<br>Gross Total Revenue( Guest) : " . '$' . htmlentities($guesttotal) . "</br>";
+
                           echo "<br>Total Meals Served : " . $total['seat'];
-                          echo "<br>Grand total : " . '$' . $total['grandtotal']; ?>
+
+                          $totaltaxcollected = $membermealtaxvalue + $guestmealtaxvalue;
+                          echo "<br>Total Tax Collected ( Member + MemberGuest + Guests) : " . '$' . htmlentities($totaltaxcollected); 
+                          echo "<br>Grand Total ( Member + MemberGuest + Guests) : " . '$' . $total['grandtotal']; ?>
                           <script>
                             function myFunction() {
                               var input, filter, table, tr, td, i, txtValue;
