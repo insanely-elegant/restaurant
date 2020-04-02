@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2020 at 09:07 AM
+-- Generation Time: Apr 02, 2020 at 08:10 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -193,6 +193,8 @@ CREATE TABLE `freediner` (
   `tablename` varchar(255) NOT NULL,
   `seat` varchar(255) NOT NULL,
   `guestno` varchar(255) NOT NULL,
+  `isConfirmed` varchar(255) NOT NULL,
+  `isCheckedin` varchar(255) NOT NULL,
   `diningdate` date NOT NULL,
   `diningtime` time NOT NULL,
   `dinerType` varchar(255) NOT NULL,
@@ -208,13 +210,13 @@ CREATE TABLE `freediner` (
 -- Dumping data for table `freediner`
 --
 
-INSERT INTO `freediner` (`id`, `bookingid`, `name`, `dishname`, `roomid`, `room`, `tablename`, `seat`, `guestno`, `diningdate`, `diningtime`, `dinerType`, `freedinermealprice`, `freedinermealtaxpercent`, `freedinermealtaxvalue`, `freedinermealtotalprice`, `grandtotal`, `freedinertotal`) VALUES
-(1, 'SGFD2004030001', 'Free Diner', 'Chipotle Burger (V)', 1, 'Main Dining Room', '6', '2', '', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '0.00', '0.00'),
-(2, 'SGFD2004030002', 'Free Diner', 'Chipotle Burger (V)', 1, 'Main Dining Room', '4', '4', '', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '0.00', '0.00'),
-(3, 'SGFD2004030003', 'Free Diner', 'Beef Burger', 1, 'Main Dining Room', '1', '4', '', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '0.00', '0.00'),
-(4, 'SGFD2004030004', 'Free Diner', 'Beef Burger', 1, 'Main Dining Room', '1', '4', '4', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '0.00', '0.00'),
-(5, 'SGFD2004030005', 'Free Diner', 'Beef Burger', 1, 'Main Dining Room', '4', '4', '4', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '0.00', '0.00'),
-(6, 'SGFD2004030006', 'Free Diner', 'Beef Burger', 1, 'Main Dining Room', '4', '4', '4', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '56.00', '0.00');
+INSERT INTO `freediner` (`id`, `bookingid`, `name`, `dishname`, `roomid`, `room`, `tablename`, `seat`, `guestno`, `isConfirmed`, `isCheckedin`, `diningdate`, `diningtime`, `dinerType`, `freedinermealprice`, `freedinermealtaxpercent`, `freedinermealtaxvalue`, `freedinermealtotalprice`, `grandtotal`, `freedinertotal`) VALUES
+(1, 'SGFD2004030001', 'Free Diner', 'Chipotle Burger (V)', 1, 'Main Dining Room', '6', '2', '', '', '1', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '0.00', '0.00'),
+(2, 'SGFD2004030002', 'Free Diner', 'Chipotle Burger (V)', 1, 'Main Dining Room', '4', '4', '', '', '0', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '0.00', '0.00'),
+(3, 'SGFD2004030003', 'Free Diner', 'Beef Burger', 1, 'Main Dining Room', '1', '4', '', '', '0', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '0.00', '0.00'),
+(4, 'SGFD2004030004', 'Free Diner', 'Beef Burger', 1, 'Main Dining Room', '1', '4', '4', '', '1', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '0.00', '0.00'),
+(5, 'SGFD2004030005', 'Free Diner', 'Beef Burger', 1, 'Main Dining Room', '4', '4', '4', '', '1', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '0.00', '0.00'),
+(6, 'SGFD2004030006', 'Free Diner', 'Beef Burger', 1, 'Main Dining Room', '4', '4', '4', '', '1', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '56.00', '0.00');
 
 -- --------------------------------------------------------
 
@@ -373,11 +375,11 @@ CREATE TABLE `reservation` (
 --
 
 INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `roomid`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `freedinersmealtotalprice`, `isConfirmed`, `isCheckedin`, `dinerType`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `guestmealprice`, `guestmealtaxpercent`, `guestmealtaxvalue`, `guestmealtotalprice`, `grandtotal`, `memberguestmealprice`, `memberguestmealtaxpercent`, `memberguestmealtaxvalue`, `memberguestmealtotalprice`, `freedinersmealprice`, `freedinersmealtaxpercent`, `freedinersmealtaxvalue`) VALUES
-(1, 'SG2003300001', 'Duane', 'DeSalvo', 'Beef Burger', 1, 'Main Dining Room', '6', 0, '2', '2020-03-30', '21:00:00', '1', 'E302', NULL, '', '0', '', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '28.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
-(2, 'SG2003300002', 'Duane', 'DeSalvo', 'Beef Burger', 1, 'Main Dining Room', '6', 0, '2', '2020-03-30', '21:00:00', '2', 'E302G', NULL, '', '0', '', NULL, NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '34.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'SG2003300003', 'Duane', 'DeSalvo', 'Beef Burger', 1, 'Main Dining Room', '7', 0, '3', '2020-03-30', '21:00:00', '2', 'E302', NULL, '', '0', '', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '42.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
-(4, 'SG2003300004', 'Duane', 'DeSalvo', 'Beef Pot Roast', 1, 'Main Dining Room', '1', 0, '4', '2020-03-30', '21:00:00', '3', 'E302', NULL, '', NULL, '', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '56.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
-(5, 'SG2003300005', 'Duane', 'DeSalvo', 'Beef Pot Roast', 1, 'Main Dining Room', '4', 0, '4', '2020-03-30', '21:00:00', '4', 'E302G', NULL, '', NULL, '', NULL, NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '68.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1, 'SG2003300001', 'Duane', 'DeSalvo', 'Beef Burger', 1, 'Main Dining Room', '6', 0, '2', '2020-03-30', '21:00:00', '1', 'E302', NULL, '', '1', '', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '28.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
+(2, 'SG2003300002', 'Duane', 'DeSalvo', 'Beef Burger', 1, 'Main Dining Room', '6', 0, '2', '2020-03-30', '21:00:00', '2', 'E302G', NULL, '', '1', '', NULL, NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '34.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'SG2003300003', 'Duane', 'DeSalvo', 'Beef Burger', 1, 'Main Dining Room', '7', 0, '3', '2020-03-30', '21:00:00', '2', 'E302', NULL, '', '1', '', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '42.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
+(4, 'SG2003300004', 'Duane', 'DeSalvo', 'Beef Pot Roast', 1, 'Main Dining Room', '1', 0, '4', '2020-03-30', '21:00:00', '3', 'E302', NULL, '', '1', '', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '56.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
+(5, 'SG2003300005', 'Duane', 'DeSalvo', 'Beef Pot Roast', 1, 'Main Dining Room', '4', 0, '4', '2020-03-30', '21:00:00', '4', 'E302G', NULL, '', '1', '', NULL, NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '68.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (6, 'SG2003300006', 'Duane', 'DeSalvo', 'Beef Pot Roast', 1, 'Main Dining Room', '8', 0, '4', '2020-03-30', '21:00:00', '3', 'E302', NULL, '', NULL, '', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '56.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
 (7, 'SG2003300007', 'Duane', 'DeSalvo', 'Beef Pot Roast', 1, 'Main Dining Room', '3', 0, '4', '2020-03-30', '21:00:00', '4', 'E302G', NULL, '', NULL, '', NULL, NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '68.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (8, 'SG2003300008', 'Duane', 'DeSalvo', 'Beef Burger', 1, 'Main Dining Room', '1', 0, '1', '2020-03-30', '21:00:00', '0', 'E302', NULL, '', NULL, '', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '14.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
@@ -9781,7 +9783,8 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, '', NULL, 0x3a3a3100000000000000000000000000, '2020-04-01 18:29:02', NULL, 0),
 (0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-04-01 18:30:01', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-01 18:31:34', NULL, 1),
-(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-01 19:41:35', NULL, 1);
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-01 19:41:35', NULL, 1),
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-04-02 17:49:43', NULL, 1);
 
 -- --------------------------------------------------------
 
