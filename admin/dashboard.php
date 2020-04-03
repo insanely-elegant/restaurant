@@ -79,7 +79,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                 <div class="row">
 
                                     <?php
-                                    $result1 = mysqli_query($con, "SELECT SUM(membermealtotalprice+guestmealtotalprice) AS `moneycount` FROM `reservation`");
+                                    $result1 = mysqli_query($con, "SELECT SUM(grandtotal) AS `moneycount` FROM `reservation`");
                                     $row1 = mysqli_fetch_array($result1);
                                     $count1 = $row1['moneycount'];
 
