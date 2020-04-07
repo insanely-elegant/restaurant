@@ -6,8 +6,8 @@ include('includes/config.php');
 // Code for User login
 if(isset($_POST['login']))
 {
-   $unitno="free";
-  $password="free";
+   $unitno=$_POST['unitno'];
+   $password=$_POST['password'];
  if($unitno == "free" && $password == "free"){
  $extra="menu.php";
  $_SESSION['login']="free";
