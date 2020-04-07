@@ -83,7 +83,7 @@ if (strlen($_SESSION['login']) == 0) {
 
 						<script>
 							function booking() {
-								location.href = "booking-guest.php";
+								location.href = "free-diner-booking.php";
 							}
 							function logout() {
 								location.href = "logout.php"

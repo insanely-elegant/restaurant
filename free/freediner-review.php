@@ -85,13 +85,13 @@ if (strlen($_SESSION['login']) == 0) {
     if ($sql == 1) {
       $last_id = $con->insert_id;
       $_SESSION['msg'] = "Reservation Confirmed !!";
-      $msg = "Hello $name, \n Booking of table has been successfull \n  <a src='guest_confirm_success.php?id=$last_id' > Click here to view</a>";
+      $msg = "Hello $name, \n Booking of table has been successfull \n  <a src='freediner_confirm_success.php?id=$last_id' > Click here to view</a>";
       $msg = wordwrap($msg, 70);
       mail($_SESSION['email'], "Booking Status", $msg);
-      header('Location: guest_confirm_success.php?id=' . $last_id);
+      header('Location: freediner_confirm_success.php?id=' . $last_id);
       exit();
     } else {
-      header('Location: guest_confirm_fail.php');
+      header('Location: free_confirm_fail.php');
       exit();
     }
   }
@@ -252,7 +252,7 @@ if (strlen($_SESSION['login']) == 0) {
               <p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , Diner</p>
             <?php } ?>
 
-            <form method="POST" action="review-guest.php" class="login100-form validate-form flex-sb flex-w">
+            <form method="POST" action="freediner-review.php" class="login100-form validate-form flex-sb flex-w">
               <span class="login100-form-title p-b-51">
                 Review Your Booking Information
               </span>

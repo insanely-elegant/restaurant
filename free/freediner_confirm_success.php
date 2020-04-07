@@ -384,7 +384,7 @@ body {
 			<p>Thanks
 				<br>for booking.</p>
 			<button type="button" onclick="location.href = 'menu.php';" class="redo btn">Goto Home</button>
-            <button style="background-color:#5f6caf;color:#fff" type="button" onclick="location.href = 'receipt-guest.php?id=<?php echo $id ?>';" class="redo btn">Show Invoice</button>
+            <button style="background-color:#5f6caf;color:#fff" type="button" onclick="location.href = 'freediner-receipt.php?id=<?php echo $id ?>';" class="redo btn">Show Invoice</button>
 		</div>
 		<!--/.success-->
 	</div>
