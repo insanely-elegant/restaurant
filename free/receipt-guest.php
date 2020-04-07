@@ -187,7 +187,7 @@ if (strlen($_SESSION['login']) == 0) {
                           <table width="220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">
                             <tbody>
                               <tr>
-                                <td align="left"> <img src="images/icons/tea.png" width="32" height="32" alt="logo" border="0" /></td>
+                                <td align="left"> <img src="../images/icons/tea.png" width="32" height="32" alt="logo" border="0" /></td>
                               </tr>
                               <tr class="hiddenMobile">
                                 <td height="40"></td>

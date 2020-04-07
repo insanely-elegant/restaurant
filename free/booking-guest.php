@@ -13,7 +13,7 @@ if (strlen($_SESSION['login']) == 0) {
 	while ($row = mysqli_fetch_array($query)) {
 		$rooms .= "<option value=" . $row['id'] . ">" . $row['roomname'] . "</option>";
 		$layouts .= "if(x==" . $row['id'] . "){
-		roomlayout.innerHTML='Table Layout Image :  <img style=\"width:100%;\" src=\"./admin/productimages/'+x+'/" . $row['productimage1'] . "\"/>';
+		roomlayout.innerHTML='Table Layout Image :  <img style=\"width:100%;\" src=\"../admin/productimages/'+x+'/" . $row['productimage1'] . "\"/>';
 	}";
 	}
 ?>
@@ -188,7 +188,7 @@ if (strlen($_SESSION['login']) == 0) {
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="menu.php">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Reserve Guest Seats</li>
+								<li class="breadcrumb-item active" aria-current="page">Reserve Free Diner Seats</li>
 							</ol>
 						</nav>
 						</br>
@@ -289,12 +289,10 @@ if (strlen($_SESSION['login']) == 0) {
 
 								<!-- Begin Number of seats -->
 								<div class="wrap-input100 validate-input m-b-16">
-									<label for="inputText3">Total Guests<label>
+									<label for="inputText3">Total Diners<label>
 											<select class="form-control" name="seats" id="seat" required>
 											</select>
-											<span class="focus-input100"></span>
-											<small id="emailHelp" class="form-text text-muted">Select Number of seats you wish to book for your guests. </br>
-												Currently showing remaining seats left at this table.</small>
+											
 
 								</div>
 								<!-- End Number of seats -->
