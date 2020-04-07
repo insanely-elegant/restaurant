@@ -92,7 +92,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                     <nav aria-label="breadcrumb">
                       <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Dining Reports</li>
+                        <li class="breadcrumb-item active" aria-current="page">Free Dining Reports</li>
                       </ol>
                     </nav>
                   </div>
@@ -120,7 +120,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                         $fdate = $_POST['fromdate'];
                         $tdate = $_POST['todate'];
                         ?>
-                        <h5 align="center" style="color:blue">Dining Report from <span style="color:red"><?php echo $fdate ?></span> to <span style="color:red"><?php echo $tdate ?></span></h5> </br>
+                        <h5 align="center" style="color:blue">Free Dining Report from <span style="color:red"><?php echo $fdate ?></span> to <span style="color:red"><?php echo $tdate ?></span></h5> </br>
                         <div class="card-body">
                           <div class="form-group">
                         <div class="table-responsive">
@@ -128,7 +128,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             <thead>
                               <tr>
                                 <th class="center">#</th>
-                                <th>Name</th>
+                                <th>Diner Type</th>
                                 <th>Room Name </th>
                                 <th>Table Name </th>
                                 <th>Dining Date </th>
@@ -139,7 +139,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                 <th>Free Diner Meal Tax Value</th>
                                 <th>Free Diner Meal Grand Total</th>
                                 <th>Total Seats </th>
-                                <th>Gross Total Price (Member Total + Guest Total)</th>
+                                <th>Grand Total</th>
 
                               </tr>
                             </thead>
@@ -227,10 +227,10 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                     </h2>
                                     <div class="text-muted mb-0 mt-3 legend-item">
                                       <span class="fa-xs text-secondary mr-1 legend-title">
-                                        <i class="fa fa-fw fa-square-full"></i></span><span class="legend-text">Gross Total Revenue </span></div>
+                                        <i class="fa fa-fw fa-square-full"></i></span><span class="legend-text">Gross Total </span></div>
                                   </div>
                                   <div class="offset-xl-1 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 p-3">
-                                    <h4> Total Meals Served: <?php echo $total['seat']; ?></h4>
+                                    <h4> Total Free Meals Served: <?php echo $total['seat']; ?></h4>
                                     <p> Data shows total meals served during the period selected.
                                     </p>
 
