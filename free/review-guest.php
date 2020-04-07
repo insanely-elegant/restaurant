@@ -254,7 +254,7 @@ if (strlen($_SESSION['login']) == 0) {
 
             <form method="POST" action="review-guest.php" class="login100-form validate-form flex-sb flex-w">
               <span class="login100-form-title p-b-51">
-                Review Your Guest Booking Information
+                Review Your Booking Information
               </span>
 
 
@@ -397,7 +397,7 @@ if (strlen($_SESSION['login']) == 0) {
                                   </tr>
                            
                                   <tr id="guestdivid">
-                                    <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; display:<?php echo htmlentities($type); ?>; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">Guests</td>
+                                    <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; display:<?php echo htmlentities($type); ?>; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">Free Diners</td>
 
                                     <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"> <?php echo htmlentities($guestno); ?> </td>
                                     <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$ <?php echo htmlentities($mealprice2); ?></td>

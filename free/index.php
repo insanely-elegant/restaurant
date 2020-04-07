@@ -8,7 +8,7 @@ if(isset($_POST['login']))
 {
    $unitno="free";
   $password="free";
- if($unitno == $password){
+ if($unitno == "free" && $password == "free"){
  $extra="menu.php";
  $_SESSION['login']="free";
 $uip=$_SERVER['REMOTE_ADDR'];
