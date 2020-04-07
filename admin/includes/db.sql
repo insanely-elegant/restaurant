@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2020 at 08:10 PM
+-- Generation Time: Apr 07, 2020 at 09:06 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -146,7 +146,9 @@ INSERT INTO `diningdates` (`id`, `diningdate`, `status`) VALUES
 (53, '2020-03-30', 'enabled'),
 (54, '2020-04-01', 'enabled'),
 (55, '2020-04-02', 'enabled'),
-(56, '2020-04-03', 'enabled');
+(56, '2020-04-03', 'enabled'),
+(57, '2020-04-09', 'enabled'),
+(58, '2020-04-10', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -211,12 +213,15 @@ CREATE TABLE `freediner` (
 --
 
 INSERT INTO `freediner` (`id`, `bookingid`, `name`, `dishname`, `roomid`, `room`, `tablename`, `seat`, `guestno`, `isConfirmed`, `isCheckedin`, `diningdate`, `diningtime`, `dinerType`, `freedinermealprice`, `freedinermealtaxpercent`, `freedinermealtaxvalue`, `freedinermealtotalprice`, `grandtotal`, `freedinertotal`) VALUES
-(1, 'SGFD2004030001', 'Free Diner', 'Chipotle Burger (V)', 1, 'Main Dining Room', '6', '2', '', '', '1', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '0.00', '0.00'),
-(2, 'SGFD2004030002', 'Free Diner', 'Chipotle Burger (V)', 1, 'Main Dining Room', '4', '4', '', '', '0', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '0.00', '0.00'),
-(3, 'SGFD2004030003', 'Free Diner', 'Beef Burger', 1, 'Main Dining Room', '1', '4', '', '', '0', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '0.00', '0.00'),
-(4, 'SGFD2004030004', 'Free Diner', 'Beef Burger', 1, 'Main Dining Room', '1', '4', '4', '', '1', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '0.00', '0.00'),
-(5, 'SGFD2004030005', 'Free Diner', 'Beef Burger', 1, 'Main Dining Room', '4', '4', '4', '', '1', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '0.00', '0.00'),
-(6, 'SGFD2004030006', 'Free Diner', 'Beef Burger', 1, 'Main Dining Room', '4', '4', '4', '', '1', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '56.00', '0.00');
+(1, 'SGFD2004030001', 'Free Diner', 'Chipotle Burger (V)', 1, 'Main Dining Room', '6', '2', '', '', '1', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '28.00', '0.00'),
+(2, 'SGFD2004030002', 'Free Diner', 'Chipotle Burger (V)', 1, 'Main Dining Room', '4', '4', '', '', '0', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '56.00', '0.00'),
+(3, 'SGFD2004030003', 'Free Diner', 'Beef Burger', 1, 'Main Dining Room', '1', '4', '', '', '0', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '56.00', '0.00'),
+(4, 'SGFD2004030004', 'Free Diner', 'Beef Burger', 1, 'Main Dining Room', '1', '4', '4', '', '1', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '56.00', '0.00'),
+(5, 'SGFD2004030005', 'Free Diner', 'Beef Burger', 1, 'Main Dining Room', '4', '4', '4', '', '1', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '56.00', '0.00'),
+(6, 'SGFD2004030006', 'Free Diner', 'Beef Burger', 1, 'Main Dining Room', '4', '4', '4', '', '1', '2020-04-03', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '56.00', '0.00'),
+(7, 'SGFD2004090001', 'Free Diner', 'Chicken Alfredo over Penne Pasta', 1, 'Main Dining Room', '2', '4', '4', '', '', '2020-04-09', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '56.00', '0.00'),
+(8, 'SGFD2004100001', 'Free Diner', 'pasta bolognese', 1, 'Main Dining Room', '5', '5', '5', '', '', '2020-04-10', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '70.00', '0.00'),
+(9, 'SGFD2004100002', 'Free Diner', 'Chicken Alfredo over Penne Pasta', 1, 'Main Dining Room', '5', '3', '3', '', '', '2020-04-10', '13:00:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '42.00', '0.00');
 
 -- --------------------------------------------------------
 
@@ -375,7 +380,6 @@ CREATE TABLE `reservation` (
 --
 
 INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `roomid`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `freedinersmealtotalprice`, `isConfirmed`, `isCheckedin`, `dinerType`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `guestmealprice`, `guestmealtaxpercent`, `guestmealtaxvalue`, `guestmealtotalprice`, `grandtotal`, `memberguestmealprice`, `memberguestmealtaxpercent`, `memberguestmealtaxvalue`, `memberguestmealtotalprice`, `freedinersmealprice`, `freedinersmealtaxpercent`, `freedinersmealtaxvalue`) VALUES
-(1, 'SG2003300001', 'Duane', 'DeSalvo', 'Beef Burger', 1, 'Main Dining Room', '6', 0, '2', '2020-03-30', '21:00:00', '1', 'E302', NULL, '', '1', '', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '28.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
 (2, 'SG2003300002', 'Duane', 'DeSalvo', 'Beef Burger', 1, 'Main Dining Room', '6', 0, '2', '2020-03-30', '21:00:00', '2', 'E302G', NULL, '', '1', '', NULL, NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '34.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 'SG2003300003', 'Duane', 'DeSalvo', 'Beef Burger', 1, 'Main Dining Room', '7', 0, '3', '2020-03-30', '21:00:00', '2', 'E302', NULL, '', '1', '', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '42.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
 (4, 'SG2003300004', 'Duane', 'DeSalvo', 'Beef Pot Roast', 1, 'Main Dining Room', '1', 0, '4', '2020-03-30', '21:00:00', '3', 'E302', NULL, '', '1', '', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '56.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
@@ -9784,7 +9788,9 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-04-01 18:30:01', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-01 18:31:34', NULL, 1),
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-01 19:41:35', NULL, 1),
-(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-04-02 17:49:43', NULL, 1);
+(0, 'host', NULL, 0x3a3a3100000000000000000000000000, '2020-04-02 17:49:43', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-07 18:18:46', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-07 18:23:00', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -10007,7 +10013,17 @@ INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `roomid`, `tableid`,
 (181, '2020-04-03', '13:00:00', 1, 9, 'Beef Burger', 'Chipotle Burger (V)'),
 (182, '2020-04-01', '13:00:00', 1, 10, 'Beef Burger', 'Chipotle Burger (V)'),
 (183, '2020-04-02', '13:00:00', 1, 10, 'Beef Burger', 'Chipotle Burger (V)'),
-(184, '2020-04-03', '13:00:00', 1, 10, 'Beef Burger', 'Chipotle Burger (V)');
+(184, '2020-04-03', '13:00:00', 1, 10, 'Beef Burger', 'Chipotle Burger (V)'),
+(185, '2020-04-09', '13:00:00', 1, 1, 'pasta bolognese', 'Chicken Alfredo over Penne Pasta'),
+(186, '2020-04-10', '13:00:00', 1, 1, 'pasta bolognese', 'Chicken Alfredo over Penne Pasta'),
+(187, '2020-04-09', '13:00:00', 1, 2, 'pasta bolognese', 'Chicken Alfredo over Penne Pasta'),
+(188, '2020-04-10', '13:00:00', 1, 2, 'pasta bolognese', 'Chicken Alfredo over Penne Pasta'),
+(189, '2020-04-09', '13:00:00', 1, 3, 'pasta bolognese', 'Chicken Alfredo over Penne Pasta'),
+(190, '2020-04-10', '13:00:00', 1, 3, 'pasta bolognese', 'Chicken Alfredo over Penne Pasta'),
+(191, '2020-04-09', '13:00:00', 1, 4, 'pasta bolognese', 'Chicken Alfredo over Penne Pasta'),
+(192, '2020-04-10', '13:00:00', 1, 4, 'pasta bolognese', 'Chicken Alfredo over Penne Pasta'),
+(193, '2020-04-09', '13:00:00', 1, 5, 'pasta bolognese', 'Chicken Alfredo over Penne Pasta'),
+(194, '2020-04-10', '13:00:00', 1, 5, 'pasta bolognese', 'Chicken Alfredo over Penne Pasta');
 
 --
 -- Indexes for dumped tables
@@ -10129,7 +10145,7 @@ ALTER TABLE `chef`
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `dish`
@@ -10141,7 +10157,7 @@ ALTER TABLE `dish`
 -- AUTO_INCREMENT for table `freediner`
 --
 ALTER TABLE `freediner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `host`
@@ -10195,7 +10211,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
