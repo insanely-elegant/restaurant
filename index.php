@@ -77,7 +77,7 @@ exit();
 				<form method="post" class="login100-form validate-form flex-sb flex-w">
 
 					<span class="login100-form-title p-b-51">
-						Login
+				Member : Login
 					</span>
 <span style="color:red;">
 							<?php echo htmlentities($_SESSION['errmsg']); 	?>
