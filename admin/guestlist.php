@@ -110,7 +110,7 @@ if (isset($_GET['del'])) {
                                         </div>
                                     <?php } ?>
 
-                                    
+
 
                                     <div class="module-body table">
                                         <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
@@ -128,7 +128,6 @@ if (isset($_GET['del'])) {
                                                     <th>Dining Date</th>
                                                     <th>Dining Time</th>
                                                     <th>Number of Guests</th>
-                                                    <th>Diner Type</th>
                                                     <th>View Invoice</th>
                                                     <th>Cancel & Delete Reservation</th>
 
@@ -142,6 +141,8 @@ if (isset($_GET['del'])) {
                                                 $colorMap[1] = 'red';
                                                 $colorBadge[0] = 'badge-dot badge-success mr-1';
                                                 $colorBadge[1] = 'badge-dot badge-danger mr-1';
+                                                $LinkMap[1] = 'receipt.php';
+                                                $LinkMap[0] = 'receipt-guest.php';
                                                 while ($row = mysqli_fetch_array($query)) {
                                                 ?>
                                                     <tr>
@@ -164,8 +165,7 @@ if (isset($_GET['del'])) {
                                                         <td><?php echo htmlentities($row['diningdate']); ?></td>
                                                         <td><?php echo htmlentities($row['diningtime']); ?></td>
                                                         <td><?php echo htmlentities($row['guestno']); ?></td>
-                                                        <td><?php echo htmlentities($row['dinerType']); ?></td>
-                                                        <td> <a href="receipt.php?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
+                                                        <td> <a href="<?php echo $LinkMap[$row['guestmealprice'] != NULL ? '0' : '1']; ?>?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
                                                         <td> <a href="guestlist.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('Are you sure you want to cancel & delete this reservation?')" class="btn btn-sm btn-outline-light">
                                                                 <button> <i class="far fa-trash-alt"></i>
                                                                 </button></td>

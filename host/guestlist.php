@@ -7,7 +7,7 @@ include('includes/config.php');
 // header('location:index.php');
 // }
 // else{
-date_default_timezone_set('America/Los_Angeles'); // change according timezone
+date_default_timezone_set('Asia/Kolkata'); // change according timezone
 $currentTime = date('d-m-Y h:i:s A', time());
 
 if (isset($_GET['noshow'])) {
@@ -18,6 +18,11 @@ if (isset($_GET['noshow'])) {
 if (isset($_GET['checkin'])) {
     mysqli_query($con, "update reservation set isCheckedin= 1 where id = '" . $_GET['id'] . "'");
     $_SESSION['msg'] = "User sucessfully checkin !!";
+}
+
+if (isset($_GET['del'])) {
+    mysqli_query($con, "delete from reservation where id = '" . $_GET['id'] . "'");
+    $_SESSION['delmsg'] = "Reservation Cancelled & Deleted Permanently!!";
 }
 
 ?>
@@ -69,11 +74,11 @@ if (isset($_GET['checkin'])) {
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="page-header">
-                                        <h2 class="pageheader-title"><?php echo ($message); ?>, <?php echo $row['hostname']; ?> </h2> <?php } ?>
+                                        <h2 class="pageheader-title"><?php echo ($message); ?>, <?php echo $row['firstname']; ?> </h2> <?php } ?>
                                     <div class="page-breadcrumb">
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">
-                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Dashboard</a></li>
+                                                <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
                                                 <li class="breadcrumb-item active" aria-current="page">View Guest Lists</li>
                                             </ol>
                                         </nav>
@@ -107,7 +112,6 @@ if (isset($_GET['checkin'])) {
 
 
 
-
                                     <div class="module-body table">
                                         <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
                                             <thead>
@@ -136,6 +140,8 @@ if (isset($_GET['checkin'])) {
                                                 $colorMap[1] = 'red';
                                                 $colorBadge[0] = 'badge-dot badge-success mr-1';
                                                 $colorBadge[1] = 'badge-dot badge-danger mr-1';
+                                                $LinkMap[1] = '../admin/receipt.php';
+                                                $LinkMap[0] = '../admin/receipt-guest.php';
                                                 while ($row = mysqli_fetch_array($query)) {
                                                 ?>
                                                     <tr>
@@ -158,7 +164,8 @@ if (isset($_GET['checkin'])) {
                                                         <td><?php echo htmlentities($row['diningdate']); ?></td>
                                                         <td><?php echo htmlentities($row['diningtime']); ?></td>
                                                         <td><?php echo htmlentities($row['guestno']); ?></td>
-                                                        <td> <a href="receipt.php?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
+                                                        <td> <a href="<?php echo $LinkMap[$row['guestmealprice'] != NULL ? '0' : '1']; ?>?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
+                                                        
                                                     </tr>
                                                 <?php $cnt = $cnt + 1;
                                                 } ?>

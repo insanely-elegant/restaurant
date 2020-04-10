@@ -178,13 +178,18 @@ if (strlen($_SESSION['login']) == 0) {
                 <td>
                   <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
                     <tbody>
-                      <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="window.location.href = 'dining-reports.php';">
+                      <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="goBack()">
+                        <script>
+                          function goBack() {
+                            window.history.back();
+                          }
+                        </script>
                         Go Back to Home Page
                       </button> </br></br></br>
 
                       <tr>
                         <td>
-                          <table width="220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">
+                          <table width=" 220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">
                             <tbody>
                               <tr>
                                 <td align="left"> <img src="images/icons/tea.png" width="32" height="32" alt="logo" border="0" /></td>

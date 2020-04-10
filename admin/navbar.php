@@ -1,6 +1,6 @@
 <div class="dashboard-header">
     <nav class="navbar navbar-expand-lg bg-white fixed-top">
-        <a class="navbar-brand" href="index.php">Silver Glen</a>
+        <a class="navbar-brand" href="dashboard.php">Silver Glen</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,6 +22,7 @@
         </div>
     </nav>
 </div>
+
 <!-- ============================================================== -->
 <!-- end navbar -->
 <!-- ============================================================== -->
@@ -29,21 +30,14 @@
 <!-- left sidebar -->
 <!-- ============================================================== -->
 <div class="nav-left-sidebar sidebar-dark">
-    <div class="menu-list">
+    <div class="menu-list" style="overflow: hidden; width: auto; height: 100%;">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="d-xl-none d-lg-none" href="dashboard.php">Dashboard</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav flex-column">
-                   
-                    <li class="nav-item ">
-                        <a class="nav-link" href="dashboard.php" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
-                    </li>
 
-                    <li class="nav-divider">
-                        Restaurant Management
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.php" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
                     </li>
 
                     <li class="nav-item">
@@ -116,8 +110,8 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8"><i class="fa fa-cog fa-spin fa-3x fa-fw"></i>Settings</a>
-                        <div id="submenu-8" class="collapse submenu" style="">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-7"><i class="fa fa-cog fa-spin fa-3x fa-fw"></i>Settings</a>
+                        <div id="submenu-7" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link" href="create-pricing.php">Manage User Pricing Models</a>
@@ -125,13 +119,9 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-divider">
-
-                        User Management
-                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-9" aria-controls="submenu-9"><i class="fas fa-fw fa-users"></i> User Management </a>
-                        <div id="submenu-9" class="collapse submenu" style="">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8"><i class="fas fa-fw fa-users"></i> User Management </a>
+                        <div id="submenu-8" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link" href="create-user.php">Create & Manage User Accounts</a>
@@ -141,8 +131,8 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-10" aria-controls="submenu-10"><i class="fas fa-fw fa-graduation-cap"></i> Chef Management </a>
-                        <div id="submenu-10" class="collapse submenu" style="">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-9" aria-controls="submenu-9"><i class="fas fa-fw fa-graduation-cap"></i> Chef Management </a>
+                        <div id="submenu-9" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link" href="create-chef.php">Manage Chef Accounts</a>
@@ -152,8 +142,8 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-11" aria-controls="submenu-11"><i class="fas fa-fw fa-user"></i> Host Management </a>
-                        <div id="submenu-11" class="collapse submenu" style="">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-10" aria-controls="submenu-10"><i class="fas fa-fw fa-user"></i> Host Management </a>
+                        <div id="submenu-10" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link" href="create-host.php">Manage Host Accounts</a>
@@ -163,12 +153,9 @@
                         </div>
                     </li>
 
-                    <li class="nav-divider">
-                        Reports
-                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fas fa-fw fa-file"></i> Print Weekly Menu </a>
-                        <div id="submenu-12" class="collapse submenu" style="">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-11" aria-controls="submenu-11"><i class="fas fa-fw fa-file"></i> Print Weekly Menu </a>
+                        <div id="submenu-11" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link" href="weekly-menu-reports.php">Print Weekly Menu</a>
@@ -178,23 +165,23 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-13" aria-controls="submenu-13"><i class="fas fa-fw fa-file"></i> Dining Reports </a>
-                        <div id="submenu-13" class="collapse submenu">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fas fa-fw fa-file"></i> Dining Reports </a>
+                        <div id="submenu-12" class="collapse submenu">
                             <ul class="nav flex-column">
                                 <a class="nav-link" href="dining-reports.php">View Dining Reports by Date</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="dining-reports-with-unitno.php">View Dining Reports by Date & Unitno</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="free-dining-reports.php">View Free Dining Reports by Date</a>
-                                </li>
-                            </ul>
-                        </div>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="dining-reports-with-unitno.php">View Dining Reports by Date & Unitno</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="free-dining-reports.php">View Free Dining Reports by Date</a>
+                    </li>
                 </ul>
             </div>
-        </nav>
+            </li>
+
+            </ul>
     </div>
+    </nav>
+</div>
 </div>

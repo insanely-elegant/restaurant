@@ -134,7 +134,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                 <th>Dining Date </th>
                                 <th>Had Checked In?</th>
                                 <th>Dish Name</th>
-                                <th>Free DIner Meal Base Price</th>
+                                <th>Free Diner Meal Base Price</th>
                                 <th>Free Diner Meal Tax Percent</th>
                                 <th>Free Diner Meal Tax Value</th>
                                 <th>Free Diner Meal Grand Total</th>
@@ -219,7 +219,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                     <h2 class="font-weight-normal mb-3"><span><?php echo '$' . $total['totaltaxvalues']; ?></span> </h2>
                                     <div class="mb-0 mt-3 legend-item">
                                       <span class="fa-xs text-primary mr-1 legend-title "><i class="fa fa-fw fa-square-full"></i></span>
-                                      <span class="legend-text">Total Tax Collected:</span></div>
+                                      <span class="legend-text">Uncharged Total Tax:</span></div>
                                   </div>
                                   <div class="offset-xl-1 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 p-3">
                                     <h2 class="font-weight-normal mb-3">
@@ -227,7 +227,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                     </h2>
                                     <div class="text-muted mb-0 mt-3 legend-item">
                                       <span class="fa-xs text-secondary mr-1 legend-title">
-                                        <i class="fa fa-fw fa-square-full"></i></span><span class="legend-text">Gross Total </span></div>
+                                        <i class="fa fa-fw fa-square-full"></i></span><span class="legend-text">Uncharged Gross Total </span></div>
                                   </div>
                                   <div class="offset-xl-1 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 p-3">
                                     <h4> Total Free Meals Served: <?php echo $total['seat']; ?></h4>
@@ -242,36 +242,10 @@ $currentTime = date('d-m-Y h:i:s A', time());
                           </table>
                           <?php
 
-                          $result1 = mysqli_query($con, "SELECT membermealtaxpercent,memberguestmealtaxpercent,membermealtaxvalue, sum(grandtotal) as membertotal FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono NOT LIKE '%G'");
-                          $row1 = mysqli_fetch_array($result1);
-                          $membermealtaxpercent = $row1['membermealtaxpercent'];
-                          $memberguestmealtaxpercent = $row1['memberguestmealtaxpercent'];
-                          $membermealtaxvalue = $row1['membermealtaxvalue'];
-                          $membertotal = $row1['membertotal'];
-                          $membernetvalue = $membertotal - $membermealtaxvalue;
-                          echo "Net Revenue (Members + MemberGuests) : " . '$' . htmlentities($membernetvalue);
-                          echo "<br>Tax Percentage (Members)  : " . htmlentities($membermealtaxpercent) . '%';
-                          echo "<br>Tax Percentage (MemberGuests)  : " . htmlentities($memberguestmealtaxpercent) . '%';
-                          echo "<br>Tax Value (Members + MemberGuests) : " . '$' . htmlentities($membermealtaxvalue);
-                          echo "<br>Gross Total Revenue (Members) : " . '$' . htmlentities($membertotal) . "</br>";
 
-                          $result2 = mysqli_query($con, "SELECT sum(grandtotal) as guesttotal, guestmealtaxpercent, sum(guestmealtaxvalue) as guestmealtaxvalue FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono LIKE '%G'");
-                          $row2 = mysqli_fetch_array($result2);
-                          $guesttotal = $row2['guesttotal'];
-                          $guestmealtaxpercent = $row2['guestmealtaxpercent'];
-                          $guestmealtaxvalue = $row2['guestmealtaxvalue'];
-                          $guestnet = $guesttotal - $guestmealtaxvalue;
-
-                          echo "<br>Net Revenue (Guest) : " . '$' . htmlentities($guestnet);
-                          echo "<br>Tax Percentage (Guest)  : " . htmlentities($guestmealtaxpercent) . '%';
-                          echo "<br>Tax Value (Guest)  : " . '$' . htmlentities($guestmealtaxvalue);
-                          echo "<br>Gross Total Revenue( Guest) : " . '$' . htmlentities($guesttotal) . "</br>";
-
-                          echo "<br>Total Meals Served : " . $total['seat'];
-
-                          $totaltaxcollected = $membermealtaxvalue + $guestmealtaxvalue;
-                          echo "<br>Total Tax Collected ( Member + MemberGuest + Guests) : " . '$' . htmlentities($totaltaxcollected); 
-                          echo "<br>Grand Total ( Member + MemberGuest + Guests) : " . '$' . $total['grandtotal']; ?>
+                        echo "<br><p style='font-size: 25px'>Total Meals Served : " . $total['seat'] . '</p>';
+                        echo "<p style='font-size: 25px'>Total Tax Collected : $" . $total['freedinermealtaxvalue'] . '</p>';
+                        echo "<p style='font-size: 25px'>Grand Total : $" . $total['grandtotal'] . '</p>'; ?>
                           <script>
                             function myFunction() {
                               var input, filter, table, tr, td, i, txtValue;

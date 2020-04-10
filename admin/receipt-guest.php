@@ -176,7 +176,12 @@ if (strlen($_SESSION['login']) == 0) {
                 <td>
                   <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
                     <tbody>
-                      <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="window.location.href = 'dining-reports.php';">
+                      <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="goBack()">
+                        <script>
+                          function goBack() {
+                            window.history.back();
+                          }
+                        </script>
                         Go Back to Home Page
                       </button> </br></br></br>
 
@@ -274,7 +279,7 @@ if (strlen($_SESSION['login']) == 0) {
                           <tr>
                             <td height="1" style="background: #bebebe;" colspan="4"></td>
                           </tr>
-                          
+
                           <tr>
                             <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">Guest</td>
                             <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; display:<?php echo htmlentities($type); ?>; line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"><?php echo  htmlentities($gn); ?></td>

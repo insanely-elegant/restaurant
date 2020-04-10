@@ -37,7 +37,7 @@ if(isset($_GET['del']))
 </head>
 
 <body>
-    <?php $query=mysqli_query($con,"select * from chef");
+    <?php $query=mysqli_query($con,"select * from admins");
 while($row=mysqli_fetch_array($query))
 {?>
     <!-- ============================================================== -->
@@ -77,11 +77,11 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-<h2 class="pageheader-title"><?php echo($message); ?>,  <?php echo $row['chefname']; ?>  </h2> <?php } ?>
+<h2 class="pageheader-title"><?php echo($message); ?>,  <?php echo $row['firstname']; ?>  </h2> <?php } ?>
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a class="breadcrumb-link">Dashboard</a></li>
+                                            <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
                                             <li class="breadcrumb-item active" aria-current="page">Create, Edit & Manage Menu Items</li>
                                         </ol>
                                     </nav>
