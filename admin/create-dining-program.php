@@ -174,8 +174,8 @@ if (isset($_GET['del'])) {
                                                                 <option value="<?php echo $row['diningdate']; ?>"><?php echo $row['diningdate']; ?></option>
                                                             <?php } ?>
                                                         </select>
+                                                        <input id="diningtime" placeholder="Example: 14:00" name="diningtime" type="time" class="form-control" required>
 
-                                                        <input id="diningtime" name="diningtime" type="time" class="form-control" required>
 
                                                         <select name="dishname1" class="form-control" id="input-select" required>
                                                             <option value="">Select a Dish</option>
@@ -223,10 +223,12 @@ if (isset($_GET['del'])) {
                                             </thead>
                                             <tbody>
 
-                                                <?php $query = mysqli_query($con, "select room.roomname as rname,tablelayout.tablename as tname, weeklymenu.diningdate as dd, weeklymenu.id as wid,
-weeklymenu.diningtime as dt, 
-weeklymenu.dishname1 as d1, weeklymenu.dishname2 as d2 from weeklymenu
-join room on room.id=weeklymenu.roomid join tablelayout on tablelayout.id=weeklymenu.tableid");
+                                                <?php $query = mysqli_query($con, "select room.roomname as rname,
+                                                tablelayout.tablename as tname, weeklymenu.diningdate as dd,
+                                                 weeklymenu.id as wid,weeklymenu.diningtime as dt,
+                                                 weeklymenu.dishname1 as d1, weeklymenu.dishname2 as d2 from weeklymenu 
+                                                 join room on room.id=weeklymenu.roomid join tablelayout on tablelayout.id=weeklymenu.tableid 
+                                                 ORDER BY weeklymenu.diningdate DESC");
                                                 $cnt = 1;
                                                 while ($row = mysqli_fetch_array($query)) {
                                                 ?>

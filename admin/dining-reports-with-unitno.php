@@ -93,15 +93,18 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                                         <label for="exampleInputPassword1">
                                                             From Date: *
                                                         </label>
-                                                        <input type="date" class="form-control" name="fromdate" id="fromdate" value="" required='true'>
+                                                        <div class="form-group">
+                                                            <input placeholder="YYYY-MM-DD" id="fromdate" name="fromdate" type="text" class="form-control" required="true">
+                                                        </div>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">
                                                             To Date: *
                                                         </label>
-                                                        <input type="date" class="form-control" name="todate" id="todate" value="" required='true'>
-
+                                                        <div class="form-group">
+                                                            <input placeholder="YYYY-MM-DD" id="todate" name="todate" type="text" class="form-control" required="true">
+                                                        </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">

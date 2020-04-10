@@ -140,8 +140,6 @@ if (isset($_GET['del'])) {
                                     <div class="card">
                                         <div class="card-body">
                                             <form method="post">
-                                                
-
                                                 <!-- <div class="form-group">
                                                     <label for="inputText3">Dining Date</label>
                                                     <input name="diningdate" type="date" class="form-control" placeholder="yyyy-mm-dd">
