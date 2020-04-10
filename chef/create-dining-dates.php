@@ -85,7 +85,7 @@ if (isset($_GET['del'])) {
                                     <div class="page-breadcrumb">
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">
-                                                <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
+                                                <li class="breadcrumb-item"><a href="" class="breadcrumb-link">Dashboard</a></li>
                                                 <li class="breadcrumb-item active" aria-current="page">Create, Edit & Manage Dining Dates</li>
                                             </ol>
                                         </nav>

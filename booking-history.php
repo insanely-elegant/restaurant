@@ -432,19 +432,27 @@ while($row=mysqli_fetch_array($query))
                                   You can generate your dining expenditure summary at Silver Glen. 
                                 <form role="form" method="post" action="booking-history-detailed.php">
 														<div class="form-group">
-															<label for="exampleInputPassword1">
-																 From Date:
-															</label>
-					<input type="date" class="form-control" name="fromdate" id="fromdate" value="" required='true'>
-														</div>
-		
-													<div class="form-group">
-															<label for="exampleInputPassword1">
-																 To Date::
-															</label>
-					 <input type="date" class="form-control" name="todate" id="todate" value="" required='true'>
+                                                        <label for="exampleInputPassword1">
+                                                            From Date: *
+                                                        </label>
+                                                        <div class="form-group">
+                                                            <input placeholder="YYYY-MM-DD" id="fromdate" name="fromdate" type="text" class="form-control" required="true">
+                                                        </div>
 
-														</div>	
+
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword1">
+                                                            To Date: *
+                                                        </label>
+                                                        <div class="form-group">
+                                                            <input placeholder="YYYY-MM-DD" id="todate" name="todate" type="text" class="form-control" required="true">
+                                                        </div>
+
+
+
+                                                    </div>
 														
 														</br>
 														<button type="submit" name="submit" id="submit" class="btn btn-o btn-success">

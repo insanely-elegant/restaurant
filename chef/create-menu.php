@@ -37,7 +37,7 @@ if(isset($_GET['del']))
 </head>
 
 <body>
-    <?php $query=mysqli_query($con,"select * from admins");
+    <?php $query=mysqli_query($con,"select * from chef");
 while($row=mysqli_fetch_array($query))
 {?>
     <!-- ============================================================== -->
@@ -81,7 +81,7 @@ if ( $Hour >= 5 && $Hour <= 11 ) {
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
+                                            <li class="breadcrumb-item"><a href="" class="breadcrumb-link">Dashboard</a></li>
                                             <li class="breadcrumb-item active" aria-current="page">Create, Edit & Manage Menu Items</li>
                                         </ol>
                                     </nav>
