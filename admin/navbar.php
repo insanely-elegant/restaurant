@@ -158,7 +158,13 @@
                         <div id="submenu-11" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="weekly-menu-reports.php">Print Weekly Menu</a>
+                                    <a class="nav-link" href="weekly-menu-reports.php">Print Weekly Dining Menu</a>
+                                </li>
+
+                            </ul>
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="takeout-menu-reports.php">Print Takeout Menu</a>
                                 </li>
 
                             </ul>
