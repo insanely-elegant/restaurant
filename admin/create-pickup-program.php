@@ -17,12 +17,12 @@ if (isset($_POST['submit'])) {
     $dishname1 = $_POST['dishname1'];
     $dishname2 = $_POST['dishname2'];
     $sql = mysqli_query($con, "insert into pickupweeklymenu(pickupdate,pickuptime,dishname1,dishname2) values('$diningdate','$diningtime','$dishname1','$dishname2')");
-    $_SESSION['msg'] = "Published To The Weekly Order Pickup Menu !!";
+    $_SESSION['msg'] = "Published To The Takeout Menu !!";
 }
 
 if (isset($_GET['del'])) {
     mysqli_query($con, "delete from pickupweeklymenu where id = '" . $_GET['id'] . "'");
-    $_SESSION['delmsg'] = "Weekly Menu Item deleted !!";
+    $_SESSION['delmsg'] = "Takeout Menu Item deleted !!";
 }
 
 ?>
