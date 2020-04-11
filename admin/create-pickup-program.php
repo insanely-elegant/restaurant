@@ -163,7 +163,7 @@ function getDiningtime(val) {
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="inputText3">Create a Order Pickup Time</label>
-                                                        <input name="diningtime" type="time" class="form-control">
+                                                        <input name="diningtime" type="text" placeholder="Example : 14:45" class="form-control">
                                                     </div>
 
                                                     <div class="form-group">
@@ -221,7 +221,7 @@ function getDiningtime(val) {
                                                         <td><?php echo htmlentities($row['dishname2']); ?></td>
                                                         <td>
                                                             <!-- <a href="edit-dining-program.php?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">Edit</button> -->
-                                                            <a href="create-dining-program.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
+                                                            <a href="create-pickup-program.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-outline-light">
                                                                 <i class="far fa-trash-alt"></i>
                                                                 </button>
                                                     </tr>
