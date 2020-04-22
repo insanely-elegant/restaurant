@@ -11,6 +11,8 @@ $total['memberguestmealtotalprice'] = 0;
 $total['grandtotal'] = 0;
 $total['freedinermealtotal'] = 0;
 $total['freedinermealtaxvalue'] =0;
+$total['freeseat'] = 0;
+$total['freetotal'] = 0;
 session_start();
 include('includes/config.php');
 // if(strlen($_SESSION['alogin'])==0)
@@ -174,7 +176,24 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             <tbody>
                               <?php
                               $sql = mysqli_query($con, "SELECT * FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' ORDER BY condono ASC");
+                              $result6 = mysqli_query($con, "SELECT *  FROM freediner WHERE diningdate >= '$fdate' AND diningdate <= '$tdate'");
+                              $row6 = mysqli_fetch_array($result6);
+                              $row7 =  mysqli_fetch_array($sql);
 
+                              $total['membermealtotal'] += $row7['membermealtotalprice'];
+                                  $total['membermealtaxvalue'] += $row7['membermealtaxvalue'];
+                                  
+                                  
+                                  $total['seat'] += $row7['seat'] + $row6['seat'] ;
+                                  $total['memberguestmealtaxvalue'] += $row7['memberguestmealtaxvalue'];
+
+                                  $total['memberguestmealprice'] += $row7['memberguestmealprice'];
+                                  $total['memberguestmealtotalprice'] += $row7['memberguestmealtotalprice'];
+
+                                  $total['guestmealprice'] += $row7['guestmealprice'];
+                                  $total['guestmealtaxvalue'] += $row7['guestmealtaxvalue'];
+                                  $total['totaltaxvalues'] += $row7['guestmealtaxvalue'] + $row7['membermealtaxvalue'] + $row7['memberguestmealtaxvalue'] ;
+                                  $total['grandtotal'] += $row7['grandtotal'] + $row6['grandtotal'];
                               $cnt = 1;
                               $LinkMap[1] = 'receipt.php';
                               $LinkMap[0] = 'receipt-guest.php';
@@ -281,11 +300,16 @@ $currentTime = date('d-m-Y h:i:s A', time());
 
                                   <td> <a href="<?php echo $LinkMap[$row['guestmealprice'] != NULL ? '0' : '1']; ?>?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
 
+                                  
                                   <?php
                                   $total['membermealtotal'] += $row['membermealtotalprice'];
                                   $total['membermealtaxvalue'] += $row['membermealtaxvalue'];
-
-                                  $total['seat'] += $row['seat'];
+                                  
+                                  
+                                  // $result6 = mysqli_query($con, "SELECT sum(grandtotal) as freedinergrandtotal, sum(seat) as freedinerseats  FROM freediner WHERE diningdate >= '$fdate' AND diningdate <= '$tdate'");
+                                  // $row6 = mysqli_fetch_array($result6);
+                                  // // echo $row6['freedinergrandtotal'];
+                                  $total['seat'] += $row['seat'] ;
                                   $total['memberguestmealtaxvalue'] += $row['memberguestmealtaxvalue'];
 
                                   $total['memberguestmealprice'] += $row['memberguestmealprice'];
@@ -293,8 +317,8 @@ $currentTime = date('d-m-Y h:i:s A', time());
 
                                   $total['guestmealprice'] += $row['guestmealprice'];
                                   $total['guestmealtaxvalue'] += $row['guestmealtaxvalue'];
-                                  $total['totaltaxvalues'] += $row['guestmealtaxvalue'] + $row['membermealtaxvalue'] + $row['memberguestmealtaxvalue'];
-                                  $total['grandtotal'] += $row['grandtotal'];
+                                  $total['totaltaxvalues'] += $row['guestmealtaxvalue'] + $row['membermealtaxvalue'] + $row['memberguestmealtaxvalue'] ;
+                                  $total['grandtotal'] += $row['grandtotal'] ;
                                   ?>
 
                                 </tr>
@@ -312,7 +336,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                   </div>
                                   <div class="offset-xl-1 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 p-3">
                                     <h2 class="font-weight-normal mb-3">
-                                      <span><?php echo '$' . $total['grandtotal']; ?></span>
+                                      <span><?php echo '$' . $total['grandtotal'] ?></span>
                                     </h2>
                                     <div class="text-muted mb-0 mt-3 legend-item">
                                       <span class="fa-xs text-secondary mr-1 legend-title">
@@ -351,67 +375,67 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             </thead>
                             <tbody>
                               <?php
-                              $sql = mysqli_query($con, "SELECT * FROM freediner WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' ");
+                              $sqlfree = mysqli_query($con, "SELECT * FROM freediner WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' ");
 
                               $cnt = 1;
                               $LinkMap[1] = 'receipt.php';
                               $LinkMap[0] = 'receipt-guest.php';
-                              while ($row = mysqli_fetch_array($sql)) {
+                              while ($rowf = mysqli_fetch_array($sqlfree)) {
                               ?>
                                 <tr>
                                   <td class="center"><?php echo $cnt; ?>.</td>
-                                  <td class="hidden-xs"><?php echo $row['name']; ?></td>
-                                  <td><?php echo $row['room']; ?></td>
-                                  <td><?php echo $row['tablename']; ?></td>
-                                  <td><?php echo $row['diningdate']; ?></td>
-                                  <td style="font-weight: bold;text-transform: uppercase;"><?php echo htmlentities($row['isCheckedin'] ? 'Yes' : 'No'); ?></td>
-                                  <td><?php echo $row['dishname']; ?></td>
+                                  <td class="hidden-xs"><?php echo $rowf['name']; ?></td>
+                                  <td><?php echo $rowf['room']; ?></td>
+                                  <td><?php echo $rowf['tablename']; ?></td>
+                                  <td><?php echo $rowf['diningdate']; ?></td>
+                                  <td style="font-weight: bold;text-transform: uppercase;"><?php echo htmlentities($rowf['isCheckedin'] ? 'Yes' : 'No'); ?></td>
+                                  <td><?php echo $rowf['dishname']; ?></td>
                                   <td><?php
-                                      if ($row['freedinermealprice'] != NULL) {
-                                        echo '$' . $row['freedinermealprice'];
+                                      if ($rowf['freedinermealprice'] != NULL) {
+                                        echo '$' . $rowf['freedinermealprice'];
                                       } else {
                                         echo "";
                                       }
                                       ?></td>
                                   <td><?php
-                                      if ($row['freedinermealtaxpercent'] != NULL) {
-                                        echo $row['freedinermealtaxpercent'] . '%';
-                                      } else {
-                                        echo "";
-                                      }
-                                      ?></td>
-
-                                  <td><?php
-                                      if ($row['freedinermealtaxvalue'] != NULL) {
-                                        echo '$' . $row['freedinermealtaxvalue'];
+                                      if ($rowf['freedinermealtaxpercent'] != NULL) {
+                                        echo $rowf['freedinermealtaxpercent'] . '%';
                                       } else {
                                         echo "";
                                       }
                                       ?></td>
 
                                   <td><?php
-                                            if ($row['freedinermealtotalprice'] != NULL) {
-                                              echo '$' . $row['freedinermealtotalprice'];
+                                      if ($rowf['freedinermealtaxvalue'] != NULL) {
+                                        echo '$' . $rowf['freedinermealtaxvalue'];
+                                      } else {
+                                        echo "";
+                                      }
+                                      ?></td>
+
+                                  <td><?php
+                                            if ($rowf['freedinermealtotalprice'] != NULL) {
+                                              echo '$' . $rowf['freedinermealtotalprice'];
                                             } else {
                                               echo "";
                                             }
                                             ?></td> 
 
                                   
-                                  <td><?php echo $row['seat']; ?></td>
-                                  <td><?php if ($row['grandtotal'] != NULL) {
-                                        echo '$' . $row['grandtotal'];
+                                  <td><?php echo $rowf['seat']; ?></td>
+                                  <td><?php if ($rowf['grandtotal'] != NULL) {
+                                        echo '$' . $rowf['grandtotal'];
                                       } else {
                                         echo "";
                                       } ?></td>
 
                       
                                   <?php
-                                  $total['freedinermealtotal'] += $row['freedinermealtotalprice'];
-                                  $total['freedinermealtaxvalue'] += $row['freedinermealtaxvalue'];
+                                  $total['freedinermealtotal'] += $rowf['freedinermealtotalprice'];
+                                  $total['freedinermealtaxvalue'] += $rowf['freedinermealtaxvalue'];
 
-                                  $total['seat'] += $row['seat'];
-                                  $total['grandtotal'] += $row['grandtotal'];
+                                  $total['freeseat'] += $rowf['seat'];
+                                  $total['freetotal'] += $rowf['grandtotal'];
                                   ?>
 
                                 </tr>
@@ -454,7 +478,26 @@ $currentTime = date('d-m-Y h:i:s A', time());
 
                           $totaltaxcollected = $membermealtaxvalue + $guestmealtaxvalue;
                           echo "<br>Total Tax Collected ( Member + MemberGuest + Guests) : " . '$' . htmlentities($totaltaxcollected); 
-                          echo "<br>Grand Total ( Member + MemberGuest + Guests) : " . '$' . $total['grandtotal']; ?>
+                          echo "<br>Grand Total ( Member + MemberGuest + Guests) : " . '$' . $total['grandtotal'] . "</br>";
+                          echo "<br/>";
+                          
+                          $result5 = mysqli_query($con, "SELECT sum(grandtotal) as freedinertotal, sum(seat) as seats,  freedinermealtaxpercent, sum(freedinermealtaxvalue) as freedinermealtaxvalue  FROM freediner WHERE diningdate >= '$fdate' AND diningdate <= '$tdate'");
+                          $row5 = mysqli_fetch_array($result5);
+                          $freedinermealtaxpercent = $row5['freedinermealtaxpercent'];
+                          $freedinermealtaxvalue = $row5['freedinermealtaxvalue'];
+                          $freedinertotal = $row5['freedinertotal'];
+                          $totseats = $row5['seats'];
+                          $freedinernetvalue = $freedinertotal - $freedinermealtaxvalue;
+                          echo "Net Revenue (Free Diner) : " . '$' . htmlentities($freedinernetvalue);
+                          echo "<br>Tax Percentage (Free Diner)  : " . htmlentities($freedinermealtaxpercent) . '%';
+                          echo "<br>Total meals serverd (Free Diner)  : " . htmlentities($totseats);
+                          echo "<br>Tax Value (Free Diner) : " . '$' . htmlentities($freedinermealtaxvalue);
+                          echo "<br>Gross Total Revenue (Free Diner) : " . '$' . htmlentities($freedinertotal) . "</br>";
+                          
+                          ?>
+
+
+                          
                           <script>
                             function myFunction() {
                               var input, filter, table, tr, td, i, txtValue;
