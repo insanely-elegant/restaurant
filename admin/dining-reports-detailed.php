@@ -179,12 +179,15 @@ $currentTime = date('d-m-Y h:i:s A', time());
                               $result6 = mysqli_query($con, "SELECT *  FROM freediner WHERE diningdate >= '$fdate' AND diningdate <= '$tdate'");
                               $row6 = mysqli_fetch_array($result6);
                               $row7 =  mysqli_fetch_array($sql);
+                              $result55 = mysqli_query($con, "SELECT sum(grandtotal) as pickuptotalgrand , membermealprice FROM pickups WHERE diningdate >= '$fdate' AND diningdate <= '$tdate'");
+                              $row55 = mysqli_fetch_array($result55);
+                              $totalnumofpickup = $row55['pickuptotalgrand'] / $row55['membermealprice'];
 
-                              $total['membermealtotal'] += $row7['membermealtotalprice'];
+                                  $total['membermealtotal'] += $row7['membermealtotalprice'];
                                   $total['membermealtaxvalue'] += $row7['membermealtaxvalue'];
                                   
                                   
-                                  $total['seat'] += $row7['seat'] + $row6['seat'] ;
+                                  $total['seat'] += $row7['seat'] + $row6['seat'] + $totalnumofpickup;
                                   $total['memberguestmealtaxvalue'] += $row7['memberguestmealtaxvalue'];
 
                                   $total['memberguestmealprice'] += $row7['memberguestmealprice'];
@@ -193,7 +196,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                   $total['guestmealprice'] += $row7['guestmealprice'];
                                   $total['guestmealtaxvalue'] += $row7['guestmealtaxvalue'];
                                   $total['totaltaxvalues'] += $row7['guestmealtaxvalue'] + $row7['membermealtaxvalue'] + $row7['memberguestmealtaxvalue'] ;
-                                  $total['grandtotal'] += $row7['grandtotal'] + $row6['grandtotal'];
+                                  $total['grandtotal'] += $row7['grandtotal'] + $row6['grandtotal'] + $row55['pickuptotalgrand'];
                               $cnt = 1;
                               $LinkMap[1] = 'receipt.php';
                               $LinkMap[0] = 'receipt-guest.php';
@@ -304,11 +307,6 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                   <?php
                                   $total['membermealtotal'] += $row['membermealtotalprice'];
                                   $total['membermealtaxvalue'] += $row['membermealtaxvalue'];
-                                  
-                                  
-                                  // $result6 = mysqli_query($con, "SELECT sum(grandtotal) as freedinergrandtotal, sum(seat) as freedinerseats  FROM freediner WHERE diningdate >= '$fdate' AND diningdate <= '$tdate'");
-                                  // $row6 = mysqli_fetch_array($result6);
-                                  // // echo $row6['freedinergrandtotal'];
                                   $total['seat'] += $row['seat'] ;
                                   $total['memberguestmealtaxvalue'] += $row['memberguestmealtaxvalue'];
 
@@ -353,7 +351,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
 
                             </tbody>
 
-                              <br>
+                              <br/><br/>
 
                             <thead>
                               <tr>
@@ -445,6 +443,53 @@ $currentTime = date('d-m-Y h:i:s A', time());
                   
 
                             </tbody>
+                              <br/> <br/> 
+                            <thead>
+                            <tr>
+                                <th class="center">#</th>
+                                <th>First Name</th>
+                                <th>Diner Type</th>
+                                <th>Condono</th>
+                                  <th>Takeout Date</th>
+                                  <th>Takeout Time</th>
+                                  <th>Dish</th>
+                                  <th>Pickedup?</th>
+                                  <th>Pickup Meal Price</th>
+                                  <th>Pickup Meal Tax</th>
+                                  <th>Pickup Meal Tax Value</th>
+                                  <th>Pickup Meal Total Price</th>
+                                  <th>Grand Total</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+
+                            $sql = mysqli_query($con, "SELECT * from pickups WHERE diningdate >= '$fdate' AND diningdate <= '$tdate'");
+                            $cnt = 1;
+                            while ($row = mysqli_fetch_array($sql)) {
+                            ?>
+                                <tr>
+                                    <td class="center"><?php echo $cnt; ?>.</td>
+                                    <td class="hidden-xs"><?php echo $row['firstname']; ?></td>
+                                    <td class="hidden-xs"><?php echo $row['dinerType']; ?></td>
+                                    <td class="hidden-xs"><?php echo $row['condono']; ?></td>
+                                   <td class="hidden-xs"><?php echo $row['diningdate']; ?></td>
+                                    <td class="hidden-xs"><?php echo $row['diningtime']; ?></td>
+                                    <td><?php echo $row['dishname']; ?></td>
+                                    <td style="font-weight: bold;text-transform: uppercase;"><?php echo htmlentities($rowf['isPickedup'] ? 'Yes' : 'No'); ?></td>
+                                    <td><?php echo $row['membermealprice']; ?></td>
+                                    <td><?php echo $row['membermealtaxpercent']; ?></td>
+                                    <td><?php echo $row['membermealtaxvalue']; ?></td>
+                                    <td><?php echo $row['membermealtotalprice']; ?></td>
+                                    <td><?php echo $row['grandtotal']; ?>
+                                    </td>
+                                </tr>
+                            <?php
+                                $cnt = $cnt + 1;
+                            } ?>
+                  
+
+                            </tbody>
                           
                           </table>
                           <?php
@@ -493,6 +538,21 @@ $currentTime = date('d-m-Y h:i:s A', time());
                           echo "<br>Total meals serverd (Free Diner)  : " . htmlentities($totseats);
                           echo "<br>Tax Value (Free Diner) : " . '$' . htmlentities($freedinermealtaxvalue);
                           echo "<br>Gross Total Revenue (Free Diner) : " . '$' . htmlentities($freedinertotal) . "</br>";
+                          echo "<br/>";
+
+                          $result12 = mysqli_query($con, "SELECT sum(grandtotal) as pickuptotal, membermealprice,  membermealtaxpercent, sum(membermealtaxvalue) as membermealtaxvalue  FROM pickups WHERE diningdate >= '$fdate' AND diningdate <= '$tdate'");
+                          $row12 = mysqli_fetch_array($result12);
+                          $pickupmealtaxpercent = $row12['membermealtaxpercent'];
+                          $pickupmealtaxvalue = $row12['membermealtaxvalue'];
+                          $pickuptotal = $row12['pickuptotal'];
+                          $pickupmealprice = $row12['membermealprice'];
+                          $pickupnetvalue = $pickuptotal - $pickupmealtaxvalue;
+                          $totalpickups = $pickuptotal / $pickupmealprice;
+                          echo "Net Revenue (Pickups) : " . '$' . htmlentities($pickupnetvalue);
+                          echo "<br>Tax Percentage (Pickups)  : " . htmlentities($pickupmealtaxpercent) . '%';
+                          echo "<br>Total meals serverd (Pickups)  : " . htmlentities($totalpickups);
+                          echo "<br>Tax Value (Pickups) : " . '$' . htmlentities($pickupmealtaxvalue);
+                          echo "<br>Gross Total Revenue (Pickups) : " . '$' . htmlentities($pickuptotal) . "</br>";
                           
                           ?>
 
