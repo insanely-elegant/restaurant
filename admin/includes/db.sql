@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2020 at 04:06 AM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Generation Time: Apr 22, 2020 at 09:44 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -103,6 +103,15 @@ CREATE TABLE `diningdates` (
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `diningdates`
+--
+
+INSERT INTO `diningdates` (`id`, `diningdate`, `status`) VALUES
+(1, '2020-04-20', 'enabled'),
+(2, '2020-04-21', 'enabled'),
+(3, '2020-04-22', 'enabled');
+
 -- --------------------------------------------------------
 
 --
@@ -161,6 +170,13 @@ CREATE TABLE `freediner` (
   `freedinertotal` decimal(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `freediner`
+--
+
+INSERT INTO `freediner` (`id`, `bookingid`, `name`, `dishname`, `roomid`, `room`, `tablename`, `seat`, `guestno`, `isConfirmed`, `isCheckedin`, `diningdate`, `diningtime`, `dinerType`, `freedinermealprice`, `freedinermealtaxpercent`, `freedinermealtaxvalue`, `freedinermealtotalprice`, `grandtotal`, `freedinertotal`) VALUES
+(1, 'SGFD2004200001', 'Free Diner', 'Classic Hot Rueben Sandwich', 1, 'Main Dining Room', '6', '4', '4', '', '', '2020-04-20', '11:20:00', 'freediner', '14.00', '0.00', '0.00', '14.00', '56.00', '0.00');
+
 -- --------------------------------------------------------
 
 --
@@ -215,10 +231,19 @@ CREATE TABLE `pickups` (
   `membermealtaxpercent` decimal(5,2) NOT NULL,
   `membermealtaxvalue` decimal(5,2) NOT NULL,
   `membermealtotalprice` decimal(5,2) NOT NULL,
+  `dinerType` varchar(255) NOT NULL,
   `grandtotal` decimal(5,2) NOT NULL,
   `isPickedup` varchar(255) NOT NULL,
   `timestamp` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pickups`
+--
+
+INSERT INTO `pickups` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `diningdate`, `diningtime`, `condono`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `dinerType`, `grandtotal`, `isPickedup`, `timestamp`) VALUES
+(1, '', 'John', 'Doe', 'Denver Omelette', '2020-04-20', '00:00:15', 'E302', '14.00', '0.00', '0.00', '14.00', 'Takeout', '14.00', '', NULL),
+(2, '', 'John', 'Doe', 'Denver Omelette', '2020-04-20', '00:00:15', 'E302', '14.00', '0.00', '0.00', '14.00', 'Takeout', '14.00', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -234,6 +259,13 @@ CREATE TABLE `pickupweeklymenu` (
   `dishname2` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pickupweeklymenu`
+--
+
+INSERT INTO `pickupweeklymenu` (`id`, `pickupdate`, `pickuptime`, `dishname1`, `dishname2`, `status`) VALUES
+(1, '2020-04-20', '00:00:15', 'Denver Omelette', 'Meat Lasagna', '');
 
 -- --------------------------------------------------------
 
@@ -304,6 +336,17 @@ CREATE TABLE `reservation` (
   `freedinersmealtaxvalue` decimal(5,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `reservation`
+--
+
+INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `roomid`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `freedinersmealtotalprice`, `isConfirmed`, `isCheckedin`, `dinerType`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `guestmealprice`, `guestmealtaxpercent`, `guestmealtaxvalue`, `guestmealtotalprice`, `grandtotal`, `memberguestmealprice`, `memberguestmealtaxpercent`, `memberguestmealtaxvalue`, `memberguestmealtotalprice`, `freedinersmealprice`, `freedinersmealtaxpercent`, `freedinersmealtaxvalue`) VALUES
+(1, 'SG2004200001', 'John', 'Doe', 'Classic Hot Rueben Sandwich', 1, 'Main Dining Room', '5', 0, '4', '2020-04-20', '11:20:00', '3', 'E302', NULL, '', NULL, 'memberguest', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '56.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
+(2, 'SG2004200002', 'John', 'Doe', 'Classic Hot Rueben Sandwich', 1, 'Main Dining Room', '3', 0, '1', '2020-04-20', '11:20:00', '0', 'E302', NULL, '', NULL, 'member', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '14.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
+(3, 'SG2004200003', 'John', 'Doe', 'Classic Hot Rueben Sandwich', 1, 'Main Dining Room', '7', 0, '4', '2020-04-20', '11:20:00', '3', 'E302', NULL, '', NULL, 'memberguest', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '56.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
+(4, 'SG2004200004', 'John', 'Doe', 'Classic Hot Rueben Sandwich', 1, 'Main Dining Room', '8', 0, '4', '2020-04-20', '11:20:00', '4', 'E302G', NULL, '', NULL, 'guest', NULL, NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '68.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'SG2004210001', 'John', 'Doe', 'Meat Lasagna', 1, 'Main Dining Room', '7', 0, '2', '2020-04-21', '08:30:00', '1', 'E302', NULL, '', NULL, 'memberguest', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '28.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -373,6 +416,22 @@ CREATE TABLE `userlog` (
   `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `userlog`
+--
+
+INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logout`, `status`) VALUES
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-18 17:48:21', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-18 17:49:26', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-18 19:54:27', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-19 14:11:46', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-19 14:29:47', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-19 15:03:06', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-19 15:03:19', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-19 15:04:11', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-19 15:44:10', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-20 15:28:46', NULL, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -391,6 +450,13 @@ CREATE TABLE `users` (
   `altcontactno` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `age`, `unitno`, `email`, `password`, `contactno`, `altcontactno`) VALUES
+(1, 'John', 'Doe', '35', 'E302', 'johndoe@gmail.com', 'E302', '9876543210', '');
+
 -- --------------------------------------------------------
 
 --
@@ -406,6 +472,33 @@ CREATE TABLE `weeklymenu` (
   `dishname1` varchar(255) NOT NULL,
   `dishname2` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `weeklymenu`
+--
+
+INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `roomid`, `tableid`, `dishname1`, `dishname2`) VALUES
+(1, '2020-04-20', '11:20:00', 1, 1, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(2, '2020-04-20', '11:20:00', 1, 2, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(3, '2020-04-20', '11:20:00', 1, 3, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(4, '2020-04-20', '11:20:00', 1, 4, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(5, '2020-04-20', '11:20:00', 1, 5, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(6, '2020-04-20', '11:20:00', 1, 6, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(7, '2020-04-20', '11:20:00', 1, 7, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(8, '2020-04-20', '11:20:00', 1, 8, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(9, '2020-04-20', '11:20:00', 1, 9, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(10, '2020-04-20', '11:20:00', 1, 10, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(11, '2020-04-20', '11:20:00', 1, 11, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(12, '2020-04-20', '11:20:00', 1, 12, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(13, '2020-04-20', '11:20:00', 1, 13, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(14, '2020-04-21', '08:30:00', 1, 6, 'Meat Lasagna', 'Chipotle Burger (V)'),
+(15, '2020-04-22', '08:30:00', 1, 6, 'Meat Lasagna', 'Chipotle Burger (V)'),
+(16, '2020-04-21', '08:30:00', 1, 7, 'Meat Lasagna', 'Chipotle Burger (V)'),
+(17, '2020-04-22', '08:30:00', 1, 7, 'Meat Lasagna', 'Chipotle Burger (V)'),
+(18, '2020-04-21', '08:30:00', 1, 8, 'Meat Lasagna', 'Chipotle Burger (V)'),
+(19, '2020-04-22', '08:30:00', 1, 8, 'Meat Lasagna', 'Chipotle Burger (V)'),
+(20, '2020-04-21', '08:30:00', 1, 11, 'Meat Lasagna', 'Chipotle Burger (V)'),
+(21, '2020-04-22', '08:30:00', 1, 11, 'Meat Lasagna', 'Chipotle Burger (V)');
 
 --
 -- Indexes for dumped tables
@@ -527,7 +620,7 @@ ALTER TABLE `chef`
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `dish`
@@ -539,7 +632,7 @@ ALTER TABLE `dish`
 -- AUTO_INCREMENT for table `freediner`
 --
 ALTER TABLE `freediner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `host`
@@ -557,19 +650,19 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `pickups`
 --
 ALTER TABLE `pickups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pickupweeklymenu`
 --
 ALTER TABLE `pickupweeklymenu`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `room`
@@ -587,13 +680,13 @@ ALTER TABLE `tablelayout`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
