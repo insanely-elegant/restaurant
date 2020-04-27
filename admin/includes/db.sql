@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2020 at 11:01 PM
+<<<<<<< Updated upstream
+-- Generation Time: Apr 22, 2020 at 09:44 PM
+=======
+-- Generation Time: Apr 27, 2020 at 10:54 PM
+>>>>>>> Stashed changes
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -110,8 +114,12 @@ CREATE TABLE `diningdates` (
 INSERT INTO `diningdates` (`id`, `diningdate`, `status`) VALUES
 (1, '2020-04-20', 'enabled'),
 (2, '2020-04-21', 'enabled'),
+<<<<<<< Updated upstream
+(3, '2020-04-22', 'enabled');
+=======
 (3, '2020-04-22', 'enabled'),
 (4, '2020-04-29', 'enabled');
+>>>>>>> Stashed changes
 
 -- --------------------------------------------------------
 
@@ -431,8 +439,12 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-19 15:03:19', NULL, 1),
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-19 15:04:11', NULL, 1),
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-19 15:44:10', NULL, 1),
+<<<<<<< Updated upstream
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-20 15:28:46', NULL, 1);
+=======
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-20 15:28:46', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-27 19:14:27', NULL, 1);
+>>>>>>> Stashed changes
 
 -- --------------------------------------------------------
 
@@ -481,8 +493,33 @@ CREATE TABLE `weeklymenu` (
 -- Dumping data for table `weeklymenu`
 --
 
+<<<<<<< Updated upstream
+INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `roomid`, `tableid`, `dishname1`, `dishname2`) VALUES
+(1, '2020-04-20', '11:20:00', 1, 1, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(2, '2020-04-20', '11:20:00', 1, 2, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(3, '2020-04-20', '11:20:00', 1, 3, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(4, '2020-04-20', '11:20:00', 1, 4, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(5, '2020-04-20', '11:20:00', 1, 5, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(6, '2020-04-20', '11:20:00', 1, 6, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(7, '2020-04-20', '11:20:00', 1, 7, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(8, '2020-04-20', '11:20:00', 1, 8, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(9, '2020-04-20', '11:20:00', 1, 9, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(10, '2020-04-20', '11:20:00', 1, 10, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(11, '2020-04-20', '11:20:00', 1, 11, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(12, '2020-04-20', '11:20:00', 1, 12, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(13, '2020-04-20', '11:20:00', 1, 13, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
+(14, '2020-04-21', '08:30:00', 1, 6, 'Meat Lasagna', 'Chipotle Burger (V)'),
+(15, '2020-04-22', '08:30:00', 1, 6, 'Meat Lasagna', 'Chipotle Burger (V)'),
+(16, '2020-04-21', '08:30:00', 1, 7, 'Meat Lasagna', 'Chipotle Burger (V)'),
+(17, '2020-04-22', '08:30:00', 1, 7, 'Meat Lasagna', 'Chipotle Burger (V)'),
+(18, '2020-04-21', '08:30:00', 1, 8, 'Meat Lasagna', 'Chipotle Burger (V)'),
+(19, '2020-04-22', '08:30:00', 1, 8, 'Meat Lasagna', 'Chipotle Burger (V)'),
+(20, '2020-04-21', '08:30:00', 1, 11, 'Meat Lasagna', 'Chipotle Burger (V)'),
+(21, '2020-04-22', '08:30:00', 1, 11, 'Meat Lasagna', 'Chipotle Burger (V)');
+=======
 INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `roomid`, `tableid`, `dishname1`, `dish1_description`, `dishname2`, `dish2_description`) VALUES
 (1, '2020-04-29', '14:22:00', 1, 1, 'Chicken Alfredo over Penne Pasta', 'Juicy grilled chicken is served warm on a bed of fettuccine pasta tossed with broccoli and rich Alfredo sauce and topped with Parmesan cheese.', 'Chipotle Burger (V)', 'With French Fries');
+>>>>>>> Stashed changes
 
 --
 -- Indexes for dumped tables
@@ -604,7 +641,11 @@ ALTER TABLE `chef`
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
+<<<<<<< Updated upstream
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+=======
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+>>>>>>> Stashed changes
 
 --
 -- AUTO_INCREMENT for table `dish`
@@ -670,7 +711,11 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
+<<<<<<< Updated upstream
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+=======
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+>>>>>>> Stashed changes
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
