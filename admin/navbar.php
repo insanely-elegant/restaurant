@@ -9,7 +9,7 @@
 
 
                 <li class="nav-item dropdown nav-user">
-                    <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
+                    <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/avatars-clipart-1.png" alt="" class="user-avatar-md rounded-circle"></a>
                     <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                         <div class="nav-user-info">
                             <h5 class="mb-0 text-white nav-user-name">Duane DeSalvo </h5>
@@ -171,17 +171,15 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fas fa-fw fa-file"></i> Dining Reports </a>
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fas fa-fw fa-file"></i>All Reports </a>
                         <div id="submenu-12" class="collapse submenu">
                             <ul class="nav flex-column">
-                                <a class="nav-link" href="dining-reports.php">View Dining Reports by Date</a>
+                                <a class="nav-link" href="dining-reports.php">View All Reports By Date</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="dining-reports-with-unitno.php">View Dining Reports by Date & Unitno</a>
+                        <a class="nav-link" href="dining-reports-with-unitno.php">View All Reports by Date & Unitno</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="free-dining-reports.php">View Free Dining Reports by Date</a>
-                    </li>
+                    
                 </ul>
             </div>
             </li>
