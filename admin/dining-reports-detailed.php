@@ -144,6 +144,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                         </div>
                         <div class="table-responsive">
                           <table id="example" class="table table-striped table-bordered second" style="width:100%">
+                          
                             <thead>
                               <tr>
                                 <th class="center">#</th>
