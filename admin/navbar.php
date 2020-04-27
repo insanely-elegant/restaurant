@@ -174,7 +174,7 @@
                         <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fas fa-fw fa-file"></i>All Reports </a>
                         <div id="submenu-12" class="collapse submenu">
                             <ul class="nav flex-column">
-                                <a class="nav-link" href="dining-reports.php">View All Reports By Date</a>
+                                <a class="nav-link" href="reports.php">View All Reports By Date</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="dining-reports-with-unitno.php">View All Reports by Date & Unitno</a>

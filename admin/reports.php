@@ -80,8 +80,8 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="section-block" id="basicform">
-                                        <h3 class="section-title">Dining Reports</h3>
-                                        <p>You can generate reports here.</p>
+                                        <h3 class="section-title">Dining Reports, Free Diner Reports & Takeout Reports</h3>
+                                        <p>You can generate all the reports here.</p>
                                     </div>
                                     <script>
                                         $(document).ready(function() {
@@ -96,7 +96,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                         <div class="card-body">
                                             <div class="panel-body">
 
-                                                <form role="form" method="post" action="dining-reports-detailed.php">
+                                                <form role="form" method="post" action="reports-detailed.php">
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">
                                                             From Date: *
