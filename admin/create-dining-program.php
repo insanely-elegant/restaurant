@@ -23,14 +23,11 @@ if (isset($_POST['submit'])) {
     $diningtime = $_POST['diningtime'];
     $dishname1 = $_POST['dishname1'];
     $dishname2 = $_POST['dishname2'];
-    $dish1description = $_POST['dish1description'];
-    $dish2description = $_POST['dish2description'];
-
 
     foreach ($field_values_array1 as $value1) { // This Loop Execute for Tables Selection
         $table = $value1;
         foreach ($field_values_array2 as $value2) { // This Loop Execute for Diningdate Selection
-            $sql = mysqli_query($con, "insert into weeklymenu(roomid,tableid,diningdate,diningtime,dishname1,dish1_description,dishname2, dish2_description) values('$room','$table','$value2','$diningtime','$dishname1','$dish1description','$dishname2','$dish2description')");
+            $sql = mysqli_query($con, "insert into weeklymenu(roomid,tableid,diningdate,diningtime,dishname1,dishname2) values('$room','$table','$value2','$diningtime','$dishname1','$dishname2')");
         }
 
         $i++;
@@ -65,39 +62,6 @@ if (isset($_GET['del'])) {
                 }
             });
         }
-
-        function getFoodDescription(val) { //fetches dishname
-				$.ajax({
-					type: "POST",
-					url: "get_food_description.php",
-					data: 'dishname=' + val,
-					success: function(data) {
-						$("#dish1description").html(data);
-					}
-				});
-			}
-            function getFoodDescription2(val) { //fetches dish description
-				$.ajax({
-					type: "POST",
-					url: "get_food_description.php",
-					data: 'dishname=' + val,
-					success: function(data) {
-						$("#dish2description").html(data);
-					}
-				});
-			}
-            $(document).ready(function() { //passes selected option name for tablename to hidden input fields
-				$('#dish1description').on('change', function() {
-					var dishDesc = $("#dish1description option:selected").text();
-					document.getElementById('dish1description_h').value = dishDesc;
-				});
-			});
-            $(document).ready(function() { //passes selected option name for tablename to hidden input fields
-				$('#dish2description').on('change', function() {
-					var dishDesc = $("#dish2description option:selected").text();
-					document.getElementById('dish2description_h').value = dishDesc;
-				});
-			});
     </script>
 </head>
 
@@ -213,7 +177,7 @@ if (isset($_GET['del'])) {
                                                         <input id="diningtime" placeholder="Example: 14:00" name="diningtime" type="time" class="form-control" required>
 
 
-                                                        <select name="dishname1" class="form-control" onChange="getFoodDescription(value);" id="input-select" required>
+                                                        <select name="dishname1" class="form-control" id="input-select" required>
                                                             <option value="">Select a Dish</option>
                                                             <?php
                                                             $query = mysqli_query($con, "select * from dish");
@@ -221,16 +185,8 @@ if (isset($_GET['del'])) {
                                                                 <option value="<?php echo $row['dishname']; ?>"><?php echo $row['dishname']; ?></option>
                                                             <?php } ?>
                                                         </select>
-                                                        <select name="dish1description" id="dish1description" class="form-control"  required>
-                                                        
-									                    </select>  
-                                                        <input type="hidden" name="dish1description_h" id="dish1description_h">
-                                                        <!-- <div class="card-body" name="dish1description" id="dish1description">
-								                            </div> -->
-                                                            
 
-
-                                                        <select name="dishname2" class="form-control" onChange="getFoodDescription2(value);" id="input-select" required>
+                                                        <select name="dishname2" class="form-control" id="input-select" required>
                                                             <option value="">Select a Dish</option>
                                                             <?php
                                                             $query = mysqli_query($con, "select * from dish");
@@ -238,13 +194,6 @@ if (isset($_GET['del'])) {
                                                                 <option value="<?php echo $row['dishname']; ?>"><?php echo $row['dishname']; ?></option>
                                                             <?php } ?>
                                                         </select>
-                                                        <select name="dish2description" id="dish2description" class="form-control"  required>
-                    
-									                    </select>   
-
-                                                        <input type="hidden" name="dish2description_h" id="dish2description_h">
-                                                        <!-- <div class="card-body" name="dish2description" id="dish2description">
-								                            </div> -->
 
                                                         <!-- <button type="button" class="add_button btn btn-primary" title="Add new field"><i class="fa fa-plus-circle"></i></button> -->
 

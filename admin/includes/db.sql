@@ -3,11 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< Updated upstream
--- Generation Time: Apr 22, 2020 at 09:44 PM
+<<<<<<< HEAD
+-- Generation Time: Apr 27, 2020 at 11:01 PM
 =======
--- Generation Time: Apr 27, 2020 at 10:54 PM
->>>>>>> Stashed changes
+-- Generation Time: Apr 22, 2020 at 09:44 PM
+>>>>>>> parent of f02e0b0... (feat) Add dish description to create weekly menu
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -114,12 +114,12 @@ CREATE TABLE `diningdates` (
 INSERT INTO `diningdates` (`id`, `diningdate`, `status`) VALUES
 (1, '2020-04-20', 'enabled'),
 (2, '2020-04-21', 'enabled'),
-<<<<<<< Updated upstream
-(3, '2020-04-22', 'enabled');
-=======
+<<<<<<< HEAD
 (3, '2020-04-22', 'enabled'),
 (4, '2020-04-29', 'enabled');
->>>>>>> Stashed changes
+=======
+(3, '2020-04-22', 'enabled');
+>>>>>>> parent of f02e0b0... (feat) Add dish description to create weekly menu
 
 -- --------------------------------------------------------
 
@@ -439,12 +439,12 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-19 15:03:19', NULL, 1),
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-19 15:04:11', NULL, 1),
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-19 15:44:10', NULL, 1),
-<<<<<<< Updated upstream
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-20 15:28:46', NULL, 1);
-=======
+<<<<<<< HEAD
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-20 15:28:46', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-27 19:14:27', NULL, 1);
->>>>>>> Stashed changes
+=======
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-20 15:28:46', NULL, 1);
+>>>>>>> parent of f02e0b0... (feat) Add dish description to create weekly menu
 
 -- --------------------------------------------------------
 
@@ -484,16 +484,17 @@ CREATE TABLE `weeklymenu` (
   `roomid` int(50) NOT NULL,
   `tableid` int(50) NOT NULL,
   `dishname1` varchar(255) NOT NULL,
-  `dish1_description` text NOT NULL,
-  `dishname2` varchar(255) NOT NULL,
-  `dish2_description` text NOT NULL
+  `dishname2` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `weeklymenu`
 --
 
-<<<<<<< Updated upstream
+<<<<<<< HEAD
+INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `roomid`, `tableid`, `dishname1`, `dish1_description`, `dishname2`, `dish2_description`) VALUES
+(1, '2020-04-29', '14:22:00', 1, 1, 'Chicken Alfredo over Penne Pasta', 'Juicy grilled chicken is served warm on a bed of fettuccine pasta tossed with broccoli and rich Alfredo sauce and topped with Parmesan cheese.', 'Chipotle Burger (V)', 'With French Fries');
+=======
 INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `roomid`, `tableid`, `dishname1`, `dishname2`) VALUES
 (1, '2020-04-20', '11:20:00', 1, 1, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
 (2, '2020-04-20', '11:20:00', 1, 2, 'Classic Hot Rueben Sandwich', 'Denver Omelette'),
@@ -516,10 +517,7 @@ INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `roomid`, `tableid`,
 (19, '2020-04-22', '08:30:00', 1, 8, 'Meat Lasagna', 'Chipotle Burger (V)'),
 (20, '2020-04-21', '08:30:00', 1, 11, 'Meat Lasagna', 'Chipotle Burger (V)'),
 (21, '2020-04-22', '08:30:00', 1, 11, 'Meat Lasagna', 'Chipotle Burger (V)');
-=======
-INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `roomid`, `tableid`, `dishname1`, `dish1_description`, `dishname2`, `dish2_description`) VALUES
-(1, '2020-04-29', '14:22:00', 1, 1, 'Chicken Alfredo over Penne Pasta', 'Juicy grilled chicken is served warm on a bed of fettuccine pasta tossed with broccoli and rich Alfredo sauce and topped with Parmesan cheese.', 'Chipotle Burger (V)', 'With French Fries');
->>>>>>> Stashed changes
+>>>>>>> parent of f02e0b0... (feat) Add dish description to create weekly menu
 
 --
 -- Indexes for dumped tables
@@ -641,11 +639,11 @@ ALTER TABLE `chef`
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
-<<<<<<< Updated upstream
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-=======
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
->>>>>>> Stashed changes
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+>>>>>>> parent of f02e0b0... (feat) Add dish description to create weekly menu
 
 --
 -- AUTO_INCREMENT for table `dish`
@@ -711,11 +709,11 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-<<<<<<< Updated upstream
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-=======
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
->>>>>>> Stashed changes
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+>>>>>>> parent of f02e0b0... (feat) Add dish description to create weekly menu
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
