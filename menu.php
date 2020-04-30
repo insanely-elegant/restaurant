@@ -96,6 +96,11 @@ if (strlen($_SESSION['login']) == 0) {
 								View Your Reservation History
 							</button>
 						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<button class="login100-form-btn" style="background-color: #7F5A83;" onClick="cancel();">
+								Cancel Your Upcoming Reservation
+							</button>
+						</div>
 
 						<div class="container-login100-form-btn m-t-17">
 							<button class="login100-form-btn" style="background-color: #E09853;" onClick="pickuphistory();">
@@ -130,6 +135,11 @@ if (strlen($_SESSION['login']) == 0) {
 							function history() {
 								location.href = "booking-history.php"
 							}
+
+							function cancel() {
+								location.href = "cancel-booking.php"
+							}
+
 
 							function pickuphistory() {
 								location.href = "pickup-history.php"
