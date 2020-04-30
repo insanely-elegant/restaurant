@@ -9,6 +9,10 @@ $total['guestmealtaxvalue'] = 0;
 $total['totaltaxvalues'] = 0;
 $total['memberguestmealtotalprice'] = 0;
 $total['grandtotal'] = 0;
+$total['freedinermealtotal'] = 0;
+$total['freedinermealtaxvalue'] = 0;
+$total['freeseat'] = 0;
+$total['freetotal'] = 0;
 session_start();
 include('includes/config.php');
 // if(strlen($_SESSION['alogin'])==0)
@@ -97,20 +101,22 @@ $currentTime = date('d-m-Y h:i:s A', time());
                     <nav aria-label="breadcrumb">
                       <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Dining Reports</li>
+                        <li class="breadcrumb-item active" aria-current="page">Dining Report, Free Diner Report, Takeout Report</li>
                       </ol>
                     </nav>
                   </div>
                   </div>
                 </div>
               </div>
+
+
               <!-- ============================================================== -->
               <!-- end pageheader  -->
               <!-- ============================================================== -->
               <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                   <div class="section-block" id="basicform">
-                    <h3 class="section-title">Dining Reports</h3>
+                    <h3 class="section-title">Dining Report, Free Diner Report, Takeout Report</h3>
                     <p>You can generate reports here.</p>
                   </div>
 
@@ -134,11 +140,19 @@ $currentTime = date('d-m-Y h:i:s A', time());
                           </div>
 
                           <div class="form-group">
-                            <input class="form-control" type="text" id="myInput2" onkeyup="myFunction2()" placeholder="Last name" title="Type in a last name"></div>
+                            <input class="form-control" type="text" id="myInput2" onkeyup="myFunction2()" placeholder="Last name" title="Type in a last name">
+                          </div>
 
                           <div class="form-group">
-                            <input class="form-control" type="text" id="myInput3" onkeyup="myFunction3()" placeholder="Unit Number" title="Type in the Unit Number"></div>
+                            <input class="form-control" type="text" id="myInput3" onkeyup="myFunction3()" placeholder="Unit Number" title="Type in the Unit Number">
+                          </div>
                         </div>
+                        <div class="card">
+                          <div class="card-body" style="background: #0e0c28; position: center;">
+                            <h1 style="color: white;">Dining Report</h1>
+                          </div>
+                        </div>
+
                         <div class="table-responsive">
                           <table id="example" class="table table-striped table-bordered second" style="width:100%">
                             <thead>
@@ -173,7 +187,27 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             <tbody>
                               <?php
                               $sql = mysqli_query($con, "SELECT * FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' AND condono LIKE '$unitno%' ORDER BY condono ASC");
+                              $result6 = mysqli_query($con, "SELECT *  FROM freediner WHERE diningdate >= '$fdate' AND diningdate <= '$tdate'");
+                              $row6 = mysqli_fetch_array($result6);
+                              $row7 =  mysqli_fetch_array($sql);
+                              $result55 = mysqli_query($con, "SELECT sum(grandtotal) as pickuptotalgrand , membermealprice FROM pickups WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono LIKE '$unitno%'");
+                              $row55 = mysqli_fetch_array($result55);
+                              $totalnumofpickup = $row55['pickuptotalgrand'] / $row55['membermealprice'];
 
+                              $total['membermealtotal'] += $row7['membermealtotalprice'];
+                              $total['membermealtaxvalue'] += $row7['membermealtaxvalue'];
+
+
+                              $total['seat'] += $row7['seat'] + $row6['seat'] + $totalnumofpickup;
+                              $total['memberguestmealtaxvalue'] += $row7['memberguestmealtaxvalue'];
+
+                              $total['memberguestmealprice'] += $row7['memberguestmealprice'];
+                              $total['memberguestmealtotalprice'] += $row7['memberguestmealtotalprice'];
+
+                              $total['guestmealprice'] += $row7['guestmealprice'];
+                              $total['guestmealtaxvalue'] += $row7['guestmealtaxvalue'];
+                              $total['totaltaxvalues'] += $row7['guestmealtaxvalue'] + $row7['membermealtaxvalue'] + $row7['memberguestmealtaxvalue'];
+                              $total['grandtotal'] += $row7['grandtotal'] + $row6['grandtotal'] + $row55['pickuptotalgrand'];
                               $cnt = 1;
                               $LinkMap[1] = 'receipt.php';
                               $LinkMap[0] = 'receipt-guest.php';
@@ -280,10 +314,10 @@ $currentTime = date('d-m-Y h:i:s A', time());
 
                                   <td> <a href="<?php echo $LinkMap[$row['guestmealprice'] != NULL ? '0' : '1']; ?>?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
 
+
                                   <?php
                                   $total['membermealtotal'] += $row['membermealtotalprice'];
                                   $total['membermealtaxvalue'] += $row['membermealtaxvalue'];
-
                                   $total['seat'] += $row['seat'];
                                   $total['memberguestmealtaxvalue'] += $row['memberguestmealtaxvalue'];
 
@@ -311,7 +345,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                   </div>
                                   <div class="offset-xl-1 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 p-3">
                                     <h2 class="font-weight-normal mb-3">
-                                      <span><?php echo '$' . $total['grandtotal']; ?></span>
+                                      <span><?php echo '$' . $total['grandtotal'] ?></span>
                                     </h2>
                                     <div class="text-muted mb-0 mt-3 legend-item">
                                       <span class="fa-xs text-secondary mr-1 legend-title">
@@ -328,38 +362,186 @@ $currentTime = date('d-m-Y h:i:s A', time());
 
                             </tbody>
                           </table>
-                          <?php
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-                          $result1 = mysqli_query($con, "SELECT membermealtaxpercent,memberguestmealtaxpercent,membermealtaxvalue, sum(grandtotal) as membertotal FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono NOT LIKE '%G'");
-                          $row1 = mysqli_fetch_array($result1);
-                          $membermealtaxpercent = $row1['membermealtaxpercent'];
-                          $memberguestmealtaxpercent = $row1['memberguestmealtaxpercent'];
-                          $membermealtaxvalue = $row1['membermealtaxvalue'];
-                          $membertotal = $row1['membertotal'];
-                          $membernetvalue = $membertotal - $membermealtaxvalue;
-                          echo "Net Revenue (Members + MemberGuests) : " . '$' . htmlentities($membernetvalue);
-                          echo "<br>Tax Percentage (Members)  : " . htmlentities($membermealtaxpercent) . '%';
-                          echo "<br>Tax Percentage (MemberGuests)  : " . htmlentities($memberguestmealtaxpercent) . '%';
-                          echo "<br>Tax Value (Members + MemberGuests) : " . '$' . htmlentities($membermealtaxvalue);
-                          echo "<br>Gross Total Revenue (Members) : " . '$' . htmlentities($membertotal) . "</br>";
 
-                          $result2 = mysqli_query($con, "SELECT sum(grandtotal) as guesttotal, guestmealtaxpercent, sum(guestmealtaxvalue) as guestmealtaxvalue FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono LIKE '%G'");
-                          $row2 = mysqli_fetch_array($result2);
-                          $guesttotal = $row2['guesttotal'];
-                          $guestmealtaxpercent = $row2['guestmealtaxpercent'];
-                          $guestmealtaxvalue = $row2['guestmealtaxvalue'];
-                          $guestnet = $guesttotal - $guestmealtaxvalue;
 
-                          echo "<br>Net Revenue (Guest) : " . '$' . htmlentities($guestnet);
-                          echo "<br>Tax Percentage (Guest)  : " . htmlentities($guestmealtaxpercent) . '%';
-                          echo "<br>Tax Value (Guest)  : " . '$' . htmlentities($guestmealtaxvalue);
-                          echo "<br>Gross Total Revenue( Guest) : " . '$' . htmlentities($guesttotal) . "</br>";
+                  
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                  <div class="card">
 
-                          echo "<br>Total Meals Served : " . $total['seat'];
+                    <div class="card-body">
+                      <div class="card-body">
+                        <div class="form-group">
+                          <div class="table-responsive">
+                            <div class="card">
+                              <div class="card-body" style="background: #0e0c28; position: center;">
+                                <h1 style="color: white;">Takeout Report</h1>
+                              </div>
+                            </div>
+                            <!-- <div class="card-body">
+                              <div class="form-group">
+                                <div align="left"> Search by either filters below: </div> </br>
+                                <input class="form-control" type="text" id="myInput4" onkeyup="myFunction4()" placeholder="First name" title="Type in a first name">
+                              </div>
 
-                          $totaltaxcollected = $membermealtaxvalue + $guestmealtaxvalue;
-                          echo "<br>Total Tax Collected ( Member + MemberGuest + Guests) : " . '$' . htmlentities($totaltaxcollected);
-                          echo "<br>Grand Total ( Member + MemberGuest + Guests) : " . '$' . $total['grandtotal']; ?>
+                              <div class="form-group">
+                                <input class="form-control" type="text" id="myInput5" onkeyup="myFunction5()" placeholder="Last name" title="Type in a last name">
+                              </div>
+
+                              <div class="form-group">
+                                <input class="form-control" type="text" id="myInput6" onkeyup="myFunction6()" placeholder="Unit Number" title="Type in the Unit Number">
+                              </div>
+                            </div> -->
+
+                            <table id="example" class="table table-striped table-bordered second" style="width:100%">
+                              <thead>
+                                <tr>
+                                  <th class="center">#</th>
+                                  <th>First Name</th>
+                                  <th>Last Name</th>
+                                  <th>Diner Type</th>
+                                  <th>Condono</th>
+                                  <th>Takeout Date</th>
+                                  <th>Takeout Time</th>
+                                  <th>Dish</th>
+                                  <th>Pickedup?</th>
+                                  <th>Pickup Meal Price</th>
+                                  <th>Pickup Meal Tax</th>
+                                  <th>Pickup Meal Tax Value</th>
+                                  <th>Pickup Meal Total Price</th>
+                                  <th>Grand Total</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <?php
+
+                                $sql = mysqli_query($con, "SELECT * FROM pickups WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' AND condono LIKE '$unitno%' ORDER BY condono ASC");
+                                $cnt = 1;
+                                while ($rowt = mysqli_fetch_array($sql)) {
+                                ?>
+                                  <tr>
+                                    <td class="center"><?php echo $cnt; ?>.</td>
+                                    <td class="hidden-xs"><?php echo $rowt['firstname']; ?></td>
+                                    <td class="hidden-xs"><?php echo $rowt['lastname']; ?></td>
+                                    <td class="hidden-xs"><?php echo $rowt['dinerType']; ?></td>
+                                    <td class="hidden-xs"><?php echo $rowt['condono']; ?></td>
+                                    <td class="hidden-xs"><?php echo $rowt['diningdate']; ?></td>
+                                    <td class="hidden-xs"><?php echo $rowt['diningtime']; ?></td>
+                                    <td><?php echo $rowt['dishname']; ?></td>
+                                    <td style="font-weight: bold;text-transform: uppercase;"><?php echo htmlentities($rowt['isPickedup'] ? 'Yes' : 'No'); ?></td>
+                                    <td><?php echo $rowt['membermealprice']; ?></td>
+                                    <td><?php echo $rowt['membermealtaxpercent']; ?></td>
+                                    <td><?php echo $rowt['membermealtaxvalue']; ?></td>
+                                    <td><?php echo $rowt['membermealtotalprice']; ?></td>
+                                    <td><?php echo $rowt['grandtotal']; ?>
+                                    </td>
+
+                                  <?php
+                                  $cnt = $cnt + 1;
+                                } ?>
+                                  <?php
+                                  $result22 = mysqli_query($con, "SELECT sum(grandtotal) as pickuptotal, membermealprice,  membermealtaxpercent, sum(membermealtaxvalue) as membermealtaxvalue  FROM pickups WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono LIKE '$unitno%'");
+                                  $row22 = mysqli_fetch_array($result22);
+                                  $pickupmealtaxpercent = $row22['membermealtaxpercent'];
+                                  $pickupmealtaxvalue = $row22['membermealtaxvalue'];
+                                  $pickuptotal = $row22['pickuptotal'];
+                                  $pickupmealprice = $row22['membermealprice'];
+                                  $pickupnetvalue = $pickuptotal - $pickupmealtaxvalue;
+                                  $totalpickups = $pickuptotal / $pickupmealprice;
+
+                                  ?>
+                                  </tr>
+
+                                  <div class="card-body border-top">
+                                    <div class="row">
+
+                                      <div class="offset-xl-1 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 p-3">
+                                        <h2 class="font-weight-normal mb-3"><span><?php echo '$' . htmlentities($pickupmealtaxvalue); ?></span> </h2>
+                                        <div class="mb-0 mt-3 legend-item">
+                                          <span class="fa-xs text-primary mr-1 legend-title "><i class="fa fa-fw fa-square-full"></i></span>
+                                          <span class="legend-text">Total Tax collected:</span></div>
+                                      </div>
+                                      <div class="offset-xl-1 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 p-3">
+                                        <h2 class="font-weight-normal mb-3">
+                                          <span><?php echo '$' . htmlentities($pickuptotal); ?></span>
+                                        </h2>
+                                        <div class="text-muted mb-0 mt-3 legend-item">
+                                          <span class="fa-xs text-secondary mr-1 legend-title">
+                                            <i class="fa fa-fw fa-square-full"></i></span><span class="legend-text">Gross Total charged: </span></div>
+                                      </div>
+                                      <div class="offset-xl-1 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 p-3">
+                                        <h4> Total Takeout Meals: <?php echo '$' . htmlentities($totalpickups); ?></h4>
+                                        <p> Data shows total meals served during the period selected.
+                                        </p>
+
+                                      </div>
+                                    </div>
+                                  </div>
+
+                              </tbody>
+                            </table>
+                          </div>
+
+
+                          </br>
+                          <h4>
+                            <?php
+
+                            $result1 = mysqli_query($con, "SELECT membermealtaxpercent,memberguestmealtaxpercent,membermealtaxvalue, sum(grandtotal) as membertotal FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono NOT LIKE '$unitno%G'");
+                            $row1 = mysqli_fetch_array($result1);
+                            $membermealtaxpercent = $row1['membermealtaxpercent'];
+                            $memberguestmealtaxpercent = $row1['memberguestmealtaxpercent'];
+                            $membermealtaxvalue = $row1['membermealtaxvalue'];
+                            $membertotal = $row1['membertotal'];
+                            $membernetvalue = $membertotal - $membermealtaxvalue;
+                            echo "Net Revenue (Members + MemberGuests) : " . '$' . htmlentities($membernetvalue);
+                            echo "<br>Tax Percentage (Members)  : " . htmlentities($membermealtaxpercent) . '%';
+                            echo "<br>Tax Percentage (MemberGuests)  : " . htmlentities($memberguestmealtaxpercent) . '%';
+                            echo "<br>Tax Value (Members + MemberGuests) : " . '$' . htmlentities($membermealtaxvalue);
+                            echo "<br>Gross Total Revenue (Members) : " . '$' . htmlentities($membertotal) . "</br>";
+
+                            $result2 = mysqli_query($con, "SELECT sum(grandtotal) as guesttotal, guestmealtaxpercent, sum(guestmealtaxvalue) as guestmealtaxvalue FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono LIKE '$unitno%G'");
+                            $row2 = mysqli_fetch_array($result2);
+                            $guesttotal = $row2['guesttotal'];
+                            $guestmealtaxpercent = $row2['guestmealtaxpercent'];
+                            $guestmealtaxvalue = $row2['guestmealtaxvalue'];
+                            $guestnet = $guesttotal - $guestmealtaxvalue;
+
+                            echo "<br>Net Revenue (Guest) : " . '$' . htmlentities($guestnet);
+                            echo "<br>Tax Percentage (Guest)  : " . htmlentities($guestmealtaxpercent) . '%';
+                            echo "<br>Tax Value (Guest)  : " . '$' . htmlentities($guestmealtaxvalue);
+                            echo "<br>Gross Total Revenue( Guest) : " . '$' . htmlentities($guesttotal) . "</br>";
+
+                            echo "<br>Total Meals Served : " . $total['seat'];
+
+                            $totaltaxcollected = $membermealtaxvalue + $guestmealtaxvalue;
+                            echo "<br>Total Tax Collected ( Member + MemberGuest + Guests) : " . '$' . htmlentities($totaltaxcollected);
+                            echo "<br>Grand Total ( Member + MemberGuest + Guests) : " . '$' . $total['grandtotal'] . "</br>";
+                            echo "<br/>";
+
+                           
+                            $result12 = mysqli_query($con, "SELECT sum(grandtotal) as pickuptotal, membermealprice,  membermealtaxpercent, sum(membermealtaxvalue) as membermealtaxvalue  FROM pickups WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono LIKE '$unitno%'");
+                            $row12 = mysqli_fetch_array($result12);
+                            $pickupmealtaxpercent = $row12['membermealtaxpercent'];
+                            $pickupmealtaxvalue = $row12['membermealtaxvalue'];
+                            $pickuptotal = $row12['pickuptotal'];
+                            $pickupmealprice = $row12['membermealprice'];
+                            $pickupnetvalue = $pickuptotal - $pickupmealtaxvalue;
+                            $totalpickups = $pickuptotal / $pickupmealprice;
+                            echo "Net Revenue (Takeout) : " . '$' . htmlentities($pickupnetvalue);
+                            echo "<br>Tax Percentage (Takeout)  : " . htmlentities($pickupmealtaxpercent) . '%';
+                            echo "<br>Total meals serverd (Takeout)  : " . htmlentities($totalpickups);
+                            echo "<br>Tax Value (Takeout) : " . '$' . htmlentities($pickupmealtaxvalue);
+                            echo "<br>Gross Total Revenue (Takeout) : " . '$' . htmlentities($pickuptotal) . "</br>";
+
+                            ?>
+                          </h4>
+
+
                           <script>
                             function myFunction() {
                               var input, filter, table, tr, td, i, txtValue;
@@ -417,7 +599,65 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                 }
                               }
                             }
+
+                            // function myFunction4() {
+                            //   var input, filter, table, tr, td, i, txtValue;
+                            //   input = document.getElementById("myInput4");
+                            //   filter = input.value.toUpperCase();
+                            //   table = document.getElementById("example");
+                            //   tr = table.getElementsByTagName("tr");
+                            //   for (i = 0; i < tr.length; i++) {
+                            //     td = tr[i].getElementsByTagName("td")[1];
+                            //     if (td) {
+                            //       txtValue = td.textContent || td.innerText;
+                            //       if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            //         tr[i].style.display = "";
+                            //       } else {
+                            //         tr[i].style.display = "none";
+                            //       }
+                            //     }
+                            //   }
+                            // }
+
+                            // function myFunction5() {
+                            //   var input, filter, table, tr, td, i, txtValue;
+                            //   input = document.getElementById("myInput5");
+                            //   filter = input.value.toUpperCase();
+                            //   table = document.getElementById("example");
+                            //   tr = table.getElementsByTagName("tr");
+                            //   for (i = 0; i < tr.length; i++) {
+                            //     td = tr[i].getElementsByTagName("td")[2];
+                            //     if (td) {
+                            //       txtValue = td.textContent || td.innerText;
+                            //       if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            //         tr[i].style.display = "";
+                            //       } else {
+                            //         tr[i].style.display = "none";
+                            //       }
+                            //     }
+                            //   }
+                            // }
+
+                            // function myFunction6() {
+                            //   var input, filter, table, tr, td, i, txtValue;
+                            //   input = document.getElementById("myInput6");
+                            //   filter = input.value.toUpperCase();
+                            //   table = document.getElementById("example");
+                            //   tr = table.getElementsByTagName("tr");
+                            //   for (i = 0; i < tr.length; i++) {
+                            //     td = tr[i].getElementsByTagName("td")[4];
+                            //     if (td) {
+                            //       txtValue = td.textContent || td.innerText;
+                            //       if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            //         tr[i].style.display = "";
+                            //       } else {
+                            //         tr[i].style.display = "none";
+                            //       }
+                            //     }
+                            //   }
+                            // }
                           </script>
+
 
 
                         </div>
@@ -425,36 +665,33 @@ $currentTime = date('d-m-Y h:i:s A', time());
                     </div>
                   </div>
                 </div>
-              </div>
-          </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <?php
-        include('footer.php');
+                <!-- ============================================================== -->
+                <!-- footer -->
+                <!-- ============================================================== -->
+                <?php
+                include('footer.php');
 
-        ?>
-        <script>
-          $(document).ready(function() {
-            $('.datatable-1').dataTable();
-            $('.dataTables_paginate').addClass("btn-group datatable-pagination");
-            $('.dataTables_paginate > a').wrapInner('<span />');
-            $('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
-            $('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
-          });
-        </script>
-        <!-- ============================================================== -->
-        <!-- end footer -->
-        <!-- ============================================================== -->
-      </div>
-      <!-- ============================================================== -->
-      <!-- end wrapper  -->
-      <!-- ============================================================== -->
-    </div>
-    <!-- ============================================================== -->
-    <!-- end main wrapper  -->
-    <!-- ============================================================== -->
+                ?>
+                <script>
+                  $(document).ready(function() {
+                    $('.datatable-1').dataTable();
+                    $('.dataTables_paginate').addClass("btn-group datatable-pagination");
+                    $('.dataTables_paginate > a').wrapInner('<span />');
+                    $('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
+                    $('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
+                  });
+                </script>
+                <!-- ============================================================== -->
+                <!-- end footer -->
+                <!-- ============================================================== -->
+              </div>
+              <!-- ============================================================== -->
+              <!-- end wrapper  -->
+              <!-- ============================================================== -->
+          </div>
+          <!-- ============================================================== -->
+          <!-- end main wrapper  -->
+          <!-- ============================================================== -->
 
 </body>
 

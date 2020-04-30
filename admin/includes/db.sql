@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2020 at 09:44 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Generation Time: Apr 30, 2020 at 11:56 PM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -110,7 +110,12 @@ CREATE TABLE `diningdates` (
 INSERT INTO `diningdates` (`id`, `diningdate`, `status`) VALUES
 (1, '2020-04-20', 'enabled'),
 (2, '2020-04-21', 'enabled'),
-(3, '2020-04-22', 'enabled');
+(3, '2020-04-22', 'enabled'),
+(4, '2020-04-30', 'enabled'),
+(5, '2020-05-01', 'enabled'),
+(6, '2020-05-04', 'enabled'),
+(7, '2020-05-05', 'enabled'),
+(8, '2020-05-06', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -242,8 +247,11 @@ CREATE TABLE `pickups` (
 --
 
 INSERT INTO `pickups` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `diningdate`, `diningtime`, `condono`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `dinerType`, `grandtotal`, `isPickedup`, `timestamp`) VALUES
-(1, '', 'John', 'Doe', 'Denver Omelette', '2020-04-20', '00:00:15', 'E302', '14.00', '0.00', '0.00', '14.00', 'Takeout', '14.00', '', NULL),
-(2, '', 'John', 'Doe', 'Denver Omelette', '2020-04-20', '00:00:15', 'E302', '14.00', '0.00', '0.00', '14.00', 'Takeout', '14.00', '', NULL);
+(1, '', 'Duane and Toni', 'DeSalvo', 'Denver Omelette', '2020-04-20', '00:00:15', 'E302', '14.00', '0.00', '0.00', '14.00', 'Takeout', '14.00', '', NULL),
+(2, '', 'Duane and Toni', 'DeSalvo', 'Denver Omelette', '2020-04-20', '00:00:15', 'E302', '14.00', '0.00', '0.00', '14.00', 'Takeout', '14.00', '', NULL),
+(3, '', 'Duane and Toni', 'DeSalvo', 'Pasta Bologna', '2020-05-04', '18:00:00', 'E302', '14.00', '0.00', '0.00', '14.00', '', '14.00', '', NULL),
+(4, '', 'Duane and Toni', 'DeSalvo', 'Chicken Burger', '2020-05-05', '20:00:00', 'E302', '14.00', '0.00', '0.00', '14.00', '', '14.00', '', NULL),
+(5, '', 'Duane and Toni', 'DeSalvo', 'Meat Lasagna', '2020-05-06', '20:40:00', 'E302', '14.00', '0.00', '0.00', '14.00', '', '14.00', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -265,7 +273,11 @@ CREATE TABLE `pickupweeklymenu` (
 --
 
 INSERT INTO `pickupweeklymenu` (`id`, `pickupdate`, `pickuptime`, `dishname1`, `dishname2`, `status`) VALUES
-(1, '2020-04-20', '00:00:15', 'Denver Omelette', 'Meat Lasagna', '');
+(1, '2020-04-20', '00:00:15', 'Denver Omelette', 'Meat Lasagna', ''),
+(2, '2020-05-01', '14:44:00', 'Chicken Burger', 'Classic Hot Rueben Sandwich', ''),
+(3, '2020-05-04', '18:00:00', 'Pasta Bologna', 'Beef Burger', ''),
+(4, '2020-05-05', '20:00:00', 'Pasta Bologna', 'Chicken Burger', ''),
+(5, '2020-05-06', '20:40:00', 'Beef Burger', 'Meat Lasagna', '');
 
 -- --------------------------------------------------------
 
@@ -341,11 +353,16 @@ CREATE TABLE `reservation` (
 --
 
 INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `roomid`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `freedinersmealtotalprice`, `isConfirmed`, `isCheckedin`, `dinerType`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `guestmealprice`, `guestmealtaxpercent`, `guestmealtaxvalue`, `guestmealtotalprice`, `grandtotal`, `memberguestmealprice`, `memberguestmealtaxpercent`, `memberguestmealtaxvalue`, `memberguestmealtotalprice`, `freedinersmealprice`, `freedinersmealtaxpercent`, `freedinersmealtaxvalue`) VALUES
-(1, 'SG2004200001', 'John', 'Doe', 'Classic Hot Rueben Sandwich', 1, 'Main Dining Room', '5', 0, '4', '2020-04-20', '11:20:00', '3', 'E302', NULL, '', NULL, 'memberguest', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '56.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
-(2, 'SG2004200002', 'John', 'Doe', 'Classic Hot Rueben Sandwich', 1, 'Main Dining Room', '3', 0, '1', '2020-04-20', '11:20:00', '0', 'E302', NULL, '', NULL, 'member', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '14.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
-(3, 'SG2004200003', 'John', 'Doe', 'Classic Hot Rueben Sandwich', 1, 'Main Dining Room', '7', 0, '4', '2020-04-20', '11:20:00', '3', 'E302', NULL, '', NULL, 'memberguest', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '56.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
-(4, 'SG2004200004', 'John', 'Doe', 'Classic Hot Rueben Sandwich', 1, 'Main Dining Room', '8', 0, '4', '2020-04-20', '11:20:00', '4', 'E302G', NULL, '', NULL, 'guest', NULL, NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '68.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'SG2004210001', 'John', 'Doe', 'Meat Lasagna', 1, 'Main Dining Room', '7', 0, '2', '2020-04-21', '08:30:00', '1', 'E302', NULL, '', NULL, 'memberguest', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '28.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL);
+(1, 'SG2004200001', 'Duane and Toni', 'DeSalvo', 'Classic Hot Rueben Sandwich', 1, 'Main Dining Room', '5', 0, '4', '2020-04-20', '11:20:00', '3', 'E302', NULL, '', NULL, 'memberguest', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '56.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
+(2, 'SG2004200002', 'Duane and Toni', 'DeSalvo', 'Classic Hot Rueben Sandwich', 1, 'Main Dining Room', '3', 0, '1', '2020-04-20', '11:20:00', '0', 'E302', NULL, '', NULL, 'member', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '14.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
+(3, 'SG2004200003', 'Duane and Toni', 'DeSalvo', 'Classic Hot Rueben Sandwich', 1, 'Main Dining Room', '7', 0, '4', '2020-04-20', '11:20:00', '3', 'E302', NULL, '', NULL, 'memberguest', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '56.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
+(4, 'SG2004200004', 'Duane and Toni', 'DeSalvo', 'Classic Hot Rueben Sandwich', 1, 'Main Dining Room', '8', 0, '4', '2020-04-20', '11:20:00', '4', 'E302G', NULL, '', NULL, 'guest', NULL, NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '68.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'SG2004210001', 'Duane and Toni', 'DeSalvo', 'Meat Lasagna', 1, 'Main Dining Room', '7', 0, '2', '2020-04-21', '08:30:00', '1', 'E302', NULL, '', NULL, 'memberguest', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '28.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
+(7, 'SG2005050001', 'Duane and Toni', 'DeSalvo', 'Pasta Bologna', 1, 'Main Dining Room', '7', 0, '3', '2020-05-05', '20:00:00', '2', 'E302', NULL, '', NULL, 'memberguest', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '42.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
+(8, 'SG2005050002', 'Duane and Toni', 'DeSalvo', 'Pasta Bologna', 1, 'Main Dining Room', '6', 0, '4', '2020-05-05', '20:00:00', '4', 'E302G', NULL, '', NULL, 'guest', NULL, NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '68.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, 'SG2005060001', 'Duane and Toni', 'DeSalvo', 'Pasta Bologna', 1, 'Main Dining Room', '9', 0, '4', '2020-05-06', '21:00:00', '4', 'E302G', NULL, '', NULL, 'guest', NULL, NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '68.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(10, 'SG2005050003', 'Duane and Toni', 'DeSalvo', 'Pasta Bologna', 1, 'Main Dining Room', '8', 0, '4', '2020-05-05', '21:00:00', '3', 'E302', NULL, '', NULL, 'memberguest', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '56.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
+(11, 'SG2005040001', 'Duane and Toni', 'DeSalvo', 'Pasta Bologna', 1, 'Main Dining Room', '4', 0, '2', '2020-05-04', '21:00:00', '1', 'E302', NULL, '', NULL, 'memberguest', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '28.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -416,22 +433,6 @@ CREATE TABLE `userlog` (
   `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `userlog`
---
-
-INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logout`, `status`) VALUES
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-18 17:48:21', NULL, 1),
-(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-18 17:49:26', NULL, 1),
-(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-18 19:54:27', NULL, 1),
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-19 14:11:46', NULL, 1),
-(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-19 14:29:47', NULL, 1),
-(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-19 15:03:06', NULL, 1),
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-19 15:03:19', NULL, 1),
-(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-19 15:04:11', NULL, 1),
-(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-04-19 15:44:10', NULL, 1),
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-04-20 15:28:46', NULL, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -455,7 +456,21 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `age`, `unitno`, `email`, `password`, `contactno`, `altcontactno`) VALUES
-(1, 'John', 'Doe', '35', 'E302', 'johndoe@gmail.com', 'E302', '9876543210', '');
+(1, 'Duane and Toni', 'DeSalvo', '', 'E302', 'duane.desalvo@gmail.com', 'E302', '4254409304', ''),
+(2, 'Gary and Carolyn', 'Saaris/Reid', '', 'W102', '', 'W102', '4254436979', ''),
+(3, 'Pattricia', 'Brown', '', 'E304', '', 'E304', '4259570626', ''),
+(4, 'Blanche', 'Adams', '', 'E208', '', 'E208', '4256441308', ''),
+(5, 'Gloria', 'Pong', '', 'E201', '', 'E201', '4256435528', ''),
+(6, 'Susan', 'Bailey', '', 'C209', '', 'E209', '4256412050', ''),
+(7, 'Colleen', 'Bangert', '', 'E216', '', 'E216', '4254498940', ''),
+(8, 'Florence', 'Bannister', '', 'C213', '', 'C213', '4257460116', ''),
+(9, 'Cathy', 'Barich', '', 'E103', '', 'E103', '4254433643', ''),
+(10, 'Doris', 'Bean', '', 'C114', '', 'C114', '4253789314', ''),
+(11, 'Marjorie', 'Benson', '', 'E307', '', 'E307', '4255627921', ''),
+(12, 'Faith', 'Bentley', '', 'C313', '', 'C313', '4256410755', ''),
+(13, 'Nina and David', 'Bergman/Reigel', '', 'E112', '', 'E112', '4257461168', ''),
+(14, 'Jeanie', 'Boddy', '', 'C205', '', 'C205', '4256439256', ''),
+(15, 'Barbara', 'Brachtl', '', 'E301', '', 'E301', '2067997667', '');
 
 -- --------------------------------------------------------
 
@@ -498,7 +513,124 @@ INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `roomid`, `tableid`,
 (18, '2020-04-21', '08:30:00', 1, 8, 'Meat Lasagna', 'Chipotle Burger (V)'),
 (19, '2020-04-22', '08:30:00', 1, 8, 'Meat Lasagna', 'Chipotle Burger (V)'),
 (20, '2020-04-21', '08:30:00', 1, 11, 'Meat Lasagna', 'Chipotle Burger (V)'),
-(21, '2020-04-22', '08:30:00', 1, 11, 'Meat Lasagna', 'Chipotle Burger (V)');
+(21, '2020-04-22', '08:30:00', 1, 11, 'Meat Lasagna', 'Chipotle Burger (V)'),
+(22, '2020-05-04', '20:00:00', 1, 1, 'Chicken Burger', 'Pasta Bologna'),
+(23, '2020-05-05', '20:00:00', 1, 1, 'Chicken Burger', 'Pasta Bologna'),
+(24, '2020-05-06', '20:00:00', 1, 1, 'Chicken Burger', 'Pasta Bologna'),
+(25, '2020-05-04', '20:00:00', 1, 2, 'Chicken Burger', 'Pasta Bologna'),
+(26, '2020-05-05', '20:00:00', 1, 2, 'Chicken Burger', 'Pasta Bologna'),
+(27, '2020-05-06', '20:00:00', 1, 2, 'Chicken Burger', 'Pasta Bologna'),
+(28, '2020-05-04', '20:00:00', 1, 3, 'Chicken Burger', 'Pasta Bologna'),
+(29, '2020-05-05', '20:00:00', 1, 3, 'Chicken Burger', 'Pasta Bologna'),
+(30, '2020-05-06', '20:00:00', 1, 3, 'Chicken Burger', 'Pasta Bologna'),
+(31, '2020-05-04', '20:00:00', 1, 4, 'Chicken Burger', 'Pasta Bologna'),
+(32, '2020-05-05', '20:00:00', 1, 4, 'Chicken Burger', 'Pasta Bologna'),
+(33, '2020-05-06', '20:00:00', 1, 4, 'Chicken Burger', 'Pasta Bologna'),
+(34, '2020-05-04', '20:00:00', 1, 5, 'Chicken Burger', 'Pasta Bologna'),
+(35, '2020-05-05', '20:00:00', 1, 5, 'Chicken Burger', 'Pasta Bologna'),
+(36, '2020-05-06', '20:00:00', 1, 5, 'Chicken Burger', 'Pasta Bologna'),
+(37, '2020-05-04', '20:00:00', 1, 6, 'Chicken Burger', 'Pasta Bologna'),
+(38, '2020-05-05', '20:00:00', 1, 6, 'Chicken Burger', 'Pasta Bologna'),
+(39, '2020-05-06', '20:00:00', 1, 6, 'Chicken Burger', 'Pasta Bologna'),
+(40, '2020-05-04', '20:00:00', 1, 7, 'Chicken Burger', 'Pasta Bologna'),
+(41, '2020-05-05', '20:00:00', 1, 7, 'Chicken Burger', 'Pasta Bologna'),
+(42, '2020-05-06', '20:00:00', 1, 7, 'Chicken Burger', 'Pasta Bologna'),
+(43, '2020-05-04', '20:00:00', 1, 8, 'Chicken Burger', 'Pasta Bologna'),
+(44, '2020-05-05', '20:00:00', 1, 8, 'Chicken Burger', 'Pasta Bologna'),
+(45, '2020-05-06', '20:00:00', 1, 8, 'Chicken Burger', 'Pasta Bologna'),
+(46, '2020-05-04', '20:00:00', 1, 9, 'Chicken Burger', 'Pasta Bologna'),
+(47, '2020-05-05', '20:00:00', 1, 9, 'Chicken Burger', 'Pasta Bologna'),
+(48, '2020-05-06', '20:00:00', 1, 9, 'Chicken Burger', 'Pasta Bologna'),
+(49, '2020-05-04', '20:00:00', 1, 10, 'Chicken Burger', 'Pasta Bologna'),
+(50, '2020-05-05', '20:00:00', 1, 10, 'Chicken Burger', 'Pasta Bologna'),
+(51, '2020-05-06', '20:00:00', 1, 10, 'Chicken Burger', 'Pasta Bologna'),
+(52, '2020-05-04', '20:00:00', 1, 11, 'Chicken Burger', 'Pasta Bologna'),
+(53, '2020-05-05', '20:00:00', 1, 11, 'Chicken Burger', 'Pasta Bologna'),
+(54, '2020-05-06', '20:00:00', 1, 11, 'Chicken Burger', 'Pasta Bologna'),
+(55, '2020-05-04', '20:00:00', 1, 12, 'Chicken Burger', 'Pasta Bologna'),
+(56, '2020-05-05', '20:00:00', 1, 12, 'Chicken Burger', 'Pasta Bologna'),
+(57, '2020-05-06', '20:00:00', 1, 12, 'Chicken Burger', 'Pasta Bologna'),
+(58, '2020-05-04', '20:00:00', 1, 13, 'Chicken Burger', 'Pasta Bologna'),
+(59, '2020-05-05', '20:00:00', 1, 13, 'Chicken Burger', 'Pasta Bologna'),
+(60, '2020-05-06', '20:00:00', 1, 13, 'Chicken Burger', 'Pasta Bologna'),
+(61, '2020-05-04', '18:37:00', 1, 1, 'Chicken Burger', 'Pasta Bologna'),
+(62, '2020-05-05', '18:37:00', 1, 1, 'Chicken Burger', 'Pasta Bologna'),
+(63, '2020-05-06', '18:37:00', 1, 1, 'Chicken Burger', 'Pasta Bologna'),
+(64, '2020-05-04', '18:37:00', 1, 2, 'Chicken Burger', 'Pasta Bologna'),
+(65, '2020-05-05', '18:37:00', 1, 2, 'Chicken Burger', 'Pasta Bologna'),
+(66, '2020-05-06', '18:37:00', 1, 2, 'Chicken Burger', 'Pasta Bologna'),
+(67, '2020-05-04', '18:37:00', 1, 3, 'Chicken Burger', 'Pasta Bologna'),
+(68, '2020-05-05', '18:37:00', 1, 3, 'Chicken Burger', 'Pasta Bologna'),
+(69, '2020-05-06', '18:37:00', 1, 3, 'Chicken Burger', 'Pasta Bologna'),
+(70, '2020-05-04', '18:37:00', 1, 4, 'Chicken Burger', 'Pasta Bologna'),
+(71, '2020-05-05', '18:37:00', 1, 4, 'Chicken Burger', 'Pasta Bologna'),
+(72, '2020-05-06', '18:37:00', 1, 4, 'Chicken Burger', 'Pasta Bologna'),
+(73, '2020-05-04', '18:37:00', 1, 5, 'Chicken Burger', 'Pasta Bologna'),
+(74, '2020-05-05', '18:37:00', 1, 5, 'Chicken Burger', 'Pasta Bologna'),
+(75, '2020-05-06', '18:37:00', 1, 5, 'Chicken Burger', 'Pasta Bologna'),
+(76, '2020-05-04', '18:37:00', 1, 6, 'Chicken Burger', 'Pasta Bologna'),
+(77, '2020-05-05', '18:37:00', 1, 6, 'Chicken Burger', 'Pasta Bologna'),
+(78, '2020-05-06', '18:37:00', 1, 6, 'Chicken Burger', 'Pasta Bologna'),
+(79, '2020-05-04', '18:37:00', 1, 7, 'Chicken Burger', 'Pasta Bologna'),
+(80, '2020-05-05', '18:37:00', 1, 7, 'Chicken Burger', 'Pasta Bologna'),
+(81, '2020-05-06', '18:37:00', 1, 7, 'Chicken Burger', 'Pasta Bologna'),
+(82, '2020-05-04', '18:37:00', 1, 8, 'Chicken Burger', 'Pasta Bologna'),
+(83, '2020-05-05', '18:37:00', 1, 8, 'Chicken Burger', 'Pasta Bologna'),
+(84, '2020-05-06', '18:37:00', 1, 8, 'Chicken Burger', 'Pasta Bologna'),
+(85, '2020-05-04', '18:37:00', 1, 9, 'Chicken Burger', 'Pasta Bologna'),
+(86, '2020-05-05', '18:37:00', 1, 9, 'Chicken Burger', 'Pasta Bologna'),
+(87, '2020-05-06', '18:37:00', 1, 9, 'Chicken Burger', 'Pasta Bologna'),
+(88, '2020-05-04', '18:37:00', 1, 10, 'Chicken Burger', 'Pasta Bologna'),
+(89, '2020-05-05', '18:37:00', 1, 10, 'Chicken Burger', 'Pasta Bologna'),
+(90, '2020-05-06', '18:37:00', 1, 10, 'Chicken Burger', 'Pasta Bologna'),
+(91, '2020-05-04', '18:37:00', 1, 11, 'Chicken Burger', 'Pasta Bologna'),
+(92, '2020-05-05', '18:37:00', 1, 11, 'Chicken Burger', 'Pasta Bologna'),
+(93, '2020-05-06', '18:37:00', 1, 11, 'Chicken Burger', 'Pasta Bologna'),
+(94, '2020-05-04', '18:37:00', 1, 12, 'Chicken Burger', 'Pasta Bologna'),
+(95, '2020-05-05', '18:37:00', 1, 12, 'Chicken Burger', 'Pasta Bologna'),
+(96, '2020-05-06', '18:37:00', 1, 12, 'Chicken Burger', 'Pasta Bologna'),
+(97, '2020-05-04', '18:37:00', 1, 13, 'Chicken Burger', 'Pasta Bologna'),
+(98, '2020-05-05', '18:37:00', 1, 13, 'Chicken Burger', 'Pasta Bologna'),
+(99, '2020-05-06', '18:37:00', 1, 13, 'Chicken Burger', 'Pasta Bologna'),
+(100, '2020-05-04', '21:00:00', 1, 1, 'Chicken Burger', 'Pasta Bologna'),
+(101, '2020-05-05', '21:00:00', 1, 1, 'Chicken Burger', 'Pasta Bologna'),
+(102, '2020-05-06', '21:00:00', 1, 1, 'Chicken Burger', 'Pasta Bologna'),
+(103, '2020-05-04', '21:00:00', 1, 2, 'Chicken Burger', 'Pasta Bologna'),
+(104, '2020-05-05', '21:00:00', 1, 2, 'Chicken Burger', 'Pasta Bologna'),
+(105, '2020-05-06', '21:00:00', 1, 2, 'Chicken Burger', 'Pasta Bologna'),
+(106, '2020-05-04', '21:00:00', 1, 3, 'Chicken Burger', 'Pasta Bologna'),
+(107, '2020-05-05', '21:00:00', 1, 3, 'Chicken Burger', 'Pasta Bologna'),
+(108, '2020-05-06', '21:00:00', 1, 3, 'Chicken Burger', 'Pasta Bologna'),
+(109, '2020-05-04', '21:00:00', 1, 4, 'Chicken Burger', 'Pasta Bologna'),
+(110, '2020-05-05', '21:00:00', 1, 4, 'Chicken Burger', 'Pasta Bologna'),
+(111, '2020-05-06', '21:00:00', 1, 4, 'Chicken Burger', 'Pasta Bologna'),
+(112, '2020-05-04', '21:00:00', 1, 5, 'Chicken Burger', 'Pasta Bologna'),
+(113, '2020-05-05', '21:00:00', 1, 5, 'Chicken Burger', 'Pasta Bologna'),
+(114, '2020-05-06', '21:00:00', 1, 5, 'Chicken Burger', 'Pasta Bologna'),
+(115, '2020-05-04', '21:00:00', 1, 6, 'Chicken Burger', 'Pasta Bologna'),
+(116, '2020-05-05', '21:00:00', 1, 6, 'Chicken Burger', 'Pasta Bologna'),
+(117, '2020-05-06', '21:00:00', 1, 6, 'Chicken Burger', 'Pasta Bologna'),
+(118, '2020-05-04', '21:00:00', 1, 7, 'Chicken Burger', 'Pasta Bologna'),
+(119, '2020-05-05', '21:00:00', 1, 7, 'Chicken Burger', 'Pasta Bologna'),
+(120, '2020-05-06', '21:00:00', 1, 7, 'Chicken Burger', 'Pasta Bologna'),
+(121, '2020-05-04', '21:00:00', 1, 8, 'Chicken Burger', 'Pasta Bologna'),
+(122, '2020-05-05', '21:00:00', 1, 8, 'Chicken Burger', 'Pasta Bologna'),
+(123, '2020-05-06', '21:00:00', 1, 8, 'Chicken Burger', 'Pasta Bologna'),
+(124, '2020-05-04', '21:00:00', 1, 9, 'Chicken Burger', 'Pasta Bologna'),
+(125, '2020-05-05', '21:00:00', 1, 9, 'Chicken Burger', 'Pasta Bologna'),
+(126, '2020-05-06', '21:00:00', 1, 9, 'Chicken Burger', 'Pasta Bologna'),
+(127, '2020-05-04', '21:00:00', 1, 10, 'Chicken Burger', 'Pasta Bologna'),
+(128, '2020-05-05', '21:00:00', 1, 10, 'Chicken Burger', 'Pasta Bologna'),
+(129, '2020-05-06', '21:00:00', 1, 10, 'Chicken Burger', 'Pasta Bologna'),
+(130, '2020-05-04', '21:00:00', 1, 11, 'Chicken Burger', 'Pasta Bologna'),
+(131, '2020-05-05', '21:00:00', 1, 11, 'Chicken Burger', 'Pasta Bologna'),
+(132, '2020-05-06', '21:00:00', 1, 11, 'Chicken Burger', 'Pasta Bologna'),
+(133, '2020-05-04', '21:00:00', 1, 12, 'Chicken Burger', 'Pasta Bologna'),
+(134, '2020-05-05', '21:00:00', 1, 12, 'Chicken Burger', 'Pasta Bologna'),
+(135, '2020-05-06', '21:00:00', 1, 12, 'Chicken Burger', 'Pasta Bologna'),
+(136, '2020-05-04', '21:00:00', 1, 13, 'Chicken Burger', 'Pasta Bologna'),
+(137, '2020-05-05', '21:00:00', 1, 13, 'Chicken Burger', 'Pasta Bologna'),
+(138, '2020-05-06', '21:00:00', 1, 13, 'Chicken Burger', 'Pasta Bologna');
 
 --
 -- Indexes for dumped tables
@@ -620,7 +752,7 @@ ALTER TABLE `chef`
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `dish`
@@ -650,19 +782,19 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `pickups`
 --
 ALTER TABLE `pickups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pickupweeklymenu`
 --
 ALTER TABLE `pickupweeklymenu`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `room`
@@ -680,13 +812,13 @@ ALTER TABLE `tablelayout`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

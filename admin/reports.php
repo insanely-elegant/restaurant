@@ -67,7 +67,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">
                                                 <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
-                                                <li class="breadcrumb-item active" aria-current="page">Dining Reports</li>
+                                                <li class="breadcrumb-item active" aria-current="page">Dining Reports, Free Diner Reports & Takeout Reports</li>
                                             </ol>
                                         </nav>
                                     </div>

@@ -67,7 +67,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">
                                                 <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
-                                                <li class="breadcrumb-item active" aria-current="page">Dining Reports</li>
+                                                <li class="breadcrumb-item active" aria-current="page">Dining Reports, Free Diner Reports & Takeout Reports</li>
                                             </ol>
                                         </nav>
                                     </div>
@@ -80,15 +80,15 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="section-block" id="basicform">
-                                        <h3 class="section-title">Dining Reports</h3>
-                                        <p>You can generate reports here.</p>
+                                        <h3 class="section-title">Dining Reports, Free Diner Reports & Takeout Reports</h3>
+                                        <p>You can generate all reports here with any Unit No or identifier. Example: E302, E302G, E3, C40 ..etc</p>
                                     </div>
 
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="panel-body">
 
-                                                <form role="form" method="post" action="dining-reports-with-unitno-detailed.php">
+                                                <form role="form" method="post" action="reports-with-unitno-detailed.php">
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">
                                                             From Date: *
