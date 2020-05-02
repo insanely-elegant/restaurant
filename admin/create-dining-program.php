@@ -171,7 +171,7 @@ if (isset($_GET['del'])) {
                                                             $query = mysqli_query($con, "select DISTINCT diningdate  from diningdates where status = 'enabled' and diningdate >= CURDATE() + INTERVAL 8 HOUR ORDER BY diningdate ASC");
                                                             while ($row = mysqli_fetch_array($query)) {
                                                             ?>
-                                                                <option value="<?php echo $row['diningdate']; ?>"><?php echo $row['diningdate']; ?></option>
+                                                                <option value="<?php echo $row['diningdate']; ?>"><?php echo date("D j F Y", strtotime($row['diningdate'])); ?></option>
                                                             <?php } ?>
                                                         </select>
                                                         <input id="diningtime" placeholder="Example: 14:00" name="diningtime" type="time" class="form-control" required>
@@ -216,8 +216,8 @@ if (isset($_GET['del'])) {
                                                     <th>Table Name</th>
                                                     <th>Dining Date</th>
                                                     <th>Dining Time</th>
-                                                    <th>Dish Name 1</th>
-                                                    <th>Dish Name 2 </th>
+                                                    <th>Dish Option 1</th>
+                                                    <th>Dish Option 2 </th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -236,7 +236,7 @@ if (isset($_GET['del'])) {
                                                         <td><?php echo htmlentities($cnt); ?></td>
                                                         <td><?php echo htmlentities($row['rname']); ?></td>
                                                         <td><?php echo htmlentities($row['tname']); ?></td>
-                                                        <td><?php echo htmlentities($row['dd']); ?></td>
+                                                        <td><?php echo htmlentities(date("D j F Y", strtotime($row['dd']))); ?></td>
                                                         <td><?php echo htmlentities($row['dt']); ?></td>
                                                         <td><?php echo htmlentities($row['d1']); ?></td>
                                                         <td><?php echo htmlentities($row['d2']); ?></td>

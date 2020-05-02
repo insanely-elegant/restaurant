@@ -14,9 +14,10 @@ $currentTime = date('d-m-Y h:i:s A', time());
 if (isset($_POST['submit'])) {
     $diningdate = $_POST['diningdate'];
     $diningtime = $_POST['diningtime'];
+    $roomid = $_POST['roomid'];
     $dishname1 = $_POST['dishname1'];
     $dishname2 = $_POST['dishname2'];
-    $sql = mysqli_query($con, "insert into pickupweeklymenu(pickupdate,pickuptime,dishname1,dishname2) values('$diningdate','$diningtime','$dishname1','$dishname2')");
+    $sql = mysqli_query($con, "insert into pickupweeklymenu(pickupdate,pickuptime,roomid,dishname1,dishname2) values('$diningdate','$diningtime','$roomid','$dishname1','$dishname2')");
     $_SESSION['msg'] = "Published To The Takeout Menu !!";
 }
 
@@ -146,10 +147,7 @@ function getDiningtime(val) {
                                                     </div>
 
 
-                                                    <div>
-                                                      
-
-
+                                                    <div class="form-group">
                                                         <label class="col-form-label" for="inputText3"> Select a Order Pickup Date</label>
                                                         <select name="diningdate" class="form-control" id="input-select" required>
                                                             <option value="">Select a Date</option>
@@ -157,39 +155,50 @@ function getDiningtime(val) {
                                                             $query = mysqli_query($con, "select DISTINCT diningdate from diningdates where status = 'enabled' and diningdate >= CURDATE() + INTERVAL 8 HOUR ORDER BY diningdate ASC");
                                                             while ($row = mysqli_fetch_array($query)) {
                                                             ?>
-                                                                <option value="<?php echo $row['diningdate']; ?>"><?php echo $row['diningdate']; ?></option>
+                                                                <option value="<?php echo $row['diningdate']; ?>"><?php echo date("D j F Y", strtotime($row['diningdate'])); ?></option>
                                                             <?php } ?>
                                                         </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="inputText3">Create a Order Pickup Time</label>
-                                                        <input name="diningtime" type="text" placeholder="Example : 14:45" class="form-control">
-                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputText3">Create a Order Pickup Time</label>
+                                                    <input name="diningtime" type="text" placeholder="Example : 14:45" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputText3" class="col-form-label">Select Room</label>
+                                                    <select name="roomid" class="form-control" id="input-select" required>
+                                                        <option value="">Select a Room</option>
+                                                        <?php
+                                                        $query = mysqli_query($con, "select * from room");
+                                                        while ($row = mysqli_fetch_array($query)) { ?>
+                                                            <option value="<?php echo $row['roomid']; ?>"><?php echo $row['roomname']; ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
 
-                                                    <div class="form-group">
-                                                        <label for="inputText3" class="col-form-label">Dish Name 1</label>
-                                                        <select name="dishname1" class="form-control" id="input-select" required>
-                                                            <option value="">Select a Dish</option>
-                                                            <?php
-                                                            $query = mysqli_query($con, "select * from dish");
-                                                            while ($row = mysqli_fetch_array($query)) { ?>
-                                                                <option value="<?php echo $row['dishname']; ?>"><?php echo $row['dishname']; ?></option>
-                                                            <?php } ?>
-                                                        </select>
-                                                    </div>
+                                                <div class="form-group">
+                                                    <label for="inputText3" class="col-form-label">Dish Name 1</label>
+                                                    <select name="dishname1" class="form-control" id="input-select" required>
+                                                        <option value="">Select a Dish</option>
+                                                        <?php
+                                                        $query = mysqli_query($con, "select * from dish");
+                                                        while ($row = mysqli_fetch_array($query)) { ?>
+                                                            <option value="<?php echo $row['dishname']; ?>"><?php echo $row['dishname']; ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
 
-                                                    <div class="form-group">
-                                                        <label for="inputText3" class="col-form-label">Dish Name 2</label>
-                                                        <select name="dishname2" class="form-control" id="input-select" required>
-                                                            <option value="">Select a Dish</option>
-                                                            <?php
-                                                            $query = mysqli_query($con, "select * from dish");
-                                                            while ($row = mysqli_fetch_array($query)) { ?>
-                                                                <option value="<?php echo $row['dishname']; ?>"><?php echo $row['dishname']; ?></option>
-                                                            <?php } ?>
-                                                        </select>
-                                                    </div>
-                                                    <button type="submit" name="submit" class="btn btn-outline-dark">Submit!</a>
+                                                <div class="form-group">
+                                                    <label for="inputText3" class="col-form-label">Dish Name 2</label>
+                                                    <select name="dishname2" class="form-control" id="input-select" required>
+                                                        <option value="">Select a Dish</option>
+                                                        <?php
+                                                        $query = mysqli_query($con, "select * from dish");
+                                                        while ($row = mysqli_fetch_array($query)) { ?>
+                                                            <option value="<?php echo $row['dishname']; ?>"><?php echo $row['dishname']; ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                                <button type="submit" name="submit" class="btn btn-outline-dark">Submit!</a>
                                             </form>
                                         </div>
 
