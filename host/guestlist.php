@@ -134,7 +134,7 @@ if (isset($_GET['del'])) {
                                             </thead>
                                             <tbody>
 
-                                                <?php $query = mysqli_query($con, "select * from reservation ORDER BY diningdate ASC");
+                                                <?php $query = mysqli_query($con, "select * from reservation ORDER BY diningdate DESC LIMIT 25");
                                                 $cnt = 1;
                                                 $colorMap[0] = 'green';
                                                 $colorMap[1] = 'red';
@@ -161,8 +161,8 @@ if (isset($_GET['del'])) {
                                                         <td><?php echo htmlentities($row['room']); ?></td>
                                                         <td><?php echo htmlentities($row['tablename']); ?></td>
                                                         <td><?php echo htmlentities($row['seat']); ?></td>
-                                                        <td><?php echo htmlentities($row['diningdate']); ?></td>
-                                                        <td><?php echo htmlentities($row['diningtime']); ?></td>
+                                                        <td><?php echo htmlentities(date("D, j F - Y", strtotime($row['diningdate']))); ?></td>
+                                                        <td><?php echo htmlentities(strtoupper(date("h:i a", strtotime($row['diningtime'])))); ?></td>
                                                         <td><?php echo htmlentities($row['guestno']); ?></td>
                                                         <td> <a href="<?php echo $LinkMap[$row['guestmealprice'] != NULL ? '0' : '1']; ?>?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
                                                         

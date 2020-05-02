@@ -178,7 +178,7 @@ if (isset($_GET['del'])) {
                                                 ?>
                                                     <tr>
                                                         <td><?php echo htmlentities($cnt); ?></td>
-                                                        <td><?php echo htmlentities(date("D j F Y", strtotime($row['diningdate']))); ?></td>
+                                                        <td><?php echo htmlentities(date("D, j F Y", strtotime($row['diningdate']))); ?></td>
                                                         <td><?php echo htmlentities($row['status']); ?></td>
                                                         <td>
                                                             <!-- <a href="edit-dining-dates.php?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">Edit</button> -->

@@ -237,7 +237,7 @@ if (isset($_GET['del'])) {
                                                         <td><?php echo htmlentities($row['rname']); ?></td>
                                                         <td><?php echo htmlentities($row['tname']); ?></td>
                                                         <td><?php echo htmlentities(date("D j F Y", strtotime($row['dd']))); ?></td>
-                                                        <td><?php echo htmlentities($row['dt']); ?></td>
+                                                        <td><?php echo htmlentities(strtoupper(date("h:i a", strtotime($row['dt']))));  ?></td>
                                                         <td><?php echo htmlentities($row['d1']); ?></td>
                                                         <td><?php echo htmlentities($row['d2']); ?></td>
                                                         <td>

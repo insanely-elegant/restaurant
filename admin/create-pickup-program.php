@@ -155,7 +155,7 @@ function getDiningtime(val) {
                                                             $query = mysqli_query($con, "select DISTINCT diningdate from diningdates where status = 'enabled' and diningdate >= CURDATE() + INTERVAL 8 HOUR ORDER BY diningdate ASC");
                                                             while ($row = mysqli_fetch_array($query)) {
                                                             ?>
-                                                                <option value="<?php echo $row['diningdate']; ?>"><?php echo date("D j F Y", strtotime($row['diningdate'])); ?></option>
+                                                                <option value="<?php echo $row['diningdate']; ?>"><?php echo date("D, j F - Y", strtotime($row['diningdate'])); ?></option>
                                                             <?php } ?>
                                                         </select>
                                                     </div>
@@ -224,8 +224,8 @@ function getDiningtime(val) {
                                                 ?>
                                                     <tr>
                                                         <td><?php echo htmlentities($cnt); ?></td>
-                                                        <td><?php echo htmlentities($row['pickupdate']); ?></td>
-                                                        <td><?php echo htmlentities($row['pickuptime']); ?></td>
+                                                        <td><?php echo htmlentities(date("D, j F - Y", strtotime($row['pickupdate']))); ?></td>
+                                                        <td><?php echo htmlentities(strtoupper(date("h:i a", strtotime($row['pickuptime'])))); ?></td>
                                                         <td><?php echo htmlentities($row['dishname1']); ?></td>
                                                         <td><?php echo htmlentities($row['dishname2']); ?></td>
                                                         <td>
