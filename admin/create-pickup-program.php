@@ -158,47 +158,47 @@ function getDiningtime(val) {
                                                                 <option value="<?php echo $row['diningdate']; ?>"><?php echo date("D j F Y", strtotime($row['diningdate'])); ?></option>
                                                             <?php } ?>
                                                         </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputText3">Create a Order Pickup Time</label>
-                                                    <input name="diningtime" type="text" placeholder="Example : 14:45" class="form-control">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputText3" class="col-form-label">Select Room</label>
-                                                    <select name="roomid" class="form-control" id="input-select" required>
-                                                        <option value="">Select a Room</option>
-                                                        <?php
-                                                        $query = mysqli_query($con, "select * from room");
-                                                        while ($row = mysqli_fetch_array($query)) { ?>
-                                                            <option value="<?php echo $row['roomid']; ?>"><?php echo $row['roomname']; ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputText3">Create a Order Pickup Time</label>
+                                                        <input name="diningtime" type="text" placeholder="Example : 14:45" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputText3" class="col-form-label">Select Room</label>
+                                                        <select name="roomid" class="form-control" id="input-select" required>
+                                                            <option value="">Select a Room</option>
+                                                            <?php
+                                                            $query = mysqli_query($con, "select * from room");
+                                                            while ($row = mysqli_fetch_array($query)) { ?>
+                                                                <option value="<?php echo $row['roomid']; ?>"><?php echo $row['roomname']; ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
 
-                                                <div class="form-group">
-                                                    <label for="inputText3" class="col-form-label">Dish Name 1</label>
-                                                    <select name="dishname1" class="form-control" id="input-select" required>
-                                                        <option value="">Select a Dish</option>
-                                                        <?php
-                                                        $query = mysqli_query($con, "select * from dish");
-                                                        while ($row = mysqli_fetch_array($query)) { ?>
-                                                            <option value="<?php echo $row['dishname']; ?>"><?php echo $row['dishname']; ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </div>
+                                                    <div class="form-group">
+                                                        <label for="inputText3" class="col-form-label">Dish Option 1</label>
+                                                        <select name="dishname1" class="form-control" id="input-select" required>
+                                                            <option value="">Select a Dish</option>
+                                                            <?php
+                                                            $query = mysqli_query($con, "select * from dish");
+                                                            while ($row = mysqli_fetch_array($query)) { ?>
+                                                                <option value="<?php echo $row['dishname']; ?>"><?php echo $row['dishname']; ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
 
-                                                <div class="form-group">
-                                                    <label for="inputText3" class="col-form-label">Dish Name 2</label>
-                                                    <select name="dishname2" class="form-control" id="input-select" required>
-                                                        <option value="">Select a Dish</option>
-                                                        <?php
-                                                        $query = mysqli_query($con, "select * from dish");
-                                                        while ($row = mysqli_fetch_array($query)) { ?>
-                                                            <option value="<?php echo $row['dishname']; ?>"><?php echo $row['dishname']; ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </div>
-                                                <button type="submit" name="submit" class="btn btn-outline-dark">Submit!</a>
+                                                    <div class="form-group">
+                                                        <label for="inputText3" class="col-form-label">Dish Option 2</label>
+                                                        <select name="dishname2" class="form-control" id="input-select" required>
+                                                            <option value="">Select a Dish</option>
+                                                            <?php
+                                                            $query = mysqli_query($con, "select * from dish");
+                                                            while ($row = mysqli_fetch_array($query)) { ?>
+                                                                <option value="<?php echo $row['dishname']; ?>"><?php echo $row['dishname']; ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
+                                                    <button type="submit" name="submit" class="btn btn-outline-dark">Submit!</a>
                                             </form>
                                         </div>
 
@@ -211,8 +211,8 @@ function getDiningtime(val) {
                                                     <th>#</th>
                                                     <th>Pickup Date</th>
                                                     <th>Pickup Time</th>
-                                                    <th>Dish Name 1</th>
-                                                    <th>Dish Name 2 </th>
+                                                    <th>Dish Option 1</th>
+                                                    <th>Dish Option 2 </th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
