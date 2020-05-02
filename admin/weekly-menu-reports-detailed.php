@@ -11,6 +11,16 @@ date_default_timezone_set('America/Los_Angeles'); // change according timezone
 $currentTime = date('d-m-Y h:i:s A', time());
 
 
+//Function to format date
+//If date is real, return format version of it, otherwhyse it return empty string
+function formatData($date)
+{
+    if (!empty($date))
+        return (date("l", strtotime($date)) . " " . date("m/d", strtotime($date)));
+    else
+        return '';
+}
+
 ?>
 <!doctype html>
 
@@ -122,41 +132,82 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                                         ?>
                                                         <h5 align="center" style="color:blue">Weekly Menu from <?php echo $fdate ?> to <?php echo $tdate ?></h5> </br>
 
-                                                        <table class="table table-hover" id="sample-table-1">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th class="center">#</th>
-                                                                    <th>Dining Date</th>
-                                                                    <th>Dish 1</th>
-                                                                    <th>Dish 2 </th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <?php
+                                                        <table class="table table-striped table-hover table-bordered table-responsive" id="sample-table-1">
+                                                            <caption style="font-size:large;color:black;"> Weekly Menu from <?php echo $fdate ?> to <?php echo $tdate ?> </caption>
 
-                                                                $sql = mysqli_query($con, "SELECT DISTINCT weeklymenu.diningdate as dd, weeklymenu.dishname1 as d1, weeklymenu.dishname2 as d2,weeklymenu.roomid as rid, room.id as roomid, room.roomname as rname
- FROM weeklymenu join room on weeklymenu.roomid = room.id WHERE weeklymenu.diningdate >= '$fdate' AND weeklymenu.diningdate <= '$tdate'");
-                                                                $cnt = 1;
-                                                                while ($row = mysqli_fetch_array($sql)) {
-                                                                ?>
+                                                            <?php
+
+                                                            $sql = mysqli_query($con, "SELECT DISTINCT weeklymenu.diningdate as dd, weeklymenu.dishname1 as d1,
+                                                             weeklymenu.dishname2 as d2,dish1.dishdescription as ddesc1,dish2.dishdescription as ddesc2,weeklymenu.roomid as rid, room.id as roomid, room.roomname as rname
+                                                                FROM weeklymenu join room on weeklymenu.roomid = room.id JOIN dish as dish1 ON weeklymenu.dishname1 = dish1.dishname 
+                                                                JOIN dish as dish2 ON weeklymenu.dishname2 = dish2.dishname WHERE weeklymenu.diningdate >= '$fdate' AND weeklymenu.diningdate <= '$tdate'");
+                                                            $cnt = 1;
+                                                            //Save data to local variable
+                                                            $data = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+                                                            $noOfDays = count($data); //Check how many columns I need. If > 5 I will need to recreate the table
+                                                            $noOfIteration = intdiv($noOfDays, 5) + 1; //Counting how many iteration
+                                                            if ($noOfDays % 5 == 0)
+                                                                $noOfIteration -= 1;
+                                                            for ($i = 0; $i < $noOfIteration; $i++) { //Iterate Whole Table as much as necessary 
+                                                                $step = 5 * $i;
+                                                            ?>
+                                                                <thead style="background-color:#154e84;">
                                                                     <tr>
-                                                                        <td class="center"><?php echo $cnt; ?>.</td>
-                                                                        <td class="hidden-xs"><?php echo $row['dd']; ?></td>
-                                                                        <td><?php echo $row['d1']; ?></td>
-                                                                        <td><?php echo $row['d2']; ?>
-                                                                        </td>
-                                                                        <td>
+                                                                        <th colspan="6" style="font-size:x-large;text-align: center;color: white;background-color: black;">Weekly Menu </th>
 
-
-
-                                                                        </td>
                                                                     </tr>
-                                                                <?php
-                                                                    $cnt = $cnt + 1;
-                                                                } ?></tbody>
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th style="font-size:x-large;color:white;"><?php if (!empty($data[0 + $step])) echo (formatData($data[0 + $step]['dd'])); ?></th>
+                                                                        <th style="font-size:x-large;color:white;"><?php if (!empty($data[1 + $step])) echo (formatData($data[1 + $step]['dd'])); ?></th>
+                                                                        <th style="font-size:x-large;color:white;"><?php if (!empty($data[2 + $step])) echo (formatData($data[2 + $step]['dd'])); ?></th>
+                                                                        <th style="font-size:x-large;color:white;"><?php if (!empty($data[3 + $step])) echo (formatData($data[3 + $step]['dd'])); ?></th>
+                                                                        <th style="font-size:x-large;color:white;"><?php if (!empty($data[4 + $step])) echo (formatData($data[4 + $step]['dd'])); ?></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <!--Table head-->
+                                                                <!--Table body-->
+                                                                <tbody>
+                                                                    <tr style="font-size:x-large;color: black; background-color:#ADD8E6;">
+                                                                        <th scope="row">1</th>
+                                                                        <td><?php if (!empty($data[0 + $step])) echo (($data[0 + $step]['d1'])); ?></td>
+                                                                        <td><?php if (!empty($data[1 + $step])) echo (($data[1 + $step]['d1'])); ?></td>
+                                                                        <td><?php if (!empty($data[2 + $step])) echo (($data[2 + $step]['d1'])); ?></td>
+                                                                        <td><?php if (!empty($data[3 + $step])) echo (($data[3 + $step]['d1'])); ?></td>
+                                                                        <td><?php if (!empty($data[4 + $step])) echo (($data[4 + $step]['d1'])); ?></td>
+                                                                    </tr>
+                                                                    <tr style="font-size:large;color: black;background-color:white;">
+                                                                        <td></td>
+                                                                        <td><?php if (!empty($data[0 + $step])) echo (($data[0 + $step]['ddesc1'])); ?></td>
+                                                                        <td><?php if (!empty($data[1 + $step])) echo (($data[1 + $step]['ddesc1'])); ?></td>
+                                                                        <td><?php if (!empty($data[2 + $step])) echo (($data[2 + $step]['ddesc1'])); ?></td>
+                                                                        <td><?php if (!empty($data[3 + $step])) echo (($data[3 + $step]['ddesc1'])); ?></td>
+                                                                        <td><?php if (!empty($data[4 + $step])) echo (($data[4 + $step]['ddesc1'])); ?></td>
+                                                                    </tr>
+                                                                    <tr style="font-size:x-large;color: black;background-color:#ADD8E6;">
+                                                                        <th scope="row">2</th>
+                                                                        <td><?php if (!empty($data[0 + $step])) echo (($data[0 + $step]['d2'])); ?></td>
+                                                                        <td><?php if (!empty($data[1 + $step])) echo (($data[1 + $step]['d2'])); ?></td>
+                                                                        <td><?php if (!empty($data[2 + $step])) echo (($data[2 + $step]['d2'])); ?></td>
+                                                                        <td><?php if (!empty($data[3 + $step])) echo (($data[3 + $step]['d2'])); ?></td>
+                                                                        <td><?php if (!empty($data[4 + $step])) echo (($data[4 + $step]['d2'])); ?></td>
+                                                                    </tr>
+                                                                    <tr style="font-size:large;color: black;background-color:white;">
+                                                                        <td></td>
+                                                                        <td><?php if (!empty($data[0 + $step])) echo (($data[0 + $step]['ddesc2'])); ?></td>
+                                                                        <td><?php if (!empty($data[1 + $step])) echo (($data[1 + $step]['ddesc2'])); ?></td>
+                                                                        <td><?php if (!empty($data[2 + $step])) echo (($data[2 + $step]['ddesc2'])); ?></td>
+                                                                        <td><?php if (!empty($data[3 + $step])) echo (($data[3 + $step]['ddesc2'])); ?></td>
+                                                                        <td><?php if (!empty($data[4 + $step])) echo (($data[4 + $step]['ddesc2'])); ?></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            <?php
+                                                                $cnt = $cnt + 1;
+                                                            } ?>
                                                         </table>
 
-                                                        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+                                                        <script type=" text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js">
+                                                        </script>
                                                         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
                                                         <script type="text/javascript">
                                                             function Export() {
