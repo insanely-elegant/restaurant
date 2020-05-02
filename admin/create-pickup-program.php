@@ -218,7 +218,7 @@ function getDiningtime(val) {
                                             </thead>
                                             <tbody>
 
-                                                <?php $query = mysqli_query($con, "select * from pickupweeklymenu where pickupdate >= CURDATE() ORDER BY pickupweeklymenu.pickupdate ASC");
+                                                <?php $query = mysqli_query($con, "select * from pickupweeklymenu where pickupdate >= CURDATE() ORDER BY pickupweeklymenu.pickupdate DESC");
                                                 $cnt = 1;
                                                 while ($row = mysqli_fetch_array($query)) {
                                                 ?>
