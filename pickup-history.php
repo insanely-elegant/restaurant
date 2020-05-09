@@ -605,7 +605,7 @@ if (strlen($_SESSION['login']) == 0) {
 											<body>
 												<?php $query = mysqli_query($con, "select * from users where unitno='" . $_SESSION['login'] . "'");
 												while ($row = mysqli_fetch_array($query)) { ?>
-													<a href="booking.php" class="previous">&laquo; Go Back to Home Page</a> <br><br>
+													<a href="menu.php" class="previous">&laquo; Go Back to Home Page</a> <br><br>
 													<table class="row" style="border-spacing:0;border-collapse:collapse;text-align:left;vertical-align:top;padding:0;width:100%;position:relative;display:table;">
 														<tbody>
 															<tr style="padding:0;vertical-align:top;text-align:left;">
