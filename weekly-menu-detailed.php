@@ -644,15 +644,39 @@ function formatData($date)
 
 										<body>
 
-											<a href="weekly-menu.php" class="previous">&laquo; Go Back </a> <br><br>
-											<a href="menu.php" class="previous">&laquo; Go to Home Page </a> <br><br>
-											
+											<style type="text/css">
+												.bgggox {
+													font-size: x-large;
+													border: 1px solid black;
+
+												}
+
+												.bgggox:hover {
+													-moz-box-shadow: 0 0 10px #ccc;
+													-webkit-box-shadow: 0 0 10px #ccc;
+													box-shadow: 0 0 10px #ccc;
+													cursor: pointer;
+												}
+											</style>
+											<div class="bgggox" onclick="history.back(-1)">
+												<img src="images/390380-200.png" style="width: 80px; height: 80px;" onclick="history.back(-1)">Go Back</img>
+											</div>
+											</br></br>
+											<div class="bgggox" onclick="home()">
+												<img src="images/390380-200.png" style="width: 80px; height: 80px;" onclick="home()">Go to Main Page</img>
+											</div>
+											</br></br></br>
+											<script>
+												function home() {
+													location.href = "menu.php";
+												}
+											</script>
 									</div>
 									<div class="row">
 										<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 											<div class="section-block" id="basicform">
 												<h3 class="section-title">Weekly Menu</h3>
-
+												</br>
 											</div>
 
 											<div class="card">
@@ -661,7 +685,7 @@ function formatData($date)
 														<div class="row">
 															<div class="col-md-12">
 																</br>
-																
+
 																<?php
 																$fdate = $_POST['fromdate'];
 																$tdate = $_POST['todate'];
@@ -670,7 +694,7 @@ function formatData($date)
 																<h5 align="center" style="color:blue">Weekly Menu from <?php echo $fdate ?> to <?php echo $tdate ?></h5> </br>
 
 																<table class="table table-striped table-hover table-bordered table-responsive" id="sample-table-1">
-																	
+
 																	<?php
 
 																	$sql = mysqli_query($con, "SELECT DISTINCT weeklymenu.diningdate as dd, weeklymenu.dishname1 as d1,

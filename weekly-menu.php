@@ -547,6 +547,30 @@ if (strlen($_SESSION['login']) == 0) {
 
 		<table class="body" style="background:#fff;border-collapse:collapse;border-spacing:0;color:#4d4d4d;font-family:Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;height:100%;line-height:1.3;margin:0;padding:0;text-align:left;vertical-align:top;width:100%;">
 			<tr style="padding:0;text-align:left;vertical-align:top;">
+				<style type="text/css">
+					.bgggox {
+
+						border: 1px solid black;
+
+					}
+
+					.bgggox:hover {
+						-moz-box-shadow: 0 0 10px #ccc;
+						-webkit-box-shadow: 0 0 10px #ccc;
+						box-shadow: 0 0 10px #ccc;
+						cursor: pointer;
+					}
+				</style>
+				</br></br>
+				<div class="bgggox" onclick="home()">
+					<img src="images/390380-200.png" style="width: 80px; height: 80px;" onclick="home()">Go Back to Main Page</img>
+				</div>
+		
+				<script>
+					function home() {
+						location.href = "menu.php";
+					}
+				</script>
 				<td class="center" align="center" valign="top" style="-webkit-hyphens:none;border-collapse:collapse !important;color:#4d4d4d;font-family:Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:normal;">
 					<center style="min-width:580px;width:100%;">
 						<table align="center" class="container booking-confirmation-header float-center" style="background:#fff;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:580px;">
@@ -605,7 +629,7 @@ if (strlen($_SESSION['login']) == 0) {
 											<body>
 												<?php $query = mysqli_query($con, "select * from users where unitno='" . $_SESSION['login'] . "'");
 												while ($row = mysqli_fetch_array($query)) { ?>
-													<a href="menu.php" class="previous">&laquo; Go Back</a> <br><br>
+
 													<table class="row" style="border-spacing:0;border-collapse:collapse;text-align:left;vertical-align:top;padding:0;width:100%;position:relative;display:table;">
 														<tbody>
 															<tr style="padding:0;vertical-align:top;text-align:left;">

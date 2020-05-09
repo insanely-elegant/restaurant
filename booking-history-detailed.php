@@ -849,7 +849,7 @@ if (strlen($_SESSION['login']) == 0) {
 																		<div class="row">
 
 																			<div class="offset-xl-1 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 p-3">
-																				<h2 class="font-weight-normal mb-3"><span><?php echo '$' . $total['totaltaxvalues']; ?></span> </h2>
+																				<h1><?php echo '$' . $total['totaltaxvalues']; ?></h1>
 																				<div class="mb-0 mt-3 legend-item">
 																					<span class="fa-xs text-primary mr-1 legend-title "><i class="fa fa-fw fa-square-full"></i></span>
 																					<span class="legend-text">Total Tax:</span></div>
