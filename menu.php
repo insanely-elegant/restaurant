@@ -134,7 +134,7 @@ if (strlen($_SESSION['login']) == 0) {
 							}
 
 							function menu() {
-								location.href = "print-weeklymenu.php"
+								location.href = "weekly-menu.php"
 							}
 
 							function reservation() {
