@@ -13,7 +13,7 @@ if (strlen($_SESSION['login']) == 0) {
   $query = mysqli_query($con, "select * from reservation where id='$id'");
   while ($row = mysqli_fetch_array($query)) {
     $memprice = $row['membermealprice'];
-    $guestprice = $row['membermealprice'];
+    $guestprice = $row['memberguestmealprice'];
     $gn = $row['guestno'];
     $memtax = $row['membermealtaxvalue'];
     $gutax = $row['memberguestmealtaxvalue'];
