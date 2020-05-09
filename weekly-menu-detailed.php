@@ -644,7 +644,7 @@ function formatData($date)
 
 										<body>
 
-											<a href="booking-history.php" class="previous">&laquo; Go Back </a> <br><br>
+											<a href="weekly-menu.php" class="previous">&laquo; Go Back </a> <br><br>
 											<a href="menu.php" class="previous">&laquo; Go to Home Page </a> <br><br>
 											
 									</div>
