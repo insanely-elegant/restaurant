@@ -624,7 +624,7 @@ if (strlen($_SESSION['login']) == 0) {
 													<tr style="padding:0;vertical-align:top;text-align:left;">
 														<th class="small-12 large-12 columns first last" style="font-size:16px;padding:0;text-align:left;color:#0a0a0a;font-family:Helvetica, Arial, sans-serif;font-weight:normal;line-height:1.3;margin:0 auto;padding-bottom:16px;width:564px;padding-left:16px;padding-right:16px;">
 															<p class="body body-lg body-link-rausch light" style="padding:0;margin:0;font-family:Helvetica, Helvetica, Arial, sans-serif;text-align:left;color:#000;line-height:1.4;font-size:16px;-webkit-hyphens:none;-ms-hyphens:none;margin-bottom:0px !important;">
-																You can check the menu for any upcoming or past dates at Silver Glen here.
+																You can check the menu for any upcoming or past dates at Silver Glen here. </br>
 																<form role="form" method="post" action="weekly-menu-detailed.php">
 																	<div class="form-group">
 																		<label for="exampleInputPassword1">
