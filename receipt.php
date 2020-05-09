@@ -178,10 +178,29 @@ if (strlen($_SESSION['login']) == 0) {
                 <td>
                   <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
                     <tbody>
-                      <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="window.location.href = 'menu.php';">
-                        Go Back to Home Page
-                      </button> </br></br></br>
+                      <style type="text/css">
+                        .box {
 
+                          border: 1px solid black;
+
+                        }
+
+                        .box:hover {
+                          -moz-box-shadow: 0 0 10px #ccc;
+                          -webkit-box-shadow: 0 0 10px #ccc;
+                          box-shadow: 0 0 10px #ccc;
+                          cursor: pointer;
+                        }
+                      </style>
+                      <div class="box" onclick="home()">
+                        <img src="images/390380-200.png" style="width: 80px; height: 80px;" onclick="home()">Go Back to Main Page</img>
+                      </div>
+                       </br></br></br>
+<script>
+function home(){
+location.href="menu.php";
+}
+</script>
                       <tr>
                         <td>
                           <table width="220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">

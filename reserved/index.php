@@ -193,9 +193,24 @@ if (strlen($_SESSION['login']) == 0) {
         <div class="card z-depth-3 hoverable">
           <div class="card-title">
             <div class="container-login100-form-btn m-t-17">
-              <button class="login100-form-btn" style="background-color: black; color: white" onClick="goback();">
-                Go Back
-              </button>
+              <style type="text/css">
+                .box {
+
+                  border: 1px solid black;
+
+                }
+
+                .box:hover {
+                  -moz-box-shadow: 0 0 10px #ccc;
+                  -webkit-box-shadow: 0 0 10px #ccc;
+                  box-shadow: 0 0 10px #ccc;
+                  cursor: pointer;
+                }
+              </style>
+              <div class="box" onclick="history.back(-1)">
+                <img src="../images/390380-200.png" style="width: 80px; height: 80px;" onclick="history.back(-1)">Go Back</img>
+              </div>
+              </br>
             </div>
             <div class="row" style="margin-bottom: 0;">
               <div class="col s12 m4">

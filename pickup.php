@@ -124,6 +124,24 @@ if (strlen($_SESSION['login']) == 0) {
 								<li class="breadcrumb-item"><a href="menu.php">Home</a></li>
 								<li class="breadcrumb-item active" aria-current="page">Order Takeout</li>
 							</ol>
+							<style type="text/css">
+								.box {
+
+									border: 1px solid black;
+
+								}
+
+								.box:hover {
+									-moz-box-shadow: 0 0 10px #ccc;
+									-webkit-box-shadow: 0 0 10px #ccc;
+									box-shadow: 0 0 10px #ccc;
+									cursor: pointer;
+								}
+							</style>
+							<div class="box" onclick="history.back(-1)">
+								<img src="images/390380-200.png" style="width: 80px; height: 80px;" onclick="history.back(-1)">Go Back to Main Page</img>
+							</div>
+							</br>
 						</nav>
 						</br>
 						<?php
@@ -178,7 +196,7 @@ if (strlen($_SESSION['login']) == 0) {
 
 								<!-- End Dining Time -->
 
-								
+
 
 								<!-- Begin Dish Name -->
 								<div class="wrap-input100 validate-input m-b-16">

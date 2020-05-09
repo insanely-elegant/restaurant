@@ -192,6 +192,23 @@ if (strlen($_SESSION['login']) == 0) {
 								<li class="breadcrumb-item"><a href="menu.php">Home</a></li>
 								<li class="breadcrumb-item active" aria-current="page">Reserve Seats</li>
 							</ol>
+							<style type="text/css">
+								.box {
+									
+									border: 1px solid black;
+									
+								}
+
+								.box:hover {
+									-moz-box-shadow: 0 0 10px #ccc;
+									-webkit-box-shadow: 0 0 10px #ccc;
+									box-shadow: 0 0 10px #ccc;
+									cursor: pointer;
+								}
+							</style>
+							<div class="box" onClick="home();">
+								<img src="images/390380-200.png" style="width: 80px; height: 80px;" onClick="home();">Go Back to Main Page</img>
+								</div>
 						</nav>
 						</br>
 						<?php

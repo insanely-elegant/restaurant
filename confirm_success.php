@@ -383,7 +383,7 @@ body {
 			<h1>Success!</h1>
 			<p>We've sent the booking confirmation to your e-mail
 				<br>for verification.</p>
-			<button type="button" onclick="location.href = 'menu.php';" class="redo btn">Goto Home</button>
+			<button type="button" onclick="location.href = 'menu.php';" class="redo btn">Goto Main Page</button>
             <button style="background-color:#5f6caf;color:#fff" type="button" onclick="location.href = 'receipt.php?id=<?php echo $id ?>';" class="redo btn">Show Invoice</button>
 		</div>
 		<!--/.success-->

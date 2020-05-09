@@ -97,15 +97,31 @@ if (strlen($_SESSION['login']) == 0) {
 
 	<body>
 		<!-- partial:index.partial.html -->
+		<style type="text/css">
+			.box {
+
+				border: 1px solid black;
+
+			}
+
+			.box:hover {
+				-moz-box-shadow: 0 0 10px #ccc;
+				-webkit-box-shadow: 0 0 10px #ccc;
+				box-shadow: 0 0 10px #ccc;
+				cursor: pointer;
+			}
+		</style>
+		<div class="box" onclick="history.back(-1)">
+			<img src="images/390380-200.png" style="width: 80px; height: 80px;" onclick="history.back(-1)">Go Back</img>
+		</div>
+		</br>
 		<div class="backto">
 			<div class="container">
 				<h1>Cancel your reservation</h1></a>
 			</div>
 		</div>
 
-		<div class="container-fluid cards-row"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="window.location.href = 'menu.php';">
-				Go Back to Home Page
-			</button>
+		<div class="container-fluid cards-row">
 			<div class="container"><?php if (isset($_POST['submit'])) { ?>
 					<div class="alert alert-success" role="alert">
 						<button type="button" class="close" data-dismiss="alert">×</button>

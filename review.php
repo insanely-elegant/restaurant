@@ -59,7 +59,7 @@ if (strlen($_SESSION['login']) == 0) {
   if ($guestno < 1) {
     $type = "none";
     $dinertype = "member";
-    $membermealprice= 0;
+    $membermealprice = 0;
   } else {
     $dinertype = "memberguest";
   }
@@ -82,7 +82,7 @@ if (strlen($_SESSION['login']) == 0) {
   $gt = $_POST['gt'];
   $bkid = $_POST['bkid'];
   $dntype = $_POST['dntype'];
-  
+
 
 
   if (isset($_POST['submit'])) {
@@ -262,7 +262,7 @@ if (strlen($_SESSION['login']) == 0) {
 
             <form method="POST" action="review.php" class="login100-form validate-form flex-sb flex-w">
               <span class="login100-form-title p-b-51">
-                Review Your Booking Information
+                Review Your </br> Booking Information
               </span>
 
 
@@ -280,9 +280,24 @@ if (strlen($_SESSION['login']) == 0) {
                             <tbody>
                               <tr>
                                 <td>
-                                  <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="history.back(-1)">
-                                    Go Back
-                                  </button>
+                                  <style type="text/css">
+                                    .box {
+
+                                      border: 1px solid black;
+
+                                    }
+
+                                    .box:hover {
+                                      -moz-box-shadow: 0 0 10px #ccc;
+                                      -webkit-box-shadow: 0 0 10px #ccc;
+                                      box-shadow: 0 0 10px #ccc;
+                                      cursor: pointer;
+                                    }
+                                  </style>
+                                  <div class="box" onclick="history.back(-1)">
+                                    <img src="images/390380-200.png" style="width: 80px; height: 80px;" onclick="history.back(-1)">Go Back</img>
+                                  </div>
+                                  </br>
                                   <table width="220" border="0" cellpadding="0" cellspacing="0" align="right" class="col">
                                     <tbody>
                                       <tr>
@@ -536,7 +551,7 @@ if (strlen($_SESSION['login']) == 0) {
                                           </tr>
                                           <tr>
                                             <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
-                                              Cancellations not applicable after booking is confirmed.
+                                              We will fully refund any booking cancelled up to 24 hours prior to scheduled dine-in date. </br> Cancellation not applicable within 24 hours of scheduled dine-in time, you will be charged full amount.
                                             </td>
                                           </tr>
                                         </tbody>

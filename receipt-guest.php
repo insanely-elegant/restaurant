@@ -176,9 +176,29 @@ if (strlen($_SESSION['login']) == 0) {
                 <td>
                   <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
                     <tbody>
-                      <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="window.location.href = 'menu.php';">
-                        Go Back to Home Page
-                      </button> </br></br></br>
+                      <style type="text/css">
+                        .box {
+
+                          border: 1px solid black;
+
+                        }
+
+                        .box:hover {
+                          -moz-box-shadow: 0 0 10px #ccc;
+                          -webkit-box-shadow: 0 0 10px #ccc;
+                          box-shadow: 0 0 10px #ccc;
+                          cursor: pointer;
+                        }
+                      </style>
+                      <div class="box" onclick="home()">
+                        <img src="images/390380-200.png" style="width: 80px; height: 80px;" onclick="home()">Go Back to Main Page</img>
+                      </div>
+                      </br></br></br>
+                      <script>
+                        function home() {
+                          location.href = "menu.php";
+                        }
+                      </script>
 
                       <tr>
                         <td>
@@ -274,7 +294,7 @@ if (strlen($_SESSION['login']) == 0) {
                           <tr>
                             <td height="1" style="background: #bebebe;" colspan="4"></td>
                           </tr>
-                          
+
                           <tr>
                             <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">Guest</td>
                             <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; display:<?php echo htmlentities($type); ?>; line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"><?php echo  htmlentities($gn); ?></td>
