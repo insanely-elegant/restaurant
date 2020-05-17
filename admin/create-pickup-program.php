@@ -170,7 +170,7 @@ function getDiningtime(val) {
                                                             <?php
                                                             $query = mysqli_query($con, "select * from room");
                                                             while ($row = mysqli_fetch_array($query)) { ?>
-                                                                <option value="<?php echo $row['roomid']; ?>"><?php echo $row['roomname']; ?></option>
+                                                                <option value="<?php echo $row['id']; ?>"><?php echo $row['roomname']; ?></option>
                                                             <?php } ?>
                                                         </select>
                                                     </div>
