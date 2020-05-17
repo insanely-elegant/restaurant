@@ -15,8 +15,8 @@ if (isset($_POST['submit'])) {
     $diningdate = $_POST['diningdate'];
     $diningtime = $_POST['diningtime'];
     $roomid = $_POST['roomid'];
-    $dishname1 = $_POST['dishname1'];
-    $dishname2 = $_POST['dishname2'];
+    $dishname1 = mysqli_real_escape_string($con, $_POST['dishname1']);
+    $dishname2 = mysqli_real_escape_string($con, $_POST['dishname2']);
     $sql = mysqli_query($con, "insert into pickupweeklymenu(pickupdate,pickuptime,roomid,dishname1,dishname2) values('$diningdate','$diningtime','$roomid','$dishname1','$dishname2')");
     $_SESSION['msg'] = "Published To The Takeout Menu !!";
 }

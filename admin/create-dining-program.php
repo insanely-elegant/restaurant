@@ -21,8 +21,8 @@ if (isset($_POST['submit'])) {
     $table = $_POST['table'];
     $diningdate = $_POST['diningdate'];
     $diningtime = $_POST['diningtime'];
-    $dishname1 = $_POST['dishname1'];
-    $dishname2 = $_POST['dishname2'];
+    $dishname1 = mysqli_real_escape_string($con, $_POST['dishname1']);
+    $dishname2 = mysqli_real_escape_string($con, $_POST['dishname2']);
 
     foreach ($field_values_array1 as $value1) { // This Loop Execute for Tables Selection
         $table = $value1;
