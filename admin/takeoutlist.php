@@ -12,14 +12,18 @@ $currentTime = date('m-d-Y h:i:s A', time());
 
 if (isset($_GET['noshow'])) {
     mysqli_query($con, "update pickups set isPickedup= 0 where id = '" . $_GET['id'] . "'");
-    $_SESSION['delmsg'] = "User marked as No Show !!";
+    $_SESSION['delmsg'] = "User marked as No Show!";
 }
 
 if (isset($_GET['pickedup'])) {
     mysqli_query($con, "update pickups set isPickedup= 1, timestamp = '$currentTime' where id = '" . $_GET['id'] . "'");
-    $_SESSION['msg'] = "User sucessfully marked as Picked up!!";
+    $_SESSION['msg'] = "User sucessfully marked as Picked up!";
 }
 
+if (isset($_GET['del'])) {
+    mysqli_query($con, "delete from pickups where id = '" . $_GET['id'] . "'");
+    $_SESSION['delmsg'] = "Takeout Cancelled & Deleted Permanently!";
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -123,6 +127,7 @@ if (isset($_GET['pickedup'])) {
                                                     <th>Order Pickup Status</th>
                                                     <th>Time Log of Status Change</th>
                                                     <th>View Invoice</th>
+                                                    <th>Cancel & Delete Order</th>
 
                                                 </tr>
                                             </thead>
@@ -149,6 +154,9 @@ if (isset($_GET['pickedup'])) {
                                                         <td><?php echo htmlentities($row['isPickedup'] ? 'Yes' : 'No'); ?></td>
                                                         <td><?php echo htmlentities($row['timestamp']); ?></td>
                                                         <td> <a href="pickup-receipt.php?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
+                                                        <td> <a href="takeoutlist.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('Are you sure you want to cancel & delete this order?')" class="btn btn-sm btn-outline-light">
+                                                                <button> <i class="far fa-trash-alt"></i>
+                                                                </button></td>
                                                     </tr>
                                                 <?php $cnt = $cnt + 1;
                                                 } ?>
