@@ -68,53 +68,57 @@ if (strlen($_SESSION['login']) == 0) {
 							<p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , <?php echo $_SESSION['firstname']; ?></p>
 						<?php } ?>
 						<div class="container-login100-form-btn m-t-17">
-							<button class="login100-form-btn" style="background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898; 
- background-blend-mode: multiply,multiply;" onClick="booking();">
+							<button class="login100-form-btn" style="background-color: #99B898; color: black;" onClick="booking();">
 								Make a New Reservation
 							</button>
 						</div>
 
 						<div class="container-login100-form-btn m-t-17">
-							<button class="login100-form-btn" style="background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);" onClick="bookingguest();">
+							<button class="login100-form-btn" style="background-color: #FECEA8; color: black" onClick="bookingguest();">
 								Make a New Guest Reservation
 							</button>
 						</div>
 
 						<div class="container-login100-form-btn m-t-17">
-							<button class="login100-form-btn" style="background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);" onClick="takeout();">
+							<button class="login100-form-btn" style="background-color: #FF847C; color: black;" onClick="takeout();">
 								Order a Takeout
 							</button>
 						</div>
 						<div class="container-login100-form-btn m-t-17">
-							<button class="login100-form-btn" style="background-image: linear-gradient(to right, #434343 0%, black 100%);" onClick="menu();">
+							<button class="login100-form-btn" style="background-color: #E84A5F; color: black;" onClick="menu();">
 								See what's on the menu
 							</button>
 						</div>
 						<div class="container-login100-form-btn m-t-17">
-							<button class="login100-form-btn" style="background-image: linear-gradient(to right, #868f96 0%, #596164 100%);" onClick="reservation();">
+							<button class="login100-form-btn" style="background-color: #2A363B; color: white;" onClick="reservation();">
 								View Reservations by other members
 							</button>
 						</div>
 
 						<div class="container-login100-form-btn m-t-17">
-							<button class="login100-form-btn" style="background-image: linear-gradient(to top, #09203f 0%, #537895 100%);" onClick="history();">
+							<button class="login100-form-btn" style="background-color: #582841; color: white;" onClick="history();">
 								View Your Reservation History
 							</button>
 						</div>
 						<div class="container-login100-form-btn m-t-17">
-							<button class="login100-form-btn" style="background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);" onClick="cancel();">
+							<button class="login100-form-btn" style="background-color: #DDA5B6; color: black;" onClick="cancel();">
 								Cancel Your Upcoming Reservation
+							</button>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<button class="login100-form-btn" style="background-color: #F2CC8C; color: black;" onClick="cancelorder();">
+								Cancel Your Order Takeout
 							</button>
 						</div>
 
 						<div class="container-login100-form-btn m-t-17">
-							<button class="login100-form-btn" style="background-image: linear-gradient(-20deg, #616161 0%, #9bc5c3 100%);" onClick="pickuphistory();">
+							<button class="login100-form-btn" style="background-color: #F1E6C1; color: black;" onClick="pickuphistory();">
 								View Your Order Takeout History
 							</button>
 						</div>
 
 						<div class="container-login100-form-btn m-t-17">
-							<button class="login100-form-btn" style="background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);" onClick="logout();">
+							<button class="login100-form-btn" style="background-color: #3F6A8A; color: black;" onClick="logout();">
 								Log out
 							</button>
 						</div>
@@ -148,6 +152,11 @@ if (strlen($_SESSION['login']) == 0) {
 							function cancel() {
 								location.href = "cancel-booking.php"
 							}
+
+							function cancelorder() {
+								location.href = "cancel-takeout.php";
+							}
+
 
 
 							function pickuphistory() {
