@@ -168,15 +168,12 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                 <th>Member Meal Base Price</th>
                                 <th>Member Meal Tax Percent</th>
                                 <th>Member Meal Tax Value</th>
-                                <!-- <th>Member Meal Grand Total</th> -->
                                 <th>Member Guest Meal Base Price</th>
                                 <th>Member Guest Meal Tax Percent</th>
                                 <th>Member Guest Meal Tax Value</th>
-                                <!-- <th>Member Guest Meal Grand Total</th> -->
                                 <th>Guest Meal Base Price</th>
                                 <th>Guest Meal Tax Percent</th>
                                 <th>Guest Meal Tax Value</th>
-                                <!-- <th>Guest Meal Grand Total</th> -->
                                 <th>Total Seats </th>
                                 <th>Gross Total Price (Member Total + Guest Total)</th>
                                 <th>View Invoice</th>
@@ -379,7 +376,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                 <h1 style="color: white;">Free Diners Report</h1>
                               </div>
                             </div>
-                            
+
                             <table id="example" class="table table-striped table-bordered second" style="width:100%">
                               <thead>
                                 <tr>
@@ -531,7 +528,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                 <input class="form-control" type="text" id="myInput6" onkeyup="myFunction6()" placeholder="Unit Number" title="Type in the Unit Number">
                               </div>
                             </div> -->
-                            
+
                             <table id="example" class="table table-striped table-bordered second" style="width:100%">
                               <thead>
                                 <tr>
@@ -620,7 +617,53 @@ $currentTime = date('d-m-Y h:i:s A', time());
                               </tbody>
                             </table>
                           </div>
+                         </div>
+                         </div>
+                            <div class="card">
 
+                              <div class="card-body">
+                                <div class="form-group">
+                                  <div class="table-responsive">
+                                    <div class="card">
+                                      <div class="card-body" style="background: #0e0c28; position: center;">
+                                        <h1 style="color: white;">Total Revenue by Users</h1>
+                                      </div>
+                                    </div>
+
+                                    <table id="example" class="table table-striped table-bordered second" style="width:100%">
+                                      <thead>
+                                        <tr>
+                                          <th class="center">#</th>
+                                          <th>Firstname</th>
+                                          <th>Unit Number</th>
+                                          <th>Total Meals Consumed</th>
+                                          <th>Grand Total</th>
+
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <?php
+                                        $sql = mysqli_query($con, "");
+                                        $cnt = 1;
+                                        while ($rowm = mysqli_fetch_array($sql)) {
+                                        ?>
+                                          <tr>
+                                            <td class="center"><?php echo $cnt; ?>.</td>
+                                            <td><?php echo $rowm['fname']; ?></td>
+                                            <td><?php echo $rowm['lname']; ?></td>
+                                            <td><?php echo $rowm['unitnumber']; ?></td>
+                                            <td><?php echo $rowm['age']; ?></td>   
+                                            
+                                        <?php
+                                          $cnt = $cnt + 1;
+                                        } ?>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                         
 
                           </br>
                           <h4>
@@ -633,6 +676,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             $membermealtaxvalue = $row1['membermealtaxvalue'];
                             $membertotal = $row1['membertotal'];
                             $membernetvalue = $membertotal - $membermealtaxvalue;
+                            echo "<h3>Reservation Revenue: </h3></br>";
                             echo "Net Revenue (Members + MemberGuests) : " . '$' . htmlentities($membernetvalue);
                             echo "<br>Tax Percentage (Members)  : " . htmlentities($membermealtaxpercent) . '%';
                             echo "<br>Tax Percentage (MemberGuests)  : " . htmlentities($memberguestmealtaxpercent) . '%';
@@ -665,6 +709,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             $freedinertotal = $row5['freedinertotal'];
                             $totseats = $row5['seats'];
                             $freedinernetvalue = $freedinertotal - $freedinermealtaxvalue;
+                            echo "<h3>Free Diner Expenditure: </h3></br>";
                             echo "Net Cost (Free Diner) : " . '$' . htmlentities($freedinernetvalue);
                             echo "<br>Tax Percentage (Free Diner)  : " . htmlentities($freedinermealtaxpercent) . '%';
                             echo "<br>Total Meals Served (Free Diner)  : " . htmlentities($totseats);
@@ -680,6 +725,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             $pickupmealprice = $row12['membermealprice'];
                             $pickupnetvalue = $pickuptotal - $pickupmealtaxvalue;
                             $totalpickups = $pickuptotal / $pickupmealprice;
+                            echo "<h3>Order Takeout Revenue: </h3></br>";
                             echo "Net Revenue (Takeout) : " . '$' . htmlentities($pickupnetvalue);
                             echo "<br>Tax Percentage (Takeout)  : " . htmlentities($pickupmealtaxpercent) . '%';
                             echo "<br>Total meals serverd (Takeout)  : " . htmlentities($totalpickups);
