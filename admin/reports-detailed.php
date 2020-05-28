@@ -635,25 +635,32 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                         <tr>
                                           <th class="center">#</th>
                                           <th>Firstname</th>
+                                          <th>Lastname</th>
                                           <th>Unit Number</th>
-                                          <th>Total Meals Consumed</th>
+                                          <th>Total Dineout Meals Consumed</th>
+                                          <th>Total Dineout Net Cost</th>
+                                          <th>Total Dineout Tax</th>
+                                          <th>Total Takeout Meals</th>
+                                          <th>Total Takeout Net Cost</th>
+                                          <th>Total Takeout Tax</th>
                                           <th>Grand Total</th>
-
                                         </tr>
                                       </thead>
                                       <tbody>
                                         <?php
-                                        $sql = mysqli_query($con, "");
+                                        $sqluser = mysqli_query($con, "SELECT firstname, lastname, condono, COALESCE(SUM(guestno)) as mealsconsumed, COALESCE(SUM(grandtotal)) as netcost, COALESCE(membermealtaxvalue, 0) + COALESCE(guestmealtaxvalue, 0) + COALESCE(memberguestmealtaxvalue, 0) as totaltax
+                                         FROM reservation where diningdate >= '$fdate' AND diningdate <= '$tdate' group by condono");
                                         $cnt = 1;
-                                        while ($rowm = mysqli_fetch_array($sql)) {
+                                        while ($rowuser = mysqli_fetch_array($sqluser)) {
                                         ?>
                                           <tr>
                                             <td class="center"><?php echo $cnt; ?>.</td>
-                                            <td><?php echo $rowm['fname']; ?></td>
-                                            <td><?php echo $rowm['lname']; ?></td>
-                                            <td><?php echo $rowm['unitnumber']; ?></td>
-                                            <td><?php echo $rowm['age']; ?></td>   
-                                            
+                                            <td><?php echo $rowuser['firstname']; ?></td>
+                                            <td><?php echo $rowuser['lastname']; ?></td>
+                                            <td><?php echo $rowuser['condono']; ?></td> 
+                                            <td><?php echo $rowuser['mealsconsumed']; ?></td> 
+                                            <td><?php echo $rowuser['netcost']; ?></td>                                            
+                                            <td><?php echo $rowuser['totaltax']; ?></td>                                            
                                         <?php
                                           $cnt = $cnt + 1;
                                         } ?>
