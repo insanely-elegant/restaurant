@@ -63,7 +63,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
     }
 
     function exportTableToPDF(tableId) {
-      var pdfsize = 'PDF Export';
+      var pdfsize = 'Silver Glen - Revenue Report';
       var pdf = new jsPDF('l', 'pt', pdfsize);
 
       pdf.autoTable({
@@ -658,7 +658,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                 </div>
                               </div>
                               <div id="revenueByUserTableWrap">
-                                <table id="example" id="revenueByUserTable" class="table table-striped table-bordered second" style="width:100%">
+                                <table id="revenueByUserTable" class="table table-striped table-bordered second" style="width:100%">
                                   <thead>
                                     <tr>
                                       <th class="center">#</th>
