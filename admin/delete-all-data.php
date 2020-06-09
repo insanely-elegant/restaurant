@@ -23,9 +23,8 @@ if (isset($_POST['submit'])) {
     $sql = mysqli_query($con, "TRUNCATE table room");
     $sql = mysqli_query($con, "TRUNCATE table tablelayout");
     $sql = mysqli_query($con, "TRUNCATE table userlog");
-    $sql = mysqli_query($con, "TRUNCATE table users");
     $sql = mysqli_query($con, "TRUNCATE table weeklymenu");
-    $_SESSION['msg'] = "All Data Deleted";
+    $_SESSION['msg'] = "All Date Deleted. User credentials remain.";
 }
 
 ?>
@@ -117,6 +116,11 @@ if (isset($_POST['submit'])) {
                                             <div class="alert alert-danger" role="alert">
                                                 Warning! : Please ensure you have taken backups from <a href="continous-backup.php">here</a>. </br>
                                                 Once you hit delete, all data will be deleted permanently.
+
+                                            </div>
+                                            <div class="alert alert-info" role="alert">
+                                                Please note! : User Credentials, Admin Credentials & User Pricing Model will not be deleted.
+
                                             </div>
                                             <div class="row">
                                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
