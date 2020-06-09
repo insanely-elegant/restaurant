@@ -731,11 +731,13 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                   </tfoot>
                                 </table>
                               </div>
-
+</br></br>
+                          <button type="button" class="btn btn-outline-success" onClick="exportTableToXls('revenueByUserTableWrap','revenueByUserTableWrap')">Export To Excel</button>
+                                    <button type="button" class="btn btn-outline-primary" onclick="exportTableToPDF('revenueByUserTable')">Export To PDF</button>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                        </div>
-
 
                         </br>
                         <h4>
