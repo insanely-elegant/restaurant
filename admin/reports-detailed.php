@@ -731,235 +731,235 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                   </tfoot>
                                 </table>
                               </div>
-</br></br>
-                          <button type="button" class="btn btn-outline-success" onClick="exportTableToXls('revenueByUserTableWrap','revenueByUserTableWrap')">Export To Excel</button>
-                                    <button type="button" class="btn btn-outline-primary" onclick="exportTableToPDF('revenueByUserTable')">Export To PDF</button>
-                                  </div>
-                                </div>
-                              </div>
+                              </br></br>
+                              <button type="button" class="btn btn-outline-success" onClick="exportTableToXls('revenueByUserTableWrap','revenueByUserTableWrap')">Export To Excel</button>
+                              <button type="button" class="btn btn-outline-primary" onclick="exportTableToPDF('revenueByUserTable')">Export To PDF</button>
                             </div>
-
-                        </br>
-                        <h4>
-                          <?php
-
-                          $result1 = mysqli_query($con, "SELECT membermealtaxpercent,memberguestmealtaxpercent,membermealtaxvalue, sum(grandtotal) as membertotal FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono NOT LIKE '%G'");
-                          $row1 = mysqli_fetch_array($result1);
-                          $membermealtaxpercent = $row1['membermealtaxpercent'];
-                          $memberguestmealtaxpercent = $row1['memberguestmealtaxpercent'];
-                          $membermealtaxvalue = $row1['membermealtaxvalue'];
-                          $membertotal = $row1['membertotal'];
-                          $membernetvalue = $membertotal - $membermealtaxvalue;
-                          echo "<h3>Reservation Revenue: </h3></br>";
-                          echo "Net Revenue (Members + MemberGuests) : " . '$' . htmlentities($membernetvalue);
-                          echo "<br>Tax Percentage (Members)  : " . htmlentities($membermealtaxpercent) . '%';
-                          echo "<br>Tax Percentage (MemberGuests)  : " . htmlentities($memberguestmealtaxpercent) . '%';
-                          echo "<br>Tax Value (Members + MemberGuests) : " . '$' . htmlentities($membermealtaxvalue);
-                          echo "<br>Gross Total Revenue (Members) : " . '$' . htmlentities($membertotal) . "</br>";
-
-                          $result2 = mysqli_query($con, "SELECT sum(grandtotal) as guesttotal, guestmealtaxpercent, sum(guestmealtaxvalue) as guestmealtaxvalue FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono LIKE '%G'");
-                          $row2 = mysqli_fetch_array($result2);
-                          $guesttotal = $row2['guesttotal'];
-                          $guestmealtaxpercent = $row2['guestmealtaxpercent'];
-                          $guestmealtaxvalue = $row2['guestmealtaxvalue'];
-                          $guestnet = $guesttotal - $guestmealtaxvalue;
-
-                          echo "<br>Net Revenue (Guest) : " . '$' . htmlentities($guestnet);
-                          echo "<br>Tax Percentage (Guest)  : " . htmlentities($guestmealtaxpercent) . '%';
-                          echo "<br>Tax Value (Guest)  : " . '$' . htmlentities($guestmealtaxvalue);
-                          echo "<br>Gross Total Revenue( Guest) : " . '$' . htmlentities($guesttotal) . "</br>";
-
-                          echo "<br>Total Meals Served : " . $total['seat'];
-
-                          $totaltaxcollected = $membermealtaxvalue + $guestmealtaxvalue;
-                          echo "<br>Total Tax Collected ( Member + MemberGuest + Guests) : " . '$' . htmlentities($totaltaxcollected);
-                          echo "<br>Grand Total ( Member + MemberGuest + Guests) : " . '$' . $total['grandtotal'] . "</br>";
-                          echo "<br/>";
-
-                          $result5 = mysqli_query($con, "SELECT sum(grandtotal) as freedinertotal, sum(seat) as seats,  freedinermealtaxpercent, sum(freedinermealtaxvalue) as freedinermealtaxvalue  FROM freediner WHERE diningdate >= '$fdate' AND diningdate <= '$tdate'");
-                          $row5 = mysqli_fetch_array($result5);
-                          $freedinermealtaxpercent = $row5['freedinermealtaxpercent'];
-                          $freedinermealtaxvalue = $row5['freedinermealtaxvalue'];
-                          $freedinertotal = $row5['freedinertotal'];
-                          $totseats = $row5['seats'];
-                          $freedinernetvalue = $freedinertotal - $freedinermealtaxvalue;
-                          echo "<h3>Free Diner Expenditure: </h3></br>";
-                          echo "Net Cost (Free Diner) : " . '$' . htmlentities($freedinernetvalue);
-                          echo "<br>Tax Percentage (Free Diner)  : " . htmlentities($freedinermealtaxpercent) . '%';
-                          echo "<br>Total Meals Served (Free Diner)  : " . htmlentities($totseats);
-                          echo "<br>Tax Value (Free Diner) : " . '$' . htmlentities($freedinermealtaxvalue);
-                          echo "<br>Gross Total Cost (Free Diner) : " . '$' . htmlentities($freedinertotal) . "</br>";
-                          echo "<br/>";
-
-                          $result12 = mysqli_query($con, "SELECT sum(grandtotal) as pickuptotal, membermealprice,  membermealtaxpercent, sum(membermealtaxvalue) as membermealtaxvalue  FROM pickups WHERE diningdate >= '$fdate' AND diningdate <= '$tdate'");
-                          $row12 = mysqli_fetch_array($result12);
-                          $pickupmealtaxpercent = $row12['membermealtaxpercent'];
-                          $pickupmealtaxvalue = $row12['membermealtaxvalue'];
-                          $pickuptotal = $row12['pickuptotal'];
-                          $pickupmealprice = $row12['membermealprice'];
-                          $pickupnetvalue = $pickuptotal - $pickupmealtaxvalue;
-                          $totalpickups = $pickuptotal / $pickupmealprice;
-                          echo "<h3>Order Takeout Revenue: </h3></br>";
-                          echo "Net Revenue (Takeout) : " . '$' . htmlentities($pickupnetvalue);
-                          echo "<br>Tax Percentage (Takeout)  : " . htmlentities($pickupmealtaxpercent) . '%';
-                          echo "<br>Total meals serverd (Takeout)  : " . htmlentities($totalpickups);
-                          echo "<br>Tax Value (Takeout) : " . '$' . htmlentities($pickupmealtaxvalue);
-                          echo "<br>Gross Total Revenue (Takeout) : " . '$' . htmlentities($pickuptotal) . "</br>";
-
-                          ?>
-                        </h4>
-
-
-                        <script>
-                          function myFunction() {
-                            var input, filter, table, tr, td, i, txtValue;
-                            input = document.getElementById("myInput");
-                            filter = input.value.toUpperCase();
-                            table = document.getElementById("example");
-                            tr = table.getElementsByTagName("tr");
-                            for (i = 0; i < tr.length; i++) {
-                              td = tr[i].getElementsByTagName("td")[1];
-                              if (td) {
-                                txtValue = td.textContent || td.innerText;
-                                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                  tr[i].style.display = "";
-                                } else {
-                                  tr[i].style.display = "none";
-                                }
-                              }
-                            }
-                          }
-
-                          function myFunction2() {
-                            var input, filter, table, tr, td, i, txtValue;
-                            input = document.getElementById("myInput2");
-                            filter = input.value.toUpperCase();
-                            table = document.getElementById("example");
-                            tr = table.getElementsByTagName("tr");
-                            for (i = 0; i < tr.length; i++) {
-                              td = tr[i].getElementsByTagName("td")[2];
-                              if (td) {
-                                txtValue = td.textContent || td.innerText;
-                                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                  tr[i].style.display = "";
-                                } else {
-                                  tr[i].style.display = "none";
-                                }
-                              }
-                            }
-                          }
-
-                          function myFunction3() {
-                            var input, filter, table, tr, td, i, txtValue;
-                            input = document.getElementById("myInput3");
-                            filter = input.value.toUpperCase();
-                            table = document.getElementById("example");
-                            tr = table.getElementsByTagName("tr");
-                            for (i = 0; i < tr.length; i++) {
-                              td = tr[i].getElementsByTagName("td")[3];
-                              if (td) {
-                                txtValue = td.textContent || td.innerText;
-                                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                  tr[i].style.display = "";
-                                } else {
-                                  tr[i].style.display = "none";
-                                }
-                              }
-                            }
-                          }
-
-                          // function myFunction4() {
-                          //   var input, filter, table, tr, td, i, txtValue;
-                          //   input = document.getElementById("myInput4");
-                          //   filter = input.value.toUpperCase();
-                          //   table = document.getElementById("example");
-                          //   tr = table.getElementsByTagName("tr");
-                          //   for (i = 0; i < tr.length; i++) {
-                          //     td = tr[i].getElementsByTagName("td")[1];
-                          //     if (td) {
-                          //       txtValue = td.textContent || td.innerText;
-                          //       if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                          //         tr[i].style.display = "";
-                          //       } else {
-                          //         tr[i].style.display = "none";
-                          //       }
-                          //     }
-                          //   }
-                          // }
-
-                          // function myFunction5() {
-                          //   var input, filter, table, tr, td, i, txtValue;
-                          //   input = document.getElementById("myInput5");
-                          //   filter = input.value.toUpperCase();
-                          //   table = document.getElementById("example");
-                          //   tr = table.getElementsByTagName("tr");
-                          //   for (i = 0; i < tr.length; i++) {
-                          //     td = tr[i].getElementsByTagName("td")[2];
-                          //     if (td) {
-                          //       txtValue = td.textContent || td.innerText;
-                          //       if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                          //         tr[i].style.display = "";
-                          //       } else {
-                          //         tr[i].style.display = "none";
-                          //       }
-                          //     }
-                          //   }
-                          // }
-
-                          // function myFunction6() {
-                          //   var input, filter, table, tr, td, i, txtValue;
-                          //   input = document.getElementById("myInput6");
-                          //   filter = input.value.toUpperCase();
-                          //   table = document.getElementById("example");
-                          //   tr = table.getElementsByTagName("tr");
-                          //   for (i = 0; i < tr.length; i++) {
-                          //     td = tr[i].getElementsByTagName("td")[4];
-                          //     if (td) {
-                          //       txtValue = td.textContent || td.innerText;
-                          //       if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                          //         tr[i].style.display = "";
-                          //       } else {
-                          //         tr[i].style.display = "none";
-                          //       }
-                          //     }
-                          //   }
-                          // }
-                        </script>
-
-
-
+                          </div>
+                        </div>
                       </div>
+
+                      </br>
+                      <h4>
+                        <?php
+
+                        $result1 = mysqli_query($con, "SELECT membermealtaxpercent,memberguestmealtaxpercent,membermealtaxvalue, sum(grandtotal) as membertotal FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono NOT LIKE '%G'");
+                        $row1 = mysqli_fetch_array($result1);
+                        $membermealtaxpercent = $row1['membermealtaxpercent'];
+                        $memberguestmealtaxpercent = $row1['memberguestmealtaxpercent'];
+                        $membermealtaxvalue = $row1['membermealtaxvalue'];
+                        $membertotal = $row1['membertotal'];
+                        $membernetvalue = $membertotal - $membermealtaxvalue;
+                        echo "<h3>Reservation Revenue: </h3></br>";
+                        echo "Net Revenue (Members + MemberGuests) : " . '$' . htmlentities($membernetvalue);
+                        echo "<br>Tax Percentage (Members)  : " . htmlentities($membermealtaxpercent) . '%';
+                        echo "<br>Tax Percentage (MemberGuests)  : " . htmlentities($memberguestmealtaxpercent) . '%';
+                        echo "<br>Tax Value (Members + MemberGuests) : " . '$' . htmlentities($membermealtaxvalue);
+                        echo "<br>Gross Total Revenue (Members) : " . '$' . htmlentities($membertotal) . "</br>";
+
+                        $result2 = mysqli_query($con, "SELECT sum(grandtotal) as guesttotal, guestmealtaxpercent, sum(guestmealtaxvalue) as guestmealtaxvalue FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono LIKE '%G'");
+                        $row2 = mysqli_fetch_array($result2);
+                        $guesttotal = $row2['guesttotal'];
+                        $guestmealtaxpercent = $row2['guestmealtaxpercent'];
+                        $guestmealtaxvalue = $row2['guestmealtaxvalue'];
+                        $guestnet = $guesttotal - $guestmealtaxvalue;
+
+                        echo "<br>Net Revenue (Guest) : " . '$' . htmlentities($guestnet);
+                        echo "<br>Tax Percentage (Guest)  : " . htmlentities($guestmealtaxpercent) . '%';
+                        echo "<br>Tax Value (Guest)  : " . '$' . htmlentities($guestmealtaxvalue);
+                        echo "<br>Gross Total Revenue( Guest) : " . '$' . htmlentities($guesttotal) . "</br>";
+
+                        echo "<br>Total Meals Served : " . $total['seat'];
+
+                        $totaltaxcollected = $membermealtaxvalue + $guestmealtaxvalue;
+                        echo "<br>Total Tax Collected ( Member + MemberGuest + Guests) : " . '$' . htmlentities($totaltaxcollected);
+                        echo "<br>Grand Total ( Member + MemberGuest + Guests) : " . '$' . $total['grandtotal'] . "</br>";
+                        echo "<br/>";
+
+                        $result5 = mysqli_query($con, "SELECT sum(grandtotal) as freedinertotal, sum(seat) as seats,  freedinermealtaxpercent, sum(freedinermealtaxvalue) as freedinermealtaxvalue  FROM freediner WHERE diningdate >= '$fdate' AND diningdate <= '$tdate'");
+                        $row5 = mysqli_fetch_array($result5);
+                        $freedinermealtaxpercent = $row5['freedinermealtaxpercent'];
+                        $freedinermealtaxvalue = $row5['freedinermealtaxvalue'];
+                        $freedinertotal = $row5['freedinertotal'];
+                        $totseats = $row5['seats'];
+                        $freedinernetvalue = $freedinertotal - $freedinermealtaxvalue;
+                        echo "<h3>Free Diner Expenditure: </h3></br>";
+                        echo "Net Cost (Free Diner) : " . '$' . htmlentities($freedinernetvalue);
+                        echo "<br>Tax Percentage (Free Diner)  : " . htmlentities($freedinermealtaxpercent) . '%';
+                        echo "<br>Total Meals Served (Free Diner)  : " . htmlentities($totseats);
+                        echo "<br>Tax Value (Free Diner) : " . '$' . htmlentities($freedinermealtaxvalue);
+                        echo "<br>Gross Total Cost (Free Diner) : " . '$' . htmlentities($freedinertotal) . "</br>";
+                        echo "<br/>";
+
+                        $result12 = mysqli_query($con, "SELECT sum(grandtotal) as pickuptotal, membermealprice,  membermealtaxpercent, sum(membermealtaxvalue) as membermealtaxvalue  FROM pickups WHERE diningdate >= '$fdate' AND diningdate <= '$tdate'");
+                        $row12 = mysqli_fetch_array($result12);
+                        $pickupmealtaxpercent = $row12['membermealtaxpercent'];
+                        $pickupmealtaxvalue = $row12['membermealtaxvalue'];
+                        $pickuptotal = $row12['pickuptotal'];
+                        $pickupmealprice = $row12['membermealprice'];
+                        $pickupnetvalue = $pickuptotal - $pickupmealtaxvalue;
+                        $totalpickups = $pickuptotal / $pickupmealprice;
+                        echo "<h3>Order Takeout Revenue: </h3></br>";
+                        echo "Net Revenue (Takeout) : " . '$' . htmlentities($pickupnetvalue);
+                        echo "<br>Tax Percentage (Takeout)  : " . htmlentities($pickupmealtaxpercent) . '%';
+                        echo "<br>Total meals serverd (Takeout)  : " . htmlentities($totalpickups);
+                        echo "<br>Tax Value (Takeout) : " . '$' . htmlentities($pickupmealtaxvalue);
+                        echo "<br>Gross Total Revenue (Takeout) : " . '$' . htmlentities($pickuptotal) . "</br>";
+
+                        ?>
+                      </h4>
+
+
+                      <script>
+                        function myFunction() {
+                          var input, filter, table, tr, td, i, txtValue;
+                          input = document.getElementById("myInput");
+                          filter = input.value.toUpperCase();
+                          table = document.getElementById("example");
+                          tr = table.getElementsByTagName("tr");
+                          for (i = 0; i < tr.length; i++) {
+                            td = tr[i].getElementsByTagName("td")[1];
+                            if (td) {
+                              txtValue = td.textContent || td.innerText;
+                              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                              } else {
+                                tr[i].style.display = "none";
+                              }
+                            }
+                          }
+                        }
+
+                        function myFunction2() {
+                          var input, filter, table, tr, td, i, txtValue;
+                          input = document.getElementById("myInput2");
+                          filter = input.value.toUpperCase();
+                          table = document.getElementById("example");
+                          tr = table.getElementsByTagName("tr");
+                          for (i = 0; i < tr.length; i++) {
+                            td = tr[i].getElementsByTagName("td")[2];
+                            if (td) {
+                              txtValue = td.textContent || td.innerText;
+                              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                              } else {
+                                tr[i].style.display = "none";
+                              }
+                            }
+                          }
+                        }
+
+                        function myFunction3() {
+                          var input, filter, table, tr, td, i, txtValue;
+                          input = document.getElementById("myInput3");
+                          filter = input.value.toUpperCase();
+                          table = document.getElementById("example");
+                          tr = table.getElementsByTagName("tr");
+                          for (i = 0; i < tr.length; i++) {
+                            td = tr[i].getElementsByTagName("td")[3];
+                            if (td) {
+                              txtValue = td.textContent || td.innerText;
+                              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                              } else {
+                                tr[i].style.display = "none";
+                              }
+                            }
+                          }
+                        }
+
+                        // function myFunction4() {
+                        //   var input, filter, table, tr, td, i, txtValue;
+                        //   input = document.getElementById("myInput4");
+                        //   filter = input.value.toUpperCase();
+                        //   table = document.getElementById("example");
+                        //   tr = table.getElementsByTagName("tr");
+                        //   for (i = 0; i < tr.length; i++) {
+                        //     td = tr[i].getElementsByTagName("td")[1];
+                        //     if (td) {
+                        //       txtValue = td.textContent || td.innerText;
+                        //       if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        //         tr[i].style.display = "";
+                        //       } else {
+                        //         tr[i].style.display = "none";
+                        //       }
+                        //     }
+                        //   }
+                        // }
+
+                        // function myFunction5() {
+                        //   var input, filter, table, tr, td, i, txtValue;
+                        //   input = document.getElementById("myInput5");
+                        //   filter = input.value.toUpperCase();
+                        //   table = document.getElementById("example");
+                        //   tr = table.getElementsByTagName("tr");
+                        //   for (i = 0; i < tr.length; i++) {
+                        //     td = tr[i].getElementsByTagName("td")[2];
+                        //     if (td) {
+                        //       txtValue = td.textContent || td.innerText;
+                        //       if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        //         tr[i].style.display = "";
+                        //       } else {
+                        //         tr[i].style.display = "none";
+                        //       }
+                        //     }
+                        //   }
+                        // }
+
+                        // function myFunction6() {
+                        //   var input, filter, table, tr, td, i, txtValue;
+                        //   input = document.getElementById("myInput6");
+                        //   filter = input.value.toUpperCase();
+                        //   table = document.getElementById("example");
+                        //   tr = table.getElementsByTagName("tr");
+                        //   for (i = 0; i < tr.length; i++) {
+                        //     td = tr[i].getElementsByTagName("td")[4];
+                        //     if (td) {
+                        //       txtValue = td.textContent || td.innerText;
+                        //       if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        //         tr[i].style.display = "";
+                        //       } else {
+                        //         tr[i].style.display = "none";
+                        //       }
+                        //     }
+                        //   }
+                        // }
+                      </script>
+
+
+
                     </div>
                   </div>
                 </div>
               </div>
-              <!-- ============================================================== -->
-              <!-- footer -->
-              <!-- ============================================================== -->
-              <?php
-              include('footer.php');
-
-              ?>
-              <script>
-                $(document).ready(function() {
-                  $('.datatable-1').dataTable();
-                  $('.dataTables_paginate').addClass("btn-group datatable-pagination");
-                  $('.dataTables_paginate > a').wrapInner('<span />');
-                  $('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
-                  $('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
-                });
-              </script>
-              <!-- ============================================================== -->
-              <!-- end footer -->
-              <!-- ============================================================== -->
           </div>
           <!-- ============================================================== -->
-          <!-- end wrapper  -->
+          <!-- footer -->
+          <!-- ============================================================== -->
+          <?php
+          include('footer.php');
+
+          ?>
+          <script>
+            $(document).ready(function() {
+              $('.datatable-1').dataTable();
+              $('.dataTables_paginate').addClass("btn-group datatable-pagination");
+              $('.dataTables_paginate > a').wrapInner('<span />');
+              $('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
+              $('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
+            });
+          </script>
+          <!-- ============================================================== -->
+          <!-- end footer -->
           <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
-        <!-- end main wrapper  -->
+        <!-- end wrapper  -->
         <!-- ============================================================== -->
+      </div>
+      <!-- ============================================================== -->
+      <!-- end main wrapper  -->
+      <!-- ============================================================== -->
 
 </body>
 
