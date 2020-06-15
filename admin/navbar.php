@@ -165,8 +165,19 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-11" aria-controls="submenu-11"><i class="fa fa-book" aria-hidden="true"></i> All Reports </a>
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-11" aria-controls="submenu-11"><i class="fas fa-print"></i> Print Labels </a>
                         <div id="submenu-11" class="collapse submenu" style="">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="print-labels.php">Print Takeout Labels</a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fa fa-book" aria-hidden="true"></i> All Reports </a>
+                        <div id="submenu-12" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link" href="reports.php">View All Reports by Date</a>
@@ -178,8 +189,8 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fa fa-cog fa-spin fa-3x fa-fw"></i>Settings</a>
-                        <div id="submenu-12" class="collapse submenu" style="">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-13" aria-controls="submenu-13"><i class="fa fa-cog fa-spin fa-3x fa-fw"></i>Settings</a>
+                        <div id="submenu-13" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link" href="create-pricing.php"><i class="fas fa-dollar-sign"></i>
