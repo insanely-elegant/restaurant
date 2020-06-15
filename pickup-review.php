@@ -8,10 +8,10 @@ if (strlen($_SESSION['login']) == 0) {
   date_default_timezone_set('America/Los_Angeles');
   $currentTime = date('m-d-Y h:i:s A', time());
 
-  $diningdate = $_POST['diningdate'];
+  $diningdate =  $_POST['diningdate'];
   $diningtime = $_POST['diningtime_h'];
-  $dishname_h = $_POST['dishname_h'];
-  $dishname = $_POST['dishname'];
+  $dishname_h = mysqli_real_escape_string($con, $_POST['dishname_h']);
+  $dishname = mysqli_real_escape_string($con, $_POST['dishname']);
   $condono = $_SESSION['login'];
   $name = $_SESSION['firstname'];
   $member = 1;
@@ -50,19 +50,19 @@ if (strlen($_SESSION['login']) == 0) {
 ?>
   <?php
 
-  $dd = $_POST['dd'];
-  $dt  = $_POST['dt'];
-  $r = $_POST['r'];
-  $tn = $_POST['tn'];
-  $s = $_POST['s'];
-  $gn = $_POST['gn'];
-  $dn = $_POST['dn'];
-  $condono = $_SESSION['login'];
-  $name = $_SESSION['firstname'];
-  $lname = $_SESSION['lastname'];
-  $rid = $_POST['rid'];
-  $gt = $_POST['gt'];
-  $bkid = $_POST['bkid'];
+  $dd = mysqli_real_escape_string($con,$_POST['dd']);
+  $dt  = mysqli_real_escape_string($con,$_POST['dt']);
+  $r = mysqli_real_escape_string($con,$_POST['r']);
+  $tn = mysqli_real_escape_string($con,$_POST['tn']);
+  $s = mysqli_real_escape_string($con,$_POST['s']);
+  $gn = mysqli_real_escape_string($con,$_POST['gn']);
+  $dn = mysqli_real_escape_string($con,$_POST['dn']);
+  $condono = mysqli_real_escape_string($con,$_SESSION['login']);
+  $name = mysqli_real_escape_string($con,$_SESSION['firstname']);
+  $lname = mysqli_real_escape_string($con,$_SESSION['lastname']);
+  $rid = mysqli_real_escape_string($con,$_POST['rid']);
+  $gt = mysqli_real_escape_string($con,$_POST['gt']);
+  $bkid = mysqli_real_escape_string($con,$_POST['bkid']);
 
 
   if (isset($_POST['submit'])) {

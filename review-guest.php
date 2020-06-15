@@ -9,17 +9,17 @@ if (strlen($_SESSION['login']) == 0) {
   $currentTime = date('m-d-Y h:i:s A', time());
 
 
-  $diningdate = $_POST['diningdate'];
-  $diningtime = $_POST['diningtime_h'];
-  $dishname_h = $_POST['dishname_h'];
-  $dishname = $_POST['dishname'];
-  $room = $_POST['roomname_h'];
-  $tablename = $_POST['tablename_h'];
-  $seats = $_POST['seats'];
+  $diningdate = mysqli_real_escape_string($con,$_POST['diningdate']);
+  $diningtime = mysqli_real_escape_string($con,$_POST['diningtime_h']);
+  $dishname_h = mysqli_real_escape_string($con,$_POST['dishname_h']);
+  $dishname = mysqli_real_escape_string($con,$_POST['dishname']);
+  $room =mysqli_real_escape_string($con, $_POST['roomname_h']);
+  $tablename = mysqli_real_escape_string($con,$_POST['tablename_h']);
+  $seats = mysqli_real_escape_string($con,$_POST['seats']);
   $condono = strtoupper($_SESSION['login']);
-  $guestunit = $_POST['guestunit_h'];
-  $name = $_SESSION['firstname'];
-  $room_id = $_POST['room'];
+  $guestunit = mysqli_real_escape_string($con,$_POST['guestunit_h']);
+  $name = mysqli_real_escape_string($con,$_SESSION['firstname']);
+  $room_id = mysqli_real_escape_string($con,$_POST['room']);
 
 
   $guestno = $seats;
@@ -58,20 +58,20 @@ if (strlen($_SESSION['login']) == 0) {
 ?>
   <?php
 
-  $dd = $_POST['dd'];
-  $dt  = $_POST['dt'];
-  $r = $_POST['r'];
-  $tn = $_POST['tn'];
-  $s = $_POST['s'];
-  $gn = $_POST['gn'];
-  $dn = $_POST['dn'];
-  $guno = $_POST['guno']; //capitalizes the unit no for consistency
+  $dd = mysqli_real_escape_string($con,$_POST['dd']);
+  $dt  = mysqli_real_escape_string($con,$_POST['dt']);
+  $r = mysqli_real_escape_string($con,$_POST['r']);
+  $tn = mysqli_real_escape_string($con,$_POST['tn']);
+  $s = mysqli_real_escape_string($con,$_POST['s']);
+  $gn = mysqli_real_escape_string($con,$_POST['gn']);
+  $dn = mysqli_real_escape_string($con,$_POST['dn']);
+  $guno = mysqli_real_escape_string($con,$_POST['guno']); //capitalizes the unit no for consistency
   $name = $_SESSION['firstname'];
   $lname = $_SESSION['lastname'];
-  $rid = $_POST['rid'];
-  $gt = $_POST['gt'];
-  $bkid = $_POST['bkid'];
-  $dntype = $_POST['dntype'];
+  $rid = mysqli_real_escape_string($con,$_POST['rid']);
+  $gt = mysqli_real_escape_string($con,$_POST['gt']);
+  $bkid = mysqli_real_escape_string($con,$_POST['bkid']);
+  $dntype = mysqli_real_escape_string($con,$_POST['dntype']);
 
 
   if (isset($_POST['submit'])) {
