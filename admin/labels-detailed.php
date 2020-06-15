@@ -94,7 +94,10 @@ $currentTime = date('d-m-Y h:i:s A', time());
                       <strong>Oh snap!</strong> <?php echo htmlentities($_SESSION['delmsg']); ?><?php echo htmlentities($_SESSION['delmsg'] = ""); ?>
                     </div>
                   <?php } ?>
-
+ <?php
+                        $fdate = $_POST['fromdate'];
+                        $tdate = $_POST['todate'];
+                        ?>
                   <div class="card">
                     <div class="card-body" style="background: #0e0c28; position: center;">
                       <h1 style="color: white;">Takeout Labels</h1>
@@ -115,7 +118,8 @@ $currentTime = date('d-m-Y h:i:s A', time());
                         </thead>
                         <tbody>
 
-                          <?php $query = mysqli_query($con, "select * from pickups ORDER BY condono ASC");
+                          <?php
+                           $query = mysqli_query($con, "select firstname,lastname,dishname,condono from pickups WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' ORDER BY condono ASC");
                           $cnt = 1;
                           while ($row = mysqli_fetch_array($query)) {
                           ?>
