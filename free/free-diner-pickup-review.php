@@ -18,7 +18,7 @@ if (strlen($_SESSION['login']) == 0) {
   $seats = $_POST['seats'];
   $name = "Free Diner";
   $room_id = $_POST['room'];
-
+  $staffname = $_POST['staffname'];
   $guestno = $seats;
 
   $query2 = mysqli_query($con, "SELECT * FROM pricingmodels WHERE dinerid=1");
@@ -51,7 +51,7 @@ if (strlen($_SESSION['login']) == 0) {
   $orderType = "takeout";
 
   if ($guestno < 1) {
-  $type = "none";
+    $type = "none";
   }
 
 ?>
@@ -72,13 +72,13 @@ if (strlen($_SESSION['login']) == 0) {
   $orderType = "takeout";
   $freegrandtotal = $_POST['freegrandtotal'];
   $freetotal = $_POST['freetotal'];
-
+  $staffname = $_POST['staffname'];
 
 
 
   if (isset($_POST['submit'])) {
-    $sql = mysqli_query($con,  "insert into freediner(bookingid,name,dishname,roomid,guestno,diningdate,diningtime,dinerType,orderType,freedinermealprice,freedinermealtaxpercent,freedinermealtaxvalue,freedinermealtotalprice,grandtotal,freedinertotal)
-	values('$bkid','$name','$dishname','$rid', '1', '$dd', '$dt','freediner','$orderType','$freedinermealprice','$freedinertaxpercent','$freedinermealtax','$mealprice2','$freedinermealprice', '$freetotal')");
+    $sql = mysqli_query($con,  "insert into freediner(bookingid,name,staffname,dishname,roomid,guestno,diningdate,diningtime,dinerType,orderType,freedinermealprice,freedinermealtaxpercent,freedinermealtaxvalue,freedinermealtotalprice,grandtotal,freedinertotal)
+	values('$bkid','$name','$staffname','$dishname','$rid', '1', '$dd', '$dt','freediner','$orderType','$freedinermealprice','$freedinertaxpercent','$freedinermealtax','$mealprice2','$freedinermealprice', '$freetotal')");
 
     if ($sql == 1) {
       $last_id = $con->insert_id;
@@ -302,7 +302,9 @@ if (strlen($_SESSION['login']) == 0) {
                                     <tr>
                                       <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
 
-                                        <small> Order Takeout Name: <strong> Free Diner</strong></small></br></br>
+                                        <small> Order Takeout Type: <strong> Free Diner </strong> </br></br>For Staff Member :
+                                          <strong><?php echo htmlentities($staffname); ?> </strong></small></br></br>
+                                        <input type="hidden" name="staffname" value="<?php echo htmlentities($staffname); ?>"></strong>
                                       </td>
                                     </tr>
                                     <tr>

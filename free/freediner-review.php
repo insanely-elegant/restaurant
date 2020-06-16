@@ -298,7 +298,7 @@ if (strlen($_SESSION['login']) == 0) {
 
                                         <small> Booking Type: <strong> Free Diner </strong> </br></br>For Staff Member :
                                           <strong><?php echo htmlentities($staffname); ?> </strong></small></br></br>
-                                        <input type="hidden" name="staffname" value="<?php echo htmlentities($staffname); ?>"></strong></small></br></br>
+                                        <input type="hidden" name="staffname" value="<?php echo htmlentities($staffname); ?>"></strong>
                                       </td>
                                     </tr>
                                     <tr>
