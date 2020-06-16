@@ -133,7 +133,7 @@ if (isset($_GET['del'])) {
                                             </thead>
                                             <tbody>
 
-                                                <?php $query = mysqli_query($con, "select * from pickups");
+                                                <?php $query = mysqli_query($con, "select * from pickups ORDERBY diningdate ASC");
                                                 $cnt = 1;
                                                 while ($row = mysqli_fetch_array($query)) {
                                                 ?>

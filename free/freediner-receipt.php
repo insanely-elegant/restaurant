@@ -287,7 +287,7 @@ if (strlen($_SESSION['login']) == 0) {
                             </td>
 
                             <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"><?php echo  htmlentities($row['orderType']); ?></td>
-                            <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"> 1 </td>
+                            <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"> <?php echo  htmlentities($row['guestno']); ?> </td>
 
                             <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$<?php echo  htmlentities($row['freedinermealprice']); ?></td>
                           </tr>

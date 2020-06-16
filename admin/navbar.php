@@ -108,7 +108,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="takeoutlist.php">See Order Takeout List</a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a class="nav-link" href="freediner-list.php">See FREE DINER Reservation & Takeout List</a>
+                                </li>
 
                             </ul>
                         </div>

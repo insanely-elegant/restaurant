@@ -11,18 +11,18 @@ date_default_timezone_set('Asia/Kolkata'); // change according timezone
 $currentTime = date('d-m-Y h:i:s A', time());
 
 if (isset($_GET['noshow'])) {
-    mysqli_query($con, "update reservation set isCheckedin= 0 where id = '" . $_GET['id'] . "'");
-    $_SESSION['delmsg'] = "User Marked As No Show !!";
+    mysqli_query($con, "update freediner set isCheckedin= 0 where id = '" . $_GET['id'] . "'");
+    $_SESSION['delmsg'] = "Free Diner marked as No Show !!";
 }
 
 if (isset($_GET['checkin'])) {
-    mysqli_query($con, "update reservation set isCheckedin= 1 where id = '" . $_GET['id'] . "'");
-    $_SESSION['msg'] = "User Sucessfully Checkedin !!";
+    mysqli_query($con, "update freediner set isCheckedin= 1 where id = '" . $_GET['id'] . "'");
+    $_SESSION['msg'] = "Free Diner sucessfully checkedin !!";
 }
 
 if (isset($_GET['del'])) {
-    mysqli_query($con, "delete from reservation where id = '" . $_GET['id'] . "'");
-    $_SESSION['delmsg'] = "Reservation Cancelled & Deleted Permanently!!";
+    mysqli_query($con, "delete from freediner where id = '" . $_GET['id'] . "'");
+    $_SESSION['delmsg'] = "Free Diner Reservation Cancelled & Deleted Permanently!!";
 }
 
 ?>
@@ -79,7 +79,7 @@ if (isset($_GET['del'])) {
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">
                                                 <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
-                                                <li class="breadcrumb-item active" aria-current="page">View Guest Lists</li>
+                                                <li class="breadcrumb-item active" aria-current="page">View Free Diner Lists</li>
                                             </ol>
                                         </nav>
                                     </div>
@@ -92,8 +92,8 @@ if (isset($_GET['del'])) {
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="section-block" id="basicform">
-                                        <h3 class="section-title">View Guest Lists </h3>
-                                        <p>You can view the list of guests here</p>
+                                        <h3 class="section-title">View Free Diner Reservation / Order Takeout Lists </h3>
+                                        <p>You can view the list of free diner's reservation and order takeout lists here</p>
                                     </div>
                                     <?php if (isset($_GET['checkin'])) { ?>
                                         <div class="alert alert-success" role="alert">
@@ -117,11 +117,11 @@ if (isset($_GET['del'])) {
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
+                                                    <th>Order Type</th>
+                                                    <th>Staff Name</th>
+                                                    <th>Meal Choice</th>
                                                     <th>Action</th>
                                                     <th>CheckedIn?</th>
-                                                    <th>Unit No</th>
                                                     <th>Room Name</th>
                                                     <th>Table Name</th>
                                                     <th>Total Seats</th>
@@ -135,38 +135,37 @@ if (isset($_GET['del'])) {
                                             </thead>
                                             <tbody>
 
-                                                <?php $query = mysqli_query($con, "select * from reservation ORDER BY diningdate ASC");
+                                                <?php $query = mysqli_query($con, "select * from freediner ORDER BY diningdate ASC");
                                                 $cnt = 1;
                                                 $colorMap[0] = 'green';
                                                 $colorMap[1] = 'red';
                                                 $colorBadge[0] = 'badge-dot badge-success mr-1';
                                                 $colorBadge[1] = 'badge-dot badge-danger mr-1';
-                                                $LinkMap[1] = 'receipt.php';
-                                                $LinkMap[0] = 'receipt-guest.php';
+                                                $LinkMap[1] = 'freediner-receipt.php';
                                                 while ($row = mysqli_fetch_array($query)) {
                                                 ?>
                                                     <tr>
                                                         <td><?php echo htmlentities($cnt); ?></td>
-                                                        <td><?php echo htmlentities($row['firstname']); ?></td>
-                                                        <td><?php echo htmlentities($row['lastname']); ?></td>
+                                                        <td style="font-family: Arial, Helvetica, sans-serif;font-weight: 900;text-transform: uppercase;"><?php echo htmlentities(strtoupper($row['orderType'])); ?></td>
+                                                        <td><?php echo htmlentities($row['staffname']); ?></td>
+                                                        <td><?php echo htmlentities($row['dishname']); ?></td>
                                                         <td>
-                                                            <a href="guestlist.php?id=<?php echo $row['id'] ?>&checkin=checkin" class="btn btn-sm btn-success">Checkin</a>
+                                                            <a href="freediner-list.php?id=<?php echo $row['id'] ?>&checkin=checkin" class="btn btn-sm btn-success">Checkin</a>
                                                             <br><br>
-                                                            <a href="guestlist.php?id=<?php echo $row['id'] ?>&noshow=noshow" onClick="return confirm('Are you sure you want to mark no show?')" class="btn btn-sm btn-danger">
+                                                            <a href="freediner-list.php?id=<?php echo $row['id'] ?>&noshow=noshow" onClick="return confirm('Are you sure you want to mark no show?')" class="btn btn-sm btn-danger">
                                                                 No Show
                                                             </a></td>
                                                         <td style="color: <?php echo $colorMap[$row['isCheckedin'] ? '0' : '1']; ?>;font-weight: bold;text-transform: uppercase;">
                                                             <span class="<?php echo $colorBadge[$row['isCheckedin'] ? '0' : '1']; ?>"></span>
                                                             <?php echo htmlentities($row['isCheckedin'] ? 'Yes' : 'No'); ?></td>
-                                                        <td style="text-transform: uppercase;"><?php echo $row['condono']; ?></td>
                                                         <td><?php echo htmlentities($row['room']); ?></td>
                                                         <td><?php echo htmlentities($row['tablename']); ?></td>
                                                         <td><?php echo htmlentities($row['seat']); ?></td>
                                                         <td><?php echo htmlentities(date("D, j F - Y", strtotime($row['diningdate']))); ?></td>
                                                         <td><?php echo htmlentities(strtoupper(date("h:i a", strtotime($row['diningtime'])))); ?></td>
                                                         <td><?php echo htmlentities($row['guestno']); ?></td>
-                                                        <td> <a href="<?php echo $LinkMap[$row['guestmealprice'] != NULL ? '0' : '1']; ?>?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
-                                                        <td> <a href="guestlist.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('Are you sure you want to cancel & delete this reservation?')" class="btn btn-sm btn-outline-light">
+                                                        <td> <a href="<?php echo $LinkMap[1]; ?>?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
+                                                        <td> <a href="freediner-list.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('Are you sure you want to cancel & delete this reservation?')" class="btn btn-sm btn-outline-light">
                                                                 <button> <i class="far fa-trash-alt"></i>
                                                                 </button></td>
                                                     </tr>
