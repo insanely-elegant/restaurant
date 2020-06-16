@@ -174,7 +174,7 @@ if (strlen($_SESSION['login']) == 0) {
 								<div class="wrap-input100 validate-input m-b-16">
 									<select id="diningdate" name="diningdate" class="form-control" onChange="getDiningtime(this.value);getRoom(this.value);GetFood(this.value);" required>
 										<option value="">Select Pickup Date</option>
-										<?php $query = mysqli_query($con, "SELECT DISTINCT pickupdate FROM pickupweeklymenu WHERE pickupdate >= CURDATE() + INTERVAL 8 HOUR ORDER BY pickupdate ASC");
+										<?php $query = mysqli_query($con, "SELECT DISTINCT pickupdate FROM pickupweeklymenu WHERE pickupdate >= CURDATE() ORDER BY pickupdate ASC"); //+ INTERVAL 8 HOUR
 										while ($row = mysqli_fetch_array($query)) { ?>
 
 											<option id="usrdate" value="<?php echo $row['pickupdate']; ?>"><?php echo $row['pickupdate']; ?></option>

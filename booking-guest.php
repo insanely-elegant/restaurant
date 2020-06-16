@@ -253,7 +253,7 @@ if (strlen($_SESSION['login']) == 0) {
 									<label for="inputText3">Dining Date<label>
 											<select id="diningdate" name="diningdate" class="form-control" onChange="getFood(value);getDiningTime(this.value);getRoom(this.value);" required>
 												<option value="">Select a Dining Date</option>
-												<?php $query = mysqli_query($con, "SELECT DISTINCT diningdate FROM weeklymenu WHERE diningdate >= CURDATE() + INTERVAL 8 HOUR ORDER BY diningdate ASC");
+												<?php $query = mysqli_query($con, "SELECT DISTINCT diningdate FROM weeklymenu WHERE diningdate >= CURDATE() ORDER BY diningdate ASC"); // + INTERVAL 8 HOUR
 												while ($row = mysqli_fetch_array($query)) { ?>
 
 													<option id="usrdate" value="<?php echo $row['diningdate']; ?>"><?php echo $row['diningdate']; ?></option>
