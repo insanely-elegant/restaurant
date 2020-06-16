@@ -19,9 +19,6 @@ if (strlen($_SESSION['login']) == 0) {
   $name = "Free Diner";
   $room_id = $_POST['room'];
 
-
-
-
   $guestno = $seats;
 
   $query2 = mysqli_query($con, "SELECT * FROM pricingmodels WHERE dinerid=1");
@@ -51,12 +48,11 @@ if (strlen($_SESSION['login']) == 0) {
   $squence = str_pad($squence, 4, 0, STR_PAD_LEFT);
   $bookingid =  $code . $ymd . $squence;
   $dinertype = "freediner";
-  $orderType = "dining";
+  $orderType = "takeout";
 
   if ($guestno < 1) {
-    $type = "none";
+  $type = "none";
   }
-
 
 ?>
   <?php
@@ -65,7 +61,7 @@ if (strlen($_SESSION['login']) == 0) {
   $dt  = $_POST['dt'];
   $r = $_POST['r'];
   $tn = $_POST['tn'];
-  $s = $_POST['s'];
+  $s = 1;
   $gn = $_POST['gn'];
   $dn = $_POST['dn'];
   $name = "Free Diner";
@@ -73,7 +69,7 @@ if (strlen($_SESSION['login']) == 0) {
   $gt = $_POST['gt'];
   $bkid = $_POST['bkid'];
   $dntype = $_POST['dntype'];
-  $orderType = "dining";
+  $orderType = "takeout";
   $freegrandtotal = $_POST['freegrandtotal'];
   $freetotal = $_POST['freetotal'];
 
@@ -81,19 +77,16 @@ if (strlen($_SESSION['login']) == 0) {
 
 
   if (isset($_POST['submit'])) {
-    $sql = mysqli_query($con,  "insert into freediner(bookingid,name,dishname,roomid,room,tablename,seat,guestno,diningdate,diningtime,dinerType,orderType,freedinermealprice,freedinermealtaxpercent,freedinermealtaxvalue,freedinermealtotalprice,grandtotal,freedinertotal)
-	values('$bkid','$name','$dn','$rid','$r','$tn', '$s','$gn', '$dd', '$dt','$dntype','$orderType','$freedinermealprice','$freedinertaxpercent','$freedinermealtax','$mealprice2','$freegrandtotal', '$freetotal')");
+    $sql = mysqli_query($con,  "insert into freediner(bookingid,name,dishname,roomid,guestno,diningdate,diningtime,dinerType,orderType,freedinermealprice,freedinermealtaxpercent,freedinermealtaxvalue,freedinermealtotalprice,grandtotal,freedinertotal)
+	values('$bkid','$name','$dishname','$rid', '1', '$dd', '$dt','freediner','$orderType','$freedinermealprice','$freedinertaxpercent','$freedinermealtax','$mealprice2','$freedinermealprice', '$freetotal')");
 
     if ($sql == 1) {
       $last_id = $con->insert_id;
-      $_SESSION['msg'] = "Reservation Confirmed !!";
-      $msg = "Hello $name, \n Booking of table has been successful \n  <a src='freediner_confirm_success.php?id=$last_id' > Click here to view</a>";
-      $msg = wordwrap($msg, 70);
-      mail($_SESSION['email'], "Booking Status", $msg);
-      header('Location: freediner_confirm_success.php?id=' . $last_id);
+      $_SESSION['msg'] = "Take Out Confirmed !!";
+      header('Location: takeout_confirm_success.php?id=' . $last_id);
       exit();
     } else {
-      header('Location: free_confirm_fail.php');
+      header('Location: takeout_confirm_fail.php');
       exit();
     }
   }
@@ -254,7 +247,7 @@ if (strlen($_SESSION['login']) == 0) {
             <p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , Diner</p>
           <?php } ?>
 
-          <form method="POST" action="freediner-review.php" class="login100-form validate-form flex-sb flex-w">
+          <form method="POST" action="free-diner-pickup-review.php" class="login100-form validate-form flex-sb flex-w">
             <span class="login100-form-title p-b-51">
               Review Your Booking Information
             </span>
@@ -309,13 +302,13 @@ if (strlen($_SESSION['login']) == 0) {
                                     <tr>
                                       <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
 
-                                        <small> Booking Name: <strong> Free Diner</strong></small></br></br>
+                                        <small> Order Takeout Name: <strong> Free Diner</strong></small></br></br>
                                       </td>
                                     </tr>
                                     <tr>
                                       <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
 
-                                        <small> Dining Date: <strong> <?php echo htmlentities($diningdate); ?>
+                                        <small> Takeout Date: <strong> <?php echo htmlentities($diningdate); ?>
                                             <input type="hidden" name="dd" value="<?php echo htmlentities($diningdate); ?>"></strong></small></br></br>
                                       </td>
                                     </tr>
@@ -323,7 +316,7 @@ if (strlen($_SESSION['login']) == 0) {
                                     <tr>
                                       <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
 
-                                        <small> Dining Time: <strong>
+                                        <small> Takeout Time: <strong>
 
                                             <?php echo htmlentities($diningtime); ?>
                                             <input type="hidden" name="dt" value="<?php echo htmlentities($diningtime); ?>">

@@ -20,8 +20,6 @@ if (strlen($_SESSION['login']) == 0) {
     $totaltax = $gn * $gutax;
     $grantotal = $subtotal + $totaltax;
 
-    echo $gn;
-
     $orderType = $row['orderType'];
 
     if ($gn = 0) {
