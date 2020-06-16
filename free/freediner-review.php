@@ -18,7 +18,8 @@ if (strlen($_SESSION['login']) == 0) {
   $seats = $_POST['seats'];
   $name = "Free Diner";
   $room_id = $_POST['room'];
-  
+  $staffname = $_POST['staffname'];
+
 
 
 
@@ -76,13 +77,14 @@ if (strlen($_SESSION['login']) == 0) {
   $orderType = "dining";
   $freegrandtotal = $_POST['freegrandtotal'];
   $freetotal = $_POST['freetotal'];
+  $staffname = $_POST['staffname'];
 
 
 
 
   if (isset($_POST['submit'])) {
-    $sql = mysqli_query($con,  "insert into freediner(bookingid,name,dishname,roomid,room,tablename,seat,guestno,diningdate,diningtime,dinerType,orderType,freedinermealprice,freedinermealtaxpercent,freedinermealtaxvalue,freedinermealtotalprice,grandtotal,freedinertotal)
-	values('$bkid','$name','$dn','$rid','$r','$tn', '$s','$gn', '$dd', '$dt','$dntype','$orderType','$freedinermealprice','$freedinertaxpercent','$freedinermealtax','$mealprice2','$freegrandtotal', '$freetotal')");
+    $sql = mysqli_query($con,  "insert into freediner(bookingid,name,staffname,dishname,roomid,room,tablename,seat,guestno,diningdate,diningtime,dinerType,orderType,freedinermealprice,freedinermealtaxpercent,freedinermealtaxvalue,freedinermealtotalprice,grandtotal,freedinertotal)
+	values('$bkid','$name','$staffname','$dn','$rid','$r','$tn', '$s','$gn', '$dd', '$dt','$dntype','$orderType','$freedinermealprice','$freedinertaxpercent','$freedinermealtax','$mealprice2','$freegrandtotal', '$freetotal')");
 
     if ($sql == 1) {
       $last_id = $con->insert_id;
@@ -233,213 +235,215 @@ if (strlen($_SESSION['login']) == 0) {
   </head>
 
   <body>
-    
-
-      <div class="limiter">
-        <?php
-
-        date_default_timezone_set('America/Los_Angeles');
-        $Hour = date('G'); {
-          if ($Hour >= 5 && $Hour <= 11) {
-            $message = "Good Morning";
-          } else if ($Hour >= 12 && $Hour <= 18) {
-            $message = "Good Afternoon";
-          } else if ($Hour >= 19 || $Hour <= 4) {
-            $message = "Good Evening";
-          }
-
-        ?>
-          <div class="container-login100">
-            <div class="wrap-login100 p-t-50 p-b-90">
-              <p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , Diner</p>
-            <?php } ?>
-
-            <form method="POST" action="freediner-review.php" class="login100-form validate-form flex-sb flex-w">
-              <span class="login100-form-title p-b-51">
-                Review Your Booking Information
-              </span>
 
 
+    <div class="limiter">
+      <?php
 
-              <!-- Header -->
-              <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
+      date_default_timezone_set('America/Los_Angeles');
+      $Hour = date('G'); {
+        if ($Hour >= 5 && $Hour <= 11) {
+          $message = "Good Morning";
+        } else if ($Hour >= 12 && $Hour <= 18) {
+          $message = "Good Afternoon";
+        } else if ($Hour >= 19 || $Hour <= 4) {
+          $message = "Good Evening";
+        }
 
+      ?>
+        <div class="container-login100">
+          <div class="wrap-login100 p-t-50 p-b-90">
+            <p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , Diner</p>
+          <?php } ?>
+
+          <form method="POST" action="freediner-review.php" class="login100-form validate-form flex-sb flex-w">
+            <span class="login100-form-title p-b-51">
+              Review Your Booking Information
+            </span>
+
+
+
+            <!-- Header -->
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
+
+              <tr>
+                <td>
+                  <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff" style="border-radius: 10px 10px 0 0;">
+
+                    <tr>
+                      <td>
+                        <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="history.back(-1)">
+                                  Go Back
+                                </button>
+                                <table width="220" border="0" cellpadding="0" cellspacing="0" align="right" class="col">
+                                  <tbody>
+                                    <tr>
+                                      <td style="font-size: 21px; color: #ff0000; letter-spacing: -1px; font-family: 'Open Sans', sans-serif; line-height: 1; vertical-align: top; text-align: right;">
+                                        Booking Details:
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                    <tr class="hiddenMobile">
+                                      <td height="50"></td>
+                                    </tr>
+                                    <tr class="visibleMobile">
+                                      <td height="20"></td>
+                                    </tr>
+                                    <tr>
+                                      <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
+
+                                        <small> Booking Type: <strong> Free Diner </strong> </br></br>For Staff Member :
+                                          <strong><?php echo htmlentities($staffname); ?> </strong></small></br></br>
+                                        <input type="hidden" name="staffname" value="<?php echo htmlentities($staffname); ?>"></strong></small></br></br>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
+
+                                        <small> Dining Date: <strong> <?php echo htmlentities($diningdate); ?>
+                                            <input type="hidden" name="dd" value="<?php echo htmlentities($diningdate); ?>"></strong></small></br></br>
+                                      </td>
+                                    </tr>
+
+                                    <tr>
+                                      <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
+
+                                        <small> Dining Time: <strong>
+
+                                            <?php echo htmlentities($diningtime); ?>
+                                            <input type="hidden" name="dt" value="<?php echo htmlentities($diningtime); ?>">
+                                          </strong> </small></br></br>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
+
+                                        <small> Selected Room: <strong> <?php echo htmlentities($room); ?>
+                                            <input type="hidden" name="r" value="<?php echo htmlentities($room); ?>"></strong> </small></br></br>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
+                                        <small> Your Table Number: <strong>
+                                            <?php echo htmlentities($tablename); ?>
+                                            <input type="hidden" name="tn" value="<?php echo htmlentities($tablename); ?>">
+                                            <input type="hidden" name="dn" value="<?php echo htmlentities($dishname); ?>">
+                                            <input type="hidden" name="gn" value="<?php echo htmlentities($guestno); ?>">
+                                            <input type="hidden" name="rid" value="<?php echo htmlentities($room_id); ?>">
+                                            <input type="hidden" name="gt" value="<?php echo htmlentities($totalpri); ?>">
+                                            <input type="hidden" name="bkid" value="<?php echo htmlentities($bookingid); ?>">
+                                            <input type="hidden" name="dntype" value="<?php echo htmlentities($dinertype); ?>">
+
+                                          </strong> </small></br></br>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
+                                        <small> Total Booked Seats: <strong> <?php echo htmlentities($seats); ?>
+                                            <input type="hidden" name="s" value="<?php echo htmlentities($seats); ?>"></strong> </small></br></br>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
+                                        <small> Selected Meal: <strong> <?php echo htmlentities($dishname); ?>
+                                            <input type="hidden" name="dishname" value="<?php echo htmlentities($dishname); ?>"></strong> </small></br></br>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+            <!-- /Header -->
+            <!-- Order Details -->
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
+              <tbody>
                 <tr>
                   <td>
-                    <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff" style="border-radius: 10px 10px 0 0;">
+                    <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff">
+                      <tbody>
+                        <tr>
+                        <tr class="hiddenMobile">
+                          <td height="60"></td>
+                        </tr>
+                        <tr class="visibleMobile">
+                          <td height="40"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
+                              <tbody>
+                                <tr>
+                                  <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 10px 7px 0;" width="82%" align="left">
+                                    User Types
+                                  </th>
+                                  <!-- <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="left">
+                        <small>SKU</small>
+                      </th> -->
+                                  <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" width="12%" align="center">
+                                    Seats
+                                  </th>
+                                  <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="right">
+                                    Subtotal
+                                  </th>
+                                </tr>
+                                <tr>
+                                  <td height="1" style="background: #bebebe;" colspan="4"></td>
+                                </tr>
 
-                      <tr>
-                        <td>
-                          <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
-                            <tbody>
-                              <tr>
-                                <td>
-                                  <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="history.back(-1)">
-                                    Go Back
-                                  </button>
-                                  <table width="220" border="0" cellpadding="0" cellspacing="0" align="right" class="col">
-                                    <tbody>
-                                      <tr>
-                                        <td style="font-size: 21px; color: #ff0000; letter-spacing: -1px; font-family: 'Open Sans', sans-serif; line-height: 1; vertical-align: top; text-align: right;">
-                                          Booking Details:
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                      <tr class="hiddenMobile">
-                                        <td height="50"></td>
-                                      </tr>
-                                      <tr class="visibleMobile">
-                                        <td height="20"></td>
-                                      </tr>
-                                      <tr>
-                                        <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
+                                <tr id="guestdivid">
+                                  <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; display:<?php echo htmlentities($type); ?>; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">Free Diners</td>
 
-                                          <small> Booking Name: <strong> Free Diner</strong></small></br></br>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-
-                                          <small> Dining Date: <strong> <?php echo htmlentities($diningdate); ?>
-                                              <input type="hidden" name="dd" value="<?php echo htmlentities($diningdate); ?>"></strong></small></br></br>
-                                        </td>
-                                      </tr>
-                                             
-                                      <tr>
-                                        <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-
-                                          <small> Dining Time: <strong>
-
-                                              <?php echo htmlentities($diningtime); ?>
-                                              <input type="hidden" name="dt" value="<?php echo htmlentities($diningtime); ?>">
-                                            </strong> </small></br></br>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-
-                                          <small> Selected Room: <strong> <?php echo htmlentities($room); ?>
-                                              <input type="hidden" name="r" value="<?php echo htmlentities($room); ?>"></strong> </small></br></br>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-                                          <small> Your Table Number: <strong>
-                                              <?php echo htmlentities($tablename); ?>
-                                              <input type="hidden" name="tn" value="<?php echo htmlentities($tablename); ?>">
-                                              <input type="hidden" name="dn" value="<?php echo htmlentities($dishname); ?>">
-                                              <input type="hidden" name="gn" value="<?php echo htmlentities($guestno); ?>">
-                                              <input type="hidden" name="rid" value="<?php echo htmlentities($room_id); ?>">
-                                              <input type="hidden" name="gt" value="<?php echo htmlentities($totalpri); ?>">
-                                              <input type="hidden" name="bkid" value="<?php echo htmlentities($bookingid); ?>">
-                                              <input type="hidden" name="dntype" value="<?php echo htmlentities($dinertype); ?>">
-
-                                            </strong> </small></br></br>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-                                          <small> Total Booked Seats: <strong> <?php echo htmlentities($seats); ?>
-                                              <input type="hidden" name="s" value="<?php echo htmlentities($seats); ?>"></strong> </small></br></br>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-                                          <small> Selected Meal: <strong> <?php echo htmlentities($dishname); ?>
-                                              <input type="hidden" name="dishname" value="<?php echo htmlentities($dishname); ?>"></strong> </small></br></br>
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </td>
-                      </tr>
+                                  <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"> <?php echo htmlentities($guestno); ?> </td>
+                                  <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$ <?php echo htmlentities($mealprice2); ?></td>
+                                </tr>
+                                <tr>
+                                  <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td height="20"></td>
+                        </tr>
+                      </tbody>
                     </table>
                   </td>
                 </tr>
-              </table>
-              <!-- /Header -->
-              <!-- Order Details -->
-              <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
-                <tbody>
-                  <tr>
-                    <td>
-                      <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff">
-                        <tbody>
-                          <tr>
-                          <tr class="hiddenMobile">
-                            <td height="60"></td>
-                          </tr>
-                          <tr class="visibleMobile">
-                            <td height="40"></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
-                                <tbody>
-                                  <tr>
-                                    <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 10px 7px 0;" width="82%" align="left">
-                                      User Types
-                                    </th>
-                                    <!-- <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="left">
-                        <small>SKU</small>
-                      </th> -->
-                                    <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" width="12%" align="center">
-                                      Seats
-                                    </th>
-                                    <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="right">
-                                      Subtotal
-                                    </th>
-                                  </tr>
-                                  <tr>
-                                    <td height="1" style="background: #bebebe;" colspan="4"></td>
-                                  </tr>
-                           
-                                  <tr id="guestdivid">
-                                    <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; display:<?php echo htmlentities($type); ?>; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">Free Diners</td>
+              </tbody>
+            </table>
+            <!-- /Order Details -->
+            <!-- Total -->
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
+              <tbody>
+                <tr>
+                  <td>
+                    <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff">
+                      <tbody>
+                        <tr>
+                          <td>
 
-                                    <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"> <?php echo htmlentities($guestno); ?> </td>
-                                    <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$ <?php echo htmlentities($mealprice2); ?></td>
-                                  </tr>
-                                  <tr>
-                                    <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td height="20"></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- /Order Details -->
-              <!-- Total -->
-              <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
-                <tbody>
-                  <tr>
-                    <td>
-                      <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff">
-                        <tbody>
-                          <tr>
-                            <td>
+                            <!-- Table Total -->
+                            <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
+                              <tbody>
 
-                              <!-- Table Total -->
-                              <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
-                                <tbody>
+                                <tr>
 
-                                  <tr>
-
-                                  </tr>
-                                  <!-- Hiding the net total and tax -->
-                                  <!-- <tr>
+                                </tr>
+                                <!-- Hiding the net total and tax -->
+                                <!-- <tr>
                                     <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
                                       <strong>Net Total</strong>
                                     </td>
@@ -455,136 +459,136 @@ if (strlen($_SESSION['login']) == 0) {
                                   </tr>
                                   <tr> -->
 
-                                  </tr>
-                                  <tr>
-                                    <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
-                                      <strong>Grand Total</strong>
-                                    </td>
-                                    <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
-                                      <strong>$<?php echo htmlentities($freedinertotal); ?></strong>
-                                      <input type="hidden" name="freegrandtotal" value="<?php echo htmlentities($grandtotal); ?>">
-                                      <input type="hidden" name="freetotal" value="<?php echo htmlentities($freedinertotal); ?>">
-                                    </td>
-                                  </tr>
-                                  
-                                </tbody>
-                              </table>
-                              <!-- /Table Total -->
+                        </tr>
+                        <tr>
+                          <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
+                            <strong>Grand Total</strong>
+                          </td>
+                          <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
+                            <strong>$<?php echo htmlentities($freedinertotal); ?></strong>
+                            <input type="hidden" name="freegrandtotal" value="<?php echo htmlentities($grandtotal); ?>">
+                            <input type="hidden" name="freetotal" value="<?php echo htmlentities($freedinertotal); ?>">
+                          </td>
+                        </tr>
 
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- /Total -->
-              <!-- Information -->
-              <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
-                <tbody>
-                  <tr>
-                    <td>
-                      <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff">
-                        <tbody>
-                          <tr>
-                          <tr class="hiddenMobile">
-                            <td height="60"></td>
-                          </tr>
-                          <tr class="visibleMobile">
-                            <td height="40"></td>
-                          </tr>
-                          <tr>
-                            <td>
+                      </tbody>
+                    </table>
+                    <!-- /Table Total -->
 
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
-                                <tbody>
-                                  <tr>
-                                    <td>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+            <!-- /Total -->
+            <!-- Information -->
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
+              <tbody>
+                <tr>
+                  <td>
+                    <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff">
+                      <tbody>
+                        <tr>
+                        <tr class="hiddenMobile">
+                          <td height="60"></td>
+                        </tr>
+                        <tr class="visibleMobile">
+                          <td height="40"></td>
+                        </tr>
+                        <tr>
+                          <td>
 
-
-
-                                      <table width="220" border="0" cellpadding="0" cellspacing="0" align="right" class="col">
-                                        <tbody>
-                                          <tr class="hiddenMobile">
-                                            <td height="35"></td>
-                                          </tr>
-                                          <tr class="visibleMobile">
-                                            <td height="20"></td>
-                                          </tr>
-                                          <tr>
-                                            <td style="font-size: 21px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 1; vertical-align: top; ">
-                                              <strong>Booking will be confirmed in the next page.</strong>
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td width="100%" height="10"></td>
-                                          </tr>
-                                          <tr>
-                                            <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
-                                              Cancellations not applicable after booking is confirmed.
-                                            </td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </td>
-                          </tr>
-                          <tr class="hiddenMobile">
-                            <td height="60"></td>
-                          </tr>
-                          <tr class="visibleMobile">
-                            <td height="30"></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- /Information -->
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
+                              <tbody>
+                                <tr>
+                                  <td>
 
 
-              <div class="container-login100-form-btn m-t-17">
-                <button id="submit" type="submit" name="submit" class="login100-form-btn" style="background-color: #0c5460">
-                  Confirm Your Reservation
-                </button>
-              </div>
-              <div style="margin-top:10px;" id="roomlayout"></div> <!-- Shows Image of the Table -->
-            </form>
 
+                                    <table width="220" border="0" cellpadding="0" cellspacing="0" align="right" class="col">
+                                      <tbody>
+                                        <tr class="hiddenMobile">
+                                          <td height="35"></td>
+                                        </tr>
+                                        <tr class="visibleMobile">
+                                          <td height="20"></td>
+                                        </tr>
+                                        <tr>
+                                          <td style="font-size: 21px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 1; vertical-align: top; ">
+                                            <strong>Booking will be confirmed in the next page.</strong>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td width="100%" height="10"></td>
+                                        </tr>
+                                        <tr>
+                                          <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
+                                            Cancellations not applicable after booking is confirmed.
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr class="hiddenMobile">
+                          <td height="60"></td>
+                        </tr>
+                        <tr class="visibleMobile">
+                          <td height="30"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- /Information -->
+
+
+            <div class="container-login100-form-btn m-t-17">
+              <button id="submit" type="submit" name="submit" class="login100-form-btn" style="background-color: #0c5460">
+                Confirm Your Reservation
+              </button>
             </div>
+            <div style="margin-top:10px;" id="roomlayout"></div> <!-- Shows Image of the Table -->
+          </form>
+
           </div>
-      </div>
+        </div>
+    </div>
 
 
-      <div id="dropDownSelect1"></div>
+    <div id="dropDownSelect1"></div>
 
-      <!--===============================================================================================-->
-      <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-      <!--===============================================================================================-->
-      <script src="vendor/animsition/js/animsition.min.js"></script>
-      <!--===============================================================================================-->
-      <script src="vendor/bootstrap/js/popper.js"></script>
-      <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-      <!--===============================================================================================-->
-      <script src="vendor/select2/select2.min.js"></script>
-      <!--===============================================================================================-->
-      <script src="vendor/daterangepicker/moment.min.js"></script>
-      <script src="vendor/daterangepicker/daterangepicker.js"></script>
-      <!--===============================================================================================-->
-      <script src="vendor/countdowntime/countdowntime.js"></script>
-      <!--===============================================================================================-->
-      <script src="js/main.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="js/main.js"></script>
 
   </body>
 
   </html><?php }
-       ?>
+          ?>

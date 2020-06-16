@@ -197,7 +197,8 @@ if (strlen($_SESSION['login']) == 0) {
                               </tr>
                               <tr>
                                 <td style="font-size: 12px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: left;">
-                                  Hello, <?php echo  htmlentities($row['name']); ?>
+                                  Hello, <?php echo  htmlentities($row['name']); ?> </br>
+                                  Order for : <?php echo  htmlentities($row['staffname']); ?>
                                   <br> Thank you for order at Silver Glen.
                                 </td>
                               </tr>

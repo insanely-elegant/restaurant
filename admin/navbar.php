@@ -123,7 +123,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="create-user.php">Create & Manage User Accounts</a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a class="nav-link" href="create-staff.php">Create & Manage Staff Accounts</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -171,7 +173,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="print-labels.php">Print Takeout Labels</a>
                                 </li>
-                                
+
                             </ul>
                         </div>
                     </li>

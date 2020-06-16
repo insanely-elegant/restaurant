@@ -236,7 +236,17 @@ if (strlen($_SESSION['login']) == 0) {
 							</div>
 							<!-- End Unit No -->
 
-
+							<div class="form-group">
+								<label for="inputText3">Select a Staff Member ( Optional )</label>
+								<select name="staffname" id="staffname" class="form-control" id="input-select">
+									<option value="">Select a Staff Member</option>
+									<?php
+									$query = mysqli_query($con, "select * from staff");
+									while ($row = mysqli_fetch_array($query)) { ?>
+										<option value="<?php echo $row['firstname'] . ' ' . $row['lastname']; ?>"><?php echo $row['firstname'] . ' ' .  $row['lastname']; ?></option>
+									<?php } ?>
+								</select>
+							</div>
 							<!-- Begin Dining Date Selection -->
 							<div class="wrap-input100 validate-input m-b-16">
 								<label for="inputText3">Dining Date<label>
