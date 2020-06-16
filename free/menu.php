@@ -47,74 +47,83 @@ if (strlen($_SESSION['login']) == 0) {
 	</head>
 
 	<body>
-		
-			<div class="limiter">
-				<?php
 
-				date_default_timezone_set('America/Los_Angeles');
-				$Hour = date('G'); {
-					if ($Hour >= 5 && $Hour <= 11) {
-						$message = "Good Morning";
-					} else if ($Hour >= 12 && $Hour <= 18) {
-						$message = "Good Afternoon";
-					} else if ($Hour >= 19 || $Hour <= 4) {
-						$message = "Good Evening";
-					}
+		<div class="limiter">
+			<?php
 
-				?>
-					<div class="container-login100">
-						<div class="wrap-login100 p-t-50 p-b-90">
-							<p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , Diner</p>
-						<?php } ?>
-						<div class="container-login100-form-btn m-t-17">
-							<button class="login100-form-btn" style="background-color: #7584AD" onClick="booking();">
-								Make a New Reservation
-							</button>
-						</div>
+			date_default_timezone_set('America/Los_Angeles');
+			$Hour = date('G'); {
+				if ($Hour >= 5 && $Hour <= 11) {
+					$message = "Good Morning";
+				} else if ($Hour >= 12 && $Hour <= 18) {
+					$message = "Good Afternoon";
+				} else if ($Hour >= 19 || $Hour <= 4) {
+					$message = "Good Evening";
+				}
 
-						
-
-						<div class="container-login100-form-btn m-t-17">
-							<button class="login100-form-btn" style="background-color: #A37F6F;" onClick="logout();">
-								Logout
-							</button>
-						</div>
-
-
-						<script>
-							function booking() {
-								location.href = "free-diner-booking.php";
-							}
-							function logout() {
-								location.href = "logout.php"
-							}
-						</script>
-						</div>
+			?>
+				<div class="container-login100">
+					<div class="wrap-login100 p-t-50 p-b-90">
+						<p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , Diner</p>
+					<?php } ?>
+					<div class="container-login100-form-btn m-t-17">
+						<button class="login100-form-btn" style="background-color: #7584AD" onClick="booking();">
+							Make a New Reservation
+						</button>
 					</div>
-			</div>
+
+					<div class="container-login100-form-btn m-t-17">
+						<button class="login100-form-btn" style="background-color: #3e0649" onClick="takeout();">
+							Order a Takeout
+						</button>
+					</div>
+
+					<div class="container-login100-form-btn m-t-17">
+						<button class="login100-form-btn" style="background-color: #A37F6F;" onClick="logout();">
+							Logout
+						</button>
+					</div>
+
+
+					<script>
+						function booking() {
+							location.href = "free-diner-booking.php";
+						}
+
+						function takeout() {
+							location.href = "free-diner-pickup.php";
+						}
+
+						function logout() {
+							location.href = "logout.php"
+						}
+					</script>
+					</div>
+				</div>
+		</div>
 
 
 
-			<div id="dropDownSelect1"></div>
+		<div id="dropDownSelect1"></div>
 
-			<!--===============================================================================================-->
-			<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-			<!--===============================================================================================-->
-			<script src="vendor/animsition/js/animsition.min.js"></script>
-			<!--===============================================================================================-->
-			<script src="vendor/bootstrap/js/popper.js"></script>
-			<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-			<!--===============================================================================================-->
-			<script src="vendor/select2/select2.min.js"></script>
-			<!--===============================================================================================-->
-			<script src="vendor/daterangepicker/moment.min.js"></script>
-			<script src="vendor/daterangepicker/daterangepicker.js"></script>
-			<!--===============================================================================================-->
-			<script src="vendor/countdowntime/countdowntime.js"></script>
-			<!--===============================================================================================-->
-			<script src="js/main.js"></script>
+		<!--===============================================================================================-->
+		<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+		<!--===============================================================================================-->
+		<script src="vendor/animsition/js/animsition.min.js"></script>
+		<!--===============================================================================================-->
+		<script src="vendor/bootstrap/js/popper.js"></script>
+		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+		<!--===============================================================================================-->
+		<script src="vendor/select2/select2.min.js"></script>
+		<!--===============================================================================================-->
+		<script src="vendor/daterangepicker/moment.min.js"></script>
+		<script src="vendor/daterangepicker/daterangepicker.js"></script>
+		<!--===============================================================================================-->
+		<script src="vendor/countdowntime/countdowntime.js"></script>
+		<!--===============================================================================================-->
+		<script src="js/main.js"></script>
 
 	</body>
 
 	</html><?php }
-	 ?>
+			?>

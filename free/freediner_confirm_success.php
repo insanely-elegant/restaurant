@@ -8,7 +8,7 @@ $id=intval($_GET['id']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Guest Reservation Successfull!</title>
+    <title>Free Diner Order Takeout Successfull!</title>
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
@@ -381,8 +381,7 @@ body {
 			</div>
 			<!--/.icon-->
 			<h1>Confirmed!!</h1>
-			<p>Thanks
-				<br>for booking.</p>
+			<p>Thanks for your order </p>
 			<button type="button" onclick="location.href = 'menu.php';" class="redo btn">Goto Home</button>
             <button style="background-color:#5f6caf;color:#fff" type="button" onclick="location.href = 'freediner-receipt.php?id=<?php echo $id ?>';" class="redo btn">Show Invoice</button>
 		</div>

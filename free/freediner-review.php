@@ -51,6 +51,7 @@ if (strlen($_SESSION['login']) == 0) {
   $squence = str_pad($squence, 4, 0, STR_PAD_LEFT);
   $bookingid =  $code . $ymd . $squence;
   $dinertype = "freediner";
+  $orderType = "dining";
 
   if ($guestno < 1) {
     $type = "none";
@@ -72,6 +73,7 @@ if (strlen($_SESSION['login']) == 0) {
   $gt = $_POST['gt'];
   $bkid = $_POST['bkid'];
   $dntype = $_POST['dntype'];
+  $orderType = "dining";
   $freegrandtotal = $_POST['freegrandtotal'];
   $freetotal = $_POST['freetotal'];
 
@@ -79,13 +81,13 @@ if (strlen($_SESSION['login']) == 0) {
 
 
   if (isset($_POST['submit'])) {
-    $sql = mysqli_query($con,  "insert into freediner(bookingid,name,dishname,roomid,room,tablename,seat,guestno,diningdate,diningtime,dinerType,freedinermealprice,freedinermealtaxpercent,freedinermealtaxvalue,freedinermealtotalprice,grandtotal,freedinertotal)
-	values('$bkid','$name','$dn','$rid','$r','$tn', '$s','$gn', '$dd', '$dt','$dntype','$freedinermealprice','$freedinertaxpercent','$freedinermealtax','$mealprice2','$freegrandtotal', '$freetotal')");
+    $sql = mysqli_query($con,  "insert into freediner(bookingid,name,dishname,roomid,room,tablename,seat,guestno,diningdate,diningtime,dinerType,orderType,freedinermealprice,freedinermealtaxpercent,freedinermealtaxvalue,freedinermealtotalprice,grandtotal,freedinertotal)
+	values('$bkid','$name','$dn','$rid','$r','$tn', '$s','$gn', '$dd', '$dt','$dntype','$orderType','$freedinermealprice','$freedinertaxpercent','$freedinermealtax','$mealprice2','$freegrandtotal', '$freetotal')");
 
     if ($sql == 1) {
       $last_id = $con->insert_id;
       $_SESSION['msg'] = "Reservation Confirmed !!";
-      $msg = "Hello $name, \n Booking of table has been successfull \n  <a src='freediner_confirm_success.php?id=$last_id' > Click here to view</a>";
+      $msg = "Hello $name, \n Booking of table has been successful \n  <a src='freediner_confirm_success.php?id=$last_id' > Click here to view</a>";
       $msg = wordwrap($msg, 70);
       mail($_SESSION['email'], "Booking Status", $msg);
       header('Location: freediner_confirm_success.php?id=' . $last_id);
@@ -103,7 +105,7 @@ if (strlen($_SESSION['login']) == 0) {
   <html lang="en">
 
   <head>
-    <title>Review Your Guest Booking Information - Silver Glen</title>
+    <title>Review Your Free Diner Booking Information - Silver Glen</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->

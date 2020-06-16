@@ -22,6 +22,8 @@ if (strlen($_SESSION['login']) == 0) {
 
     echo $gn;
 
+    $orderType = $row['orderType'];
+
     if ($gn = 0) {
       $type = 'none';
     }
@@ -261,13 +263,14 @@ if (strlen($_SESSION['login']) == 0) {
                       <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
                         <tbody>
                           <tr>
-                            <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 10px 7px 0;" width="52%" align="left">
+                            <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 10px 7px 0;" width="82%" align="left">
                               User Type
                             </th>
-
+                            <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="left">
+                              <small>Order Type</small>
                             </th>
-                            <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="center">
-                              Seats
+                            <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" width="12%" align="center">
+                              Quantity
                             </th>
                             <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="right">
                               Price
@@ -276,10 +279,17 @@ if (strlen($_SESSION['login']) == 0) {
                           <tr>
                             <td height="1" style="background: #bebebe;" colspan="4"></td>
                           </tr>
-                          
                           <tr>
-                            <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000;   line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">Free Diner</td>
-                            <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"><?php echo  htmlentities($row['guestno']); ?></td>
+                            <td height="10" colspan="4"></td>
+                          </tr>
+                          <tr>
+                            <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">
+                              Free Diner
+                            </td>
+
+                            <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"><?php echo  htmlentities($row['orderType']); ?></td>
+                            <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"> 1 </td>
+
                             <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$<?php echo  htmlentities($row['freedinermealprice']); ?></td>
                           </tr>
                           <tr>
