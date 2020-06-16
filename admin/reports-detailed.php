@@ -410,6 +410,8 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                 <tr>
                                   <th class="center">#</th>
                                   <th>Diner Type</th>
+                                  <th>Staff Name</th>
+                                  <th>Order Type</th>
                                   <th>Room Name </th>
                                   <th>Table Name </th>
                                   <th>Dining Date </th>
@@ -420,7 +422,8 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                   <th>Free Diner Meal Tax Value</th>
                                   <th>Free Diner Meal Grand Total</th>
                                   <th>Total Seats </th>
-                                  <th>Grand Total</th>
+                                  <th>Sub Total</th>
+                                  <th>Free Diner Discounted Grand Total</th>
 
                                 </tr>
                               </thead>
@@ -429,13 +432,14 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                 $sqlfree = mysqli_query($con, "SELECT * FROM freediner WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' ");
 
                                 $cnt = 1;
-                                $LinkMap[1] = 'receipt.php';
-                                $LinkMap[0] = 'receipt-guest.php';
+                                $LinkMap[1] = 'freediner-receipt.php';
                                 while ($rowf = mysqli_fetch_array($sqlfree)) {
                                 ?>
                                   <tr>
                                     <td class="center"><?php echo $cnt; ?>.</td>
                                     <td class="hidden-xs"><?php echo $rowf['name']; ?></td>
+                                    <td class="hidden-xs"><?php echo $rowf['staffname']; ?></td>
+                                    <td style="font-weight: bold;text-transform: uppercase;"><?php echo $rowf['orderType']; ?></td>
                                     <td><?php echo $rowf['room']; ?></td>
                                     <td><?php echo $rowf['tablename']; ?></td>
                                     <td><?php echo $rowf['diningdate']; ?></td>
@@ -479,13 +483,16 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                         } else {
                                           echo "";
                                         } ?></td>
-
+                                    <td><?php if ($rowf['freedinertotal'] != NULL) {
+                                          echo '$' . $rowf['freedinertotal'];
+                                        } else {
+                                          echo "";
+                                        } ?></td>
 
                                     <?php
                                     $total['freedinermealtotal'] += $rowf['freedinermealtotalprice'];
                                     $total['freedinermealtaxvalue'] += $rowf['freedinermealtaxvalue'];
 
-                                    $total['freeseat'] += $rowf['seat'];
                                     $total['freetotal'] += $rowf['grandtotal'];
                                     ?>
 
