@@ -163,7 +163,7 @@ if (strlen($_SESSION['login']) == 0) {
 
 							<!-- Begin Unit No -->
 							<div class="wrap-input100 validate-input m-b-16">
-								<input class="input100" type="text" name="condono" value="<?php echo "Your Unit No: " . $row['unitno']; ?>" disabled>
+								<input class="input100" type="text" name="condono" value="<?php echo "Diner Type: Free Diner " ?>" disabled>
 								<span class="focus-input100"></span>
 							</div>
 							<!-- End Unit No -->
