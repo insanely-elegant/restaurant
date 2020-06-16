@@ -77,8 +77,8 @@ if (strlen($_SESSION['login']) == 0) {
 
 
   if (isset($_POST['submit'])) {
-    $sql = mysqli_query($con,  "insert into freediner(bookingid,name,staffname,dishname,roomid,guestno,diningdate,diningtime,dinerType,orderType,freedinermealprice,freedinermealtaxpercent,freedinermealtaxvalue,freedinermealtotalprice,grandtotal,freedinertotal)
-	values('$bkid','$name','$staffname','$dishname','$rid', '1', '$dd', '$dt','freediner','$orderType','$freedinermealprice','$freedinertaxpercent','$freedinermealtax','$mealprice2','$freedinermealprice', '$freetotal')");
+    $sql = mysqli_query($con,  "insert into freediner(bookingid,name,staffname,dishname,roomid,seat,guestno,diningdate,diningtime,dinerType,orderType,freedinermealprice,freedinermealtaxpercent,freedinermealtaxvalue,freedinermealtotalprice,grandtotal,freedinertotal)
+	values('$bkid','$name','$staffname','$dishname','$rid','1', '1', '$dd', '$dt','freediner','$orderType','$freedinermealprice','$freedinertaxpercent','$freedinermealtax','$mealprice2','$freedinermealprice', '$freetotal')");
 
     if ($sql == 1) {
       $last_id = $con->insert_id;
