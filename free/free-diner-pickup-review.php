@@ -11,14 +11,14 @@ if (strlen($_SESSION['login']) == 0) {
 
   $diningdate = $_POST['diningdate'];
   $diningtime = $_POST['diningtime_h'];
-  $dishname_h = $_POST['dishname_h'];
-  $dishname = $_POST['dishname'];
+  $dishname_h = mysqli_real_escape_string($con,$_POST['dishname_h']);
+  $dishname = mysqli_real_escape_string($con,$_POST['dishname']);
   $room = $_POST['roomname_h'];
   $tablename = $_POST['tablename_h'];
   $seats = $_POST['seats'];
   $name = "Free Diner";
   $room_id = $_POST['room'];
-  $staffname = $_POST['staffname'];
+  $staffname = mysqli_real_escape_string($con, $_POST['staffname']);
   $guestno = $seats;
 
   $query2 = mysqli_query($con, "SELECT * FROM pricingmodels WHERE dinerid=1");
@@ -63,7 +63,7 @@ if (strlen($_SESSION['login']) == 0) {
   $tn = $_POST['tn'];
   $s = 1;
   $gn = $_POST['gn'];
-  $dn = $_POST['dn'];
+  $dn = mysqli_real_escape_string($con, $_POST['dn']);
   $name = "Free Diner";
   $rid = $_POST['rid'];
   $gt = $_POST['gt'];
@@ -72,7 +72,7 @@ if (strlen($_SESSION['login']) == 0) {
   $orderType = "takeout";
   $freegrandtotal = $_POST['freegrandtotal'];
   $freetotal = $_POST['freetotal'];
-  $staffname = $_POST['staffname'];
+  $staffname = mysqli_real_escape_string($con, $_POST['staffname']);
 
 
 
