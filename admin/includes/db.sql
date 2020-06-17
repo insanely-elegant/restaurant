@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2020 at 11:46 PM
+-- Generation Time: Jun 17, 2020 at 04:47 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -172,6 +172,7 @@ CREATE TABLE `freediner` (
   `id` int(11) NOT NULL,
   `bookingid` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `staffname` varchar(255) NOT NULL DEFAULT 'Unknown Free Diner',
   `dishname` varchar(255) NOT NULL,
   `roomid` int(50) NOT NULL,
   `room` varchar(255) NOT NULL,
@@ -196,13 +197,10 @@ CREATE TABLE `freediner` (
 -- Dumping data for table `freediner`
 --
 
-INSERT INTO `freediner` (`id`, `bookingid`, `name`, `dishname`, `roomid`, `room`, `tablename`, `seat`, `guestno`, `isConfirmed`, `isCheckedin`, `diningdate`, `diningtime`, `dinerType`, `orderType`, `freedinermealprice`, `freedinermealtaxpercent`, `freedinermealtaxvalue`, `freedinermealtotalprice`, `grandtotal`, `freedinertotal`) VALUES
-(1, 'SGFD2004200001', 'Free Diner', 'Classic Hot Rueben Sandwich', 1, 'Main Dining Room', '6', '4', '4', '', '', '2020-04-20', '11:20:00', 'freediner', 'dining', '14.00', '0.00', '0.00', '14.00', '56.00', '0.00'),
-(7, 'SGFD2006250001', 'Free Diner', 'Chicken Burger', 1, 'Main Dining Room', '3', '2', '2', '', '', '2020-06-25', '23:00:00', 'freediner', 'dining', '14.00', '0.00', '0.00', '14.00', '28.00', '0.00'),
-(10, '', 'Free Diner', '', 0, '', '', '', '', '', '', '2020-06-18', '12:45:00', '', 'takeout', '14.00', '0.00', '0.00', '14.00', '0.00', '0.00'),
-(11, '', 'Free Diner', 'Classic Hot Rueben Sandwich', 0, '', '', '1', '1', '', '', '2020-06-18', '12:45:00', '', 'takeout', '14.00', '0.00', '0.00', '14.00', '0.00', '0.00'),
-(12, '', 'Free Diner', 'Denver Omelette', 0, '', '', '', '1', '', '', '2020-06-18', '12:45:00', '', 'takeout', '14.00', '0.00', '0.00', '14.00', '14.00', '0.00'),
-(13, '', 'Free Diner', 'Denver Omelette', 0, '', '', '', '1', '', '', '2020-06-18', '12:45:00', 'freediner', 'takeout', '14.00', '0.00', '0.00', '14.00', '14.00', '0.00');
+INSERT INTO `freediner` (`id`, `bookingid`, `name`, `staffname`, `dishname`, `roomid`, `room`, `tablename`, `seat`, `guestno`, `isConfirmed`, `isCheckedin`, `diningdate`, `diningtime`, `dinerType`, `orderType`, `freedinermealprice`, `freedinermealtaxpercent`, `freedinermealtaxvalue`, `freedinermealtotalprice`, `grandtotal`, `freedinertotal`) VALUES
+(1, 'SGFD2004200001', 'Free Diner', 'Unknown Free Diner', 'Classic Hot Rueben Sandwich', 1, 'Main Dining Room', '6', '4', '4', '', '', '2020-04-20', '11:20:00', 'freediner', 'dining', '14.00', '0.00', '0.00', '14.00', '56.00', '0.00'),
+(23, '', 'Free Diner', 'Saul Goodman', 'Classic Hot Rueben Sandwich', 0, '', '', '1', '1', '', '', '2020-06-18', '12:45:00', 'freediner', 'takeout', '14.00', '0.00', '0.00', '14.00', '14.00', '0.00'),
+(25, 'SGFD2006250002', 'Free Diner', 'Saul Goodman', 'Chicken Burger', 1, 'Main Dining Room', '3', '2', '2', '', '', '2020-06-25', '23:00:00', 'freediner', 'dining', '14.00', '0.00', '0.00', '14.00', '28.00', '0.00');
 
 -- --------------------------------------------------------
 
@@ -381,7 +379,7 @@ CREATE TABLE `reservation` (
 --
 
 INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `roomid`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `freedinersmealtotalprice`, `isConfirmed`, `isCheckedin`, `dinerType`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `guestmealprice`, `guestmealtaxpercent`, `guestmealtaxvalue`, `guestmealtotalprice`, `grandtotal`, `memberguestmealprice`, `memberguestmealtaxpercent`, `memberguestmealtaxvalue`, `memberguestmealtotalprice`, `freedinersmealprice`, `freedinersmealtaxpercent`, `freedinersmealtaxvalue`) VALUES
-(6, 'SG2005290001', 'Gary and Carolyn', 'Saaris/Reid', 'Chicken Burger', 1, 'Main Dining Room', '3', 0, '3', '2020-05-29', '22:00:00', '2', 'W102', NULL, '', NULL, 'memberguest', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '42.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
+(6, 'SG2005290001', 'Gary and Carolyn', 'Saaris/Reid', 'Chicken Burger', 1, 'Main Dining Room', '3', 0, '3', '2020-05-29', '22:00:00', '2', 'W102', NULL, '', '1', 'memberguest', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '42.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
 (7, 'SG2005290002', 'Gary and Carolyn', 'Saaris/Reid', 'Chicken Burger', 1, 'Main Dining Room', '8', 0, '4', '2020-05-29', '12:01:00', '4', 'W102G', NULL, '', NULL, 'guest', NULL, NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '68.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (8, 'SG2005290003', 'Gary and Carolyn', 'Saaris/Reid', 'Chicken Burger', 1, 'Main Dining Room', '7', 0, '4', '2020-05-29', '22:00:00', '3', 'W102', NULL, '', NULL, 'memberguest', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '56.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
 (9, 'SG2005290004', 'Gary and Carolyn', 'Saaris/Reid', 'Beef Burger', 1, 'Main Dining Room', '5', 0, '6', '2020-05-29', '12:01:00', '6', 'W102G', NULL, '', NULL, 'guest', NULL, NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '102.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -417,6 +415,31 @@ CREATE TABLE `room` (
 
 INSERT INTO `room` (`id`, `roomname`, `totaltables`, `roomavailability`, `productimage1`) VALUES
 (1, 'Main Dining Room', '13', '1', 'SG Main Dining Room layout 2420.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff`
+--
+
+CREATE TABLE `staff` (
+  `id` int(11) NOT NULL,
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `age` varchar(255) NOT NULL,
+  `unitno` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `contactno` varchar(255) NOT NULL,
+  `altcontactno` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`id`, `firstname`, `lastname`, `age`, `unitno`, `email`, `password`, `contactno`, `altcontactno`) VALUES
+(16, 'Saul', 'Goodman', '44', '', 'jumbo@jumbo.com', 'jumbo', '', '');
 
 -- --------------------------------------------------------
 
@@ -486,7 +509,9 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-06-10 09:40:18', NULL, 1),
 (0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-06-15 02:28:32', NULL, 1),
 (0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-06-15 02:37:43', NULL, 1),
-(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-06-16 21:05:20', NULL, 1);
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-06-16 21:05:20', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-06-16 21:47:07', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-06-16 22:28:17', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -817,6 +842,12 @@ ALTER TABLE `room`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `staff`
+--
+ALTER TABLE `staff`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tablelayout`
 --
 ALTER TABLE `tablelayout`
@@ -866,7 +897,7 @@ ALTER TABLE `dish`
 -- AUTO_INCREMENT for table `freediner`
 --
 ALTER TABLE `freediner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `host`
@@ -903,6 +934,12 @@ ALTER TABLE `reservation`
 --
 ALTER TABLE `room`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `staff`
+--
+ALTER TABLE `staff`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tablelayout`
