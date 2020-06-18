@@ -565,7 +565,7 @@ if (strlen($_SESSION['login']) == 0) {
 				<div class="bgggox" onclick="home()">
 					<img src="images/390380-200.png" style="width: 80px; height: 80px;" onclick="home()">Go Back to Main Page</img>
 				</div>
-		
+
 				<script>
 					function home() {
 						location.href = "menu.php";
@@ -648,36 +648,41 @@ if (strlen($_SESSION['login']) == 0) {
 													<tr style="padding:0;vertical-align:top;text-align:left;">
 														<th class="small-12 large-12 columns first last" style="font-size:16px;padding:0;text-align:left;color:#0a0a0a;font-family:Helvetica, Arial, sans-serif;font-weight:normal;line-height:1.3;margin:0 auto;padding-bottom:16px;width:564px;padding-left:16px;padding-right:16px;">
 															<p class="body body-lg body-link-rausch light" style="padding:0;margin:0;font-family:Helvetica, Helvetica, Arial, sans-serif;text-align:left;color:#000;line-height:1.4;font-size:16px;-webkit-hyphens:none;-ms-hyphens:none;margin-bottom:0px !important;">
-																You can check the menu for any upcoming or past dates at Silver Glen here. </br>
-																<form role="form" method="post" action="weekly-menu-detailed.php">
-																	<div class="form-group">
-																		<label for="exampleInputPassword1">
-																			From Date: *
-																		</label>
+																You can check the menu for any upcoming or past dates at Silver Glen here. </br></br>
+																<div class="alert alert-info" role="alert"> Note: After inputting the dates, you can choose to see either dine-in menu or takeout menu by clicking respective buttons below. </div></br>
+																	<form role="form" method="post" action="weekly-menu-detailed.php">
 																		<div class="form-group">
-																			<input placeholder="YYYY-MM-DD" id="fromdate" name="fromdate" type="text" class="form-control" required="true">
+																			<label for="exampleInputPassword1">
+																				From Date: *
+																			</label>
+																			<div class="form-group">
+																				<input placeholder="YYYY-MM-DD" id="fromdate" name="fromdate" type="text" class="form-control" required="true">
+																			</div>
+
+
 																		</div>
 
-
-																	</div>
-
-																	<div class="form-group">
-																		<label for="exampleInputPassword1">
-																			To Date: *
-																		</label>
 																		<div class="form-group">
-																			<input placeholder="YYYY-MM-DD" id="todate" name="todate" type="text" class="form-control" required="true">
+																			<label for="exampleInputPassword1">
+																				To Date: *
+																			</label>
+																			<div class="form-group">
+																				<input placeholder="YYYY-MM-DD" id="todate" name="todate" type="text" class="form-control" required="true">
+																			</div>
+
+
+
 																		</div>
 
-
-
-																	</div>
-
-																	</br>
-																	<button type="submit" name="submit" id="submit" class="btn btn-o btn-success">
-																		Show me the menu for these dates
-																	</button>
-																</form>
+																		</br>
+																		<button type="submit" name="submit" id="submit" class="btn btn-o btn-warning">
+																			Show me the Dine-in menu for these dates
+																		</button>
+																		</br> </br>
+																		<button type="submit" formaction="takeout-menu-detailed.php" class="btn btn-o btn-info">
+																			Show me the Take-out menu for these dates
+																		</button>
+																	</form>
 
 														</th>
 													</tr>
