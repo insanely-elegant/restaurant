@@ -175,7 +175,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="print-labels.php">Print Takeout Labels</a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a class="nav-link" href="print-labels-with-buildingcode.php">Print Takeout Labels with Building Code</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
