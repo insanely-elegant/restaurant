@@ -94,32 +94,40 @@ $currentTime = date('d-m-Y h:i:s A', time());
                       <strong>Oh snap!</strong> <?php echo htmlentities($_SESSION['delmsg']); ?><?php echo htmlentities($_SESSION['delmsg'] = ""); ?>
                     </div>
                   <?php } ?>
- <?php
-                        $fdate = $_POST['fromdate'];
-                        $tdate = $_POST['todate'];
-                        ?>
+                  <?php
+                  $fdate = $_POST['fromdate'];
+                  $tdate = $_POST['todate'];
+                  ?>
                   <div class="card">
                     <div class="card-body" style="background: #0e0c28; position: center;">
                       <h1 style="color: white;">Takeout Labels</h1>
                     </div>
                   </div>
+                  <style>
+                    .table-condensed {
+                      font-weight: bolder;
+                      font-size: x-large;
+                      color: black;
+                    }
+                  </style>
                   <div class="module-body table">
-                    <div class="table-responsive">
-                      <table id="example" class="table table-striped table-bordered second" style="width:100%">
+                    <div class="table-responsive-xl">
+                      <table id="example" class="table table-striped table-bordered second table-condensed" style="width:100%">
                         <thead>
+
                           <tr>
                             <th>#</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Unit No</th>
                             <th>Meal Choice</th>
-
+<th>Check</th>
                           </tr>
                         </thead>
                         <tbody>
 
                           <?php
-                           $query = mysqli_query($con, "select firstname,lastname,dishname,condono from pickups WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' ORDER BY condono ASC");
+                          $query = mysqli_query($con, "select firstname,lastname,dishname,condono from pickups WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' ORDER BY condono ASC");
                           $cnt = 1;
                           while ($row = mysqli_fetch_array($query)) {
                           ?>
@@ -128,7 +136,8 @@ $currentTime = date('d-m-Y h:i:s A', time());
                               <td><?php echo htmlentities($row['firstname']); ?></td>
                               <td><?php echo htmlentities($row['lastname']); ?></td>
                               <td style="text-transform: uppercase;"><?php echo $row['condono']; ?></td>
-                              <td><?php echo htmlentities($row['dishname']); ?></td>
+                              <td style="text-transform: uppercase;"><?php echo htmlentities($row['dishname']); ?></td>
+                              <td></td>
                             </tr>
                           <?php $cnt = $cnt + 1;
                           } ?>
