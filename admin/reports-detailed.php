@@ -641,7 +641,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                             <i class="fa fa-fw fa-square-full"></i></span><span class="legend-text">Gross Total charged: </span></div>
                                       </div>
                                       <div class="offset-xl-1 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 p-3">
-                                        <h4> Total Takeout Meals: <?php echo '$' . htmlentities($totalpickups); ?></h4>
+                                        <h4> Total Takeout Meals: <?php echo htmlentities($totalpickups); ?></h4>
                                         <p> Data shows total meals served during the period selected.
                                         </p>
 
