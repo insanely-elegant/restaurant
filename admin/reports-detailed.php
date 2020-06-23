@@ -661,7 +661,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             <div class="table-responsive">
                               <div class="card">
                                 <div class="card-body" style="background: #0e0c28; position: center;">
-                                  <h1 style="color: white;">Total Revenue by Users</h1>
+                                  <h1 style="color: white;">SGDINES Total Revenue by Users from <span style="color:white"><?php echo $fdate ?></span> to <span style="color:white"><?php echo $tdate ?></span></h1>
                                 </div>
                               </div>
                               <div id="revenueByUserTableWrap">
