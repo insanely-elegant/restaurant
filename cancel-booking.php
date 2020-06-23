@@ -137,7 +137,7 @@ if (strlen($_SESSION['login']) == 0) {
 					</div>
 				<?php } ?>
 				<div class="row">
-					<?php $query = mysqli_query($con, "select * from reservation where diningdate >= now() + INTERVAL 1 DAY AND  condono = '$user'");
+					<?php $query = mysqli_query($con, "select * from reservation where diningdate >= now() AND  condono = '$user'");
 					while ($row = mysqli_fetch_array($query)) {
 						$diningdate = $row['diningdate'];
 						$diningtime = $row['diningtime'];
