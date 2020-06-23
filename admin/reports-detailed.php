@@ -65,12 +65,13 @@ $currentTime = date('d-m-Y h:i:s A', time());
     function exportTableToPDF(tableId) {
       var pdfsize = 'Silver Glen - Revenue Report';
       var pdf = new jsPDF('l', 'pt', pdfsize);
+      var displayDate = <?php echo json_encode($_POST) ?>;
 
       var header = function (data) {
         pdf.setFontSize(25);
         pdf.setTextColor(40);
         pdf.setFontStyle('normal');
-        pdf.text("SGDINES Total Revenue by Users", data.settings.margin.bottom, 50 );
+        pdf.text(`SGDINES Total Revenue by Users from ${displayDate.fromdate} to ${displayDate.todate}`, data.settings.margin.bottom, 50 );
                 };
       
       pdf.autoTable({
