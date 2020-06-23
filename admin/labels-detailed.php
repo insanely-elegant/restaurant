@@ -112,7 +112,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                   </style>
                   <div class="module-body table">
                     <div class="table-responsive-xl">
-                      <table id="example" class="table table-striped table-bordered second table-condensed" style="width:100%">
+                      <table id="" class="table table-striped table-bordered second table-condensed" style="width:100%">
                         <thead>
 
                           <tr>

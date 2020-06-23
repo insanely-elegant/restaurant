@@ -66,9 +66,17 @@ $currentTime = date('d-m-Y h:i:s A', time());
       var pdfsize = 'Silver Glen - Revenue Report';
       var pdf = new jsPDF('l', 'pt', pdfsize);
 
+      var header = function (data) {
+        pdf.setFontSize(25);
+        pdf.setTextColor(40);
+        pdf.setFontStyle('normal');
+        pdf.text("SGDINES Total Revenue by Users", data.settings.margin.bottom, 50 );
+                };
+      
       pdf.autoTable({
         html: '#' + tableId,
         startY: 60,
+        didDrawPage : header,
         styles: {
           fontSize: 6,
           cellWidth: 'wrap'
