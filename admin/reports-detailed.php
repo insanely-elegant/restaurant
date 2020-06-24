@@ -71,12 +71,12 @@ $currentTime = date('d-m-Y h:i:s A', time());
         pdf.setFontSize(25);
         pdf.setTextColor(40);
         pdf.setFontStyle('normal');
-        pdf.text(`SGDINES Total Revenue by Users from ${displayDate.fromdate} to ${displayDate.todate}`, data.settings.margin.bottom, 50 );
+        pdf.text(`SGDINES Total Revenue by Users from ${displayDate.fromdate} to ${displayDate.todate}`, data.settings.margin.bottom, 30 );
                 };
       
       pdf.autoTable({
         html: '#' + tableId,
-        startY: 60,
+        startY: 100,
         didDrawPage : header,
         styles: {
           fontSize: 6,

@@ -15,9 +15,68 @@ $currentTime = date('d-m-Y h:i:s A', time());
 <html lang="en">
 
 <head>
+<script type="text/javascript">
+    var tableToExcel = (function() {
+      var uri = 'data:application/vnd.ms-excel;base64,',
+        template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>',
+        base64 = function(s) {
+          return window.btoa(unescape(encodeURIComponent(s)))
+        },
+        format = function(s, c) {
+          return s.replace(/{(\w+)}/g, function(m, p) {
+            return c[p];
+          })
+        }
+      return function(table, name) {
+        if (!table.nodeType) table = document.getElementById(table)
+        var ctx = {
+          worksheet: name || 'Worksheet',
+          table: table.innerHTML
+        }
+        window.location.href = uri + base64(format(template, ctx))
+      }
+    })()
+  </script>
   <?php
   include('header.php');
   ?>
+  <script>
+    function exportTableToXls(tableID) {
+      var url = 'data:application/vnd.ms-excel,' + encodeURIComponent($('#' + tableID).html())
+      location.href = url
+      return false
+    }
+
+    function exportTableToPDF(tableId) {
+      var pdfsize = 'Silver Glen - Takeout Label';
+      var pdf = new jsPDF('l', 'pt', pdfsize);
+      var displayDate = <?php echo json_encode($_POST) ?>;
+
+      var header = function (data) {
+        pdf.setFontSize(25);
+        pdf.setTextColor(40);
+        pdf.setFontStyle('normal');
+        pdf.text(`Takeout Label from ${displayDate.fromdate} to ${displayDate.todate}`, data.settings.margin.bottom, 50 );
+                };
+      
+      pdf.autoTable({
+        html: '#' + tableId,
+        startY: 60,
+        didDrawPage : header,
+        styles: {
+          fontSize: 6,
+          cellWidth: 'wrap'
+        },
+        columnStyles: {
+          1: {
+            columnWidth: 'auto'
+          }
+        }
+      });
+
+      pdf.save(pdfsize + ".pdf");
+    };
+  </script>
 </head>
 
 <body>
@@ -112,8 +171,8 @@ $currentTime = date('d-m-Y h:i:s A', time());
                     }
                   </style>
                   <div class="module-body table">
-                    <div class="table-responsive-xl">
-                      <table id="example" class="table table-striped table-bordered second table-condensed" style="width:100%">
+                    <div id="revenueByUserTableWrap" class="table-responsive-xl">
+                      <table id="revenueByUserTable" class="table table-striped table-bordered second table-condensed" style="width:100%">
                         <thead>
 
                           <tr>
@@ -145,6 +204,11 @@ $currentTime = date('d-m-Y h:i:s A', time());
 
                       </table>
                     </div>
+                    </div>
+                    </br></br>
+                      <button type="button" class="btn btn-outline-success" onClick="exportTableToXls('revenueByUserTableWrap','revenueByUserTableWrap')">Export To Excel</button>
+                      <button type="button" class="btn btn-outline-primary" onclick="exportTableToPDF('revenueByUserTable')">Export To PDF</button>
+                  
                   </div>
                 </div>
               </div>
