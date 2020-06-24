@@ -15,7 +15,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
 <html lang="en">
 
 <head>
-<script type="text/javascript">
+  <script type="text/javascript">
     var tableToExcel = (function() {
       var uri = 'data:application/vnd.ms-excel;base64,',
         template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>',
@@ -52,19 +52,19 @@ $currentTime = date('d-m-Y h:i:s A', time());
       var pdf = new jsPDF('l', 'pt', pdfsize);
       var displayDate = <?php echo json_encode($_POST) ?>;
 
-      var header = function (data) {
+      var header = function(data) {
         pdf.setFontSize(25);
         pdf.setTextColor(40);
         pdf.setFontStyle('normal');
-        pdf.text(`Takeout Label from ${displayDate.fromdate} to ${displayDate.todate}`, data.settings.margin.bottom, 50 );
-                };
-      
+        pdf.text(`Takeout Label from ${displayDate.fromdate} to ${displayDate.todate}`, data.settings.margin.bottom, 30);
+      };
+
       pdf.autoTable({
         html: '#' + tableId,
         startY: 60,
-        didDrawPage : header,
+        didDrawPage: header,
         styles: {
-          fontSize: 6,
+          fontSize: 15,
           cellWidth: 'wrap'
         },
         columnStyles: {
@@ -163,79 +163,70 @@ $currentTime = date('d-m-Y h:i:s A', time());
                       <h1 style="color: white;">Takeout Labels from <span style="color:red"><?php echo $fdate ?></span> to <span style="color:red"><?php echo $tdate ?></span> of Units Matching : <span style="color: GREEN"><?php echo $unitno ?> </span></h1>
                     </div>
                   </div>
-                  <style>
-                    .table-condensed {
-                      font-weight: bolder;
-                      font-size: x-large;
-                      color: black;
-                    }
-                  </style>
-                  <div class="module-body table">
-                    <div id="revenueByUserTableWrap" class="table-responsive-xl">
-                      <table id="revenueByUserTable" class="table table-striped table-bordered second table-condensed" style="width:100%">
-                        <thead>
+                  <button type="button" class="btn btn-outline-success" onClick="exportTableToXls('revenueByUserTableWrap','revenueByUserTableWrap')">Export To Excel</button>
+                  <button type="button" class="btn btn-outline-primary" onclick="exportTableToPDF('revenueByUserTable')">Export To PDF</button>
 
+                  </br></br>
+                  <div id="revenueByUserTableWrap" class="table-responsive-xl">
+                    <table id="revenueByUserTable" class="table table-striped table-responsive-lg table-bordered" style="width:100%">
+                      <thead>
+
+                        <tr>
+                          <th>#</th>
+                          <th>First Name</th>
+                          <th>Last Name</th>
+                          <th>Unit No</th>
+                          <th>Meal Choice</th>
+                          <th>Check</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <?php
+                        $query = mysqli_query($con, "select firstname,lastname,dishname,condono from pickups WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' AND condono LIKE '$unitno%' ORDER BY condono ASC");
+                        $cnt = 1;
+                        while ($row = mysqli_fetch_array($query)) {
+                        ?>
                           <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Unit No</th>
-                            <th>Meal Choice</th>
-                            <th>Check</th>
+                            <td><?php echo htmlentities($cnt); ?></td>
+                            <td><?php echo htmlentities($row['firstname']); ?></td>
+                            <td><?php echo htmlentities($row['lastname']); ?></td>
+                            <td style="text-transform: uppercase;"><?php echo $row['condono']; ?></td>
+                            <td style="text-transform: uppercase;"><?php echo htmlentities($row['dishname']); ?></td>
+                            <td></td>
                           </tr>
-                        </thead>
-                        <tbody>
+                        <?php $cnt = $cnt + 1;
+                        } ?>
 
-                          <?php
-                          $query = mysqli_query($con, "select firstname,lastname,dishname,condono from pickups WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' AND condono LIKE '$unitno%' ORDER BY condono ASC");
-                          $cnt = 1;
-                          while ($row = mysqli_fetch_array($query)) {
-                          ?>
-                            <tr>
-                              <td><?php echo htmlentities($cnt); ?></td>
-                              <td><?php echo htmlentities($row['firstname']); ?></td>
-                              <td><?php echo htmlentities($row['lastname']); ?></td>
-                              <td style="text-transform: uppercase;"><?php echo $row['condono']; ?></td>
-                              <td style="text-transform: uppercase;"><?php echo htmlentities($row['dishname']); ?></td>
-                              <td></td>
-                            </tr>
-                          <?php $cnt = $cnt + 1;
-                          } ?>
-
-                      </table>
-                    </div>
-                    </div>
-                    </br></br>
-                      <button type="button" class="btn btn-outline-success" onClick="exportTableToXls('revenueByUserTableWrap','revenueByUserTableWrap')">Export To Excel</button>
-                      <button type="button" class="btn btn-outline-primary" onclick="exportTableToPDF('revenueByUserTable')">Export To PDF</button>
-                
+                    </table>
                 </div>
               </div>
           </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <?php
-        include('footer.php');
-
-        ?>
-        <script>
-          $(document).ready(function() {
-            $('.datatable-1').dataTable();
-            $('.dataTables_paginate').addClass("btn-group datatable-pagination");
-            $('.dataTables_paginate > a').wrapInner('<span />');
-            $('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
-            $('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
-          });
-        </script>
-        <!-- ============================================================== -->
-        <!-- end footer -->
-        <!-- ============================================================== -->
       </div>
       <!-- ============================================================== -->
-      <!-- end wrapper  -->
+      <!-- footer -->
       <!-- ============================================================== -->
+      <?php
+      include('footer.php');
+
+      ?>
+      <script>
+        $(document).ready(function() {
+          $('.datatable-1').dataTable();
+          $('.dataTables_paginate').addClass("btn-group datatable-pagination");
+          $('.dataTables_paginate > a').wrapInner('<span />');
+          $('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
+          $('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
+        });
+      </script>
+      <!-- ============================================================== -->
+      <!-- end footer -->
+      <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- end wrapper  -->
+    <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
     <!-- end main wrapper  -->
