@@ -15,7 +15,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
 <html lang="en">
 
 <head>
-<script type="text/javascript">
+  <script type="text/javascript">
     var tableToExcel = (function() {
       var uri = 'data:application/vnd.ms-excel;base64,',
         template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>',
@@ -52,17 +52,17 @@ $currentTime = date('d-m-Y h:i:s A', time());
       var pdf = new jsPDF('l', 'pt', pdfsize);
       var displayDate = <?php echo json_encode($_POST) ?>;
 
-      var header = function (data) {
+      var header = function(data) {
         pdf.setFontSize(25);
         pdf.setTextColor(40);
         pdf.setFontStyle('normal');
-        pdf.text(`Takeout Label from ${displayDate.fromdate} to ${displayDate.todate}`, data.settings.margin.bottom, 50 );
-                };
-      
+        pdf.text(`Takeout Label from ${displayDate.fromdate} to ${displayDate.todate}`, data.settings.margin.bottom, 50);
+      };
+
       pdf.autoTable({
         html: '#' + tableId,
         startY: 60,
-        didDrawPage : header,
+        didDrawPage: header,
         styles: {
           fontSize: 6,
           cellWidth: 'wrap'
@@ -180,7 +180,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             <th>Last Name</th>
                             <th>Unit No</th>
                             <th>Meal Choice</th>
-<th>Check</th>
+                            <th>Check</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -204,8 +204,8 @@ $currentTime = date('d-m-Y h:i:s A', time());
                       </table>
                     </div>
                     </br></br>
-                      <button type="button" class="btn btn-outline-success" onClick="exportTableToXls('revenueByUserTableWrap','revenueByUserTableWrap')">Export To Excel</button>
-                      <button type="button" class="btn btn-outline-primary" onclick="exportTableToPDF('revenueByUserTable')">Export To PDF</button>
+                    <button type="button" class="btn btn-outline-success" onClick="exportTableToXls('revenueByUserTableWrap','revenueByUserTableWrap')">Export To Excel</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="exportTableToPDF('revenueByUserTable')">Export To PDF</button>
                   </div>
                 </div>
               </div>
