@@ -501,6 +501,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                     <?php
                                     $total['freedinermealtotal'] += $rowf['freedinermealtotalprice'];
                                     $total['freedinermealtaxvalue'] += $rowf['freedinermealtaxvalue'];
+                                  $total['freeseat'] += $rowf['seat'];
 
                                     $total['freetotal'] += $rowf['grandtotal'];
                                     ?>
