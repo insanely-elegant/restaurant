@@ -18,8 +18,8 @@ if (strlen($_SESSION['login']) == 0) {
     $memtax = $row['membermealtaxvalue'];
     $gutax = $row['memberguestmealtaxvalue'];
 
-    $subtotal = $memprice + ($gn * $guestprice);
-    $totaltax = $memtax + ($gn * $gutax);
+    $subtotal = ($gn * $memprice);
+    $totaltax =  ($gn * $memtax);
     $grandtotal = $subtotal + $totaltax;
 
     if ($gn < 1) {
@@ -300,19 +300,19 @@ location.href="menu.php";
                           </tr>
                           <tr>
                             <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">
+                             <?php if($gn == 1) { ?>
                               Member
+                             <?php } else { ?>
+                              Members
+                              <?php }?>
                             </td>
-                            <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">1</td>
+                            <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"><?php echo  htmlentities($gn); ?></td>
                             <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$<?php echo  htmlentities($row['membermealtotalprice']); ?></td>
                           </tr>
                           <tr>
                             <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
                           </tr>
-                          <tr>
-                            <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">Member Guest</td>
-                            <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; display:<?php echo htmlentities($type); ?>; line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"><?php echo  htmlentities($gn); ?></td>
-                            <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$<?php echo  htmlentities($row['memberguestmealtotalprice']); ?></td>
-                          </tr>
+                          
                           <tr>
                             <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
                           </tr>

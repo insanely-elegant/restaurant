@@ -8,19 +8,11 @@ if (strlen($_SESSION['login']) == 0) {
 	date_default_timezone_set('America/Los_Angeles');
 	$currentTime = date('m-d-Y h:i:s A', time());
 
-
 	if (isset($_GET['del'])) {
 		mysqli_query($con, "delete from pickups where id = '" . $_GET['id'] . "'");
 		$_SESSION['delmsg'] = "Takeout Cancelled!";
 	}
-
-
-
-	$user = $_SESSION['login'];
-
-
-
-
+	$unitno = $_SESSION['login'];
 
 ?>
 
@@ -135,9 +127,12 @@ if (strlen($_SESSION['login']) == 0) {
 						<button type="button" class="close" data-dismiss="alert">×</button>
 						<strong>Oh snap!</strong> <?php echo htmlentities($_SESSION['delmsg']); ?><?php echo htmlentities($_SESSION['delmsg'] = ""); ?>
 					</div>
-				<?php } ?>
+				<?php }
+				?>
 				<div class="row">
-					<?php $query = mysqli_query($con, "select * from pickups where diningdate >= now() AND condono = '$user'");
+					<?php
+
+					$query = mysqli_query($con, "select * from pickups where diningdate > NOW() AND condono = '$unitno'");
 					while ($row = mysqli_fetch_array($query)) {
 						$diningdate = $row['diningdate'];
 						$diningtime = $row['diningtime'];
@@ -150,11 +145,11 @@ if (strlen($_SESSION['login']) == 0) {
 								<div class="card-body">
 									<h5 class="card-title">
 										<h4>Takeout Date: </h4>
-										<!-- <h2><?php echo  htmlentities($diningdate); ?></h1> -->
-										<h2><?php echo  htmlentities($mydate = date("D j F Y", strtotime($diningdate))); ?></h1>
+										<h2><?php echo  htmlentities($diningdate); ?></h1>
+											<!-- 	<h2><?php echo  htmlentities($mydate = date("D j F Y", strtotime($diningdate))); ?></h1> -->
 									</h5>
 									<h5>Menu Item: </h5>
-									<h3 class="card-text"><?php echo  htmlentities($dishname); ?></h3>
+									
 									<h5>Takeout Time: </h5>
 									<h3 class="card-text"><?php echo  htmlentities(strtoupper($mytime = date("h:i a", strtotime($diningtime)))); ?></h3>
 									<a class="btn btn-primary btn-lg btn-danger" onClick="return confirm('Are you sure you want to cancel this reservation?')" href="cancel-takeout.php?id=<?php echo  htmlentities($id); ?>&del=delete">Cancel Takeout Order</a>
