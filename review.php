@@ -31,7 +31,7 @@ if (strlen($_SESSION['login']) == 0) {
     $membermealprice = $num['mealprice'];
     $membertaxpercent = $num['mealtaxpercent'];
   }
-  $query2 = mysqli_query($con, "SELECT * FROM pricingmodels WHERE dinerid=4");
+  $query2 = mysqli_query($con, "SELECT * FROM pricingmodels WHERE dinerid=1");
   $num2 = mysqli_fetch_array($query2);
   if ($num2 > 0) {
     $mealprice2 = $num2['mealtotalprice'];
@@ -61,7 +61,7 @@ if (strlen($_SESSION['login']) == 0) {
     $dinertype = "member";
     $membermealprice = 0;
   } else {
-    $dinertype = "memberguest";
+    $dinertype = "members";
   }
 
 
@@ -86,8 +86,8 @@ if (strlen($_SESSION['login']) == 0) {
 
 
   if (isset($_POST['submit'])) {
-    $sql = mysqli_query($con,  "insert into reservation(bookingid,firstname,lastname,dishname,roomid,room,tablename,seat,diningdate,diningtime,guestno,condono,dinerType,membermealprice,membermealtaxpercent,membermealtaxvalue,membermealtotalprice,memberguestmealprice,memberguestmealtaxpercent,memberguestmealtaxvalue,memberguestmealtotalprice,grandtotal)
-	values('$bkid','$name','$lname','$dn','$rid','$r','$tn', '$s', '$dd', '$dt','$gn','$condono','$dntype','$membermealprice','$membertaxpercent','$membermealtax','$mealprice','$guestmealprice','$guesttaxpercent','$guestmealtax','$mealprice2','$gt')");
+    $sql = mysqli_query($con,  "insert into reservation(bookingid,firstname,lastname,dishname,roomid,room,tablename,seat,diningdate,diningtime,guestno,condono,dinerType,membermealprice,membermealtaxpercent,membermealtaxvalue,membermealtotalprice,grandtotal)
+	values('$bkid','$name','$lname','$dn','$rid','$r','$tn', '$s', '$dd', '$dt','$s','$condono','$dntype','$membermealprice','$membertaxpercent','$membermealtax','$mealprice','$gt')");
 
     if ($sql == 1) {
       $last_id = $con->insert_id;
@@ -429,21 +429,20 @@ if (strlen($_SESSION['login']) == 0) {
                                   </tr>
                                   <tr>
                                     <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">
+                                      <?php if($seats == 1) { ?>
                                       Member
+                                      <?php } else { ?>
+                                      Members
+                                      <?php } ?>
                                     </td>
 
-                                    <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"> 1 </td>
+                                    <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">  <?php echo htmlentities($seats); ?> </td>
                                     <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$ <?php echo htmlentities($mealprice); ?></td>
                                   </tr>
                                   <tr>
                                     <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
                                   </tr>
-                                  <tr id="guestdivid">
-                                    <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; display:<?php echo htmlentities($type); ?>; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">Member Guest</td>
-
-                                    <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center"> <?php echo htmlentities($guestno); ?> </td>
-                                    <td id="guestdivid" style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33; display:<?php echo htmlentities($type); ?>;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$ <?php echo htmlentities($mealprice2); ?></td>
-                                  </tr>
+                                    
                                   <tr>
                                     <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
                                   </tr>
