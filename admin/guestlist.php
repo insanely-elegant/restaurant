@@ -164,7 +164,7 @@ if (isset($_GET['del'])) {
                                                         <td><?php echo htmlentities($row['seat']); ?></td>
                                                         <td><?php echo htmlentities(date("D, j F - Y", strtotime($row['diningdate']))); ?></td>
                                                         <td><?php echo htmlentities(strtoupper(date("h:i a", strtotime($row['diningtime'])))); ?></td>
-                                                        <td><?php echo htmlentities($row['guestno']); ?></td>
+                                                        <td><?php echo htmlentities($row['seat']); ?></td>
                                                         <td> <a href="<?php echo $LinkMap[$row['guestmealprice'] != NULL ? '0' : '1']; ?>?id=<?php echo $row['id'] ?>" class="btn btn-sm btn-outline-light">View Invoice</button></td>
                                                         <td> <a href="guestlist.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('Are you sure you want to cancel & delete this reservation?')" class="btn btn-sm btn-outline-light">
                                                                 <button> <i class="far fa-trash-alt"></i>
