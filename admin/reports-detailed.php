@@ -1,13 +1,10 @@
 <?php
 $total['membermealtotal'] = 0;
 $total['membermealtaxvalue'] = 0;
-$total['memberguestmealtaxvalue'] = 0;
 $total['seat'] = 0;
-$total['memberguestmealprice'] = 0;
 $total['guestmealprice'] = 0;
 $total['guestmealtaxvalue'] = 0;
 $total['totaltaxvalues'] = 0;
-$total['memberguestmealtotalprice'] = 0;
 $total['grandtotal'] = 0;
 $total['freedinermealtotal'] = 0;
 $total['freedinermealtaxvalue'] = 0;
@@ -229,14 +226,10 @@ $currentTime = date('d-m-Y h:i:s A', time());
 
 
                               $total['seat'] += $row7['seat'] + $row6['seat'] + $totalnumofpickup;
-                              $total['memberguestmealtaxvalue'] += $row7['memberguestmealtaxvalue'];
-
-                              $total['memberguestmealprice'] += $row7['memberguestmealprice'];
-                              $total['memberguestmealtotalprice'] += $row7['memberguestmealtotalprice'];
 
                               $total['guestmealprice'] += $row7['guestmealprice'];
                               $total['guestmealtaxvalue'] += $row7['guestmealtaxvalue'];
-                              $total['totaltaxvalues'] += $row7['guestmealtaxvalue'] + $row7['membermealtaxvalue'] + $row7['memberguestmealtaxvalue'];
+                              $total['totaltaxvalues'] += $row7['guestmealtaxvalue'] + $row7['membermealtaxvalue'];
                               $total['grandtotal'] += $row7['grandtotal'] + $row6['grandtotal'] + $row55['pickuptotalgrand'];
                               $cnt = 1;
                               $LinkMap[1] = 'receipt.php';
@@ -321,14 +314,10 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                   $total['membermealtotal'] += $row['membermealtotalprice'];
                                   $total['membermealtaxvalue'] += $row['membermealtaxvalue'];
                                   $total['seat'] += $row['seat'];
-                                  $total['memberguestmealtaxvalue'] += $row['memberguestmealtaxvalue'];
-
-                                  $total['memberguestmealprice'] += $row['memberguestmealprice'];
-                                  $total['memberguestmealtotalprice'] += $row['memberguestmealtotalprice'];
 
                                   $total['guestmealprice'] += $row['guestmealprice'];
                                   $total['guestmealtaxvalue'] += $row['guestmealtaxvalue'];
-                                  $total['totaltaxvalues'] += $row['guestmealtaxvalue'] + $row['membermealtaxvalue'] + $row['memberguestmealtaxvalue'];
+                                  $total['totaltaxvalues'] += $row['guestmealtaxvalue'] + $row['membermealtaxvalue'];
                                   $total['grandtotal'] += $row['grandtotal'];
                                   ?>
 
@@ -651,9 +640,9 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                       <th>Firstname</th>
                                       <th>Lastname</th>
                                       <th>Unit Number</th>
-                                      <th>Total Dineout Meals Consumed</th>
-                                      <th>Total Dineout Net Cost</th>
-                                      <th>Total Dineout Tax</th>
+                                      <th>Total Dinein Meals Consumed</th>
+                                      <th>Total Dinein Net Cost</th>
+                                      <th>Total Dinein Tax</th>
                                       <th>Total Takeout Meals</th>
                                       <th>Total Takeout Net Cost</th>
                                       <th>Total Takeout Tax</th>
@@ -672,7 +661,8 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                             COALESCE((reservation.guestmealtaxvalue * reservation.guestno),0)) as totDineoutTax,
                                              COALESCE(SUM(pickups.membermealprice),0) as takeoutNet, COALESCE(SUM(pickups.membermealtaxvalue),0) as takeoutTax,
                                               COALESCE(SUM(pickups.membermealtotalprice),0) as totalTakeout,
-                                               COUNT(pickups.id) as noOfPickups FROM pickups LEFT JOIN reservation ON pickups.condono = reservation.condono where reservation.diningdate BETWEEN '$fdate' AND '$tdate' OR pickups.diningdate BETWEEN '$fdate' AND '$tdate' group by COALESCE(SUBSTRING(pickups.condono,1,4))";
+                                               COUNT(pickups.id) as noOfPickups FROM pickups LEFT JOIN reservation ON pickups.condono = reservation.condono 
+                                               where reservation.diningdate BETWEEN '$fdate' AND '$tdate' OR pickups.diningdate BETWEEN '$fdate' AND '$tdate' group by COALESCE(SUBSTRING(pickups.condono,1,4))";
                                     $sqluser = mysqli_query($con, $sql);
                                     if (empty(mysqli_fetch_array($sqluser))) {
                                       $sql = "SELECT COALESCE(reservation.firstname,pickups.firstname) as firstname, COALESCE(reservation.lastname,pickups.lastname) as lastname,
@@ -684,7 +674,8 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                             COALESCE((reservation.guestmealtaxvalue * reservation.guestno),0)) as totDineoutTax,
                                              COALESCE(SUM(pickups.membermealprice),0) as takeoutNet, COALESCE(SUM(pickups.membermealtaxvalue),0) as takeoutTax,
                                               COALESCE(SUM(pickups.membermealtotalprice),0) as totalTakeout,
-                                               COUNT(pickups.id) as noOfPickups FROM pickups LEFT JOIN reservation ON pickups.condono = reservation.condono where reservation.diningdate BETWEEN '$fdate' AND '$tdate' OR pickups.diningdate BETWEEN '$fdate' AND '$tdate' group by COALESCE(SUBSTRING(pickups.condono,1,4))";
+                                               COUNT(pickups.id) as noOfPickups FROM pickups LEFT JOIN reservation ON pickups.condono = reservation.condono 
+                                               where reservation.diningdate BETWEEN '$fdate' AND '$tdate' OR pickups.diningdate BETWEEN '$fdate' AND '$tdate' group by COALESCE(SUBSTRING(pickups.condono,1,4))";
                                       $sqluser = mysqli_query($con, $sql);
                                     }
                                     $totDineoutNet = 0;
@@ -747,10 +738,9 @@ $currentTime = date('d-m-Y h:i:s A', time());
                       <h4>
                         <?php
 
-                        $result1 = mysqli_query($con, "SELECT membermealtaxpercent,memberguestmealtaxpercent,membermealtaxvalue, sum(grandtotal) as membertotal FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono NOT LIKE '%G'");
+                        $result1 = mysqli_query($con, "SELECT membermealtaxpercent,membermealtaxvalue, sum(grandtotal) as membertotal FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono NOT LIKE '%G'");
                         $row1 = mysqli_fetch_array($result1);
                         $membermealtaxpercent = $row1['membermealtaxpercent'];
-                        $memberguestmealtaxpercent = $row1['memberguestmealtaxpercent'];
                         $membermealtaxvalue = $row1['membermealtaxvalue'];
                         $membertotal = $row1['membertotal'];
                         $membernetvalue = $membertotal - $membermealtaxvalue;

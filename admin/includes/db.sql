@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jul 17, 2020 at 09:01 PM
--- Server version: 10.2.31-MariaDB
--- PHP Version: 7.2.29
+-- Host: 127.0.0.1
+-- Generation Time: Jul 17, 2020 at 11:50 PM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -132,7 +132,8 @@ INSERT INTO `diningdates` (`id`, `diningdate`, `status`) VALUES
 (24, '2020-06-02', 'enabled'),
 (25, '2020-07-02', 'enabled'),
 (26, '2020-07-03', 'enabled'),
-(27, '2020-07-04', 'enabled');
+(27, '2020-07-04', 'enabled'),
+(28, '2020-07-20', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -907,7 +908,9 @@ CREATE TABLE `reservation` (
 
 INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `roomid`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `freedinersmealtotalprice`, `isConfirmed`, `isCheckedin`, `dinerType`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `guestmealprice`, `guestmealtaxpercent`, `guestmealtaxvalue`, `guestmealtotalprice`, `grandtotal`, `memberguestmealprice`, `memberguestmealtaxpercent`, `memberguestmealtaxvalue`, `memberguestmealtotalprice`, `freedinersmealprice`, `freedinersmealtaxpercent`, `freedinersmealtaxvalue`) VALUES
 (3, 'SG2007020001', 'Duane and Toni', 'DeSalvo', 'Coconut Shrimp', 1, 'Main Dining Room', '1', 0, '1', '2020-07-02', '17:10:00', '1', 'E302G', NULL, '', NULL, 'guest', NULL, NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '17.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'SG2007020002', 'Duane and Toni', 'DeSalvo', 'Cobb Salad', 1, 'Main Dining Room', '1', 0, '1', '2020-07-02', '17:10:00', '0', 'E302', NULL, '', NULL, 'member', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '14.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL);
+(4, 'SG2007020002', 'Duane and Toni', 'DeSalvo', 'Cobb Salad', 1, 'Main Dining Room', '1', 0, '1', '2020-07-02', '17:10:00', '0', 'E302', NULL, '', NULL, 'member', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '14.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
+(5, 'SG2007200001', 'Duane and Toni', 'DeSalvo', 'Chicken Burger', 1, 'Main Dining Room', '6', 0, '2', '2020-07-20', '17:00:00', '2', 'E302', NULL, '', NULL, 'members', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '28.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 'SG2007200002', 'Duane and Toni', 'DeSalvo', 'Pasta Bologna', 1, 'Main Dining Room', '8', 0, '1', '2020-07-20', '17:00:00', '1', 'E302', NULL, '', NULL, 'member', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '14.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -998,7 +1001,7 @@ CREATE TABLE `userlog` (
   `unitno` varchar(255) NOT NULL,
   `userEmail` varchar(255) DEFAULT NULL,
   `userip` binary(16) DEFAULT NULL,
-  `loginTime` timestamp NULL DEFAULT current_timestamp(),
+  `loginTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `logout` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1672,7 +1675,20 @@ INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `roomid`, `tableid`,
 (65, '2020-07-04', '17:50:00', 1, 9, 'Happy 4th Of July Cheeseburger', 'Happy 4th of July Jumbo Hot Dog'),
 (66, '2020-07-04', '17:50:00', 1, 12, 'Happy 4th Of July Cheeseburger', 'Happy 4th of July Jumbo Hot Dog'),
 (67, '2020-07-04', '18:00:00', 1, 2, 'Happy 4th Of July Cheeseburger', 'Happy 4th of July Jumbo Hot Dog'),
-(68, '2020-07-04', '18:00:00', 1, 5, 'Happy 4th Of July Cheeseburger', 'Happy 4th of July Jumbo Hot Dog');
+(68, '2020-07-04', '18:00:00', 1, 5, 'Happy 4th Of July Cheeseburger', 'Happy 4th of July Jumbo Hot Dog'),
+(69, '2020-07-20', '17:00:00', 1, 1, 'Pasta Bologna', 'Chicken Burger'),
+(70, '2020-07-20', '17:00:00', 1, 2, 'Pasta Bologna', 'Chicken Burger'),
+(71, '2020-07-20', '17:00:00', 1, 3, 'Pasta Bologna', 'Chicken Burger'),
+(72, '2020-07-20', '17:00:00', 1, 4, 'Pasta Bologna', 'Chicken Burger'),
+(73, '2020-07-20', '17:00:00', 1, 5, 'Pasta Bologna', 'Chicken Burger'),
+(74, '2020-07-20', '17:00:00', 1, 6, 'Pasta Bologna', 'Chicken Burger'),
+(75, '2020-07-20', '17:00:00', 1, 7, 'Pasta Bologna', 'Chicken Burger'),
+(76, '2020-07-20', '17:00:00', 1, 8, 'Pasta Bologna', 'Chicken Burger'),
+(77, '2020-07-20', '17:00:00', 1, 9, 'Pasta Bologna', 'Chicken Burger'),
+(78, '2020-07-20', '17:00:00', 1, 10, 'Pasta Bologna', 'Chicken Burger'),
+(79, '2020-07-20', '17:00:00', 1, 11, 'Pasta Bologna', 'Chicken Burger'),
+(80, '2020-07-20', '17:00:00', 1, 12, 'Pasta Bologna', 'Chicken Burger'),
+(81, '2020-07-20', '17:00:00', 1, 13, 'Pasta Bologna', 'Chicken Burger');
 
 --
 -- Indexes for dumped tables
@@ -1806,7 +1822,7 @@ ALTER TABLE `chef`
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `dish`
@@ -1854,7 +1870,7 @@ ALTER TABLE `pickupweeklymenu`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `room`
@@ -1884,7 +1900,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
