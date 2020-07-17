@@ -169,10 +169,6 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                 <th>Member Meal Base Price</th>
                                 <th>Member Meal Tax Percent</th>
                                 <th>Member Meal Tax Value</th>
-                                <!-- <th>Member Meal Grand Total</th> -->
-                                <th>Member Guest Meal Base Price</th>
-                                <th>Member Guest Meal Tax Percent</th>
-                                <th>Member Guest Meal Tax Value</th>
                                 <!-- <th>Member Guest Meal Grand Total</th> -->
                                 <th>Guest Meal Base Price</th>
                                 <th>Guest Meal Tax Percent</th>
@@ -254,34 +250,6 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                             }
                                             ?></td> -->
 
-                                  <td><?php
-                                      if ($row['memberguestmealprice'] != NULL) {
-                                        echo '$' . $row['memberguestmealprice'];
-                                      } else {
-                                        echo "";
-                                      }
-                                      ?></td>
-                                  <td><?php
-                                      if ($row['memberguestmealtaxpercent'] != NULL) {
-                                        echo $row['memberguestmealtaxpercent'] . '%';
-                                      } else {
-                                        echo "";
-                                      }
-                                      ?></td>
-                                  <td><?php
-                                      if ($row['memberguestmealtaxvalue'] != NULL) {
-                                        echo $row['memberguestmealtaxvalue'] . '%';
-                                      } else {
-                                        echo "";
-                                      }
-                                      ?></td>
-                                  <!-- <td><?php
-                                            if ($row['memberguestmealtotalprice'] != NULL) {
-                                              echo '$' . $row['memberguestmealtotalprice'];
-                                            } else {
-                                              echo "";
-                                            }
-                                            ?></td> -->
                                   <td><?php if ($row['guestmealprice'] != NULL) {
                                         echo '$' . $row['guestmealprice'];
                                       } else {
@@ -498,10 +466,9 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             $membermealtaxvalue = $row1['membermealtaxvalue'];
                             $membertotal = $row1['membertotal'];
                             $membernetvalue = $membertotal - $membermealtaxvalue;
-                            echo "Net Revenue (Members + MemberGuests) : " . '$' . htmlentities($membernetvalue);
+                            echo "Net Revenue (Members ) : " . '$' . htmlentities($membernetvalue);
                             echo "<br>Tax Percentage (Members)  : " . htmlentities($membermealtaxpercent) . '%';
-                            echo "<br>Tax Percentage (MemberGuests)  : " . htmlentities($memberguestmealtaxpercent) . '%';
-                            echo "<br>Tax Value (Members + MemberGuests) : " . '$' . htmlentities($membermealtaxvalue);
+                            echo "<br>Tax Value (Members ) : " . '$' . htmlentities($membermealtaxvalue);
                             echo "<br>Gross Total Revenue (Members) : " . '$' . htmlentities($membertotal) . "</br>";
 
                             $result2 = mysqli_query($con, "SELECT sum(grandtotal) as guesttotal, guestmealtaxpercent, sum(guestmealtaxvalue) as guestmealtaxvalue FROM reservation WHERE diningdate >= '$fdate' AND diningdate <= '$tdate' and condono LIKE '$unitno%G'");
@@ -519,8 +486,8 @@ $currentTime = date('d-m-Y h:i:s A', time());
                             echo "<br>Total Meals Served : " . $total['seat'];
 
                             $totaltaxcollected = $membermealtaxvalue + $guestmealtaxvalue;
-                            echo "<br>Total Tax Collected ( Member + MemberGuest + Guests) : " . '$' . htmlentities($totaltaxcollected);
-                            echo "<br>Grand Total ( Member + MemberGuest + Guests) : " . '$' . $total['grandtotal'] . "</br>";
+                            echo "<br>Total Tax Collected ( Member + Guests) : " . '$' . htmlentities($totaltaxcollected);
+                            echo "<br>Grand Total ( Member + Guests) : " . '$' . $total['grandtotal'] . "</br>";
                             echo "<br/>";
 
                            
