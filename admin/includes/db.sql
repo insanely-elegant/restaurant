@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 17, 2020 at 04:39 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.6
+-- Host: 127.0.0.1:3306
+-- Generation Time: Jul 17, 2020 at 09:01 PM
+-- Server version: 10.2.31-MariaDB
+-- PHP Version: 7.2.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -131,10 +132,7 @@ INSERT INTO `diningdates` (`id`, `diningdate`, `status`) VALUES
 (24, '2020-06-02', 'enabled'),
 (25, '2020-07-02', 'enabled'),
 (26, '2020-07-03', 'enabled'),
-(27, '2020-07-04', 'enabled'),
-(28, '2020-07-20', 'enabled'),
-(29, '2020-07-21', 'enabled'),
-(30, '2020-07-22', 'enabled');
+(27, '2020-07-04', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -909,13 +907,7 @@ CREATE TABLE `reservation` (
 
 INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `roomid`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `freedinersmealtotalprice`, `isConfirmed`, `isCheckedin`, `dinerType`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `guestmealprice`, `guestmealtaxpercent`, `guestmealtaxvalue`, `guestmealtotalprice`, `grandtotal`, `memberguestmealprice`, `memberguestmealtaxpercent`, `memberguestmealtaxvalue`, `memberguestmealtotalprice`, `freedinersmealprice`, `freedinersmealtaxpercent`, `freedinersmealtaxvalue`) VALUES
 (3, 'SG2007020001', 'Duane and Toni', 'DeSalvo', 'Coconut Shrimp', 1, 'Main Dining Room', '1', 0, '1', '2020-07-02', '17:10:00', '1', 'E302G', NULL, '', NULL, 'guest', NULL, NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '17.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'SG2007020002', 'Duane and Toni', 'DeSalvo', 'Cobb Salad', 1, 'Main Dining Room', '1', 0, '1', '2020-07-02', '17:10:00', '0', 'E302', NULL, '', NULL, 'member', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '14.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
-(5, 'SG2007200001', 'Duane and Toni', 'DeSalvo', 'Almond Crusted Cod', 1, 'Main Dining Room', '1', 0, '3', '2020-07-20', '13:00:00', '2', 'E302', NULL, '', NULL, 'memberguest', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '42.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
-(6, 'SG2007210001', 'Duane and Toni', 'DeSalvo', 'BBQ Chicken Breast', 1, 'Main Dining Room', '1', 0, '1', '2020-07-21', '13:00:00', '0', 'E302', NULL, '', NULL, 'member', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '14.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 'SG2007220001', 'Duane and Toni', 'DeSalvo', 'Almond Crusted Cod', 1, 'Main Dining Room', '2', 0, '4', '2020-07-22', '13:00:00', '4', 'E302', NULL, '', NULL, 'members', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '56.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, 'SG2007210002', 'Duane and Toni', 'DeSalvo', 'Almond Crusted Cod', 1, 'Main Dining Room', '5', 0, '5', '2020-07-21', '13:00:00', '5', 'E302', NULL, '', NULL, 'members', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '70.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(10, 'SG2007210003', 'Duane and Toni', 'DeSalvo', 'Almond Crusted Cod', 1, 'Main Dining Room', '1', 0, '1', '2020-07-21', '13:00:00', '1', 'E302', NULL, '', NULL, 'member', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '14.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(11, 'SG2007210004', 'Duane and Toni', 'DeSalvo', 'Almond Crusted Cod', 1, 'Main Dining Room', '4', 0, '3', '2020-07-21', '13:00:00', '3', 'E302', NULL, '', NULL, 'members', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '42.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(4, 'SG2007020002', 'Duane and Toni', 'DeSalvo', 'Cobb Salad', 1, 'Main Dining Room', '1', 0, '1', '2020-07-02', '17:10:00', '0', 'E302', NULL, '', NULL, 'member', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '14.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1456,10 +1448,7 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'admin', NULL, 0x32342e31372e3138332e353600000000, '2020-07-01 21:25:02', NULL, 1),
 (0, 'E302', NULL, 0x32342e31372e3138332e353600000000, '2020-07-01 21:28:51', NULL, 1),
 (0, 'admin', NULL, 0x32342e31372e3138332e353600000000, '2020-07-10 07:07:28', NULL, 1),
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-07-16 19:26:12', NULL, 1),
-(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-07-16 19:28:11', NULL, 1),
-(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-07-17 12:07:07', NULL, 1),
-(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-07-17 12:07:27', NULL, 1);
+(0, 'admin', NULL, 0x34332e3234372e3135382e3734000000, '2020-07-17 20:38:20', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1683,22 +1672,7 @@ INSERT INTO `weeklymenu` (`id`, `diningdate`, `diningtime`, `roomid`, `tableid`,
 (65, '2020-07-04', '17:50:00', 1, 9, 'Happy 4th Of July Cheeseburger', 'Happy 4th of July Jumbo Hot Dog'),
 (66, '2020-07-04', '17:50:00', 1, 12, 'Happy 4th Of July Cheeseburger', 'Happy 4th of July Jumbo Hot Dog'),
 (67, '2020-07-04', '18:00:00', 1, 2, 'Happy 4th Of July Cheeseburger', 'Happy 4th of July Jumbo Hot Dog'),
-(68, '2020-07-04', '18:00:00', 1, 5, 'Happy 4th Of July Cheeseburger', 'Happy 4th of July Jumbo Hot Dog'),
-(69, '2020-07-20', '13:00:00', 1, 1, 'Almond Crusted Cod', 'BBQ Chicken Breast'),
-(70, '2020-07-21', '13:00:00', 1, 1, 'Almond Crusted Cod', 'BBQ Chicken Breast'),
-(71, '2020-07-22', '13:00:00', 1, 1, 'Almond Crusted Cod', 'BBQ Chicken Breast'),
-(72, '2020-07-20', '13:00:00', 1, 2, 'Almond Crusted Cod', 'BBQ Chicken Breast'),
-(73, '2020-07-21', '13:00:00', 1, 2, 'Almond Crusted Cod', 'BBQ Chicken Breast'),
-(74, '2020-07-22', '13:00:00', 1, 2, 'Almond Crusted Cod', 'BBQ Chicken Breast'),
-(75, '2020-07-20', '13:00:00', 1, 3, 'Almond Crusted Cod', 'BBQ Chicken Breast'),
-(76, '2020-07-21', '13:00:00', 1, 3, 'Almond Crusted Cod', 'BBQ Chicken Breast'),
-(77, '2020-07-22', '13:00:00', 1, 3, 'Almond Crusted Cod', 'BBQ Chicken Breast'),
-(78, '2020-07-20', '13:00:00', 1, 4, 'Almond Crusted Cod', 'BBQ Chicken Breast'),
-(79, '2020-07-21', '13:00:00', 1, 4, 'Almond Crusted Cod', 'BBQ Chicken Breast'),
-(80, '2020-07-22', '13:00:00', 1, 4, 'Almond Crusted Cod', 'BBQ Chicken Breast'),
-(81, '2020-07-20', '13:00:00', 1, 5, 'Almond Crusted Cod', 'BBQ Chicken Breast'),
-(82, '2020-07-21', '13:00:00', 1, 5, 'Almond Crusted Cod', 'BBQ Chicken Breast'),
-(83, '2020-07-22', '13:00:00', 1, 5, 'Almond Crusted Cod', 'BBQ Chicken Breast');
+(68, '2020-07-04', '18:00:00', 1, 5, 'Happy 4th Of July Cheeseburger', 'Happy 4th of July Jumbo Hot Dog');
 
 --
 -- Indexes for dumped tables
@@ -1832,7 +1806,7 @@ ALTER TABLE `chef`
 -- AUTO_INCREMENT for table `diningdates`
 --
 ALTER TABLE `diningdates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `dish`
@@ -1880,7 +1854,7 @@ ALTER TABLE `pickupweeklymenu`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `room`
@@ -1910,7 +1884,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `weeklymenu`
 --
 ALTER TABLE `weeklymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
