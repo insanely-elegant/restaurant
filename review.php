@@ -59,7 +59,7 @@ if (strlen($_SESSION['login']) == 0) {
   if ($guestno < 1) {
     $type = "none";
     $dinertype = "member";
-    $membermealprice = 0;
+    // $membermealprice = 0;
   } else {
     $dinertype = "members";
   }

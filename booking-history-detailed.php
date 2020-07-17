@@ -700,11 +700,6 @@ if (strlen($_SESSION['login']) == 0) {
 																		<th>Member Meal Base Price</th>
 																		<th>Member Meal Tax Percent</th>
 																		<th>Member Meal Tax Value</th>
-																		<!-- <th>Member Meal Grand Total</th> -->
-																		<th>Member Guest Meal Base Price</th>
-																		<th>Member Guest Meal Tax Percent</th>
-																		<th>Member Guest Meal Tax Value</th>
-																		<!-- <th>Member Guest Meal Grand Total</th> -->
 																		<th>Guest Meal Base Price</th>
 																		<th>Guest Meal Tax Percent</th>
 																		<th>Guest Meal Tax Value</th>
@@ -765,34 +760,7 @@ if (strlen($_SESSION['login']) == 0) {
 																						}
 																						?></td> -->
 
-																			<td><?php
-																				if ($row['memberguestmealprice'] != NULL) {
-																					echo '$' . $row['memberguestmealprice'];
-																				} else {
-																					echo "";
-																				}
-																				?></td>
-																			<td><?php
-																				if ($row['memberguestmealtaxpercent'] != NULL) {
-																					echo $row['memberguestmealtaxpercent'] . '%';
-																				} else {
-																					echo "";
-																				}
-																				?></td>
-																			<td><?php
-																				if ($row['memberguestmealtaxvalue'] != NULL) {
-																					echo $row['memberguestmealtaxvalue'] . '%';
-																				} else {
-																					echo "";
-																				}
-																				?></td>
-																			<!-- <td><?php
-																						if ($row['memberguestmealtotalprice'] != NULL) {
-																							echo '$' . $row['memberguestmealtotalprice'];
-																						} else {
-																							echo "";
-																						}
-																						?></td> -->
+																			
 																			<td><?php if ($row['guestmealprice'] != NULL) {
 																					echo '$' . $row['guestmealprice'];
 																				} else {
