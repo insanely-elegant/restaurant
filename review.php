@@ -86,8 +86,8 @@ if (strlen($_SESSION['login']) == 0) {
 
 
   if (isset($_POST['submit'])) {
-    $sql = mysqli_query($con,  "insert into reservation(bookingid,firstname,lastname,dishname,roomid,room,tablename,seat,diningdate,diningtime,guestno,condono,dinerType,membermealprice,membermealtaxpercent,membermealtaxvalue,membermealtotalprice,grandtotal)
-	values('$bkid','$name','$lname','$dn','$rid','$r','$tn', '$s', '$dd', '$dt','$s','$condono','$dntype','$membermealprice','$membertaxpercent','$membermealtax','$mealprice','$gt')");
+    $sql = mysqli_query($con,  "insert into reservation(bookingid,firstname,lastname,dishname,roomid,room,tablename,seat,diningdate,diningtime,condono,dinerType,membermealprice,membermealtaxpercent,membermealtaxvalue,membermealtotalprice,grandtotal)
+	values('$bkid','$name','$lname','$dn','$rid','$r','$tn', '$s', '$dd', '$dt','$condono','$dntype','$membermealprice','$membertaxpercent','$membermealtax','$mealprice','$gt')");
 
     if ($sql == 1) {
       $last_id = $con->insert_id;

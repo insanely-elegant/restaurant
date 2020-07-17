@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2020 at 12:09 AM
+-- Generation Time: Jul 18, 2020 at 12:36 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -877,7 +877,6 @@ CREATE TABLE `reservation` (
   `seat` varchar(255) NOT NULL,
   `diningdate` date NOT NULL,
   `diningtime` time NOT NULL,
-  `guestno` varchar(255) NOT NULL,
   `condono` varchar(255) NOT NULL,
   `freedinersmealtotalprice` decimal(5,2) DEFAULT NULL,
   `isConfirmed` varchar(255) NOT NULL,
@@ -905,11 +904,12 @@ CREATE TABLE `reservation` (
 -- Dumping data for table `reservation`
 --
 
-INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `roomid`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `freedinersmealtotalprice`, `isConfirmed`, `isCheckedin`, `dinerType`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `guestmealprice`, `guestmealtaxpercent`, `guestmealtaxvalue`, `guestmealtotalprice`, `grandtotal`, `memberguestmealprice`, `memberguestmealtaxpercent`, `memberguestmealtaxvalue`, `memberguestmealtotalprice`, `freedinersmealprice`, `freedinersmealtaxpercent`, `freedinersmealtaxvalue`) VALUES
-(3, 'SG2007020001', 'Duane and Toni', 'DeSalvo', 'Coconut Shrimp', 1, 'Main Dining Room', '1', 0, '1', '2020-07-02', '17:10:00', '1', 'E302G', NULL, '', NULL, 'guest', '14.00', NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '17.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'SG2007020002', 'Duane and Toni', 'DeSalvo', 'Cobb Salad', 1, 'Main Dining Room', '1', 0, '1', '2020-07-02', '17:10:00', '0', 'E302', NULL, '', NULL, 'member', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '14.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
-(5, 'SG2007200001', 'Duane and Toni', 'DeSalvo', 'Chicken Burger', 1, 'Main Dining Room', '6', 0, '2', '2020-07-20', '17:00:00', '2', 'E302', NULL, '', NULL, 'members', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '28.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 'SG2007200002', 'Duane and Toni', 'DeSalvo', 'Pasta Bologna', 1, 'Main Dining Room', '8', 0, '1', '2020-07-20', '17:00:00', '1', 'E302', NULL, '', NULL, 'member', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '14.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `roomid`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `condono`, `freedinersmealtotalprice`, `isConfirmed`, `isCheckedin`, `dinerType`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `guestmealprice`, `guestmealtaxpercent`, `guestmealtaxvalue`, `guestmealtotalprice`, `grandtotal`, `memberguestmealprice`, `memberguestmealtaxpercent`, `memberguestmealtaxvalue`, `memberguestmealtotalprice`, `freedinersmealprice`, `freedinersmealtaxpercent`, `freedinersmealtaxvalue`) VALUES
+(3, 'SG2007020001', 'Duane and Toni', 'DeSalvo', 'Coconut Shrimp', 1, 'Main Dining Room', '1', 0, '1', '2020-07-02', '17:10:00', 'E302G', NULL, '', NULL, 'guest', '14.00', NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '17.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'SG2007020002', 'Duane and Toni', 'DeSalvo', 'Cobb Salad', 1, 'Main Dining Room', '1', 0, '1', '2020-07-02', '17:10:00', 'E302', NULL, '', NULL, 'member', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '14.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
+(5, 'SG2007200001', 'Duane and Toni', 'DeSalvo', 'Chicken Burger', 1, 'Main Dining Room', '6', 0, '2', '2020-07-20', '17:00:00', 'E302', NULL, '', NULL, 'members', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '28.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 'SG2007200002', 'Duane and Toni', 'DeSalvo', 'Pasta Bologna', 1, 'Main Dining Room', '8', 0, '1', '2020-07-20', '17:00:00', 'E302', NULL, '', NULL, 'member', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '14.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(7, 'SG2007200003', 'Duane and Toni', 'DeSalvo', 'Pasta Bologna', 1, 'Main Dining Room', '8', 0, '3', '2020-07-20', '17:00:00', 'E302', NULL, '', NULL, 'members', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '42.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1451,7 +1451,8 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'E302', NULL, 0x32342e31372e3138332e353600000000, '2020-07-01 21:28:51', NULL, 1),
 (0, 'admin', NULL, 0x32342e31372e3138332e353600000000, '2020-07-10 07:07:28', NULL, 1),
 (0, 'admin', NULL, 0x34332e3234372e3135382e3734000000, '2020-07-17 20:38:20', NULL, 1),
-(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-07-17 21:55:30', NULL, 1);
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-07-17 21:55:30', NULL, 1),
+(0, 'E302', NULL, 0x3a3a3100000000000000000000000000, '2020-07-17 22:35:57', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1870,7 +1871,7 @@ ALTER TABLE `pickupweeklymenu`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `room`
