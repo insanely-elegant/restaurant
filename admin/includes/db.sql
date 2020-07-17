@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2020 at 11:50 PM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Generation Time: Jul 18, 2020 at 12:09 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -907,8 +906,8 @@ CREATE TABLE `reservation` (
 --
 
 INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `roomid`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `freedinersmealtotalprice`, `isConfirmed`, `isCheckedin`, `dinerType`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `guestmealprice`, `guestmealtaxpercent`, `guestmealtaxvalue`, `guestmealtotalprice`, `grandtotal`, `memberguestmealprice`, `memberguestmealtaxpercent`, `memberguestmealtaxvalue`, `memberguestmealtotalprice`, `freedinersmealprice`, `freedinersmealtaxpercent`, `freedinersmealtaxvalue`) VALUES
-(3, 'SG2007020001', 'Duane and Toni', 'DeSalvo', 'Coconut Shrimp', 1, 'Main Dining Room', '1', 0, '1', '2020-07-02', '17:10:00', '1', 'E302G', NULL, '', NULL, 'guest', NULL, NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '17.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'SG2007020002', 'Duane and Toni', 'DeSalvo', 'Cobb Salad', 1, 'Main Dining Room', '1', 0, '1', '2020-07-02', '17:10:00', '0', 'E302', NULL, '', NULL, 'member', '0.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '14.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
+(3, 'SG2007020001', 'Duane and Toni', 'DeSalvo', 'Coconut Shrimp', 1, 'Main Dining Room', '1', 0, '1', '2020-07-02', '17:10:00', '1', 'E302G', NULL, '', NULL, 'guest', '14.00', NULL, NULL, NULL, '17.00', '10.00', '1.70', '17.00', '17.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'SG2007020002', 'Duane and Toni', 'DeSalvo', 'Cobb Salad', 1, 'Main Dining Room', '1', 0, '1', '2020-07-02', '17:10:00', '0', 'E302', NULL, '', NULL, 'member', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '14.00', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL),
 (5, 'SG2007200001', 'Duane and Toni', 'DeSalvo', 'Chicken Burger', 1, 'Main Dining Room', '6', 0, '2', '2020-07-20', '17:00:00', '2', 'E302', NULL, '', NULL, 'members', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '28.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (6, 'SG2007200002', 'Duane and Toni', 'DeSalvo', 'Pasta Bologna', 1, 'Main Dining Room', '8', 0, '1', '2020-07-20', '17:00:00', '1', 'E302', NULL, '', NULL, 'member', '14.00', '0.00', '0.00', '14.00', NULL, NULL, NULL, NULL, '14.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
@@ -1001,7 +1000,7 @@ CREATE TABLE `userlog` (
   `unitno` varchar(255) NOT NULL,
   `userEmail` varchar(255) DEFAULT NULL,
   `userip` binary(16) DEFAULT NULL,
-  `loginTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `loginTime` timestamp NULL DEFAULT current_timestamp(),
   `logout` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1451,7 +1450,8 @@ INSERT INTO `userlog` (`id`, `unitno`, `userEmail`, `userip`, `loginTime`, `logo
 (0, 'admin', NULL, 0x32342e31372e3138332e353600000000, '2020-07-01 21:25:02', NULL, 1),
 (0, 'E302', NULL, 0x32342e31372e3138332e353600000000, '2020-07-01 21:28:51', NULL, 1),
 (0, 'admin', NULL, 0x32342e31372e3138332e353600000000, '2020-07-10 07:07:28', NULL, 1),
-(0, 'admin', NULL, 0x34332e3234372e3135382e3734000000, '2020-07-17 20:38:20', NULL, 1);
+(0, 'admin', NULL, 0x34332e3234372e3135382e3734000000, '2020-07-17 20:38:20', NULL, 1),
+(0, 'admin', NULL, 0x3a3a3100000000000000000000000000, '2020-07-17 21:55:30', NULL, 1);
 
 -- --------------------------------------------------------
 

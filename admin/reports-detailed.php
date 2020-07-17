@@ -653,12 +653,12 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                   <tbody>
                                     <?php
                                     $sql = "SELECT COALESCE(reservation.firstname,pickups.firstname) as firstname, COALESCE(reservation.lastname,pickups.lastname) as lastname,
-                                       COALESCE(reservation.condono,pickups.condono) as condono, COALESCE(SUM(reservation.guestno),0) as mealsconsumed,
-                                        SUM(COALESCE(reservation.membermealprice,0) + COALESCE((reservation.guestno),0) +
-                                         COALESCE((reservation.guestmealprice * reservation.guestno),0)) as totDineoutNetCost,
+                                       COALESCE(reservation.condono,pickups.condono) as condono, COALESCE(SUM(reservation.seat),0) as mealsconsumed,
+                                        SUM(COALESCE(reservation.membermealprice,0) + COALESCE((reservation.seat),0) +
+                                         COALESCE((reservation.guestmealprice * reservation.seat),0)) as totDineoutNetCost,
                                           COALESCE(reservation.membermealtaxvalue, 0) + COALESCE(reservation.guestmealtaxvalue, 0) as totaltax,
                                           SUM( COALESCE(reservation.membermealtaxvalue,0) + 
-                                            COALESCE((reservation.guestmealtaxvalue * reservation.guestno),0)) as totDineoutTax,
+                                            COALESCE((reservation.guestmealtaxvalue * reservation.seat),0)) as totDineoutTax,
                                              COALESCE(SUM(pickups.membermealprice),0) as takeoutNet, COALESCE(SUM(pickups.membermealtaxvalue),0) as takeoutTax,
                                               COALESCE(SUM(pickups.membermealtotalprice),0) as totalTakeout,
                                                COUNT(pickups.id) as noOfPickups FROM pickups LEFT JOIN reservation ON pickups.condono = reservation.condono 
@@ -666,12 +666,12 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                     $sqluser = mysqli_query($con, $sql);
                                     if (empty(mysqli_fetch_array($sqluser))) {
                                       $sql = "SELECT COALESCE(reservation.firstname,pickups.firstname) as firstname, COALESCE(reservation.lastname,pickups.lastname) as lastname,
-                                       COALESCE(reservation.condono,pickups.condono) as condono, COALESCE(SUM(reservation.guestno),0) as mealsconsumed,
-                                        SUM(COALESCE(reservation.membermealprice,0) + COALESCE((reservation.guestno),0) +
-                                         COALESCE((reservation.guestmealprice * reservation.guestno),0)) as totDineoutNetCost,
+                                       COALESCE(reservation.condono,pickups.condono) as condono, COALESCE(SUM(reservation.seat),0) as mealsconsumed,
+                                        SUM(COALESCE(reservation.membermealprice,0) + COALESCE((reservation.seat),0) +
+                                         COALESCE((reservation.guestmealprice * reservation.seat),0)) as totDineoutNetCost,
                                           COALESCE(reservation.membermealtaxvalue, 0) + COALESCE(reservation.guestmealtaxvalue, 0) as totaltax,
                                           SUM( COALESCE(reservation.membermealtaxvalue,0) + 
-                                            COALESCE((reservation.guestmealtaxvalue * reservation.guestno),0)) as totDineoutTax,
+                                            COALESCE((reservation.guestmealtaxvalue * reservation.seat),0)) as totDineoutTax,
                                              COALESCE(SUM(pickups.membermealprice),0) as takeoutNet, COALESCE(SUM(pickups.membermealtaxvalue),0) as takeoutTax,
                                               COALESCE(SUM(pickups.membermealtotalprice),0) as totalTakeout,
                                                COUNT(pickups.id) as noOfPickups FROM pickups LEFT JOIN reservation ON pickups.condono = reservation.condono 
