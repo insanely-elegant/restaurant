@@ -698,9 +698,9 @@ function formatData($date)
 																	<?php
 
 																	$sql = mysqli_query($con, "SELECT DISTINCT pickupweeklymenu.pickupdate as dd, pickupweeklymenu.dishname1 as d1,
-                                                             pickupweeklymenu.dishname2 as d2,dish1.dishdescription as ddesc1,dish2.dishdescription as ddesc2,pickupweeklymenu.roomid as rid, room.id as roomid, room.roomname as rname
-                                                                FROM pickupweeklymenu join room on pickupweeklymenu.roomid = room.id JOIN dish as dish1 ON pickupweeklymenu.dishname1 = dish1.dishname 
-                                                                JOIN dish as dish2 ON pickupweeklymenu.dishname2 = dish2.dishname WHERE pickupweeklymenu.pickupdate >= '$fdate' AND pickupweeklymenu.pickupdate <= '$tdate'");
+																	pickupweeklymenu.dishname2 as d2,dish1.dishdescription as ddesc1,dish2.dishdescription as ddesc2,pickupweeklymenu.roomid as rid, room.id as roomid, room.roomname as rname
+																	   FROM pickupweeklymenu LEFT join room on pickupweeklymenu.roomid = room.id JOIN dish as dish1 ON pickupweeklymenu.dishname1 = dish1.dishname 
+																	   JOIN dish as dish2 ON pickupweeklymenu.dishname2 = dish2.dishname WHERE pickupweeklymenu.pickupdate between '$fdate' AND '$tdate' ORDER BY pickupweeklymenu.pickupdate ASC");
 																	$cnt = 1;
 																	//Save data to local variable
 																	$data = mysqli_fetch_all($sql, MYSQLI_ASSOC);

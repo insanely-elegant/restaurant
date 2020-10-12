@@ -29,6 +29,8 @@ function formatData($date)
 <head>
     <title id='title'>Silver Glen Weekly Menu</title>
     <meta http-equiv="content-type" content="text/plain; charset=UTF-8" />
+    <script type="text/javascript" src="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.js"></script>
+    <link href="assets/libs/css/print.css" media="print" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         var tableToExcel = (function() {
             var uri = 'data:application/vnd.ms-excel;base64,',
@@ -51,12 +53,58 @@ function formatData($date)
             }
         })()
     </script>
+    <script>
+                                                            function exportTableToXls(tableID) {
+                                                            var url = 'data:application/vnd.ms-excel,' + encodeURIComponent($('#' + tableID).html())
+                                                                    location.href = url
+                                                                    return false
+                                                            }
+
+                                                    function exportTableToPDF(tableId) {
+                                                        var pdfsize = "WeeklyMenu"
+                                                    var pdf = new jsPDF('l', 'pt');
+                                                    var header = function (data) {
+                                                    pdf.setFontSize(25);
+                                                    pdf.setTextColor(40);
+                                                    pdf.setFontStyle('normal');
+                                                    };
+                                                    pdf.autoTable({
+                                                    html: '#' + tableId,
+                                                            startY: 100,
+                                                            didDrawPage : header,
+                                                            styles: {
+                                                            fontSize: 6,
+                                                                    cellWidth: 'wrap'
+                                                            },
+                                                            columnStyles: {
+                                                            1: {
+                                                            columnWidth: 'auto'
+                                                            }
+                                                            },
+                                                            showHead: 'everyPage',
+                                                    });
+                                                    pdf.save(pdfsize + ".pdf");
+                                                    };
+        </script>
+        <script>
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+}
+        
+        </script>
     <?php
     include('header.php');
     ?>
 </head>
 
-<body>
+<body style="-webkit-print-color-adjust: exact !important;">
     <?php $query = mysqli_query($con, "select * from admins");
     while ($row = mysqli_fetch_array($query)) { ?>
         <!-- ============================================================== -->
@@ -124,23 +172,25 @@ function formatData($date)
                                                     <div class="col-md-12">
                                                         </br>
                                                         <input class="btn btn-o black" type="button" onclick="tableToExcel('sample-table-1', 'W3C Example Table')" value="Export to Excel"></br> </br>
-                                                        <input class="btn btn-o black" id="btnExport" type="button" onclick="Export()" value="Print"></br> </br>
+                                                        <input class="btn btn-o black" type="button" onclick="printDiv('printTable')" value="Print Weekly menu">
+                                                        
                                                         <?php
                                                         $fdate = $_POST['fromdate'];
                                                         $tdate = $_POST['todate'];
 
                                                         ?>
                                                         <h5 align="center" style="color:blue">Weekly Menu from <?php echo $fdate ?> to <?php echo $tdate ?></h5> </br>
-
+                                                        <div id="printTable">
+                                                        
                                                         <table class="table table-striped table-hover table-bordered table-responsive" id="sample-table-1">
-                                                            <caption style="font-size:large;color:black;"> Weekly Menu from <?php echo $fdate ?> to <?php echo $tdate ?> </caption>
+                                                            <caption style="font-size:large;color:black !important;"> Weekly Menu from <?php echo $fdate ?> to <?php echo $tdate ?> </caption>
 
                                                             <?php
 
                                                             $sql = mysqli_query($con, "SELECT DISTINCT weeklymenu.diningdate as dd, weeklymenu.dishname1 as d1,
                                                              weeklymenu.dishname2 as d2,dish1.dishdescription as ddesc1,dish2.dishdescription as ddesc2,weeklymenu.roomid as rid, room.id as roomid, room.roomname as rname
                                                                 FROM weeklymenu join room on weeklymenu.roomid = room.id JOIN dish as dish1 ON weeklymenu.dishname1 = dish1.dishname 
-                                                                JOIN dish as dish2 ON weeklymenu.dishname2 = dish2.dishname WHERE weeklymenu.diningdate >= '$fdate' AND weeklymenu.diningdate <= '$tdate'");
+                                                                JOIN dish as dish2 ON weeklymenu.dishname2 = dish2.dishname WHERE weeklymenu.diningdate >= '$fdate' AND weeklymenu.diningdate <= '$tdate' ORDER BY weeklymenu.diningdate ASC");
                                                             $cnt = 1;
                                                             //Save data to local variable
                                                             $data = mysqli_fetch_all($sql, MYSQLI_ASSOC);
@@ -151,24 +201,24 @@ function formatData($date)
                                                             for ($i = 0; $i < $noOfIteration; $i++) { //Iterate Whole Table as much as necessary 
                                                                 $step = 5 * $i;
                                                             ?>
-                                                                <thead style="background-color:#154e84;">
+                                                                <thead style="background-color:#154e84 !important;">
                                                                     <tr>
-                                                                        <th colspan="6" style="font-size:x-large;text-align: center;color: white;background-color: black;">Weekly Menu </th>
+                                                                        <th colspan="6" style="font-size:x-large;text-align: center;color: white !important;background-color: black !important;">Weekly Menu </th>
 
                                                                     </tr>
                                                                     <tr>
                                                                         <th></th>
-                                                                        <th style="font-size:x-large;color:white;"><?php if (!empty($data[0 + $step])) echo (formatData($data[0 + $step]['dd'])); ?></th>
-                                                                        <th style="font-size:x-large;color:white;"><?php if (!empty($data[1 + $step])) echo (formatData($data[1 + $step]['dd'])); ?></th>
-                                                                        <th style="font-size:x-large;color:white;"><?php if (!empty($data[2 + $step])) echo (formatData($data[2 + $step]['dd'])); ?></th>
-                                                                        <th style="font-size:x-large;color:white;"><?php if (!empty($data[3 + $step])) echo (formatData($data[3 + $step]['dd'])); ?></th>
-                                                                        <th style="font-size:x-large;color:white;"><?php if (!empty($data[4 + $step])) echo (formatData($data[4 + $step]['dd'])); ?></th>
+                                                                        <th style="font-size:x-large;color:white !important; background-color:navy !important;"><?php if (!empty($data[0 + $step])) echo (formatData($data[0 + $step]['dd'])); ?></th>
+                                                                        <th style="font-size:x-large;color:white !important; background-color:navy !important;"><?php if (!empty($data[1 + $step])) echo (formatData($data[1 + $step]['dd'])); ?></th>
+                                                                        <th style="font-size:x-large;color:white !important; background-color:navy !important;"><?php if (!empty($data[2 + $step])) echo (formatData($data[2 + $step]['dd'])); ?></th>
+                                                                        <th style="font-size:x-large;color:white !important; background-color:navy !important;"><?php if (!empty($data[3 + $step])) echo (formatData($data[3 + $step]['dd'])); ?></th>
+                                                                        <th style="font-size:x-large;color:white !important; background-color:navy !important;"><?php if (!empty($data[4 + $step])) echo (formatData($data[4 + $step]['dd'])); ?></th>
                                                                     </tr>
                                                                 </thead>
                                                                 <!--Table head-->
                                                                 <!--Table body-->
                                                                 <tbody>
-                                                                    <tr style="font-size:x-large;color: black; background-color:#ADD8E6;">
+                                                                    <tr style="font-size:x-large;color: black !important; background-color:#ADD8E6 !important;">
                                                                         <th scope="row">1</th>
                                                                         <td><?php if (!empty($data[0 + $step])) echo (($data[0 + $step]['d1'])); ?></td>
                                                                         <td><?php if (!empty($data[1 + $step])) echo (($data[1 + $step]['d1'])); ?></td>
@@ -176,7 +226,7 @@ function formatData($date)
                                                                         <td><?php if (!empty($data[3 + $step])) echo (($data[3 + $step]['d1'])); ?></td>
                                                                         <td><?php if (!empty($data[4 + $step])) echo (($data[4 + $step]['d1'])); ?></td>
                                                                     </tr>
-                                                                    <tr style="font-size:large;color: black;background-color:white;">
+                                                                    <tr style="font-size:large;color: black !important;background-color:white !important;">
                                                                         <td></td>
                                                                         <td><?php if (!empty($data[0 + $step])) echo (($data[0 + $step]['ddesc1'])); ?></td>
                                                                         <td><?php if (!empty($data[1 + $step])) echo (($data[1 + $step]['ddesc1'])); ?></td>
@@ -184,7 +234,7 @@ function formatData($date)
                                                                         <td><?php if (!empty($data[3 + $step])) echo (($data[3 + $step]['ddesc1'])); ?></td>
                                                                         <td><?php if (!empty($data[4 + $step])) echo (($data[4 + $step]['ddesc1'])); ?></td>
                                                                     </tr>
-                                                                    <tr style="font-size:x-large;color: black;background-color:#ADD8E6;">
+                                                                    <tr style="font-size:x-large;color: black !important; background-color:#ADD8E6 !important;">
                                                                         <th scope="row">2</th>
                                                                         <td><?php if (!empty($data[0 + $step])) echo (($data[0 + $step]['d2'])); ?></td>
                                                                         <td><?php if (!empty($data[1 + $step])) echo (($data[1 + $step]['d2'])); ?></td>
@@ -192,7 +242,7 @@ function formatData($date)
                                                                         <td><?php if (!empty($data[3 + $step])) echo (($data[3 + $step]['d2'])); ?></td>
                                                                         <td><?php if (!empty($data[4 + $step])) echo (($data[4 + $step]['d2'])); ?></td>
                                                                     </tr>
-                                                                    <tr style="font-size:large;color: black;background-color:white;">
+                                                                    <tr style="font-size:large;color: black !important;background-color:white !important;">
                                                                         <td></td>
                                                                         <td><?php if (!empty($data[0 + $step])) echo (($data[0 + $step]['ddesc2'])); ?></td>
                                                                         <td><?php if (!empty($data[1 + $step])) echo (($data[1 + $step]['ddesc2'])); ?></td>
@@ -205,7 +255,7 @@ function formatData($date)
                                                                 $cnt = $cnt + 1;
                                                             } ?>
                                                         </table>
-
+                                                        </div>
                                                         <script type=" text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js">
                                                         </script>
                                                         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>

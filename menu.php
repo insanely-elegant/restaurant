@@ -118,6 +118,12 @@ if (strlen($_SESSION['login']) == 0) {
 						</div>
 
 						<div class="container-login100-form-btn m-t-17">
+							<button class="login100-form-btn" style="background-color: #99B898; color: black;" onClick="updatePassword();">
+								Update Password
+							</button>
+						</div>
+
+						<div class="container-login100-form-btn m-t-17">
 							<button class="login100-form-btn" style="background-color: #3F6A8A; color: black;" onClick="logout();">
 								Log out
 							</button>
@@ -152,7 +158,9 @@ if (strlen($_SESSION['login']) == 0) {
 							function cancel() {
 								location.href = "cancel-booking.php"
 							}
-
+							function updatePassword() {
+								location.href = "update-password.php"
+							}
 							function cancelorder() {
 								location.href = "cancel-takeout.php";
 							}

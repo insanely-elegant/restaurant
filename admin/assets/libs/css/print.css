@@ -1,0 +1,30 @@
+@media print {
+    .table-top-head {
+        background-color:#154e84;
+    }
+    .table-heading {
+        font-size:x-large;
+        text-align: center;
+        color: white;
+        background-color: black;
+    }
+    th {
+        font-size:x-large;
+        color:white;
+    }
+    .table-row{
+        font-size:x-large;
+        color: black; 
+        background-color:#ADD8E6;
+    }
+    .table-row1 {
+        font-size:large;
+        color: black;
+        background-color:white;
+    }
+    .table-row2{
+        font-size:x-large;
+        color: black;
+        background-color:#ADD8E6;
+    }
+}

@@ -287,7 +287,7 @@ if (strlen($_SESSION['login']) == 0) {
                     <th>Dining Date</th>
                     <th>Dining Time</th>
                     <th>Dish Name</th>
-                    <th>Total Guests</th>
+                    <th>Total Seats</th>
                     <th>Diner Type</th>
                   </tr>
                 </tfoot>
@@ -306,7 +306,7 @@ if (strlen($_SESSION['login']) == 0) {
                       <td><?php echo $row['diningdate']; ?></td>
                       <td><?php echo $row['diningtime']; ?></td>
                       <td><?php echo $row['dishname']; ?></td>
-                      <td class="hidden-xs"><?php echo $row['guestno']; ?></td>
+                      <td class="hidden-xs"><?php echo $row['seat']; ?></td>
                       <td><?php echo $row['dinerType']; ?></td>
                     </tr>
                   <?php

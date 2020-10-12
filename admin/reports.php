@@ -96,7 +96,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                         <div class="card-body">
                                             <div class="panel-body">
 
-                                                <form role="form" method="post" action="reports-detailed.php">
+                                                <form role="form" method="post" action="sgdine-report.php">
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">
                                                             From Date: *

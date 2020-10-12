@@ -13,7 +13,7 @@
                         Administrator <img src="assets/images/avatars-clipart-1.png" alt="" class="user-avatar-md rounded-circle"></a>
                     <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                         <div class="nav-user-info">
-                            <h5 class="mb-0 text-white nav-user-name">Duane DeSalvo </h5>
+                            <h5 class="mb-0 text-white nav-user-name">Admin </h5>
                             <span class="status"></span><span class="ml-2">Online</span>
                         </div>
                         <a class="dropdown-item" href="logout.php"><i class="fas fa-power-off mr-2"></i>Logout</a>
@@ -186,7 +186,10 @@
                         <div id="submenu-12" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="reports.php">View All Reports by Date</a>
+                                    <a class="nav-link" href="reports.php">SGDINE Reports</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="all-reports.php">Reports by date</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="reports-with-unitno.php">View All Reports by Date & Unitno</a>
