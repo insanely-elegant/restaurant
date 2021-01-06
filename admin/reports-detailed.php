@@ -285,6 +285,22 @@ window.location.href = uri + base64(format(template, ctx))
                                                             </div>
 
                                                             </tbody>
+                                                            <tfoot>
+                                                            <td>Total</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td><?php echo '$' . htmlentities($pickuptotal); ?></td>
+                                                            </tfoot>
                                                         </table>
                                                     </div>
                                                 </div>
@@ -488,7 +504,7 @@ window.location.href = uri + base64(format(template, ctx))
                                                 <?php echo "guestmealprice:" . $total['guestmealprice']; ?>
                                                 <?php echo "guestmealtaxvalue:" . $total['guestmealtaxvalue']; ?>
                                                 <?php echo "totaltaxvalues:" . $total['totaltaxvalues']; ?>
-    <?php echo "grandtotal:" . $total['grandtotal']; ?>
+                                                <?php echo "grandtotal:" . $total['grandtotal']; ?>
                                             </div>
                                         </div>
                                     </div>
@@ -507,7 +523,7 @@ window.location.href = uri + base64(format(template, ctx))
                                                             </div>
                                                         </div>
 
-                                                        <table id="example2" class="table table-striped table-bordered second" style="width:100%">
+                                                        <table class="table table-striped table-bordered second" style="width:100%">
                                                             <thead>
                                                                 <tr>
                                                                     <th class="center">#</th>

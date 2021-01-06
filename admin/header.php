@@ -22,11 +22,6 @@
  <script src="assets/vendor/datepicker/tempusdominus-bootstrap-4.js"></script>
  <script src="assets/vendor/datepicker/datepicker.js"></script>
 
- <!-- Animate.css -->
- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
- <!-- Icomoon Icon Fonts-->
- <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
-
 
  <link rel="stylesheet" href="assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
  <link rel="stylesheet" href="assets/vendor/charts/c3charts/c3.css">

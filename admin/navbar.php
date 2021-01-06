@@ -208,6 +208,11 @@
                             </ul>
                             <ul class="nav flex-column">
                                 <li class="nav-item">
+                                    <a class="nav-link" href="manage-ownership.php"><i class="nav-icon fa fa-user"></i>Manage Ownership</a>
+                                </li>
+                            </ul>
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
                                     <a class="nav-link" href="backup-restore.php"><i class="nav-icon fa fa-database"></i>Backup & Restore Data</a>
                                 </li>
                             </ul>

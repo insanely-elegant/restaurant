@@ -23,7 +23,29 @@ if (strlen($_SESSION['login']) == 0)
   </head>
   <body>
 
-    <div class="container mt-5">
+    <div class="container mt-5"><style type="text/css">
+                        .box {
+
+                          border: 1px solid black;
+
+                        }
+
+                        .box:hover {
+                          -moz-box-shadow: 0 0 10px #ccc;
+                          -webkit-box-shadow: 0 0 10px #ccc;
+                          box-shadow: 0 0 10px #ccc;
+                          cursor: pointer;
+                        }
+                      </style>
+                      <div class="box" onclick="home()">
+                        <img src="images/390380-200.png" style="width: 80px; height: 80px;" onclick="home()">Go Back to Main Page</img>
+                      </div>
+                       </br></br></br>
+<script>
+function home(){
+location.href="menu.php";
+}
+</script>
       <div class="row mt-5">
         <div class="col-lg-8 offset-2">
           <div class="card">
@@ -33,12 +55,7 @@ if (strlen($_SESSION['login']) == 0)
             <div class="card-body">
               <form class="update_password">
                 <div class="container-fluid">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <label>First Name</label>
-                      <input type="text" name="first_name" class="first_name form-control" placeholder="Enter First Name">
-                    </div>
-                  </div>
+                  
                   <div class="row">
                     <div class="col-lg-12">
                       <label>Unit Number</label>
@@ -75,7 +92,6 @@ if (strlen($_SESSION['login']) == 0)
       $(document).on('click','.update',function()
       {
             var array2 = [
-            'first_name',
             'unit_number',
             'old_password',
             'new_password'
@@ -101,7 +117,6 @@ if (strlen($_SESSION['login']) == 0)
             }
             if(successFlag == true)
             {
-              var first_name = $('.first_name').val();
               var unit_number = $('.unit_number').val();
               var old_password = $('.old_password').val();
               var new_password = $('.new_password').val();
@@ -111,7 +126,6 @@ if (strlen($_SESSION['login']) == 0)
                 method: 'post',
                 data: 
                 {
-                   first_name : first_name,
                    unit_number : unit_number,
                    old_password : old_password,
                    new_password : new_password

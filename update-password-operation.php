@@ -5,12 +5,11 @@ include('includes/config.php');
 if (strlen($_SESSION['login']) == 0) {
   header('location:index.php');
 }
-$first_name = $_POST['first_name'];
 $unit_number = $_POST['unit_number'];
 $old_password = $_POST['old_password'];
 $new_password = $_POST['new_password'];
 
-$sql = "SELECT * FROM users WHERE firstname = '$first_name' AND unitno = '$unit_number' AND password = '$old_password'";
+$sql = "SELECT * FROM users WHERE unitno = '$unit_number' AND password = '$old_password'";
 
 $result = $con->query($sql);
 
