@@ -15,11 +15,7 @@ if(isset($_POST['submit']))
 {
 	$condono_old=$_POST['condono_old'];
 	$condono_new=$_POST['condono_new'];
-$sql=mysqli_query($con,"update
-                            pickups
-                        set 
-                            condono='$condono_new',
-                        where condono='$condono_old'");
+$sql=mysqli_query($con,"update pickups set condono='$condono_new' where condono='$condono_old'");
 $_SESSION['msg']="Previous Member Data Updated !!";
 // echo "<meta http-equiv='refresh' content='1;url=create-user.php'/>"; Need to remove this later.
 }
