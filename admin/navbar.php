@@ -102,6 +102,10 @@
                         <div id="submenu-6" class="collapse submenu" style="">
                             <ul class="nav flex-column">
 
+                            <li class="nav-item">
+                                    <a class="nav-link" href="admin-book.php">Book Reservation for user</a>
+                                </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="guestlist.php">See Today's Guest List</a>
                                 </li>
