@@ -15,7 +15,28 @@ if(isset($_POST['submit']))
 {
 	$condono_old=$_POST['condono_old'];
 	$condono_new=$_POST['condono_new'];
-$sql=mysqli_query($con,"update pickups set condono='$condono_new' where condono='$condono_old'");
+	$firstname=$_POST['firstname'];
+	$lastname=$_POST['lastname'];
+$sql=mysqli_query($con,"update
+                            pickups
+                        set 
+                            condono='$condono_new'
+                        where condono='$condono_old' AND firstname='$firstname' AND lastname='$lastname'");
+$sql2=mysqli_query($con,"update
+                            users
+                        set 
+                            unitno='$condono_new'
+                        where unitno='$condono_old' AND firstname='$firstname' AND lastname='$lastname'");
+$sql3=mysqli_query($con,"update
+                            reservation
+                        set 
+                            condono='$condono_new'
+                        where condono='$condono_old' AND firstname='$firstname' AND lastname='$lastname'");
+$sql4=mysqli_query($con,"update
+                        staff
+                    set 
+                        unitno='$condono_new'
+                    where unitno='$condono_old' AND firstname='$firstname' AND lastname='$lastname'");
 $_SESSION['msg']="Previous Member Data Updated !!";
 // echo "<meta http-equiv='refresh' content='1;url=create-user.php'/>"; Need to remove this later.
 }
@@ -115,7 +136,20 @@ $_SESSION['msg']="Previous Member Data Updated !!";
                                                        
                                                     </div>
                                                 </div>
-                                                
+                                                <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Enter First name of the individual whose unit number you wish to change*</label>
+                                                    <div class="input-group" id="firstname" data-target-input="nearest">
+                                                        <input type="text" id="firstname" name="firstname" class="form-control">
+                                                       
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Enter Last Name of the individual whose unit number you wish to change*</label>
+                                                    <div class="input-group" id="lastname" data-target-input="nearest">
+                                                        <input type="text" id="lastname" name="lastname" class="form-control">
+                                                       
+                                                    </div>
+                                                </div>
                                                 <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Enter New Identifier for Old Unit Number*</label>
                                                     <div class="input-group" id="condono_new" data-target-input="nearest">
