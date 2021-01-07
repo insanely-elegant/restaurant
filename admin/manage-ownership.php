@@ -34,9 +34,9 @@ $sql3=mysqli_query($con,"update
                         where condono='$condono_old' AND firstname='$firstname' AND lastname='$lastname'");
 $sql4=mysqli_query($con,"update
                         staff
-                    set 
+                        set 
                         unitno='$condono_new'
-                    where unitno='$condono_old' AND firstname='$firstname' AND lastname='$lastname'");
+                        where unitno='$condono_old' AND firstname='$firstname' AND lastname='$lastname'");
 $_SESSION['msg']="Previous Member Data Updated !!";
 // echo "<meta http-equiv='refresh' content='1;url=create-user.php'/>"; Need to remove this later.
 }
