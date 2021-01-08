@@ -16,9 +16,11 @@ if (strlen($_SESSION['login']) == 0) {
   $room =mysqli_real_escape_string($con, $_POST['roomname_h']);
   $tablename = mysqli_real_escape_string($con,$_POST['tablename_h']);
   $seats = mysqli_real_escape_string($con,$_POST['seats']);
-  $condono = strtoupper($_SESSION['login']);
+  $condono = mysqli_real_escape_string($con, $_POST['login']);
+  $name = mysqli_real_escape_string($con,$_POST['firstname']);
+  $lastname = mysqli_real_escape_string($con,$_POST['lastname']);
   $guestunit = mysqli_real_escape_string($con,$_POST['guestunit_h']);
-  $name = mysqli_real_escape_string($con,$_SESSION['firstname']);
+  
   $room_id = mysqli_real_escape_string($con,$_POST['room']);
 
 
@@ -66,8 +68,8 @@ if (strlen($_SESSION['login']) == 0) {
   $gn = mysqli_real_escape_string($con,$_POST['gn']);
   $dn = mysqli_real_escape_string($con,$_POST['dn']);
   $guno = mysqli_real_escape_string($con,$_POST['guno']); //capitalizes the unit no for consistency
-  $name = $_SESSION['firstname'];
-  $lname = $_SESSION['lastname'];
+  $firstname =  mysqli_real_escape_string($con,$_POST['name_h']);
+  $lname =  mysqli_real_escape_string($con,$_POST['lname_h']);
   $rid = mysqli_real_escape_string($con,$_POST['rid']);
   $gt = mysqli_real_escape_string($con,$_POST['gt']);
   $bkid = mysqli_real_escape_string($con,$_POST['bkid']);
@@ -76,7 +78,7 @@ if (strlen($_SESSION['login']) == 0) {
 
   if (isset($_POST['submit'])) {
     $sql = mysqli_query($con,  "insert into reservation(bookingid,firstname,lastname,dishname,roomid,room,tablename,seat,diningdate,diningtime,guestno,condono,dinerType,guestmealprice,guestmealtaxpercent,guestmealtaxvalue,guestmealtotalprice,grandtotal)
-	values('$bkid','$name','$lname','$dn','$rid','$r','$tn', '$s', '$dd', '$dt','$gn','$guno','$dntype','$guestmealprice','$guesttaxpercent','$guestmealtax','$mealprice2','$gt')");
+	values('$bkid','$firstname','$lname','$dn','$rid','$r','$tn', '$s', '$dd', '$dt','$gn','$guno','$dntype','$guestmealprice','$guesttaxpercent','$guestmealtax','$mealprice2','$gt')");
 
     if ($sql == 1) {
       $last_id = $con->insert_id;
@@ -227,7 +229,7 @@ if (strlen($_SESSION['login']) == 0) {
   </head>
 
   <body>
-    <?php $query = mysqli_query($con, "select * from users where unitno='" . $_SESSION['login'] . "'");
+    <?php $query = mysqli_query($con, "select * from users where unitno='$condono'");
     while ($row = mysqli_fetch_array($query)) { ?>
 
       <div class="limiter">
@@ -246,7 +248,7 @@ if (strlen($_SESSION['login']) == 0) {
         ?>
           <div class="container-login100">
             <div class="wrap-login100 p-t-50 p-b-90">
-              <p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , <?php echo $_SESSION['firstname']; ?></p>
+              <p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , <?php echo $name; ?></p>
             <?php } ?>
 
             <form method="POST" action="review-guest.php" class="login100-form validate-form flex-sb flex-w">
@@ -355,6 +357,9 @@ if (strlen($_SESSION['login']) == 0) {
                                               <input type="hidden" name="gt" value="<?php echo htmlentities($totalpri); ?>">
                                               <input type="hidden" name="bkid" value="<?php echo htmlentities($bookingid); ?>">
                                               <input type="hidden" name="dntype" value="<?php echo htmlentities($dinertype); ?>">
+                                              <input type="hidden" name="login_h" value="<?php echo htmlentities($condono); ?>">
+                                              <input type="hidden" name="name_h" value="<?php echo htmlentities($name); ?>">
+                                              <input type="hidden" name="lname_h" value="<?php echo htmlentities($lastname); ?>">
 
                                             </strong> </small></br></br>
                                         </td>

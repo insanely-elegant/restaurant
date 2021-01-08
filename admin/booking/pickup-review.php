@@ -12,8 +12,9 @@ if (strlen($_SESSION['login']) == 0) {
   $diningtime = $_POST['diningtime_h'];
   $dishname_h = mysqli_real_escape_string($con, $_POST['dishname_h']);
   $dishname = mysqli_real_escape_string($con, $_POST['dishname']);
-  $condono = $_SESSION['login'];
-  $name = $_SESSION['firstname'];
+  $condono = $_POST['login'];
+  $fname = $_POST['firstname'];
+  $lastname = $_POST['lastname'];
   $member = 1;
 
   $query = mysqli_query($con, "SELECT * FROM pricingmodels WHERE dinerid=1");
@@ -57,9 +58,9 @@ if (strlen($_SESSION['login']) == 0) {
   $s = mysqli_real_escape_string($con,$_POST['s']);
   $gn = mysqli_real_escape_string($con,$_POST['gn']);
   $dn = mysqli_real_escape_string($con,$_POST['dn']);
-  $condono = mysqli_real_escape_string($con,$_SESSION['login']);
-  $name = mysqli_real_escape_string($con,$_SESSION['firstname']);
-  $lname = mysqli_real_escape_string($con,$_SESSION['lastname']);
+  $condono2 = mysqli_real_escape_string($con,$_POST['condono_h']);
+  $name = mysqli_real_escape_string($con,$_POST['firstname_h']);
+  $lname = mysqli_real_escape_string($con,$_POST['lastname_h']);
   $rid = mysqli_real_escape_string($con,$_POST['rid']);
   $gt = mysqli_real_escape_string($con,$_POST['gt']);
   $bkid = mysqli_real_escape_string($con,$_POST['bkid']);
@@ -67,7 +68,7 @@ if (strlen($_SESSION['login']) == 0) {
 
   if (isset($_POST['submit'])) {
     $sql = mysqli_query($con,  "insert into pickups(bookingid,firstname,lastname,dishname,diningdate,diningtime,condono,membermealprice,membermealtaxpercent,membermealtaxvalue,membermealtotalprice,grandtotal) 
-	values('$bkid','$name','$lname','$dishname','$dd', '$dt','$condono','$membermealprice','$membertaxpercent','$membermealtax','$mealprice','$grandtot')");
+	values('$bkid','$name','$lname','$dishname','$dd', '$dt','$condono2','$membermealprice','$membertaxpercent','$membermealtax','$mealprice','$grandtot')");
 
     if ($sql == 1) {
       $last_id = $con->insert_id;
@@ -213,7 +214,7 @@ if (strlen($_SESSION['login']) == 0) {
   </head>
 
   <body>
-    <?php $query = mysqli_query($con, "select * from users where unitno='" . $_SESSION['login'] . "'");
+    <?php $query = mysqli_query($con, "select * from users where unitno='$condono'");
     while ($row = mysqli_fetch_array($query)) { ?>
 
       <div class="limiter">
@@ -232,7 +233,7 @@ if (strlen($_SESSION['login']) == 0) {
         ?>
           <div class="container-login100">
             <div class="wrap-login100 p-t-50 p-b-90">
-              <p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , <?php echo $_SESSION['firstname']; ?></p>
+              <p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , <?php echo $fname; ?></p>
             <?php } ?>
 
             <form method="POST" action="pickup-review.php" class="login100-form validate-form flex-sb flex-w">
@@ -290,7 +291,7 @@ if (strlen($_SESSION['login']) == 0) {
                                       <tr>
                                         <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
 
-                                          <small> Takeout by: <strong> <?php echo htmlentities($name); ?></strong></small></br></br>
+                                          <small> Takeout by: <strong> <?php echo htmlentities($fname); ?></strong></small></br></br>
                                         </td>
                                       </tr>
                                       <tr>
@@ -322,6 +323,9 @@ if (strlen($_SESSION['login']) == 0) {
                                         <td style="font-size: 22px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
                                           <small> Selected Meal: <strong> <?php echo htmlentities($dishname); ?>
                                               <input type="hidden" name="dishname" value="<?php echo htmlentities($dishname); ?>"></strong> </small></br></br>
+                                              <input type="hidden" name="condono_h" value="<?php echo htmlentities($condono); ?>">
+                                              <input type="hidden" name="firstname_h" value="<?php echo htmlentities($fname); ?>">
+                                              <input type="hidden" name="lastname_h" value="<?php echo htmlentities($lastname); ?>">
                                         </td>
                                       </tr>
                                     </tbody>

@@ -7,6 +7,7 @@ if (strlen($_SESSION['login']) == 0) {
 } else {
 	date_default_timezone_set('America/Los_Angeles');
 	$currentTime = date('m-d-Y h:i:s A', time());
+	$unitno = $_GET['id'];
 
 ?>
 	<!DOCTYPE html>
@@ -112,8 +113,11 @@ if (strlen($_SESSION['login']) == 0) {
 	</head>
 
 	<body>
-		<?php $query = mysqli_query($con, "select * from users where unitno='" . $_SESSION['login'] . "'");
-		while ($row = mysqli_fetch_array($query)) { ?>
+		<?php $query = mysqli_query($con, "select * from users where unitno='$unitno'");
+		while ($row = mysqli_fetch_array($query)) { 
+			$firstname =  $row['firstname'];
+			$lastname = $row['lastname']
+			?>
 
 			<div class="limiter">
 				<div class="container-login100">
@@ -193,6 +197,9 @@ if (strlen($_SESSION['login']) == 0) {
 
 								<input type="hidden" name="diningtime_h" id="diningtime_h"> <!-- passing all selected values to hidden inputs for review.php -->
 								<input type="hidden" name="storedtime_h" id="storedtime_h"> <!-- passing all selected values to hidden inputs for review.php -->
+								<input type="hidden" value="<?php echo $unitno; ?>" name="login" id="login">					
+								<input type="hidden" value="<?php echo $firstname; ?>" name="firstname" id="firstname">					
+								<input type="hidden" value="<?php echo $lastname; ?>" name="lastname" id="lastname">
 
 								<!-- End Dining Time -->
 

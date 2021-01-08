@@ -265,9 +265,9 @@ if (strlen($_SESSION['login']) == 0) {
 								</div>
 								<input type="hidden" name="dishname_h" id="dishname_h"> <!-- passing all selected values to hidden inputs for review.php -->
 								<!-- End Dish Name  -->
-								<input type="text" value="<?php echo $unitno; ?>" name="login" id="login">					
-								<input type="text" value="<?php echo $firstname; ?>" name="firstname" id="firstname">					
-								<input type="text" value="<?php echo $lastname; ?>" name="lastname" id="lastname">					
+								<input type="hidden" value="<?php echo $unitno; ?>" name="login" id="login">					
+								<input type="hidden" value="<?php echo $firstname; ?>" name="firstname" id="firstname">					
+								<input type="hidden" value="<?php echo $lastname; ?>" name="lastname" id="lastname">					
 
 								<!-- Begin Dining Time -->
 								<div class="wrap-input100 validate-input m-b-16">

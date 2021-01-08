@@ -182,7 +182,10 @@ if (strlen($_SESSION['login']) == 0) {
 
 	<body>
 		<?php $query = mysqli_query($con, "select * from users where unitno='$unitno'");
-		while ($row = mysqli_fetch_array($query)) { ?>
+		while ($row = mysqli_fetch_array($query)) { 
+			$firstname =  $row['firstname'];
+			$lastname = $row['lastname']
+			?>
 
 			<div class="limiter">
 				<div class="container-login100">
@@ -225,7 +228,7 @@ if (strlen($_SESSION['login']) == 0) {
 							}
 						?>
 
-							<p style="font-size: x-large; text-align: center; color: black"><?php echo ($message); ?>, <?php echo $row['firstname']; ?> </h2> <?php } ?></p>
+							<p style="font-size: x-large; text-align: center; color: black"><?php echo ($message); ?>, <?php echo $firstname; ?> </h2> <?php } ?></p>
 
 							<form method="POST" action="review-guest.php" class="login100-form validate-form flex-sb flex-w">
 								<span class="login100-form-title p-b-51">
@@ -234,7 +237,7 @@ if (strlen($_SESSION['login']) == 0) {
 
 								<!-- Begin Unit No -->
 								<div class="wrap-input100 validate-input m-b-16">
-									<input class="input100" type="text" name="condono" value="<?php echo "Your Unit No: " . $row['unitno']; ?>" disabled>
+									<input class="input100" type="text" name="condono" value="<?php echo "Your Unit No: " . $unitno; ?>" disabled>
 									<span class="focus-input100"></span>
 								</div>
 								<!-- End Unit No -->
@@ -248,8 +251,6 @@ if (strlen($_SESSION['login']) == 0) {
 									<span class="focus-input100"></span>
 								</div>
 								<!-- End Guest Unit No -->
-
-								<input type="hidden" value="<?php echo $unitno; ?>" name="login" id="login">	
 
 								<!-- Begin Dining Date Selection -->
 								<div class="wrap-input100 validate-input m-b-16">
@@ -314,7 +315,9 @@ if (strlen($_SESSION['login']) == 0) {
 
 								<input type="hidden" name="tablename_h" id="tablename_h"> <!-- passing all selected values to hidden inputs for review.php -->
 								<!-- End Table No -->
-
+								<input type="hidden" value="<?php echo $unitno; ?>" name="login" id="login">					
+								<input type="hidden" value="<?php echo $firstname; ?>" name="firstname" id="firstname">					
+								<input type="hidden" value="<?php echo $lastname; ?>" name="lastname" id="lastname">					
 
 
 

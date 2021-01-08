@@ -383,7 +383,7 @@ body {
 			<h1>Success!</h1>
 			<p>We've sent the order pickup confirmation to your e-mail
 				<br>for verification.</p>
-			<button type="button" onclick="location.href = 'menu.php';" class="redo btn">Goto Home Page</button>
+			<button type="button" onclick="location.href = '../admin-book.php';" class="redo btn">Goto Admin Booking Page</button>
             <button style="background-color:#5f6caf;color:#fff" type="button" onclick="location.href = 'pickup-receipt.php?id=<?php echo $id ?>';" class="redo btn">Show Invoice</button>
 		</div>
 		<!--/.success-->

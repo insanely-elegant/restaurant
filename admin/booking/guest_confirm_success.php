@@ -443,8 +443,8 @@ $id = intval($_GET['id']);
         <h1>Success!</h1>
         <p>We've sent the booking confirmation to your e-mail
           <br>for verification.</p>
-        <button type="button" onclick="location.href = 'menu.php';" class="redo btn">Goto Home</button>
-        <button style="background-color:#5f6caf;color:#fff" type="button" onclick="location.href = 'receipt-guest.php?id=<?php echo $id ?>';" class="redo btn">Show Invoice</button>
+        <button type="button" onclick="location.href = '../admin-book.php';" class="redo btn">Goto Admin Booking</button>
+        <button style="background-color:#5f6caf;color:#fff" type="button" onclick="location.href = '../receipt-guest.php?id=<?php echo $id ?>';" class="redo btn">Show Invoice</button>
       </div>
       <!--/.success-->
     </div>

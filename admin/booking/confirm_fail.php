@@ -380,7 +380,7 @@ body {
 			<h1>Oh no!</h1>
 			<p>Oops! Something went wrong,
 				<br> Please try again.</p>
-			<button type="button" onclick="location.href = 'menu.php';" class="redo btn">Try again</button>
+			<button type="button" onclick="location.href = '../admin-book.php';" class="redo btn">Try again</button>
 			
 		</div>
 		<!--/.success-->
