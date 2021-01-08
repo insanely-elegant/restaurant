@@ -14,7 +14,7 @@ if (strlen($_SESSION['login']) == 0) {
 		roomlayout.innerHTML='<img style=\"width:100%;\" src=\"./admin/productimages/'+x+'/" . $row['productimage1'] . "\"/>';
 	}";
 	}
-	$unitno =  mysqli_real_escape_string($con,$_POST['unitno']);
+	$unitno =  $_GET['id'];
 ?>
 	<!DOCTYPE html>
 	<html lang="en">
@@ -64,9 +64,14 @@ if (strlen($_SESSION['login']) == 0) {
 					}
 
 				?>
+				<div class="alert alert-primary" role="alert">
+				<center>
+  					You are booking onbehalf of the user Name - <strong><?php echo $row['firstname']; ?></strong>, unit no - <strong><?php echo $row['unitno']; ?></strong>
+					  </center>
+				</div>
 					<div class="container-login100">
 						<div class="wrap-login100 p-t-50 p-b-90">
-							<p style="font-size: x-large; text-align: center; color: black"> <?php echo ($message); ?> , <?php echo $row['firstname']; ?></p>
+							
 						<?php } ?>
 						<div class="container-login100-form-btn m-t-17">
 							<button class="login100-form-btn" style="background-color: #99B898; color: black;" onClick="booking();">
@@ -112,7 +117,7 @@ if (strlen($_SESSION['login']) == 0) {
 								location.href = "cancel-takeout.php";
 							}
 
-							function logout() {
+							function home() {
 								location.href = "../admin-book.php"
 							}
 						</script>

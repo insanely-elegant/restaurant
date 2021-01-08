@@ -228,7 +228,7 @@ if (strlen($_SESSION['login']) == 0) {
 							}
 						?>
 
-							<p style="font-size: x-large; text-align: center; color: black"><?php echo ($message); ?>, <?php echo $firstname; ?> </h2> <?php } ?></p>
+							<p style="font-size: x-large; text-align: center; color: black"></h2> <?php } ?></p>
 
 							<form method="POST" action="review-guest.php" class="login100-form validate-form flex-sb flex-w">
 								<span class="login100-form-title p-b-51">

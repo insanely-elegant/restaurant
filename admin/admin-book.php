@@ -10,9 +10,24 @@ include('includes/config.php');
 date_default_timezone_set('America/Los_Angeles'); // change according timezone
 $currentTime = date('d-m-Y h:i:s A', time());
 
+$unitno = mysqli_real_escape_string($con,$_POST['unitno']);
+$error = false;
 
-
-
+if (isset($_POST['submit'])) {
+    $query = mysqli_query($con, "SELECT * FROM users where unitno='$unitno'");
+    while ($row = mysqli_fetch_array($query)) {
+        $found_user = $row['unitno'];
+        if($found_user === $unitno){
+            header('Location: booking/menu.php?id=' . $unitno);
+            exit();
+        } 
+    }
+    if(mysqli_num_rows($query)==0) {
+        $_SESSION['msg'] = "User not found, try again!!";
+        header("Refresh:0");
+        exit();
+    }
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -83,23 +98,15 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                         <h3 class="section-title">Book Reservation for user</h3>
                                         <p>You can book on behalf of the user here.</p>
                                     </div>
-                                    <?php if (isset($_POST['submit'])) { ?>
-                                        <div class="alert alert-success" role="alert">
-                                            <button type="button" class="close" data-dismiss="alert">×</button>
-                                            <strong>Well done!</strong> <?php echo htmlentities($_SESSION['msg']); ?><?php echo htmlentities($_SESSION['msg'] = ""); ?>
-                                        </div>
-                                    <?php } ?>
-
-
-                                    <?php if (isset($_GET['del'])) { ?>
+                                    <?php if ( $_SESSION['msg']) { ?>
                                         <div class="alert alert-danger" role="alert">
                                             <button type="button" class="close" data-dismiss="alert">×</button>
-                                            <strong>Oh snap!</strong> <?php echo htmlentities($_SESSION['delmsg']); ?><?php echo htmlentities($_SESSION['delmsg'] = ""); ?>
+                                            <strong>Alert!</strong> <?php echo htmlentities($_SESSION['msg']); ?>
                                         </div>
                                     <?php } ?>
                                     <div class="card">
                                         <div class="card-body">
-                                            <form method="POST" action="booking/menu.php">
+                                            <form method="POST">
                                                
                                                 <div class="form-group">
                                                 <label for="inputText3" class="col-form-label">Enter Unit Number *</label>
@@ -108,10 +115,9 @@ $currentTime = date('d-m-Y h:i:s A', time());
                                                        
                                                     </div>
                                                 </div>
-                                               
+                                                                                              
                                                 </br>
-                                                <button type="submit" name="submit" class="btn btn-outline-dark">Book for user</a>
-                                                </button>
+                                                <button type="submit" name="submit" class="btn btn-outline-dark">Book for user</button>
                                             </form>
                                         </div>
 
