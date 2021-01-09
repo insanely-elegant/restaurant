@@ -2,9 +2,9 @@
 session_start();
 error_reporting(1);
 include('includes/config.php');
-if (strlen($_SESSION['login']) == 0) {
-	header('location:index.php');
-} else {
+// if (strlen($_SESSION['login']) == 0) {
+// 	// header('location:index.php');
+// } else {
 	date_default_timezone_set('America/Los_Angeles');
 	$currentTime = date('m-d-Y h:i:s A', time());
 	$query = mysqli_query($con, "select * from room");
@@ -149,4 +149,4 @@ if (strlen($_SESSION['login']) == 0) {
 	</body>
 
 	</html><?php }
-	} ?>
+	//} ?>
