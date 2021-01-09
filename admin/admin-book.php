@@ -12,6 +12,7 @@ $currentTime = date('d-m-Y h:i:s A', time());
 
 $unitno = mysqli_real_escape_string($con,$_POST['unitno']);
 $error = false;
+$_SESSION['msg'] = "";
 
 if (isset($_POST['submit'])) {
     $query = mysqli_query($con, "SELECT * FROM users where unitno='$unitno'");
@@ -23,7 +24,7 @@ if (isset($_POST['submit'])) {
         } 
     }
     if(mysqli_num_rows($query)==0) {
-        $_SESSION['msg'] = "User not found, try again!!";
+        $_SESSION['err_msg'] = "User not found, try again!!";
         header("Refresh:0");
         exit();
     }
@@ -98,10 +99,10 @@ if (isset($_POST['submit'])) {
                                         <h3 class="section-title">Book Reservation for user</h3>
                                         <p>You can book on behalf of the user here.</p>
                                     </div>
-                                    <?php if ( $_SESSION['msg']) { ?>
+                                    <?php if ( $_SESSION['err_msg']) { ?>
                                         <div class="alert alert-danger" role="alert">
                                             <button type="button" class="close" data-dismiss="alert">×</button>
-                                            <strong>Alert!</strong> <?php echo htmlentities($_SESSION['msg']); ?>
+                                            <strong>Alert!</strong> <?php echo htmlentities($_SESSION['err_msg']); ?>
                                         </div>
                                     <?php } ?>
                                     <div class="card">
