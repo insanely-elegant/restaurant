@@ -342,23 +342,14 @@ if (strlen($_SESSION['login']) == 0) {
 
 								<div style="margin-top:10px;" id="roomlayout"></div> <!-- Shows Image of the Table -->
 							</form>
-							<div class="container-login100-form-btn m-t-17">
-								<button class="login100-form-btn" style="background-color: #7584AD" onClick="reservation();">
-									View Bookings by others
-								</button>
-								<script>
-									function reservation() {
-										location.href = "reserved/index.php"
-									}
-								</script>
-							</div>
+							
 							<div class="container-login100-form-btn m-t-17">
 								<button class="login100-form-btn" style="background-color: #AED1D6" onClick="home();">
-									Go Back To Main Page
+									Go Back To Admin Booking Page
 								</button>
 								<script>
 									function home() {
-										location.href = "menu.php"
+										location.href = "../admin-book.php"
 									}
 								</script>
 							</div>
