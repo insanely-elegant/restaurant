@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2021 at 12:30 AM
+-- Generation Time: Jan 10, 2021 at 07:14 PM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -3502,6 +3502,16 @@ CREATE TABLE `reservation` (
   `freedinersmealtaxvalue` decimal(5,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `reservation`
+--
+
+INSERT INTO `reservation` (`id`, `bookingid`, `firstname`, `lastname`, `dishname`, `roomid`, `room`, `tablename`, `seatid`, `seat`, `diningdate`, `diningtime`, `guestno`, `condono`, `freedinersmealtotalprice`, `isConfirmed`, `isCheckedin`, `dinerType`, `membermealprice`, `membermealtaxpercent`, `membermealtaxvalue`, `membermealtotalprice`, `guestmealprice`, `guestmealtaxpercent`, `guestmealtaxvalue`, `guestmealtotalprice`, `grandtotal`, `memberguestmealprice`, `memberguestmealtaxpercent`, `memberguestmealtaxvalue`, `memberguestmealtotalprice`, `freedinersmealprice`, `freedinersmealtaxpercent`, `freedinersmealtaxvalue`) VALUES
+(1, 'SG2101110001', 'Gary and Carolyn', 'Saaris/Reid', 'Vegetable Frittata (V)', 3, 'Main Dining', '5', 0, '2', '2021-01-11', '15:00:00', '2', 'W102G', NULL, '', NULL, 'guest', NULL, NULL, NULL, NULL, '18.00', '10.00', '1.80', '18.00', '36.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'SG2101110002', 'Gary and Carolyn', 'Saaris/Reid', 'Vegetable Frittata (V)', 3, 'Main Dining', '6', 0, '2', '2021-01-11', '19:00:00', '2', 'W102G', NULL, '', NULL, 'guest', NULL, NULL, NULL, NULL, '18.00', '10.00', '1.80', '18.00', '36.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'SG2101110003', 'Gary and Carolyn', 'Saaris/Reid', 'Vegetable Frittata (V)', 3, 'Main Dining', '5', 0, '6', '2021-01-11', '15:00:00', '6', 'W102G', NULL, '', NULL, 'guest', NULL, NULL, NULL, NULL, '18.00', '10.00', '1.80', '18.00', '108.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'SG2101110004', 'Duane and Toni', 'DeSalvo', 'Vegetable Frittata (V)', 3, 'Main Dining', '4', 0, '4', '2021-01-11', '15:00:00', '4', 'E302G', NULL, '', NULL, 'guest', NULL, NULL, NULL, NULL, '18.00', '10.00', '1.80', '18.00', '72.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -6306,7 +6316,7 @@ ALTER TABLE `pickupweeklymenu`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `room`
