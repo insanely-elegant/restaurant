@@ -183,15 +183,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="weekly-menu-reports.php">Print Dine-In Menu</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="current-weekly-menu-reports-detailed.php">THIS WEEK's Dine-In Menu</a>
-                                </li>
+                              
                                 <li class="nav-item">
                                     <a class="nav-link" href="takeout-menu-reports.php">Print Take-out Menu</a>
                                 </li> 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="current-takeout-menu-reports-detailed.php">THIS WEEK's Take-out Menu</a>
-                                </li>
+                               
                             </ul>
                         </div>
                     </li>
