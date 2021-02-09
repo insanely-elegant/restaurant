@@ -6,16 +6,16 @@ include('includes/config.php');
 // Code for User login
 if(isset($_POST['login']))
 {
-   $username=$_POST['username'];
+   $username=$_POST['email'];
    $password=$_POST['password'];
-$query=mysqli_query($con,"SELECT * FROM chef WHERE chefname='$username' and password='$password'");
+$query=mysqli_query($con,"SELECT * FROM chef WHERE email='$username' and password='$password'");
 $num=mysqli_fetch_array($query);
 if($num>0)
 {
 $extra="create-dining-dates.php";
-$_SESSION['login']=$_POST['username'];
+$_SESSION['login']=$_POST['email'];
 $_SESSION['id']=$num['id'];
-$_SESSION['username']=$num['username'];
+$_SESSION['email']=$num['email'];
 $uip=$_SERVER['REMOTE_ADDR'];
 $status=1;
 $log=mysqli_query($con,"insert into userlog(unitno,userip,status) values('".$_SESSION['login']."','$uip','$status')");
@@ -80,7 +80,7 @@ exit();
 							<?php echo htmlentities($_SESSION['errmsg']=""); ?>
 						</span>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" name="username" id="username" type="text" placeholder="Username" autocomplete="off">
+                        <input class="form-control form-control-lg" name="email" id="email" type="email" placeholder="Email" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <input class="form-control form-control-lg" name="password" id="password" type="password" placeholder="Password">

@@ -42,7 +42,12 @@
                         <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fas fa-fw fa-file"></i>Restaurant Management</a>
                         <div id="submenu-12" class="collapse submenu" style="">
                             <ul class="nav flex-column">
-
+<li class="nav-item">
+                                    <a class="nav-link" href="takeout-menu-reports.php">5. Check Takeout Orders</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="weekly-menu-reports.php">4. Check Dine-in Orders</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="create-dining-program.php">3. Create & View Dining Program</a>
                                 </li>
@@ -56,7 +61,6 @@
                             </ul>
                         </div>
                     </li>
-
 
                 </ul>
             </div>

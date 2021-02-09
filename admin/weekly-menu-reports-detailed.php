@@ -203,7 +203,7 @@ function formatData($date)
                                                             ?>
                                                                 <thead style="background-color:#154e84 !important;">
                                                                     <tr>
-                                                                        <th colspan="6" style="font-size:x-large;text-align: center;color: white !important;background-color: black !important;">Weekly Menu </th>
+                                                                        <th colspan="6" style="font-size:x-large;text-align: center;color: white !important;background-color: black !important;">SILVER GLEN WEEKLY MENU </th>
 
                                                                     </tr>
                                                                     <tr>

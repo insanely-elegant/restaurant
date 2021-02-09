@@ -98,7 +98,7 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fa-ticket-alt"></i>Manage Reservations & Takeouts</a>
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fa-ticket-alt"></i>Manage Reservations, Takeouts</a>
                         <div id="submenu-6" class="collapse submenu" style="">
                             <ul class="nav flex-column">
 
@@ -119,12 +119,29 @@
                             </ul>
                         </div>
                     </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-7"><i class="fas fa-fw fa-ticket-alt"></i>Review Orders</a>
+                        <div id="submenu-7" class="collapse submenu" style="">
+                            <ul class="nav flex-column">
+
+                           
+                                <li class="nav-item">
+                                    <a class="nav-link" href="takeout-menu-orders.php">Review Take-out Orders</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="weekly-menu-orders.php">Review Dine-In Orders </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
 
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-7"><i class="fas fa-fw fa-users"></i> User Management </a>
-                        <div id="submenu-7" class="collapse submenu" style="">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8"><i class="fas fa-fw fa-users"></i> User Management </a>
+                        <div id="submenu-8" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link" href="create-user.php">Create & Manage User Accounts</a>
@@ -136,8 +153,8 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8"><i class="fas fa-utensils" aria-hidden="true"></i> Chef Management </a>
-                        <div id="submenu-8" class="collapse submenu" style="">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-9" aria-controls="submenu-9"><i class="fas fa-utensils" aria-hidden="true"></i> Chef Management </a>
+                        <div id="submenu-9" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link" href="create-chef.php">Manage Chef Accounts</a>
@@ -147,8 +164,8 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-9" aria-controls="submenu-9"><i class="fas fa-fw fa-user"></i> Host Management </a>
-                        <div id="submenu-9" class="collapse submenu" style="">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-10" aria-controls="submenu-10"><i class="fas fa-fw fa-user"></i> Host Management </a>
+                        <div id="submenu-10" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link" href="create-host.php">Manage Host Accounts</a>
@@ -160,21 +177,27 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-10" aria-controls="submenu-10"><i class="fas fa-print"></i> Print Weekly Menu </a>
-                        <div id="submenu-10" class="collapse submenu" style="">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-11" aria-controls="submenu-11"><i class="fas fa-print"></i> Print Weekly Menu </a>
+                        <div id="submenu-11" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="weekly-menu-reports.php">Print Dine IN Menu</a>
+                                    <a class="nav-link" href="weekly-menu-reports.php">Print Dine-In Menu</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="takeout-menu-reports.php">Print Takeout Menu</a>
+                                    <a class="nav-link" href="current-weekly-menu-reports-detailed.php">THIS WEEK's Dine-In Menu</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="takeout-menu-reports.php">Print Take-out Menu</a>
+                                </li> 
+                                <li class="nav-item">
+                                    <a class="nav-link" href="current-takeout-menu-reports-detailed.php">THIS WEEK's Take-out Menu</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-11" aria-controls="submenu-11"><i class="fas fa-print"></i> Print Labels </a>
-                        <div id="submenu-11" class="collapse submenu" style="">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fas fa-print"></i> Print Labels </a>
+                        <div id="submenu-12" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link" href="print-labels.php">Print Takeout Labels</a>
@@ -186,8 +209,8 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fa fa-book" aria-hidden="true"></i> All Reports </a>
-                        <div id="submenu-12" class="collapse submenu" style="">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-13" aria-controls="submenu-13"><i class="fa fa-book" aria-hidden="true"></i> All Reports </a>
+                        <div id="submenu-13" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link" href="reports.php">SGDINE Reports</a>
@@ -202,8 +225,8 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-13" aria-controls="submenu-13"><i class="fa fa-cog fa-spin fa-3x fa-fw"></i>Settings</a>
-                        <div id="submenu-13" class="collapse submenu" style="">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-14" aria-controls="submenu-14"><i class="fa fa-cog fa-spin fa-3x fa-fw"></i>Settings</a>
+                        <div id="submenu-14" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link" href="create-pricing.php"><i class="fas fa-dollar-sign"></i>

@@ -178,7 +178,7 @@ include('includes/config.php');
 								<div class="wrap-input100 validate-input m-b-16">
 									<select id="diningdate" name="diningdate" class="form-control" onChange="getDiningtime(this.value);getRoom(this.value);GetFood(this.value);" required>
 										<option value="">Select Pickup Date</option>
-										<?php $query = mysqli_query($con, "SELECT DISTINCT pickupdate FROM pickupweeklymenu WHERE pickupdate >= CURDATE() ORDER BY pickupdate ASC"); //+ INTERVAL 8 HOUR
+										<?php $query = mysqli_query($con, "SELECT DISTINCT pickupdate FROM pickupweeklymenu ORDER BY pickupdate ASC"); //+ INTERVAL 8 HOUR
 										while ($row = mysqli_fetch_array($query)) { ?>
 
 											<option id="usrdate" value="<?php echo $row['pickupdate']; ?>"><?php echo $row['pickupdate']; ?></option>
@@ -234,11 +234,11 @@ include('includes/config.php');
 							</div>
 							<div class="container-login100-form-btn m-t-17">
 								<button class="login100-form-btn" style="background-color: #AED1D6" onClick="home();">
-									Go Back to Main Page
+									Go Back to Admin Booking Page
 								</button>
 								<script>
 									function home() {
-										location.href = "menu.php"
+										location.href = "../admin-book.php"
 									}
 								</script>
 							</div>

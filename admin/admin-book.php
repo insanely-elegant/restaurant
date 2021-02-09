@@ -10,7 +10,7 @@ include('includes/config.php');
 date_default_timezone_set('America/Los_Angeles'); // change according timezone
 $currentTime = date('d-m-Y h:i:s A', time());
 
-$unitno = mysqli_real_escape_string($con,$_POST['unitno']);
+$unitno = strtoupper(mysqli_real_escape_string($con,$_POST['unitno']));
 $error = false;
 $_SESSION['msg'] = "";
 

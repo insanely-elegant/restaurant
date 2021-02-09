@@ -12,12 +12,12 @@ $currentTime = date('d-m-Y h:i:s A', time());
 
 
 if (isset($_POST['submit'])) {
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
+    $firstname = mysqli_real_escape_string($con,$_POST['firstname']);
+    $lastname = mysqli_real_escape_string($con,$_POST['lastname']);
     $age = $_POST['age'];
-    $unitno = $_POST['unitno'];
-    $contactno = $_POST['contactno'];
-    $altcontactno = $_POST['altcontactno'];
+    $unitno = mysqli_real_escape_string($con,$_POST['unitno']);
+    $contactno = mysqli_real_escape_string($con,$_POST['contactno']);
+    $altcontactno = mysqli_real_escape_string($con,$_POST['altcontactno']);
     $email = $_POST['email'];
     $password = $_POST['password'];
     $sql = mysqli_query($con, "insert into users(firstname,lastname,age,unitno,contactno,altcontactno,email,password) values('$firstname','$lastname','$age',

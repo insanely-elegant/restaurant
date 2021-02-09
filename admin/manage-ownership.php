@@ -13,10 +13,10 @@ $currentTime = date('d-m-Y h:i:s A', time());
 
 if(isset($_POST['submit']))
 {
-	$condono_old=$_POST['condono_old'];
-	$condono_new=$_POST['condono_new'];
-	$firstname=$_POST['firstname'];
-	$lastname=$_POST['lastname'];
+	$condono_old=mysqli_real_escape_string($con,$_POST['condono_old']);
+	$condono_new=mysqli_real_escape_string($con,$_POST['condono_new']);
+	$firstname=mysqli_real_escape_string($con,$_POST['firstname']);
+	$lastname=mysqli_real_escape_string($con,$_POST['lastname']);
 $sql=mysqli_query($con,"update
                             pickups
                         set 
@@ -125,12 +125,25 @@ $_SESSION['msg']="Previous Member Data Updated !!";
                                             <strong>Oh snap!</strong> <?php echo htmlentities($_SESSION['delmsg']); ?><?php echo htmlentities($_SESSION['delmsg'] = ""); ?>
                                         </div>
                                     <?php } ?>
+                                     <div class="alert alert-danger" role="alert">
+                                                Warning! : Please ensure you have taken full backups from <a href="backup-restore.php">here</a>. <br>
+                                                Once you change the data, it'll reflect everywhere permanently. This process cannot be reversed.
+
+                                            </div>
+                                            <div class="alert alert-info" role="alert">
+                                                Please note! : The Previous Resident's Unit Number, First Name and Last Name <br> has to match as per records for it to replace it with the new "Unit Number with identifier" on all old records. <br><br>
+                                               An Ideal Identifier is Unit Number followed by an identifier for previous resident (PR) followed by the YEAR they moved out. <br>
+                                                For example: 
+                                                <br>
+                                                E411 <br> becomes <br>
+                                                E411 PR-2019
+                                            </div>
                                     <div class="card">
                                         <div class="card-body">
                                             <form method="post">
                                                
                                                 <div class="form-group">
-                                                <label for="inputText3" class="col-form-label">Enter Old Unit Number *</label>
+                                                <label for="inputText3" class="col-form-label">Enter Old Unit Number *</label><a href="#" data-toggle="tooltip" title="" data-html="true"  style="color:red;"  data-original-title="UnitNumber For.e.g if the previous resident's Unit Number is E311 then enter: <br>E311"> [ ? ]</a>
                                                     <div class="input-group" id="condono_old" data-target-input="nearest">
                                                         <input type="text" id="condono_old" name="condono_old" class="form-control">
                                                        
@@ -151,14 +164,14 @@ $_SESSION['msg']="Previous Member Data Updated !!";
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                <label for="inputText3" class="col-form-label">Enter New Identifier for Old Unit Number*</label>
+                                                <label for="inputText3" class="col-form-label">Enter New Identifier for Old Unit Number*</label><a href="#" data-toggle="tooltip" title="" data-html="true"  style="color:red;"  data-original-title="UnitNumber PR-YEAR For.e.g if the previous resident's Unit Number is E311, and they moved out in 2019, then it becomes, <br> E311 PR-2019"> [ ? ]</a>
                                                     <div class="input-group" id="condono_new" data-target-input="nearest">
                                                         <input type="text" id="condono_new" name="condono_new" class="form-control">
                                                        
                                                     </div>
                                                 </div>
                                                 </br>
-                                                <button type="submit" name="submit" class="btn btn-outline-dark">Update all records in Takeout</a>
+                                                <button type="submit" name="submit" class="btn btn-outline-dark">Update all the old records</a>
                                                 </button>
                                             </form>
                                         </div>

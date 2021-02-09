@@ -27,14 +27,14 @@ while ($user_row = mysqli_fetch_assoc($user_res))
 {
     $sub_array = array();
     $sub_array[] = $cnt;
-    $first_name = $user_row['firstname'];
-    $sub_array[] = $user_row['firstname'];
+    $first_name = mysqli_real_escape_string($con,$user_row['firstname']);
+    $sub_array[] = mysqli_real_escape_string($con,$user_row['firstname']);
 
-    $last_name = $user_row['lastname'];
-    $sub_array[] = $user_row['lastname'];
+    $last_name = mysqli_real_escape_string($con,$user_row['lastname']);
+    $sub_array[] = mysqli_real_escape_string($con,$user_row['lastname']);
 
-    $unit_no = $user_row['unitno'];
-    $sub_array[] = $user_row['unitno'];
+    $unit_no = mysqli_real_escape_string($con,$user_row['unitno']);
+    $sub_array[] = mysqli_real_escape_string($con,$user_row['unitno']);
 
 
     //Sql query for finding 'Total Dinein Meals Consumed' of specific user
