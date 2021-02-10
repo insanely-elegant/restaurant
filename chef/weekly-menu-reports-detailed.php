@@ -105,7 +105,7 @@ function formatData($date)
 </head>
 
 <body style="-webkit-print-color-adjust: exact !important;">
-    <?php $query = mysqli_query($con, "select * from admins");
+    <?php $query = mysqli_query($con, "select * from chef");
     while ($row = mysqli_fetch_array($query)) { ?>
         <!-- ============================================================== -->
         <!-- main wrapper -->
@@ -143,7 +143,7 @@ function formatData($date)
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="page-header">
-                                        <h2 class="pageheader-title"><?php echo ($message); ?>, <?php echo $row['firstname']; ?> </h2> <?php } ?>
+                                        <h2 class="pageheader-title"><?php echo ($message); ?>, <?php echo $row['chefname']; ?> </h2> <?php } ?>
                                     <div class="page-breadcrumb">
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">

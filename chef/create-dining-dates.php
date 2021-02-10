@@ -43,7 +43,7 @@ if (isset($_GET['del'])) {
 </head>
 
 <body>
-    <?php $query = mysqli_query($con, "select * from admins");
+    <?php $query = mysqli_query($con, "select * from chef");
     while ($row = mysqli_fetch_array($query)) { ?>
         <!-- ============================================================== -->
         <!-- main wrapper -->
@@ -81,7 +81,7 @@ if (isset($_GET['del'])) {
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="page-header">
-                                        <h2 class="pageheader-title"><?php echo ($message); ?>, Chef </h2> <?php } ?>
+                                    <h2 class="pageheader-title"><?php echo ($message); ?>, <?php echo $row['chefname']; ?> </h2> <?php } ?>
                                     <div class="page-breadcrumb">
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">

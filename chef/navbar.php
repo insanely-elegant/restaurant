@@ -39,27 +39,38 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fas fa-fw fa-file"></i>Restaurant Management</a>
-                        <div id="submenu-12" class="collapse submenu" style="">
                             <ul class="nav flex-column">
-<li class="nav-item">
-                                    <a class="nav-link" href="takeout-menu-reports.php">5. Check Takeout Orders</a>
+                            <li class="nav-item">
+                                    <a class="nav-link" href="current-weekly-menu-reports-detailed.php">THIS WEEK's Dine-In Menu</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="weekly-menu-reports.php">4. Check Dine-in Orders</a>
+                                    <a class="nav-link" href="current-takeout-menu-reports-detailed.php">THIS WEEK's Take-out Menu</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="create-dining-program.php">3. Create & View Dining Program</a>
+                                    <a class="nav-link" href="takeout-menu-reports.php">Print Take-out Menu (any date) </a>
+                                </li> 
+                                <li class="nav-item">
+                                    <a class="nav-link" href="weekly-menu-reports.php">Print Dine-In Menu (any date)</a>
+                                </li>                               
+                                <li class="nav-item">
+                                    <a class="nav-link" href="takeout-menu-reports.php">Check Takeout Orders</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="create-dining-dates.php">2. Create & View Dining Dates</a>
+                                    <a class="nav-link" href="weekly-menu-reports.php">Check Dine-in Orders</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="create-menu.php">1. Create & View Menu Items</a>
+                                    <a class="nav-link" href="create-dining-program.php">Create & View Dining Program</a>
                                 </li>
-
-                            </ul>
-                        </div>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="create-dining-dates.php">Create & View Dining Dates</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="create-menu.php">Create & View Menu Items</a>
+                                </li>
+                               
+                               
+                 
+                         
                     </li>
 
                 </ul>
