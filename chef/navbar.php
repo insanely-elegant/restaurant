@@ -47,16 +47,23 @@
                                     <a class="nav-link" href="current-takeout-menu-reports-detailed.php">THIS WEEK's Take-out Menu</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" href="current-weekly-menu-orders-detailed.php">THIS WEEK's Dine-In Orders </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="current-takeout-menu-orders-detailed.php">THIS WEEK's Take-out Orders</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="takeout-menu-reports.php">Print Take-out Menu (any date) </a>
                                 </li> 
                                 <li class="nav-item">
                                     <a class="nav-link" href="weekly-menu-reports.php">Print Dine-In Menu (any date)</a>
-                                </li>                               
+                                </li>
+                                                        
                                 <li class="nav-item">
-                                    <a class="nav-link" href="takeout-menu-reports.php">Check Takeout Orders</a>
+                                    <a class="nav-link" href="takeout-menu-reports.php">Check Takeout Orders (any date) </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="weekly-menu-reports.php">Check Dine-in Orders</a>
+                                    <a class="nav-link" href="weekly-menu-reports.php">Check Dine-in Orders (any date) </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="create-dining-program.php">Create & View Dining Program</a>

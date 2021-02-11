@@ -125,12 +125,17 @@
                         <div id="submenu-7" class="collapse submenu" style="">
                             <ul class="nav flex-column">
 
-                           
-                                <li class="nav-item">
-                                    <a class="nav-link" href="takeout-menu-orders.php">Review Take-out Orders</a>
+                            <li class="nav-item">
+                                    <a class="nav-link" href="current-takeout-menu-orders-detailed.php">THIS WEEK's Take-out Orders</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="weekly-menu-orders.php">Review Dine-In Orders </a>
+                                    <a class="nav-link" href="current-weekly-menu-orders-detailed.php">THIS WEEK's Dine-In Orders </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="takeout-menu-orders.php">Review Take-out Orders (any date) </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="weekly-menu-orders.php">Review Dine-In Orders (any date) </a>
                                 </li>
 
                             </ul>
@@ -180,18 +185,20 @@
                         <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-11" aria-controls="submenu-11"><i class="fas fa-print"></i> Print Weekly Menu </a>
                         <div id="submenu-11" class="collapse submenu" style="">
                             <ul class="nav flex-column">
+
                                 <li class="nav-item">
-                                    <a class="nav-link" href="weekly-menu-reports.php">Print Dine-In Menu</a>
+                                    <a class="nav-link" href="current-takeout-menu-reports-detailed.php">THIS WEEK's Take-out Menu</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="current-weekly-menu-reports-detailed.php">THIS WEEK's Dine-In Menu</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="takeout-menu-reports.php">Print Take-out Menu</a>
+                                    <a class="nav-link" href="takeout-menu-reports.php">Print Take-out Menu (any date) </a>
                                 </li> 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="current-takeout-menu-reports-detailed.php">THIS WEEK's Take-out Menu</a>
+                                    <a class="nav-link" href="weekly-menu-reports.php">Print Dine-In Menu (any date) </a>
                                 </li>
+                              
                             </ul>
                         </div>
                     </li>

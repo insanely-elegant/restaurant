@@ -67,7 +67,7 @@
          ?>
    </head>
    <body style="-webkit-print-color-adjust: exact;">
-      <?php $query = mysqli_query($con, "select * from admins");
+      <?php $query = mysqli_query($con, "select * from chef");
          while ($row = mysqli_fetch_array($query)) { ?>
       <!-- ============================================================== -->
       <!-- main wrapper -->
@@ -105,7 +105,7 @@
             <div class="row">
                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                   <div class="page-header">
-                     <h2 class="pageheader-title"><?php echo ($message); ?>, <?php echo $row['firstname']; ?> </h2>
+                     <h2 class="pageheader-title"><?php echo ($message); ?>, <?php echo $row['chefname']; ?> </h2>
                      <?php } ?>
                      <div class="page-breadcrumb">
                         <nav aria-label="breadcrumb">
@@ -125,7 +125,7 @@
                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                <div class="section-block" id="basicform">
                                         <h3 class="section-title">Take-Out Orders</h3>
-                                        <p>You can view Take-Out Orders from here.</p>
+                                        <p>You can view this week's Take-Out Orders from here.</p>
                                     </div>
                   <div class="card">
                      <div class="card-body">
@@ -135,21 +135,17 @@
                                  </br>
                                  <input class="btn btn-o black" type="button" onclick="tableToExcel('sample-table-1', 'W3C Example Table')" value="Export to Excel"></br> </br>
                                  <input class="btn btn-o black" type="button" onclick="printDiv('printTable')" value="Print Orders">
-                                 <?php
-                                    $fdate = $_REQUEST['fromdate'];
-                                    $tdate = $_REQUEST['todate'];
-                                    
-                                    ?>
-                                 <h5 align="center" style="color:black">Takeout Menu from <?php echo $fdate ?> to <?php echo $tdate ?></h5>
+                                
+                                 <h5 align="center" style="color:black">This Week's Takeout Orders</h5>
                                  </br>
                                  <div id="printTable">
                                  <table class="table table-striped table-hover table-bordered table-responsive" id="sample-table-1">
-                                    <caption style="font-size:large;color:black;"> Takeout Menu from <?php echo $fdate ?> to <?php echo $tdate ?> </caption>
+                                    <caption style="font-size:large;color:black;"> This Week's Takeout Orders </caption>
                                     <?php
                                     $stmt = "SELECT DISTINCT pickupweeklymenu.pickupdate as dd, pickupweeklymenu.dishname1 as d1,
                                         pickupweeklymenu.dishname2 as d2,dish1.dishdescription as ddesc1,dish2.dishdescription as ddesc2,pickupweeklymenu.roomid as rid, room.id as roomid, room.roomname as rname
                                            FROM pickupweeklymenu LEFT join room on pickupweeklymenu.roomid = room.id JOIN dish as dish1 ON pickupweeklymenu.dishname1 = dish1.dishname 
-                                           JOIN dish as dish2 ON pickupweeklymenu.dishname2 = dish2.dishname WHERE pickupweeklymenu.pickupdate between '$fdate' AND '$tdate' ORDER BY pickupweeklymenu.pickupdate ASC";
+                                           JOIN dish as dish2 ON pickupweeklymenu.dishname2 = dish2.dishname WHERE WEEKOFYEAR(pickupweeklymenu.pickupdate) = WEEKOFYEAR(NOW()) ORDER BY pickupweeklymenu.pickupdate ASC";
 
                                        $sql = mysqli_query($con, $stmt);
 

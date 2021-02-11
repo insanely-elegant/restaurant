@@ -162,7 +162,7 @@ function formatData($date)
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="section-block" id="basicform">
                                         <h3 class="section-title">Dine-In Orders</h3>
-                                        <p>You can view Dine-In Orders from here.</p>
+                                        <p>You can view this week's Dine-In Orders from here.</p>
                                     </div>
 
                                     <div class="card">
@@ -174,22 +174,18 @@ function formatData($date)
                                                         <input class="btn btn-o black" type="button" onclick="tableToExcel('sample-table-1', 'W3C Example Table')" value="Export to Excel"></br> </br>
                                                         <input class="btn btn-o black" type="button" onclick="printDiv('printTable')" value="Print Orders">
                                                         
-                                                        <?php
-                                                        $fdate = $_REQUEST['fromdate'];
-                                                        $tdate = $_REQUEST['todate'];
-
-                                                        ?>
-                                                        <h5 align="center" style="color:blue">Dine-In Orders Menu from <?php echo $fdate ?> to <?php echo $tdate ?></h5> </br>
+                                                    
+                                                        <h5 align="center" style="color:blue">Dine-In Orders Menu from this week</h5> </br>
                                                         <div id="printTable">
                                                         
                                                         <table class="table table-striped table-hover table-bordered table-responsive" id="sample-table-1">
-                                                            <caption style="font-size:large;color:black !important;"> Weekly Menu from <?php echo $fdate ?> to <?php echo $tdate ?> </caption>
+                                                            <caption style="font-size:large;color:black !important;">This Week's Dine-In orders</caption>
 
                                                             <?php
                                                             $stmt = "SELECT DISTINCT weeklymenu.diningdate as dd, weeklymenu.dishname1 as d1,
                                                              weeklymenu.dishname2 as d2,dish1.dishdescription as ddesc1,dish2.dishdescription as ddesc2,weeklymenu.roomid as rid, room.id as roomid, room.roomname as rname
                                                                 FROM weeklymenu join room on weeklymenu.roomid = room.id JOIN dish as dish1 ON weeklymenu.dishname1 = dish1.dishname 
-                                                                JOIN dish as dish2 ON weeklymenu.dishname2 = dish2.dishname WHERE weeklymenu.diningdate >= '$fdate' AND weeklymenu.diningdate <= '$tdate' ORDER BY weeklymenu.diningdate ASC";
+                                                                JOIN dish as dish2 ON weeklymenu.dishname2 = dish2.dishname WHERE WEEKOFYEAR(weeklymenu.diningdate) = WEEKOFYEAR(NOW()) ORDER BY weeklymenu.diningdate ASC";
                                                             $sql = mysqli_query($con, $stmt);
                                                             $cnt = 1;
                                                             //Save data to local variable

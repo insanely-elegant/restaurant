@@ -134,7 +134,7 @@
                               <div class="col-md-12">
                                  </br>
                                  <input class="btn btn-o black" type="button" onclick="tableToExcel('sample-table-1', 'W3C Example Table')" value="Export to Excel"></br> </br>
-                                 <input class="btn btn-o black" type="button" onclick="printDiv('printTable')" value="Print Weekly menu">
+                                 <input class="btn btn-o black" type="button" onclick="printDiv('printTable')" value="Print Orders">
                                  <?php
                                     $fdate = $_REQUEST['fromdate'];
                                     $tdate = $_REQUEST['todate'];
