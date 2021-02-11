@@ -116,11 +116,11 @@ if (strlen($_SESSION['login']) == 0) {
 								View Your Order Takeout History
 							</button>
 						</div>
-						<div class="container-login100-form-btn m-t-17">
+						<!-- <div class="container-login100-form-btn m-t-17">
 							<button class="login100-form-btn" style="background-color: #E8455F; color: magenta;" onClick="menu();">
 								See menu from any date
 							</button>
-						</div>
+						</div> -->
 						<div class="container-login100-form-btn m-t-17">
 							<button class="login100-form-btn" style="background-color: #99B898; color: black;" onClick="updatePassword();">
 								Update Password
@@ -148,7 +148,7 @@ if (strlen($_SESSION['login']) == 0) {
 							}
 
 							function menuthisweek() {
-								location.href = "this-week-weekly-menu-detailed.php"
+								location.href = "current-takeout-menu-detailed.php"
 							}
 
 							function menu() {
