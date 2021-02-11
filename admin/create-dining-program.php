@@ -16,18 +16,21 @@ if (isset($_POST['submit'])) {
     $i = 0;
     $field_values_array1 = $_POST['table'];
     $field_values_array2 = $_POST['diningdate'];
-    //print_r($field_values_array);
+    $field_values_array3 = $_POST['diningtime'];
+
     $room = $_POST['room'];
     $table = $_POST['table'];
     $diningdate = $_POST['diningdate'];
-    $diningtime = $_POST['diningtime'];
+    
     $dishname1 = mysqli_real_escape_string($con, $_POST['dishname1']);
     $dishname2 = mysqli_real_escape_string($con, $_POST['dishname2']);
 
     foreach ($field_values_array1 as $value1) { // This Loop Execute for Tables Selection
         $table = $value1;
         foreach ($field_values_array2 as $value2) { // This Loop Execute for Diningdate Selection
-            $sql = mysqli_query($con, "insert into weeklymenu(roomid,tableid,diningdate,diningtime,dishname1,dishname2) values('$room','$table','$value2','$diningtime','$dishname1','$dishname2')");
+            foreach ($field_values_array3 as $value3) { // This Loop Execute for Diningtime Selection
+                $sql = mysqli_query($con, "insert into weeklymenu(roomid,tableid,diningdate,diningtime,dishname1,dishname2) values('$room','$table','$value2','$value3','$dishname1','$dishname2')");
+            }
         }
 
         $i++;
@@ -148,7 +151,9 @@ if (isset($_GET['del'])) {
                                                         Tip! : Click <a href="create-dining-dates.php" style="color: red">here</a> to create your program's dining dates and then come
                                                         back to this page and assign rooms, tables and dates to times & dishes.
                                                     </div>
-
+                                                    
+                                                   
+                                                    
                                                     <div class="field_wrapper">
 
                                                         <select name="room" rsl='1' class="form-control" id="room1" onChange="getRoomtables(this.value,1);" required>
@@ -174,9 +179,11 @@ if (isset($_GET['del'])) {
                                                                 <option value="<?php echo $row['diningdate']; ?>"><?php echo date("D j F Y", strtotime($row['diningdate'])); ?></option>
                                                             <?php } ?>
                                                         </select>
-                                                        <input id="diningtime" placeholder="Example: 14:00" name="diningtime" type="time" class="form-control" required>
-
-
+                                                        
+                                                        <input id="diningtime" placeholder="Example: 14:00" name="diningtime[]" type="time" class="form-control" required="required"/>
+                                                        <span id="moreTime"></span>
+                                                         <button type="button" id="addTime" class="btn btn-primary">Add More Time</button> 
+                                                    <button type="button" id="removeTime" class="btn btn-warning">Remove Last Added Time</button>
                                                         <select name="dishname1" class="form-control" id="input-select" required>
                                                             <option value="">Select a Dish</option>
                                                             <?php
@@ -270,6 +277,12 @@ if (isset($_GET['del'])) {
                         $('.dataTables_paginate > a').wrapInner('<span />');
                         $('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
                         $('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
+                        $("#addTime").on("click", function() {  
+                            $("#moreTime").append('<input placeholder="Example: 14:00" name="diningtime[]" type="time" class="form-control" required="required" style="margin-right:2px;"/>');  
+                        });
+                        $("#removeTime").on("click", function() {  
+                            $("#moreTime").children().last().remove();  
+                        });
                     });
                 </script>
                 <!-- ============================================================== -->
